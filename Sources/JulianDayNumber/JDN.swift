@@ -14,7 +14,8 @@ import Foundation
 /// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC in the proleptic Julian calendar
 /// (November 24, 4714 BC in the proleptic Gregorian calendar).
 ///
-/// - note: Dates before 15 October 1582 are interpreted in the Julian calendar.
+/// Dates before 15 October 1582 are interpreted in the Julian calendar while later dates are interpreted in the Gregorian calendar.
+///
 /// - note: No validation checks are performed on the date.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
@@ -41,7 +42,7 @@ let latestSupportedJDN = 38245309
 
 /// Converts the Julian day number `J` to a calendar date.
 ///
-/// - note: JDN values less than 2299161 are interpreted in the Julian calendar.
+/// JDN values less than `2299161` are interpreted in the Julian calendar while greater JDN values are interpreted in the Gregorian calendar.
 ///
 /// - parameter J: A Julian day number between `-1931076` and `38245309`.
 /// - returns: The calendar date corresponding to `J`.
