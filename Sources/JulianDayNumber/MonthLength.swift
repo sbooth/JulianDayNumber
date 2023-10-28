@@ -1,0 +1,67 @@
+//
+// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Part of https://github.com/sbooth/JulianDayNumber
+// MIT license
+//
+
+import Foundation
+
+/// Returns the number of days in month `M` in year `Y`.
+///
+/// Years before 1582 are interpreted in the Julian calendar and years after
+/// 1582 are interpreted in the Gregorian calendar.
+///
+/// - parameter year: A year number.
+/// - parameter month: A month number between `1` (January) and `12` (December).
+/// - returns: The number of days in the requested month.
+public func daysInMonth(year Y: Int, month M: Int) -> Int {
+//	precondition(M > 0)
+//	precondition(M <= 12)
+	guard M > 0, M <= 12 else {
+		return 0
+	}
+
+	return Y < 1582 ? daysInJulianCalendarMonth(year: Y, month: M) : daysInGregorianCalendarMonth(year: Y, month: M)
+}
+
+/// Returns the number of days in month `M` in year `Y` in the Julian calendar.
+///
+/// - parameter year: A year number.
+/// - parameter month: A month number between `1` (January) and `12` (December),
+/// - returns: The number of days in the requested month.
+public func daysInJulianCalendarMonth(year Y: Int, month M: Int) -> Int {
+//	precondition(M > 0)
+//	precondition(M <= 12)
+	guard M > 0, M <= 12 else {
+		return 0
+	}
+
+	let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+
+	if M == 2 {
+		return isJulianCalendarLeapYear(Y) ? 29 : 28
+	} else {
+		return monthLengths[M - 1]
+	}
+}
+
+/// Returns the number of days in month `M` in year `Y` in the Gregorian calendar.
+///
+/// - parameter year: A year number.
+/// - parameter month: A month number between `1` (January) and `12` (December),
+/// - returns: The number of days in the requested month.
+public func daysInGregorianCalendarMonth(year Y: Int, month M: Int) -> Int {
+//	precondition(M > 0)
+//	precondition(M <= 12)
+	guard M > 0, M <= 12 else {
+		return 0
+	}
+
+	let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+
+	if M == 2 {
+		return isGregorianCalendarLeapYear(Y) ? 29 : 28
+	} else {
+		return monthLengths[M - 1]
+	}
+}
