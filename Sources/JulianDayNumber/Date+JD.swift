@@ -54,19 +54,19 @@ extension Date {
 }
 
 extension Date {
-	/// Returns the Julian day number and day fraction in UTC corresponding to `self`.
-	public var julianDayNumberAndFraction: (J: Int, dayFraction: Double) {
+	/// Returns the Julian day number and fractional day in UTC corresponding to `self`.
+	public var julianDayNumberAndFractionalDay: (J: Int, fractionalDay: Double) {
 		let JD = julianDate + 0.5
 		let J = Int(JD.rounded(.down))
-		let (_, dayFraction) = modf(JD)
-		return (J, dayFraction)
+		let (_, fractionalDay) = modf(JD)
+		return (J, fractionalDay)
 	}
 
-	/// Creates a date value initialized to the specified Julian day number and day fraction in UTC.
+	/// Creates a date value initialized to the specified Julian day number and fractional day in UTC.
 	/// - parameter J: A Julian day number.
-	/// - parameter dayFraction: A decimal day fraction in the half-open interval `[0,1)`.
-	public init(julianDayNumber J: Int, dayFraction: Double = 0) {
-		self.init(julianDate: Double(J) - 0.5 + dayFraction)
+	/// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
+	public init(julianDayNumber J: Int, fractionalDay: Double = 0) {
+		self.init(julianDate: Double(J) - 0.5 + fractionalDay)
 	}
 }
 
