@@ -26,7 +26,7 @@ final class JDNRoundTripTests: XCTestCase {
 					let (Y, M, D) = julianDayNumberToCalendarDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
-					// Handle Gregorian changeover by ignoring "nonexistent" dates
+					// Handle Julian to Gregorian calendar changeover by ignoring "nonexistent" dates
 					if Y == 1582 && M == 10 && (day > 4 && day < 15) {
 						continue
 					}
