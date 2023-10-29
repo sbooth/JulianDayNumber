@@ -1,6 +1,6 @@
 # JulianDayNumber
 
-Julian Day Number (JDN) and Julian Date (JD) calculations for Swift supporting proleptic Julian and Gregorian calendars.
+Julian day number (JDN) and Julian date (JD) calculations supporting proleptic Julian and Gregorian calendars.
 
 JDN conversion to and from dates ranging from `-9999-01-01` to `99999-12-31` is supported.
 
