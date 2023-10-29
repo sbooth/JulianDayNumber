@@ -85,19 +85,40 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(gregorianCalendarDateToJulianDayNumber(year: 1582, month: 10, day: 15), julianCalendarDateToJulianDayNumber(year: 1582, month: 10, day: 5))
 	}
 
-	// This is just silly
 	func testExtremes() {
 		var y,m,d: Int
 		var jdn: Int
 
-		var v: Int = .min >> 1
-		(y,m,d) = julianDayNumberToCalendarDate(v)
-		jdn = calendarDateToJulianDayNumber(year: y, month: m, day: d)
-		XCTAssertEqual(v, jdn)
+		// Arithmetic limits for JDN to Julian calendar date conversion using 64-bit integers
 
-		v = .max >> 3
-		(y,m,d) = julianDayNumberToCalendarDate(v)
-		jdn = calendarDateToJulianDayNumber(year: y, month: m, day: d)
-		XCTAssertEqual(v, jdn)
+//		guard Int.bitWidth == 64 else {
+//			return
+//		}
+
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberToJulianCalendarDate
+		let smallestJDNForJulianCalendar = -9223372036854775664
+		(y,m,d) = julianDayNumberToJulianCalendarDate(smallestJDNForJulianCalendar)
+		jdn = julianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForJulianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in julianDayNumberToJulianCalendarDate
+		let largestJDNForJulianCalendar = 2305843009213692550
+		(y,m,d) = julianDayNumberToJulianCalendarDate(largestJDNForJulianCalendar)
+		jdn = julianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForJulianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Gregorian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberToGregorianCalendarDate
+		let smallestJDNForGregorianCalendar = -9223372036854719351
+		(y,m,d) = julianDayNumberToGregorianCalendarDate(smallestJDNForGregorianCalendar)
+		jdn = gregorianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForGregorianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in julianDayNumberToGregorianCalendarDate
+		let largestJDNForGregorianCalendar = 2305795661307959247
+		(y,m,d) = julianDayNumberToGregorianCalendarDate(largestJDNForGregorianCalendar)
+		jdn = gregorianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)
 	}
 }
