@@ -28,6 +28,15 @@ final class JDTests: XCTestCase {
 		XCTAssertEqual(calendarDateToJulianDate(year: -4712, month: 1, day: 1.5), 0)
 	}
 
+	func testJDLimits() {
+		XCTAssertEqual(calendarDateToJulianDate(year: -9999, month: 1, day: 1), -1931076.5)
+		XCTAssertEqual(calendarDateToJulianDate(year: 99999, month: 12, day: 31), 38245308.5)
+		XCTAssertEqual(julianCalendarDateToJulianDate(year: -9999, month: 1, day: 1), -1931076.5)
+		XCTAssertEqual(julianCalendarDateToJulianDate(year: 99999, month: 12, day: 31), 38246056.5)
+		XCTAssertEqual(gregorianCalendarDateToJulianDate(year: -9999, month: 1, day: 1), -1930999.5)
+		XCTAssertEqual(gregorianCalendarDateToJulianDate(year: 99999, month: 12, day: 31), 38245308.5)
+	}
+
 	func testDate() {
 		XCTAssertEqual(Date.j2000, Date(julianDayNumber: 2451545, dayFraction: 0.4992571296))
 		let jdnAndFraction = Date.j2000.julianDayNumberAndFraction
