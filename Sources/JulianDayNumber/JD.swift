@@ -174,22 +174,22 @@ public func julianDateToGregorianCalendarDate(_ JD: Double) -> (year: Int, month
 	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToGregorianCalendarDate)
 }
 
-/// Returns the decimal fraction of a day represented by the time comprised of hour `h`, minute `m`, and second `s`.
+/// Returns the decimal fractional day represented by the time comprised of hour `h`, minute `m`, and second `s`.
 /// - parameter h: An hour number between `0` and `23`.
 /// - parameter m: A minute number between `0` and `59`.
 /// - parameter s: A second number between `0` and `59`.
-/// - returns: The day fraction represented by `h`, `m`, and `s`.
+/// - returns: The fractional day represented by `h`, `m`, and `s`.
 func timeToFractionalDay(hour h: Int, minute m: Int, second s: Double) -> Double {
 	(Double(h) / 24) + (Double(m) / 1440) + (s / 86400)
 }
 
-/// Returns the time represented by the decimal fraction of a day`dayFraction`.
-/// - parameter dayFraction: A decimal day fraction.
-/// - returns: The time represented by `dayFraction`.
-func fractionalDayToTime(_ dayFraction: Double) -> (hour: Int, minute: Int, second: Double) {
-	let h = (dayFraction * 24).rounded(.towardZero)
-	let m = ((dayFraction - h / 24) * 1440).rounded(.towardZero)
-	let s = (dayFraction - (h / 24) - (m / 1440)) * 84600
+/// Returns the time represented by the decimal fractional day`fractionalDay`.
+/// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
+/// - returns: The time represented by `fractionalDay`comprised of hour `h`, minute `m`, and second `s`.
+func fractionalDayToTime(_ fractionalDay: Double) -> (hour: Int, minute: Int, second: Double) {
+	let h = (fractionalDay * 24).rounded(.towardZero)
+	let m = ((fractionalDay - h / 24) * 1440).rounded(.towardZero)
+	let s = (fractionalDay - (h / 24) - (m / 1440)) * 84600
 	return (Int(h), Int(m), s)
 }
 
