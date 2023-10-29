@@ -8,7 +8,7 @@ import Foundation
 
 /// Returns `true` if year `Y`, month `M`, and day `D` occurred after the Gregorian changeover.
 ///
-/// - note: The Gregorian changeover occurred on October 15, 1582.
+/// - note: The Gregorian changeover occurred on 1582-10-15.
 /// - note: This date is interpreted in the Gregorian calendar.
 ///
 /// - parameter Y: A year number.
@@ -24,18 +24,18 @@ func atOrAfterGregorianChangeover(year Y: Int, month M: Int, day D: Int) -> Bool
 /// JDN values greater than or equal to this value are typically interpreted
 /// as dates in the Gregorian calendar.
 ///
-/// This JDN corresponds to 1582-Oct-15 12:00 in the Gregorian calendar.
+/// This JDN corresponds to 1582-10-15 12:00 in the Gregorian calendar.
 let gregorianChangeoverJDN = 2299161
 
 /// The Julian date of the changeover from Julian to Gregorian calendars.
 ///
-/// The changeover occurred on 15 October 1582. Julian Thursday, 4 October 1582
-/// was followed by Gregorian Friday, 15 October.
+/// The changeover occurred on 1582-10-15. Julian Thursday, 1582-10-04
+/// was followed by Gregorian 1582-10-15.
 ///
 /// JD values less than this value are typically interpreted in the Julian calendar while
 /// greater or equal JD values are interpreted in the Gregorian calendar.
 ///
-/// This JD corresponds to 1582-Oct-15 00:00 in the Gregorian calendar.
+/// This JD corresponds to 1582-10-15 00:00 in the Gregorian calendar.
 ///
 /// - note: The actual adoption date of the Gregorian calendar varies by country.
 let gregorianChangeoverJD = 2299160.5

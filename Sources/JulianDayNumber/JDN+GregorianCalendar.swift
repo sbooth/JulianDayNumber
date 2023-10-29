@@ -9,7 +9,7 @@ import Foundation
 /// Converts a date in the Gregorian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on November 24, 4714 BC in the proleptic Gregorian calendar.
+/// with JDN 0 assigned to the day starting at noon on November 24, 4714 BC (-4713-11-24 12:00:00) in the proleptic Gregorian calendar.
 ///
 /// - note: No validation checks are performed on the date values.
 ///
@@ -44,12 +44,12 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 
 /// The earliest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to -9999-Jan-01 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Gregorian calendar.
 let earliestSupportedGregorianCalendarJDN = -1930999
 
 /// The latest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to 99999-Dec-31 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to 99999-12-31 12:00:00 in the Gregorian calendar.
 let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 
 /// Converts the Julian day number `J` to a date in the Gregorian calendar.
