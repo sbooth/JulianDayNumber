@@ -27,4 +27,11 @@ final class JDTests: XCTestCase {
 		XCTAssertEqual(calendarDateToJulianDate(year: -1001, month: 8, day: 17.9), 1355671.4)
 		XCTAssertEqual(calendarDateToJulianDate(year: -4712, month: 1, day: 1.5), 0)
 	}
+
+	func testDate() {
+		XCTAssertEqual(Date.j2000, Date(julianDayNumber: 2451545, dayFraction: 0.4992571296))
+		let jdnAndFraction = Date.j2000.julianDayNumberAndFraction
+		XCTAssertEqual(jdnAndFraction.J, 2451545)
+		XCTAssertEqual(jdnAndFraction.dayFraction, 0.4992571296, accuracy: 1e-10)
+	}
 }
