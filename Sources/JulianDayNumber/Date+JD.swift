@@ -54,23 +54,6 @@ extension Date {
 }
 
 extension Date {
-	/// Returns the Julian day number and fractional day in UTC corresponding to `self`.
-	public var julianDayNumberAndFractionalDay: (J: Int, fractionalDay: Double) {
-		let JD = julianDate + 0.5
-		let J = Int(JD.rounded(.down))
-		let (_, fractionalDay) = modf(JD)
-		return (J, fractionalDay)
-	}
-
-	/// Creates a date value initialized to the specified Julian day number and fractional day in UTC.
-	/// - parameter J: A Julian day number.
-	/// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
-	public init(julianDayNumber J: Int, fractionalDay: Double = 0) {
-		self.init(julianDate: Double(J) - 0.5 + fractionalDay)
-	}
-}
-
-extension Date {
 	/// True if the Julian date in UTC for `self` is at or after the Julian to Gregorian calendar changeover.
 	/// - note: The Julian to Gregorian calendar changeover occurred on 1582-10-15 and corresponds to Julian date 2299160.5 in UTC.
 	public var atOrAfterGregorianCalendarChangeover: Bool {
