@@ -23,8 +23,9 @@ extension Date {
 	}
 
 	/// Creates a date value initialized to the specified Julian date in UTC.
-	public init(julianDate: Double) {
-		self.init(timeIntervalSince1970: (julianDate - unixEpochJD_UTC) * 86400)
+	/// - parameter JD: A Julian date in UTC.
+	public init(julianDate JD: Double) {
+		self.init(timeIntervalSince1970: (JD - unixEpochJD_UTC) * 86400)
 	}
 
 	/// Returns the number of days between `self` and the J2000 epoch.
@@ -33,6 +34,7 @@ extension Date {
 	}
 
 	/// Creates a date value relative to the J2000 epoch by a given number of days.
+	/// - parameter daysSinceJ2000: A decimal number of days.
 	public init(daysSinceJ2000: Double) {
 		self.init(julianDate: J2000JD_UTC + daysSinceJ2000)
 	}
