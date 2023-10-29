@@ -159,7 +159,7 @@ public func julianDateToJulianCalendarDate(_ JD: Double) -> (year: Int, month: I
 /// The earliest supported JD using the Gregorian calendar.
 ///
 /// This JD corresponds to -9999-01-01 00:00:00 in the Gregorian calendar.
-let earliestSupportedGregorianCalendarJD = -1930998.5
+let earliestSupportedGregorianCalendarJD = -1930999.5
 
 /// The latest supported JD using the Gregorian calendar.
 ///
@@ -168,7 +168,7 @@ let latestSupportedGregorianCalendarJD = latestSupportedJD
 
 /// Converts the Julian date `JD` to a date in the Gregorian calendar.
 ///
-/// - parameter JD: A Julian date between `-1930998.5` and `38245308.5`.
+/// - parameter JD: A Julian date between `-1930999.5` and `38245308.5`.
 /// - returns: A tuple specifying the requested date.
 public func julianDateToGregorianCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
 	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToGregorianCalendarDate)
