@@ -38,9 +38,9 @@ final class JDTests: XCTestCase {
 	}
 
 	func testDate() {
-		XCTAssertEqual(Date.j2000, Date(julianDayNumber: 2451545, dayFraction: 0.4992571296))
-		let jdnAndFraction = Date.j2000.julianDayNumberAndFraction
+		XCTAssertEqual(Date.j2000, Date(julianDayNumber: 2451545, fractionalDay: 0.4992571296))
+		let jdnAndFraction = Date.j2000.julianDayNumberAndFractionalDay
 		XCTAssertEqual(jdnAndFraction.J, 2451545)
-		XCTAssertEqual(jdnAndFraction.dayFraction, 0.4992571296, accuracy: 1e-10)
+		XCTAssertEqual(jdnAndFraction.fractionalDay, 0.4992571296, accuracy: 1e-10)
 	}
 }
