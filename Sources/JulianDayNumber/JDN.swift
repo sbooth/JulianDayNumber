@@ -42,7 +42,7 @@ let latestSupportedJDN = 38245309
 
 /// Converts the Julian day number `J` to a calendar date.
 ///
-/// JDN values less than `2299161` are interpreted in the Julian calendar while greater JDN values are interpreted in the Gregorian calendar.
+/// JDN values less than `2299161` are interpreted in the Julian calendar while greater or equal JDN values are interpreted in the Gregorian calendar.
 ///
 /// - parameter J: A Julian day number between `-1931076` and `38245309`.
 /// - returns: The calendar date corresponding to `J`.

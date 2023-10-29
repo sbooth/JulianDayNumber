@@ -130,7 +130,7 @@ let latestSupportedJD = 38245308.5
 
 /// Converts the Julian date `JD` to a calendar date.
 ///
-/// JD values less than `2299160.5` are interpreted in the Julian calendar while greater JD values are interpreted in the Gregorian calendar.
+/// JD values less than `2299160.5` are interpreted in the Julian calendar while greater or equal JD values are interpreted in the Gregorian calendar.
 ///
 /// - parameter JD: A Julian date between `-1931076.5` and `38245308.5`.
 /// - returns: A tuple specifying the requested date.
