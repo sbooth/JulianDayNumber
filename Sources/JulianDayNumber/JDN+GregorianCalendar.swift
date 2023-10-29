@@ -44,12 +44,14 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 
 /// The earliest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to -9999-Jan-01 12:00:00 in the Julian calendar.
+/// This JDN corresponds to -9999-Jan-01 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to -9999-Mar-19 12:00:00 in the Julian calendar.
 let earliestSupportedGregorianCalendarJDN = -1930999
 
-/// The earliest supported JDN using the Gregorian calendar.
+/// The latest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to 99999-Dec-30 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to 99999-Dec-31 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to 99997-Dec-13 12:00:00 in the Julian calendar.
 let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 
 /// Converts the Julian day number `J` to a date in the Gregorian calendar.
