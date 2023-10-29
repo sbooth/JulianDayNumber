@@ -16,7 +16,7 @@ import Foundation
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 /// - returns: `true` if `Y`, `M`, `D` is a valid date.
 public func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
-	if atOrAfterGregorianChangeover(year: Y, month: M, day: D) {
+	if atOrAfterGregorianCalendarChangeover(year: Y, month: M, day: D) {
 		return isGregorianCalendarDateValid(year: Y, month: M, day: D)
 	} else {
 		return isJulianCalendarDateValid(year: Y, month: M, day: D)
