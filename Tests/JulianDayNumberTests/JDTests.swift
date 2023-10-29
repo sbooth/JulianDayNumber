@@ -35,6 +35,13 @@ final class JDTests: XCTestCase {
 		XCTAssertEqual(julianCalendarDateToJulianDate(year: 99999, month: 12, day: 31), 38246056.5)
 		XCTAssertEqual(gregorianCalendarDateToJulianDate(year: -9999, month: 1, day: 1), -1930999.5)
 		XCTAssertEqual(gregorianCalendarDateToJulianDate(year: 99999, month: 12, day: 31), 38245308.5)
+
+		XCTAssertTrue(julianDateToCalendarDate(-1931076.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(julianDateToCalendarDate(38245308.5) == (99999, 12, 31, 0, 0, 0))
+		XCTAssertTrue(julianDateToJulianCalendarDate(-1931076.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(julianDateToJulianCalendarDate(38246056.5) == (99999, 12, 31, 0, 0, 0))
+		XCTAssertTrue(julianDateToGregorianCalendarDate(-1930999.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(julianDateToGregorianCalendarDate(38245308.5) == (99999, 12, 31, 0, 0, 0))
 	}
 
 	func testDate() {
