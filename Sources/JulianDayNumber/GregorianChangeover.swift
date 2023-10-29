@@ -21,8 +21,16 @@ func atOrAfterGregorianChangeover(year Y: Int, month M: Int, day D: Int) -> Bool
 
 /// The JDN of the changeover from Julian to Gregorian calendars.
 ///
-/// JDNs greater than or equal to this value are typically interpreted
+/// JDN values greater than or equal to this value are typically interpreted
 /// as dates in the Gregorian calendar.
 ///
 /// This JDN corresponds to 1582-Oct-15 12:00 in the Gregorian calendar.
 let gregorianChangeoverJDN = 2299161
+
+/// The JD of the changeover from Julian to Gregorian calendars.
+///
+/// JD values greater than or equal to this value are typically interpreted
+/// as dates in the Gregorian calendar.
+///
+/// This JD corresponds to 1582-Oct-15 00:00 in the Gregorian calendar.
+let gregorianChangeoverJD = 2299160.5
