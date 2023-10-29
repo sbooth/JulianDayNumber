@@ -33,13 +33,11 @@ public func calendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int)
 /// The earliest supported JDN.
 ///
 /// This JDN corresponds to -9999-Jan-01 12:00:00 in the Julian calendar
-/// This JDN corresponds to -10000-Oct-16 12:00:00 in the Gregorian calendar..
 let earliestSupportedJDN = -1931076
 
 /// The latest supported JDN.
 ///
 /// This JDN corresponds to 99999-Dec-31 12:00:00 in the Gregorian calendar.
-/// This JDN corresponds to 99997-Dec-13 12:00:00 in the Julian calendar.
 let latestSupportedJDN = 38245309
 
 /// Converts the Julian day number `J` to a calendar date.
