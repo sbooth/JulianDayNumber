@@ -6,12 +6,12 @@
 
 import Foundation
 
-/// Converts a date in the Julian calendar to a Julian day number (JDN).
+/// Converts a date in the Julian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC in the proleptic Julian calendar.
+/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC (-4712-01-01 12:00:00) in the proleptic Julian calendar
 ///
-/// - note: No validation checks are performed on the date.
+/// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
 /// - parameter M: A month number between `1` (January) and `12` (December).
@@ -19,7 +19,7 @@ import Foundation
 /// - returns: The JDN corresponding to the requested date.
 public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	// Richards' algorithm is only valid for positive JDNs.
-	// JDN 0 is -4712-Jan-01 in the proleptic Julian calendar.
+	// JDN 0 is -4712-01-01 in the proleptic Julian calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
 	// 4 (the frequency of leap years in the Julian calendar)
 	// before calculating the JDN and then translate the result backward
@@ -43,12 +43,12 @@ public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D
 
 /// The earliest supported JDN using the Julian calendar.
 ///
-/// This JDN corresponds to -9999-Jan-01 12:00:00 in the Julian calendar.
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Julian calendar
 let earliestSupportedJulianCalendarJDN = earliestSupportedJDN
 
-/// The earliest supported JDN using the Julian calendar.
+/// The latest supported JDN using the Julian calendar.
 ///
-/// This JDN corresponds to 99999-Dec-30 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to 99999-12-31 12:00:00 in the Julian calendar
 let latestSupportedJulianCalendarJDN = 38246057
 
 /// Converts the Julian day number `J` to a date in the Julian calendar.
@@ -57,10 +57,10 @@ let latestSupportedJulianCalendarJDN = 38246057
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	// Richards' algorithm is only valid for positive JDNs.
-	// Adjust earlier JDNs forward in time by a multiple of
+	// Adjust negative JDNs forward in time by a multiple of
 	// 4 years (the frequency of leap years in the Julian calendar)
 	// before calculating the proleptic Julian date and then translate
-	// the result backward in time by the period of adjustment.
+	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 4 years * 365.25 days/year = 1,461 days
 		let periods = -J / 1461 + 1

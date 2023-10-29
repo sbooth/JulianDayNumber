@@ -6,12 +6,12 @@
 
 import Foundation
 
-/// Converts a date in the Gregorian calendar to a Julian day number (JDN).
+/// Converts a date in the Gregorian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on November 24, 4714 BC in the proleptic Gregorian calendar.
+/// with JDN 0 assigned to the day starting at noon on November 24, 4714 BC (-4713-11-24 12:00:00) in the proleptic Gregorian calendar.
 ///
-/// - note: No validation checks are performed on the date.
+/// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
 /// - parameter M: A month number between `1` (January) and `12` (December).
@@ -44,12 +44,12 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 
 /// The earliest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to -9999-Jan-01 12:00:00 in the Julian calendar.
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Gregorian calendar.
 let earliestSupportedGregorianCalendarJDN = -1930999
 
-/// The earliest supported JDN using the Gregorian calendar.
+/// The latest supported JDN using the Gregorian calendar.
 ///
-/// This JDN corresponds to 99999-Dec-30 12:00:00 in the Gregorian calendar.
+/// This JDN corresponds to 99999-12-31 12:00:00 in the Gregorian calendar.
 let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 
 /// Converts the Julian day number `J` to a date in the Gregorian calendar.
@@ -58,10 +58,10 @@ let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToGregorianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	// Richards' algorithm is only valid for positive JDNs.
-	// Adjust earlier JDNs forward in time by a multiple of
+	// Adjust negative JDNs forward in time by a multiple of
 	// 400 years (to account for leap years in the Gregorian calendar)
 	// before calculating the proleptic Gregorian date and then translate
-	// the result backward in time by the period of adjustment.
+	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 400 years * 365.2425 days/year = 146,097 days
 		let periods = -J / 146097 + 1
