@@ -8,7 +8,7 @@ import Foundation
 
 // From the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-/// Converts a calendar date to a Julian day number (JDN).
+/// Converts a calendar date to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
 /// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC in the proleptic Julian calendar
