@@ -57,10 +57,10 @@ let latestSupportedJulianCalendarJDN = 38246057
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	// Richards' algorithm is only valid for positive JDNs.
-	// Adjust earlier JDNs forward in time by a multiple of
+	// Adjust negative JDNs forward in time by a multiple of
 	// 4 years (the frequency of leap years in the Julian calendar)
 	// before calculating the proleptic Julian date and then translate
-	// the result backward in time by the period of adjustment.
+	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 4 years * 365.25 days/year = 1,461 days
 		let periods = -J / 1461 + 1
