@@ -213,10 +213,10 @@ func fractionalDayToTime(_ fractionalDay: Double) -> (hour: Int, minute: Int, se
 ///
 /// - returns: A tuple specifying the requested date.
 private func convertJDToCalendarDate(_ JD: Double, usingJDNConversionFunction jdnToDateConversionFunction: (_: Int) -> (Int, Int, Int)) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	let JD = JD + 0.5
-	let J = Int(JD.rounded(.down))
+	let jdPlus12Hours = JD + 0.5
+	let J = Int(jdPlus12Hours.rounded(.down))
 	let (Y, M, D) = jdnToDateConversionFunction(J)
-	var (_, dayFraction) = modf(JD)
+	var (_, dayFraction) = modf(jdPlus12Hours)
 	if dayFraction < 0 {
 		dayFraction += 1
 	}
