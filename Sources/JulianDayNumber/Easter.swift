@@ -6,6 +6,8 @@
 
 import Foundation
 
+// From the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+
 /// Returns the month `M` and day `D` of Easter in year `Y`.
 ///
 /// Years before 1582 are interpreted in the Julian calendar and years after
