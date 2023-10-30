@@ -16,8 +16,6 @@ import Foundation
 ///
 /// - returns: The number of days in the requested month.
 public func daysInMonth(year Y: Int, month M: Int) -> Int {
-//	precondition(M > 0)
-//	precondition(M <= 12)
 	guard M > 0, M <= 12 else {
 		return 0
 	}
@@ -35,8 +33,6 @@ let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 ///
 /// - returns: The number of days in the requested month.
 public func daysInJulianCalendarMonth(year Y: Int, month M: Int) -> Int {
-//	precondition(M > 0)
-//	precondition(M <= 12)
 	guard M > 0, M <= 12 else {
 		return 0
 	}
@@ -55,8 +51,6 @@ public func daysInJulianCalendarMonth(year Y: Int, month M: Int) -> Int {
 ///
 /// - returns: The number of days in the requested month.
 public func daysInGregorianCalendarMonth(year Y: Int, month M: Int) -> Int {
-//	precondition(M > 0)
-//	precondition(M <= 12)
 	guard M > 0, M <= 12 else {
 		return 0
 	}
