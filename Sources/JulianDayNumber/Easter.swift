@@ -14,13 +14,16 @@ import Foundation
 /// 1582 are interpreted in the Gregorian calendar.
 ///
 /// - parameter year: A year number.
+///
 /// - returns: The month and day of Easter in the requested year.
 public func easter(year Y: Int) -> (month: Int, day: Int) {
 	return Y < 1582 ? easterInJulianCalendar(year: Y) : easterInGregorianCalendar(year: Y)
 }
 
 /// Returns the month `M` and day `D` of Easter in year `Y` in the Julian calendar.
+///
 /// - parameter year: A year number.
+///
 /// - returns: The month and day of Easter in the requested year.
 public func easterInJulianCalendar(year Y: Int) -> (month: Int, day: Int) {
 	let a = 22 + ((225 - 11 * (Y % 19)) % 30)
@@ -31,7 +34,9 @@ public func easterInJulianCalendar(year Y: Int) -> (month: Int, day: Int) {
 }
 
 /// Returns the month `M` and day `D` of Easter in year `Y` in the Gregorian calendar.
+///
 /// - parameter year: A year number.
+///
 /// - returns: The month and day of Easter in the requested year.
 public func easterInGregorianCalendar(year Y: Int) -> (month: Int, day: Int) {
 	let a = Y / 100
