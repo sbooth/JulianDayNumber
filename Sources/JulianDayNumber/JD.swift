@@ -24,7 +24,7 @@ import Foundation
 /// - parameter s: A second number between `0` and `59`.
 /// - returns: The JD corresponding to the requested date.
 public func calendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	calendarDateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
+	Double(calendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
 }
 
 /// Converts a calendar date to a Julian date.
@@ -62,7 +62,7 @@ public func calendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -
 /// - parameter s: A second number between `0` and `59`.
 /// - returns: The JD corresponding to the requested date.
 public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	julianCalendarDateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
+	Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
 }
 
 /// Converts a date in the Julian calendar to a Julian date.
@@ -98,7 +98,7 @@ public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Dou
 /// - parameter s: A second number between `0` and `59`.
 /// - returns: The JD corresponding to the requested date.
 public func gregorianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	gregorianCalendarDateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
+	Double(gregorianCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
 }
 
 /// Converts a date in the Gregorian calendar to a Julian date.
@@ -187,10 +187,10 @@ func timeToFractionalDay(hour h: Int, minute m: Int, second s: Double) -> Double
 /// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
 /// - returns: The time represented by `fractionalDay`comprised of hour `h`, minute `m`, and second `s`.
 func fractionalDayToTime(_ fractionalDay: Double) -> (hour: Int, minute: Int, second: Double) {
-	let h = (fractionalDay * 24).rounded(.towardZero)
-	let m = ((fractionalDay - h / 24) * 1440).rounded(.towardZero)
-	let s = (fractionalDay - (h / 24) - (m / 1440)) * 84600
-	return (Int(h), Int(m), s)
+	let (hour, hourFraction) = modf(fractionalDay * 24)
+	let (minute, minuteFraction) = modf(hourFraction * 60)
+	let second = minuteFraction * 60
+	return (Int(hour), Int(minute), second)
 }
 
 /// Converts the Julian date `JD` to a date using `jdnToDateConversionFunction`.
@@ -204,7 +204,7 @@ private func convertJDToCalendarDate(_ JD: Double, usingJDNConversionFunction jd
 	let (Y, M, D) = jdnToDateConversionFunction(J)
 	var (_, dayFraction) = modf(JD)
 	if dayFraction < 0 {
-		dayFraction = abs(dayFraction)
+		dayFraction += 1
 	}
 	let (h, m, s) = fractionalDayToTime(dayFraction)
 	return (Y, M, D, h, m, s)
