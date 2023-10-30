@@ -9,7 +9,8 @@ import Foundation
 /// Converts a date in the Gregorian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on November 24, 4714 BC (-4713-11-24 12:00:00) in the proleptic Gregorian calendar.
+/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC (-4712-01-01 12:00:00) in the proleptic Julian calendar
+/// This date is November 24, 4714 BC (-4713-11-24 12:00:00) in the proleptic Gregorian calendar.
 ///
 /// - note: No validation checks are performed on the date values.
 ///
