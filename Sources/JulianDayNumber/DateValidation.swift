@@ -14,6 +14,7 @@ import Foundation
 /// - parameter Y: A year number.
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
 /// - returns: `true` if `Y`, `M`, `D` is a valid date.
 public func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 	if atOrAfterGregorianCalendarChangeover(year: Y, month: M, day: D) {
@@ -28,6 +29,7 @@ public func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 /// - parameter Y: A year number.
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
 /// - returns: `true` if `Y`, `M`, `D` is a valid date in the Julian calendar.
 public func isJulianCalendarDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 	guard M > 0 && M <= 12 else {
@@ -41,6 +43,7 @@ public func isJulianCalendarDateValid(year Y: Int, month M: Int, day D: Int) -> 
 /// - parameter Y: A year number.
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
 /// - returns: `true` if `Y`, `M`, `D` is a valid date in the Gregorian calendar.
 public func isGregorianCalendarDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 	guard M > 0 && M <= 12 else {

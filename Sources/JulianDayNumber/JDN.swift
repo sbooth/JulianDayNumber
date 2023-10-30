@@ -21,6 +21,7 @@ import Foundation
 /// - parameter Y: A year number between `-9999` and `99999`.
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
 /// - returns: The JDN corresponding to the requested date.
 public func calendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	if Y > 1582 || (Y == 1582 && (M > 10 || (M == 10 && D >= 15))) {
@@ -45,6 +46,7 @@ let latestSupportedJDN = 38245309
 /// JDN values less than `2299161` are interpreted in the Julian calendar while greater or equal JDN values are interpreted in the Gregorian calendar.
 ///
 /// - parameter J: A Julian day number between `-1931076` and `38245309`.
+///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	if J > 2299160 {

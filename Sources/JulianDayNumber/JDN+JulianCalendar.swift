@@ -16,6 +16,7 @@ import Foundation
 /// - parameter Y: A year number between `-9999` and `99999`.
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
 /// - returns: The JDN corresponding to the requested date.
 public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	// Richards' algorithm is only valid for positive JDNs.
@@ -54,6 +55,7 @@ let latestSupportedJulianCalendarJDN = 38246057
 /// Converts the Julian day number `J` to a date in the Julian calendar.
 ///
 /// - parameter J: A Julian day number between `-1931076` and `38246057`.
+///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	// Richards' algorithm is only valid for positive JDNs.
