@@ -33,4 +33,22 @@ final class MonthLengthTests: XCTestCase {
 		XCTAssertEqual(daysInGregorianCalendarMonth(year: 1600, month: 2), 29)
 		XCTAssertEqual(daysInGregorianCalendarMonth(year: 1700, month: 2), 28)
 	}
+
+	func testIslamicMonthLength() {
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 1), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 2), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 3), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 4), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 5), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 6), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 7), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 8), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 9), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 10), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 11), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 1, month: 12), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 2, month: 12), 30)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 4, month: 12), 29)
+		XCTAssertEqual(daysInIslamicCalendarMonth(year: 7, month: 12), 30)
+	}
 }
