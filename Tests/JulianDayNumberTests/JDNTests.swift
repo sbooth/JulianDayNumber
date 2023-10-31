@@ -120,6 +120,20 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = julianDayNumberToGregorianCalendarDate(largestJDNForGregorianCalendar)
 		jdn = gregorianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Islamic calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberToIslamicCalendarDate
+		let smallestJDNForIslamicCalendar = -9223372036854775352
+		(y,m,d) = julianDayNumberToIslamicCalendarDate(smallestJDNForIslamicCalendar)
+		jdn = islamicCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in julianDayNumberToIslamicCalendarDate
+		let largestJDNForIslamicCalendar = 307445734561818195
+		(y,m,d) = julianDayNumberToIslamicCalendarDate(largestJDNForIslamicCalendar)
+		jdn = islamicCalendarDateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
 	}
 
 	func testJDNIslamic() {
