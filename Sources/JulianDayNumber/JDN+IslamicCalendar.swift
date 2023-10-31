@@ -10,7 +10,7 @@ import Foundation
 /// Converts a date in the Islamic calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC (-4712-01-01 12:00:00) in the proleptic Julian calendar
+/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC (-4712-01-01 12:00:00) in the proleptic Julian calendar.
 /// This date is Shaabán 17, 5499 B.H. (-5498-08-16 12:00:00) in the proleptic Islamic calendar.
 ///
 /// - note: No validation checks are performed on the date values.
@@ -44,12 +44,12 @@ public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day 
 	return J
 }
 
-/// The earliest supported JDN using the Islamic calendar.
+/// The earliest supported Julian day number using the Islamic calendar.
 ///
 /// This JDN corresponds to -9999-01-01 12:00:00 in the Islamic calendar
 let earliestSupportedIslamicCalendarJDN = -1595227
 
-/// The latest supported JDN using the Islamic calendar.
+/// The latest supported Julian day number using the Islamic calendar.
 ///
 /// This JDN corresponds to 99999-12-29 12:00:00 in the Islamic calendar
 let latestSupportedIslamicCalendarJDN = 37384751
