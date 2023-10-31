@@ -32,7 +32,7 @@ public let gregorianCalendarChangeoverJDN = 2299161
 /// The changeover occurred on 1582-10-15. Julian Thursday, 1582-10-04
 /// was followed by Gregorian 1582-10-15.
 ///
-/// JD values less than this value are typically interpreted in the Julian calendar while
+/// Julian date values less than this value are typically interpreted in the Julian calendar while
 /// greater or equal JD values are interpreted in the Gregorian calendar.
 ///
 /// This JD corresponds to 1582-10-15 00:00 in the Gregorian calendar.
