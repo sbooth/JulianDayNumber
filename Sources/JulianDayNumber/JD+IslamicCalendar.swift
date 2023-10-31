@@ -6,6 +6,16 @@
 
 import Foundation
 
+/// The earliest supported JD using the Islamic calendar.
+///
+/// This JD corresponds to -9999-01-01 00:00:00 in the Islamic calendar.
+let earliestSupportedIslamicCalendarJD = -1595227.5
+
+/// The latest supported JD using the Islamic calendar.
+///
+/// This JD corresponds to 99999-12-29 00:00:00 in the Islamic calendar.
+let latestSupportedIslamicCalendarJD = 37384750.5
+
 /// Converts a date in the Islamic calendar to a Julian date.
 ///
 /// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
@@ -41,16 +51,6 @@ public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Do
 	let (day, dayFraction) = modf(D)
 	return Double(islamicCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 }
-
-/// The earliest supported JD using the Islamic calendar.
-///
-/// This JD corresponds to -9999-01-01 00:00:00 in the Islamic calendar.
-let earliestSupportedIslamicCalendarJD = -1595227.5
-
-/// The latest supported JD using the Islamic calendar.
-///
-/// This JD corresponds to 99999-12-29 00:00:00 in the Islamic calendar.
-let latestSupportedIslamicCalendarJD = 37384750.5
 
 /// Converts the Julian date `JD` to a date in the Islamic calendar.
 ///

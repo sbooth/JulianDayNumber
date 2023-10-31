@@ -6,6 +6,16 @@
 
 import Foundation
 
+/// The earliest supported JD using the Julian calendar.
+///
+/// This JD corresponds to -9999-01-01 00:00:00 in the Julian calendar.
+let earliestSupportedJulianCalendarJD = earliestSupportedJD
+
+/// The latest supported JD using the Julian calendar.
+///
+/// This JD corresponds to 99999-12-31 00:00:00 in the Julian calendar.
+let latestSupportedJulianCalendarJD = 38246056.5
+
 /// Converts a date in the Julian calendar to a Julian date.
 ///
 /// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
@@ -41,16 +51,6 @@ public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Dou
 	let (day, dayFraction) = modf(D)
 	return Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 }
-
-/// The earliest supported JD using the Julian calendar.
-///
-/// This JD corresponds to -9999-01-01 00:00:00 in the Julian calendar.
-let earliestSupportedJulianCalendarJD = earliestSupportedJD
-
-/// The latest supported JD using the Julian calendar.
-///
-/// This JD corresponds to 99999-12-31 00:00:00 in the Julian calendar.
-let latestSupportedJulianCalendarJD = 38246056.5
 
 /// Converts the Julian date `JD` to a date in the Julian calendar.
 ///
