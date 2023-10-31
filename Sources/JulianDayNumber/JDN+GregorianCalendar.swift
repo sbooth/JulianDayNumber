@@ -20,6 +20,9 @@ import Foundation
 ///
 /// - returns: The JDN corresponding to the requested date.
 public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
+	var Y = Y
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// JDN 0 is -4713-Nov-24 in the proleptic Gregorian calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
@@ -28,10 +31,8 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 	// in time by the period of adjustment.
 	if Y < -4713 || (Y == -4713 && (M < 11 || (M == 11 && D < 24))) {
 		// 400 years * 365.2425 days/year = 146,097 days
-		let periods = (-4714 - Y) / 400 + 1
-		let mappedY = Y + periods * 400
-		let mappedJ = gregorianCalendarDateToJulianDayNumber(year: mappedY, month: M, day: D)
-		return mappedJ - periods * 146097
+		ΔleapCycles = (-4714 - Y) / 400 + 1
+		Y += ΔleapCycles * 400
 	}
 
 	let h = M - m
@@ -40,6 +41,10 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 	let e = (p * g + q) / r + D - 1 - j
 	var J = e + (s * f + t) / u
 	J = J - (3 * ((g + A) / 100)) / 4 - C
+
+	if ΔleapCycles > 0 {
+		J -= ΔleapCycles * 146097
+	}
 
 	return J
 }
@@ -60,6 +65,9 @@ let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 ///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToGregorianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
+	var J = J
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// Adjust negative JDNs forward in time by a multiple of
 	// 400 years (to account for leap years in the Gregorian calendar)
@@ -67,10 +75,8 @@ public func julianDayNumberToGregorianCalendarDate(_ J: Int) -> (year: Int, mont
 	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 400 years * 365.2425 days/year = 146,097 days
-		let periods = -J / 146097 + 1
-		let mappedJ = J + periods * 146097
-		let mappedYMD = julianDayNumberToGregorianCalendarDate(mappedJ)
-		return (mappedYMD.year - periods * 400, mappedYMD.month, mappedYMD.day)
+		ΔleapCycles = -J / 146097 + 1
+		J += ΔleapCycles * 146097
 	}
 
 	var f = J + j
@@ -80,7 +86,11 @@ public func julianDayNumberToGregorianCalendarDate(_ J: Int) -> (year: Int, mont
 	let h = u * g + w
 	let D = (h % s) / u + 1
 	let M = ((h / s + m) % n) + 1
-	let Y = e / p - y + (n + m - M) / n
+	var Y = e / p - y + (n + m - M) / n
+
+	if ΔleapCycles > 0 {
+		Y -= ΔleapCycles * 400
+	}
 
 	return (Y, M, D)
 }

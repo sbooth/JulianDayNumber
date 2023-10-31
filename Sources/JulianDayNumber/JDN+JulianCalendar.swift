@@ -19,6 +19,9 @@ import Foundation
 ///
 /// - returns: The JDN corresponding to the requested date.
 public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
+	var Y = Y
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// JDN 0 is -4712-01-01 in the proleptic Julian calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
@@ -27,17 +30,19 @@ public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D
 	// in time by the period of adjustment.
 	if Y < -4712 {
 		// 4 years * 365.25 days/year = 1,461 days
-		let periods = (-4713 - Y) / 4 + 1
-		let mappedY = Y + periods * 4
-		let mappedJ = julianCalendarDateToJulianDayNumber(year: mappedY, month: M, day: D)
-		return mappedJ - periods * 1461
+		ΔleapCycles = (-4713 - Y) / 4 + 1
+		Y += ΔleapCycles * 4
 	}
 
 	let h = M - m
 	let g = Y + y - (n - h) / n
 	let f = (h - 1 + n) % n
 	let e = (p * g + q) / r + D - 1 - j
-	let J = e + (s * f + t) / u
+	var J = e + (s * f + t) / u
+
+	if ΔleapCycles > 0 {
+		J -= ΔleapCycles * 1461
+	}
 
 	return J
 }
@@ -58,6 +63,9 @@ let latestSupportedJulianCalendarJDN = 38246057
 ///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
+	var J = J
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// Adjust negative JDNs forward in time by a multiple of
 	// 4 years (the frequency of leap years in the Julian calendar)
@@ -65,10 +73,8 @@ public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: 
 	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 4 years * 365.25 days/year = 1,461 days
-		let periods = -J / 1461 + 1
-		let mappedJ = J + periods * 1461
-		let mappedYMD = julianDayNumberToJulianCalendarDate(mappedJ)
-		return (mappedYMD.year - periods * 4, mappedYMD.month, mappedYMD.day)
+		ΔleapCycles = -J / 1461 + 1
+		J += ΔleapCycles * 1461
 	}
 
 	let f = J + j
@@ -77,7 +83,11 @@ public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: 
 	let h = u * g + w
 	let D = (h % s) / u + 1
 	let M = ((h / s + m) % n) + 1
-	let Y = e / p - y + (n + m - M) / n
+	var Y = e / p - y + (n + m - M) / n
+
+	if ΔleapCycles > 0 {
+		Y -= ΔleapCycles * 4
+	}
 
 	return (Y, M, D)
 }

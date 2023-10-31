@@ -21,6 +21,9 @@ import Foundation
 ///
 /// - returns: The JDN corresponding to the requested date.
 public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
+	var Y = Y
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// JDN 0 is -5498-08-16 in the proleptic Islamic calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
@@ -29,17 +32,19 @@ public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day 
 	// in time by the period of adjustment.
 	if Y < -5498 || (Y == -5498 && (M < 8 || (M == 8 && D < 16))) {
 		// 30 years = 10,631 days (19 years of 354 days and 11 leap years of 355 days)
-		let periods = (-5498 - Y) / 30 + 1
-		let mappedY = Y + periods * 30
-		let mappedJ = islamicCalendarDateToJulianDayNumber(year: mappedY, month: M, day: D)
-		return mappedJ - periods * 10631
+		ΔleapCycles = (-5498 - Y) / 30 + 1
+		Y += ΔleapCycles * 30
 	}
 
 	let h = M - m
 	let g = Y + y - (n - h) / n
 	let f = (h - 1 + n) % n
 	let e = (p * g + q) / r + D - 1 - j
-	let J = e + (s * f + t) / u
+	var J = e + (s * f + t) / u
+
+	if ΔleapCycles > 0 {
+		J -= ΔleapCycles * 10631
+	}
 
 	return J
 }
@@ -60,6 +65,9 @@ let latestSupportedIslamicCalendarJDN = 37384751
 ///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
+	var J = J
+	var ΔleapCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// Adjust negative JDNs forward in time by a multiple of
 	// 30 years (to account for leap years in the Islamic calendar)
@@ -67,10 +75,8 @@ public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month:
 	// the result backward in time by the amount of forward adjustment.
 	if J < 0 {
 		// 30 years = 10,631 days (19 years of 354 days and 11 leap years of 355 days)
-		let periods = -J / 10631 + 1
-		let mappedJ = J + periods * 10631
-		let mappedYMD = julianDayNumberToIslamicCalendarDate(mappedJ)
-		return (mappedYMD.year - periods * 30, mappedYMD.month, mappedYMD.day)
+		ΔleapCycles = -J / 10631 + 1
+		J += ΔleapCycles * 10631
 	}
 
 	let f = J + j
@@ -79,7 +85,11 @@ public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month:
 	let h = u * g + w
 	let D = (h % s) / u + 1
 	let M = ((h / s + m) % n) + 1
-	let Y = e / p - y + (n + m - M) / n
+	var Y = e / p - y + (n + m - M) / n
+
+	if ΔleapCycles > 0 {
+		Y -= ΔleapCycles * 30
+	}
 
 	return (Y, M, D)
 }
