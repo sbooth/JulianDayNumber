@@ -62,13 +62,13 @@ public func daysInGregorianCalendarMonth(year Y: Int, month M: Int) -> Int {
 	}
 }
 
-/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhu ́’l-Hijjab).
+/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhú’l-Hijjab).
 let islamicMonthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
 
 /// Returns the number of days in month `M` in year `Y` in the Islamic calendar.
 ///
 /// - parameter year: A year number.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 ///
 /// - returns: The number of days in the requested month.
 public func daysInIslamicCalendarMonth(year Y: Int, month M: Int) -> Int {

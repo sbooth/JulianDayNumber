@@ -26,7 +26,7 @@ let islamicCalendarCycleDays = 10631
 /// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 ///
 /// - returns: The JDN corresponding to the requested date.

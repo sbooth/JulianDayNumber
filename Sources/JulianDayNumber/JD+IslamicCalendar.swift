@@ -14,7 +14,7 @@ import Foundation
 /// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 /// - parameter h: An hour number between `0` and `23`.
 /// - parameter m: A minute number between `0` and `59`.
@@ -33,7 +33,7 @@ public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: In
 /// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
 ///
 /// - returns: The JD corresponding to the requested date.
