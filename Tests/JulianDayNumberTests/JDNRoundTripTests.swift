@@ -13,14 +13,8 @@ final class JDNRoundTripTests: XCTestCase {
 	// Round-trip test of all supported JDNs
 	func testJDNRoundTrip() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
-			let isLeapYear = isLeapYear(year)
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days: Int
-				if month == 2 {
-					days = isLeapYear ? 29 : 28
-				} else {
-					days = monthLengths[month - 1]
-				}
+				let days = daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
 					let jdn = calendarDateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = julianDayNumberToCalendarDate(jdn)
@@ -39,14 +33,8 @@ final class JDNRoundTripTests: XCTestCase {
 	// Round-trip test of all supported JDNs using the Julian calendar
 	func testJDNRoundTripJulian() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
-			let isLeapYear = isJulianCalendarLeapYear(year)
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days: Int
-				if month == 2 {
-					days = isLeapYear ? 29 : 28
-				} else {
-					days = monthLengths[month - 1]
-				}
+				let days = daysInJulianCalendarMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
 					let jdn = julianCalendarDateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = julianDayNumberToJulianCalendarDate(jdn)
@@ -61,14 +49,8 @@ final class JDNRoundTripTests: XCTestCase {
 	// Round-trip test of all supported JDNs using the Gregorian calendar
 	func testJDNRoundTripGregorian() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
-			let isLeapYear = isGregorianCalendarLeapYear(year)
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days: Int
-				if month == 2 {
-					days = isLeapYear ? 29 : 28
-				} else {
-					days = monthLengths[month - 1]
-				}
+				let days = daysInGregorianCalendarMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
 					let jdn = gregorianCalendarDateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = julianDayNumberToGregorianCalendarDate(jdn)
@@ -82,16 +64,9 @@ final class JDNRoundTripTests: XCTestCase {
 
 	// Round-trip test of all supported JDNs using the Islamic calendar
 	func testJDNRoundTripIslamic() {
-		let monthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
 		for year in stride(from: -9999, through: 99999, by: 1) {
-			let isLeapYear = isIslamicCalendarLeapYear(year)
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days: Int
-				if month == 12 {
-					days = isLeapYear ? 30 : 29
-				} else {
-					days = monthLengths[month - 1]
-				}
+				let days = daysInIslamicCalendarMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
 					let jdn = islamicCalendarDateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = julianDayNumberToIslamicCalendarDate(jdn)
