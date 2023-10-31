@@ -6,6 +6,16 @@
 
 import Foundation
 
+/// The number of years in a cycle of the Julian calendar.
+///
+/// A cycle in the Julian calendar consists of 3 common years and 1 leap year.
+let julianCalendarCycleYears = 4
+
+/// The number of days in a cycle of the Julian calendar.
+///
+/// A cycle in the Julian calendar consists of 3 years of 365 days and 1 leap year of 366 days.
+let julianCalendarCycleDays = 1461
+
 /// Converts a date in the Julian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
@@ -19,25 +29,28 @@ import Foundation
 ///
 /// - returns: The JDN corresponding to the requested date.
 public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
+	var Y = Y
+	var ΔcalendarCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// JDN 0 is -4712-01-01 in the proleptic Julian calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
-	// 4 (the frequency of leap years in the Julian calendar)
-	// before calculating the JDN and then translate the result backward
-	// in time by the period of adjustment.
+	// the calendar's cycle before calculating the JDN, and then translate
+	// the result backward in time by the period of adjustment.
 	if Y < -4712 {
-		// 4 years * 365.25 days/year = 1,461 days
-		let periods = (-4713 - Y) / 4 + 1
-		let mappedY = Y + periods * 4
-		let mappedJ = julianCalendarDateToJulianDayNumber(year: mappedY, month: M, day: D)
-		return mappedJ - periods * 1461
+		ΔcalendarCycles = (-4713 - Y) / julianCalendarCycleYears + 1
+		Y += ΔcalendarCycles * julianCalendarCycleYears
 	}
 
 	let h = M - m
 	let g = Y + y - (n - h) / n
 	let f = (h - 1 + n) % n
 	let e = (p * g + q) / r + D - 1 - j
-	let J = e + (s * f + t) / u
+	var J = e + (s * f + t) / u
+
+	if ΔcalendarCycles > 0 {
+		J -= ΔcalendarCycles * julianCalendarCycleDays
+	}
 
 	return J
 }
@@ -58,17 +71,16 @@ let latestSupportedJulianCalendarJDN = 38246057
 ///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
+	var J = J
+	var ΔcalendarCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// Adjust negative JDNs forward in time by a multiple of
-	// 4 years (the frequency of leap years in the Julian calendar)
-	// before calculating the proleptic Julian date and then translate
-	// the result backward in time by the amount of forward adjustment.
+	// the calendar's cycle before calculating the JDN, and then translate
+	// the result backward in time by the period of adjustment.
 	if J < 0 {
-		// 4 years * 365.25 days/year = 1,461 days
-		let periods = -J / 1461 + 1
-		let mappedJ = J + periods * 1461
-		let mappedYMD = julianDayNumberToJulianCalendarDate(mappedJ)
-		return (mappedYMD.year - periods * 4, mappedYMD.month, mappedYMD.day)
+		ΔcalendarCycles = -J / julianCalendarCycleDays + 1
+		J += ΔcalendarCycles * julianCalendarCycleDays
 	}
 
 	let f = J + j
@@ -77,7 +89,11 @@ public func julianDayNumberToJulianCalendarDate(_ J: Int) -> (year: Int, month: 
 	let h = u * g + w
 	let D = (h % s) / u + 1
 	let M = ((h / s + m) % n) + 1
-	let Y = e / p - y + (n + m - M) / n
+	var Y = e / p - y + (n + m - M) / n
+
+	if ΔcalendarCycles > 0 {
+		Y -= ΔcalendarCycles * julianCalendarCycleYears
+	}
 
 	return (Y, M, D)
 }

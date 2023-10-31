@@ -7,6 +7,16 @@
 
 import Foundation
 
+/// The number of years in a cycle of the Islamic calendar.
+///
+/// A cycle in the Islamic calendar consists of 19 common years and 11 leap years.
+let islamicCalendarCycleYears = 30
+
+/// The number of days in a cycle of the Islamic calendar.
+///
+/// A cycle in the Islamic calendar consists of 19 years of 354 days and 11 leap years of 355 days.
+let islamicCalendarCycleDays = 10631
+
 /// Converts a date in the Islamic calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
@@ -16,30 +26,33 @@ import Foundation
 /// - note: No validation checks are performed on the date values.
 ///
 /// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 ///
 /// - returns: The JDN corresponding to the requested date.
 public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
+	var Y = Y
+	var ΔcalendarCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// JDN 0 is -5498-08-16 in the proleptic Islamic calendar.
 	// Adjust the year of earlier dates forward in time by a multiple of
-	// 30 (to account for leap years in the Islamic calendar)
-	// before calculating the JDN and then translate the result backward
-	// in time by the period of adjustment.
+	// the calendar's cycle before calculating the JDN, and then translate
+	// the result backward in time by the period of adjustment.
 	if Y < -5498 || (Y == -5498 && (M < 8 || (M == 8 && D < 16))) {
-		// 30 years = 10,631 days (19 years of 354 days and 11 leap years of 355 days)
-		let periods = (-5498 - Y) / 30 + 1
-		let mappedY = Y + periods * 30
-		let mappedJ = islamicCalendarDateToJulianDayNumber(year: mappedY, month: M, day: D)
-		return mappedJ - periods * 10631
+		ΔcalendarCycles = (-5498 - Y) / islamicCalendarCycleYears + 1
+		Y += ΔcalendarCycles * islamicCalendarCycleYears
 	}
 
 	let h = M - m
 	let g = Y + y - (n - h) / n
 	let f = (h - 1 + n) % n
 	let e = (p * g + q) / r + D - 1 - j
-	let J = e + (s * f + t) / u
+	var J = e + (s * f + t) / u
+
+	if ΔcalendarCycles > 0 {
+		J -= ΔcalendarCycles * islamicCalendarCycleDays
+	}
 
 	return J
 }
@@ -60,17 +73,16 @@ let latestSupportedIslamicCalendarJDN = 37384751
 ///
 /// - returns: The calendar date corresponding to `J`.
 public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
+	var J = J
+	var ΔcalendarCycles = 0
+
 	// Richards' algorithm is only valid for positive JDNs.
 	// Adjust negative JDNs forward in time by a multiple of
-	// 30 years (to account for leap years in the Islamic calendar)
-	// before calculating the proleptic Islamic date and then translate
-	// the result backward in time by the amount of forward adjustment.
+	// the calendar's cycle before calculating the JDN, and then translate
+	// the result backward in time by the period of adjustment.
 	if J < 0 {
-		// 30 years = 10,631 days (19 years of 354 days and 11 leap years of 355 days)
-		let periods = -J / 10631 + 1
-		let mappedJ = J + periods * 10631
-		let mappedYMD = julianDayNumberToIslamicCalendarDate(mappedJ)
-		return (mappedYMD.year - periods * 30, mappedYMD.month, mappedYMD.day)
+		ΔcalendarCycles = -J / islamicCalendarCycleDays + 1
+		J += ΔcalendarCycles * islamicCalendarCycleDays
 	}
 
 	let f = J + j
@@ -79,7 +91,11 @@ public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month:
 	let h = u * g + w
 	let D = (h % s) / u + 1
 	let M = ((h / s + m) % n) + 1
-	let Y = e / p - y + (n + m - M) / n
+	var Y = e / p - y + (n + m - M) / n
+
+	if ΔcalendarCycles > 0 {
+		Y -= ΔcalendarCycles * islamicCalendarCycleYears
+	}
 
 	return (Y, M, D)
 }
