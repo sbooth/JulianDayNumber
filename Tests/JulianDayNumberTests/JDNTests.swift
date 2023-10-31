@@ -121,4 +121,11 @@ final class JDNTests: XCTestCase {
 		jdn = gregorianCalendarDateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)
 	}
+
+	func testJDNIslamic() {
+		// From Richards
+		XCTAssertEqual(islamicCalendarDateToJulianDayNumber(year: 1, month: 1, day: 1), 1948440)
+		// From Meeus
+		XCTAssertEqual(islamicCalendarDateToJulianDayNumber(year: 1421, month: 1, day: 1), 2451641)
+	}
 }

@@ -1,6 +1,6 @@
 # JulianDayNumber
 
-Julian day number (JDN) and Julian date (JD) calculations supporting proleptic Julian and Gregorian calendars.
+Julian day number (JDN) and Julian date (JD) calculations supporting Julian, Gregorian, and Islamic calendars.
 
 Conversion to and from dates in the range `-9999-01-01` to `99999-12-31` is supported.
 

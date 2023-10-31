@@ -40,3 +40,17 @@ public func isGregorianCalendarLeapYear(_ Y: Int) -> Bool {
 public func isJulianCalendarLeapYear(_ Y: Int) -> Bool {
 	Y % 4 == 0
 }
+
+/// Returns `true` if `Y` is a leap year according to the Islamic calendar.
+///
+/// There are eleven leap years in a cycle of thirty years.
+/// These are years 2, 5, 7, 10, 13, 16, 18, 21, 24, 26, and 29 of the cycle.
+/// The year 1 A.H. was the first of a cycle.
+///
+/// - parameter Y: A year number.
+///
+/// - returns: `true` if `Y` is a leap year in the Islamic calendar.
+func isIslamicCalendarLeapYear(_ year: Int) -> Bool {
+	let yearInCycle = (year - 1) % 30 + (year < 1 ? 31 : 1)
+	return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
+}
