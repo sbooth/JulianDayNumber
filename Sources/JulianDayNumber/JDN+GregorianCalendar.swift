@@ -16,6 +16,16 @@ let gregorianCalendarCycleYears = 400
 /// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
 let gregorianCalendarCycleDays = 146097
 
+/// The earliest supported Julian day number using the Gregorian calendar.
+///
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Gregorian calendar.
+let earliestSupportedGregorianCalendarJDN = -1930999
+
+/// The latest supported Julian day number using the Gregorian calendar.
+///
+/// This JDN corresponds to 99999-12-31 12:00:00 in the Gregorian calendar.
+let latestSupportedGregorianCalendarJDN = latestSupportedJDN
+
 /// Converts a date in the Gregorian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
@@ -56,16 +66,6 @@ public func gregorianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, da
 
 	return J
 }
-
-/// The earliest supported Julian day number using the Gregorian calendar.
-///
-/// This JDN corresponds to -9999-01-01 12:00:00 in the Gregorian calendar.
-let earliestSupportedGregorianCalendarJDN = -1930999
-
-/// The latest supported Julian day number using the Gregorian calendar.
-///
-/// This JDN corresponds to 99999-12-31 12:00:00 in the Gregorian calendar.
-let latestSupportedGregorianCalendarJDN = latestSupportedJDN
 
 /// Converts the Julian day number `J` to a date in the Gregorian calendar.
 ///

@@ -16,6 +16,16 @@ let julianCalendarCycleYears = 4
 /// A cycle in the Julian calendar consists of 3 years of 365 days and 1 leap year of 366 days.
 let julianCalendarCycleDays = 1461
 
+/// The earliest supported Julian day number using the Julian calendar.
+///
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Julian calendar
+let earliestSupportedJulianCalendarJDN = earliestSupportedJDN
+
+/// The latest supported Julian day number using the Julian calendar.
+///
+/// This JDN corresponds to 99999-12-31 12:00:00 in the Julian calendar
+let latestSupportedJulianCalendarJDN = 38246057
+
 /// Converts a date in the Julian calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
@@ -54,16 +64,6 @@ public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D
 
 	return J
 }
-
-/// The earliest supported Julian day number using the Julian calendar.
-///
-/// This JDN corresponds to -9999-01-01 12:00:00 in the Julian calendar
-let earliestSupportedJulianCalendarJDN = earliestSupportedJDN
-
-/// The latest supported Julian day number using the Julian calendar.
-///
-/// This JDN corresponds to 99999-12-31 12:00:00 in the Julian calendar
-let latestSupportedJulianCalendarJDN = 38246057
 
 /// Converts the Julian day number `J` to a date in the Julian calendar.
 ///

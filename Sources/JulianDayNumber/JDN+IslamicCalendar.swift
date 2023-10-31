@@ -1,5 +1,4 @@
 //
-//
 // Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
@@ -16,6 +15,16 @@ let islamicCalendarCycleYears = 30
 ///
 /// A cycle in the Islamic calendar consists of 19 years of 354 days and 11 leap years of 355 days.
 let islamicCalendarCycleDays = 10631
+
+/// The earliest supported Julian day number using the Islamic calendar.
+///
+/// This JDN corresponds to -9999-01-01 12:00:00 in the Islamic calendar
+let earliestSupportedIslamicCalendarJDN = -1595227
+
+/// The latest supported Julian day number using the Islamic calendar.
+///
+/// This JDN corresponds to 99999-12-29 12:00:00 in the Islamic calendar
+let latestSupportedIslamicCalendarJDN = 37384751
 
 /// Converts a date in the Islamic calendar to a Julian day number.
 ///
@@ -56,16 +65,6 @@ public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day 
 
 	return J
 }
-
-/// The earliest supported Julian day number using the Islamic calendar.
-///
-/// This JDN corresponds to -9999-01-01 12:00:00 in the Islamic calendar
-let earliestSupportedIslamicCalendarJDN = -1595227
-
-/// The latest supported Julian day number using the Islamic calendar.
-///
-/// This JDN corresponds to 99999-12-29 12:00:00 in the Islamic calendar
-let latestSupportedIslamicCalendarJDN = 37384751
 
 /// Converts the Julian day number `J` to a date in the Islamic calendar.
 ///
