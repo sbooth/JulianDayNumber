@@ -46,114 +46,6 @@ public func calendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -
 	return Double(calendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 }
 
-/// Converts a date in the Julian calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (January) and `12` (December).
-/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-/// - parameter h: An hour number between `0` and `23`.
-/// - parameter m: A minute number between `0` and `59`.
-/// - parameter s: A second number between `0` and `59`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
-}
-
-/// Converts a date in the Julian calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (January) and `12` (December).
-/// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -> Double {
-	let (day, dayFraction) = modf(D)
-	return Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
-}
-
-/// Converts a date in the Gregorian calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (January) and `12` (December).
-/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-/// - parameter h: An hour number between `0` and `23`.
-/// - parameter m: A minute number between `0` and `59`.
-/// - parameter s: A second number between `0` and `59`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func gregorianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	Double(gregorianCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
-}
-
-/// Converts a date in the Gregorian calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (January) and `12` (December).
-/// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func gregorianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -> Double {
-	let (day, dayFraction) = modf(D)
-	return Double(gregorianCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
-}
-
-/// Converts a date in the Islamic calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
-/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-/// - parameter h: An hour number between `0` and `23`.
-/// - parameter m: A minute number between `0` and `59`.
-/// - parameter s: A second number between `0` and `59`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
-	Double(islamicCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
-}
-
-/// Converts a date in the Islamic calendar to a Julian date.
-///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
-/// Julian dates are expressed as a JDN with a decimal fraction added.
-///
-/// - note: No validation checks are performed on the date values.
-///
-/// - parameter Y: A year number between `-9999` and `99999`.
-/// - parameter M: A month number between `1` (Muharram) and `12` (Dhu ́’l-Hijjab).
-/// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
-///
-/// - returns: The JD corresponding to the requested date.
-public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -> Double {
-	let (day, dayFraction) = modf(D)
-	return Double(islamicCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
-}
-
 /// The earliest supported JD.
 ///
 /// This JD corresponds to -9999-01-01 00:00:00 in the Julian calendar.
@@ -175,62 +67,7 @@ public func julianDateToCalendarDate(_ JD: Double) -> (year: Int, month: Int, da
 	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToCalendarDate)
 }
 
-/// The earliest supported JD using the Julian calendar.
-///
-/// This JD corresponds to -9999-01-01 00:00:00 in the Julian calendar.
-let earliestSupportedJulianCalendarJD = earliestSupportedJD
-
-/// The latest supported JD using the Julian calendar.
-///
-/// This JD corresponds to 99999-12-31 00:00:00 in the Julian calendar.
-let latestSupportedJulianCalendarJD = 38246056.5
-
-/// Converts the Julian date `JD` to a date in the Julian calendar.
-///
-/// - parameter JD: A Julian date between `-1931076.5` and `38246056.5`.
-///
-/// - returns: A tuple specifying the requested date.
-public func julianDateToJulianCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToJulianCalendarDate)
-}
-
-/// The earliest supported JD using the Gregorian calendar.
-///
-/// This JD corresponds to -9999-01-01 00:00:00 in the Gregorian calendar.
-let earliestSupportedGregorianCalendarJD = -1930999.5
-
-/// The latest supported JD using the Gregorian calendar.
-///
-/// This JD corresponds to 99999-12-31 00:00:00 in the Gregorian calendar.
-let latestSupportedGregorianCalendarJD = latestSupportedJD
-
-/// Converts the Julian date `JD` to a date in the Gregorian calendar.
-///
-/// - parameter JD: A Julian date between `-1930999.5` and `38245308.5`.
-///
-/// - returns: A tuple specifying the requested date.
-public func julianDateToGregorianCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToGregorianCalendarDate)
-}
-
-/// The earliest supported JD using the Islamic calendar.
-///
-/// This JD corresponds to -9999-01-01 00:00:00 in the Islamic calendar.
-let earliestSupportedIslamicCalendarJD = -1595227.5
-
-/// The latest supported JD using the Islamic calendar.
-///
-/// This JD corresponds to 99999-12-29 00:00:00 in the Islamic calendar.
-let latestSupportedIslamicCalendarJD = 37384750.5
-
-/// Converts the Julian date `JD` to a date in the Islamic calendar.
-///
-/// - parameter JD: A Julian date between `-1595227.5` and `37384750.5`.
-///
-/// - returns: A tuple specifying the requested date.
-public func julianDateToIslamicCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToIslamicCalendarDate)
-}
+// MARK: Internal Functions
 
 /// Returns the decimal fractional day represented by the time comprised of hour `h`, minute `m`, and second `s`.
 ///
@@ -261,7 +98,7 @@ func fractionalDayToTime(_ fractionalDay: Double) -> (hour: Int, minute: Int, se
 /// - parameter jdnToDateConversionFunction: A function accepting a JDN value and returning equivalent year, month, and day values.
 ///
 /// - returns: A tuple specifying the requested date.
-private func convertJDToCalendarDate(_ JD: Double, usingJDNConversionFunction jdnToDateConversionFunction: (_: Int) -> (Int, Int, Int)) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
+func convertJDToCalendarDate(_ JD: Double, usingJDNConversionFunction jdnToDateConversionFunction: (_: Int) -> (Int, Int, Int)) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
 	let jdPlus12Hours = JD + 0.5
 	let J = Int(jdPlus12Hours.rounded(.down))
 	let (Y, M, D) = jdnToDateConversionFunction(J)
