@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// Returns `true` if `Y` is a leap year.
+/// Returns `true` if `Y` is a leap year in the Julian or Gregorian calendar.
 ///
 /// Years before 1582 are interpreted in the Julian calendar and years after
 /// 1582 are interpreted in the Gregorian calendar.
@@ -18,7 +18,18 @@ public func isLeapYear(_ Y: Int) -> Bool {
 	Y < 1582 ? isJulianCalendarLeapYear(Y) : isGregorianCalendarLeapYear(Y)
 }
 
-/// Returns `true` if `Y` is a leap year according to the Gregorian calendar.
+/// Returns `true` if `Y` is a leap year in the Julian calendar.
+///
+/// A Julian year is a leap (bissextile) year if its numerical designation is divisible by 4.
+///
+/// - parameter Y: A year number.
+///
+/// - returns: `true` if `Y` is a leap year in the Julian calendar.
+public func isJulianCalendarLeapYear(_ Y: Int) -> Bool {
+	Y % 4 == 0
+}
+
+/// Returns `true` if `Y` is a leap year in the Gregorian calendar.
 ///
 /// A Gregorian year is a leap (bissextile) year if its numerical designation is divisible by 4
 /// excluding centurial years *not* divisible by 400.
@@ -30,18 +41,7 @@ public func isGregorianCalendarLeapYear(_ Y: Int) -> Bool {
 	Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
 }
 
-/// Returns `true` if `Y` is a leap year according to the Julian calendar.
-///
-/// A Julian year is a leap (bissextile) year if its numerical designation is divisible by 4.
-///
-/// - parameter Y: A year number.
-///
-/// - returns: `true` if `Y` is a leap year in the Julian calendar.
-public func isJulianCalendarLeapYear(_ Y: Int) -> Bool {
-	Y % 4 == 0
-}
-
-/// Returns `true` if `Y` is a leap year according to the Islamic calendar.
+/// Returns `true` if `Y` is a leap year in the Islamic calendar.
 ///
 /// There are eleven leap years in a cycle of thirty years.
 /// These are years 2, 5, 7, 10, 13, 16, 18, 21, 24, 26, and 29 of the cycle.
