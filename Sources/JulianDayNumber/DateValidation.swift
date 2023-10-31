@@ -8,8 +8,7 @@ import Foundation
 
 /// Returns `true` if year `Y`, month `M`, and day `D` form a valid date.
 ///
-/// Years before 1582 are interpreted in the Julian calendar and years after
-/// 1582 are interpreted in the Gregorian calendar.
+/// Years before 1582 are interpreted in the Julian calendar and years after 1582 are interpreted in the Gregorian calendar.
 ///
 /// - parameter Y: A year number.
 /// - parameter M: A month number between `1` (January) and `12` (December).
@@ -17,10 +16,10 @@ import Foundation
 ///
 /// - returns: `true` if `Y`, `M`, `D` is a valid date.
 public func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
-	if atOrAfterGregorianCalendarChangeover(year: Y, month: M, day: D) {
-		return isGregorianCalendarDateValid(year: Y, month: M, day: D)
-	} else {
+	if (Y, M, D) < gregorianCalendarChangeoverDate {
 		return isJulianCalendarDateValid(year: Y, month: M, day: D)
+	} else {
+		return isGregorianCalendarDateValid(year: Y, month: M, day: D)
 	}
 }
 
@@ -50,4 +49,18 @@ public func isGregorianCalendarDateValid(year Y: Int, month M: Int, day D: Int) 
 		return false
 	}
 	return D > 0 && D <= daysInGregorianCalendarMonth(year: Y, month: M)
+}
+
+/// Returns `true` if year `Y`, month `M`, and day `D` form a valid date in the Islamic calendar.
+///
+/// - parameter Y: A year number.
+/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
+/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+///
+/// - returns: `true` if `Y`, `M`, `D` is a valid date in the Islamic calendar.
+public func isIslamicCalendarDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	guard M > 0 && M <= 12 else {
+		return false
+	}
+	return D > 0 && D <= daysInIslamicCalendarMonth(year: Y, month: M)
 }
