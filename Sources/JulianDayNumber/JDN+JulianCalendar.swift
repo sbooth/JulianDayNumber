@@ -6,6 +6,8 @@
 
 import Foundation
 
+// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+
 /// The number of years in a cycle of the Julian calendar.
 ///
 /// A cycle in the Julian calendar consists of 3 common years and 1 leap year.
@@ -19,7 +21,7 @@ let julianCalendarCycleDays = 1461
 /// The earliest supported Julian day number using the Julian calendar.
 ///
 /// This JDN corresponds to -9999-01-01 12:00:00 in the Julian calendar
-let earliestSupportedJulianCalendarJDN = earliestSupportedJDN
+let earliestSupportedJulianCalendarJDN = -1931076
 
 /// The latest supported Julian day number using the Julian calendar.
 ///

@@ -6,6 +6,8 @@
 
 import Foundation
 
+// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+
 /// The number of years in a cycle of the Gregorian calendar.
 ///
 /// A cycle in the Gregorian calendar consists of 303 common years and 97 leap years.
@@ -24,7 +26,7 @@ let earliestSupportedGregorianCalendarJDN = -1930999
 /// The latest supported Julian day number using the Gregorian calendar.
 ///
 /// This JDN corresponds to 99999-12-31 12:00:00 in the Gregorian calendar.
-let latestSupportedGregorianCalendarJDN = latestSupportedJDN
+let latestSupportedGregorianCalendarJDN = 38245309
 
 /// Converts a date in the Gregorian calendar to a Julian day number.
 ///

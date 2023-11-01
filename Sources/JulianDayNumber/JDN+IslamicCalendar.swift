@@ -6,6 +6,8 @@
 
 import Foundation
 
+// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+
 /// The number of years in a cycle of the Islamic calendar.
 ///
 /// A cycle in the Islamic calendar consists of 19 common years and 11 leap years.
