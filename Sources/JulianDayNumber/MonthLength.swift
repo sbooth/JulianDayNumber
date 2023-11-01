@@ -28,8 +28,8 @@ let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 /// Returns the number of days in month `M` in year `Y` in the Julian calendar.
 ///
-/// - parameter year: A year number.
-/// - parameter month: A month number between `1` (January) and `12` (December).
+/// - parameter Y: A year number.
+/// - parameter M: A month number between `1` (January) and `12` (December).
 ///
 /// - returns: The number of days in the requested month.
 public func daysInJulianCalendarMonth(year Y: Int, month M: Int) -> Int {
@@ -46,8 +46,8 @@ public func daysInJulianCalendarMonth(year Y: Int, month M: Int) -> Int {
 
 /// Returns the number of days in month `M` in year `Y` in the Gregorian calendar.
 ///
-/// - parameter year: A year number.
-/// - parameter month: A month number between `1` (January) and `12` (December).
+/// - parameter Y: A year number.
+/// - parameter M: A month number between `1` (January) and `12` (December).
 ///
 /// - returns: The number of days in the requested month.
 public func daysInGregorianCalendarMonth(year Y: Int, month M: Int) -> Int {
@@ -67,7 +67,7 @@ let islamicMonthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
 
 /// Returns the number of days in month `M` in year `Y` in the Islamic calendar.
 ///
-/// - parameter year: A year number.
+/// - parameter Y: A year number.
 /// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 ///
 /// - returns: The number of days in the requested month.
