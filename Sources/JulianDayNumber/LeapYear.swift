@@ -50,7 +50,7 @@ public func isGregorianCalendarLeapYear(_ Y: Int) -> Bool {
 /// - parameter Y: A year number.
 ///
 /// - returns: `true` if `Y` is a leap year in the Islamic calendar.
-func isIslamicCalendarLeapYear(_ year: Int) -> Bool {
+public func isIslamicCalendarLeapYear(_ year: Int) -> Bool {
 	let yearInCycle = (year - 1) % 30 + (year < 1 ? 31 : 1)
 	return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
 }
