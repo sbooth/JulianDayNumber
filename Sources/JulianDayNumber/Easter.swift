@@ -6,14 +6,14 @@
 
 import Foundation
 
-// From the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
 /// Returns the month `M` and day `D` of Easter in year `Y`.
 ///
 /// Years before 1582 are interpreted in the Julian calendar and years after
 /// 1582 are interpreted in the Gregorian calendar.
 ///
-/// - parameter year: A year number.
+/// - parameter Y: A year number.
 ///
 /// - returns: The month and day of Easter in the requested year.
 public func easter(year Y: Int) -> (month: Int, day: Int) {
@@ -22,7 +22,7 @@ public func easter(year Y: Int) -> (month: Int, day: Int) {
 
 /// Returns the month `M` and day `D` of Easter in year `Y` in the Julian calendar.
 ///
-/// - parameter year: A year number.
+/// - parameter Y: A year number.
 ///
 /// - returns: The month and day of Easter in the requested year.
 public func easterInJulianCalendar(year Y: Int) -> (month: Int, day: Int) {
@@ -35,7 +35,7 @@ public func easterInJulianCalendar(year Y: Int) -> (month: Int, day: Int) {
 
 /// Returns the month `M` and day `D` of Easter in year `Y` in the Gregorian calendar.
 ///
-/// - parameter year: A year number.
+/// - parameter Y: A year number.
 ///
 /// - returns: The month and day of Easter in the requested year.
 public func easterInGregorianCalendar(year Y: Int) -> (month: Int, day: Int) {
