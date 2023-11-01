@@ -40,7 +40,7 @@ let latestSupportedIslamicCalendarJDN = 37384751
 /// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 ///
-/// - returns: The JDN corresponding to the requested date.
+/// - returns: The Julian day number corresponding to the requested date.
 public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	var Y = Y
 	var ΔcalendarCycles = 0

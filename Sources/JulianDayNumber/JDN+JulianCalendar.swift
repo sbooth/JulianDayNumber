@@ -39,7 +39,7 @@ let latestSupportedJulianCalendarJDN = 38246057
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 ///
-/// - returns: The JDN corresponding to the requested date.
+/// - returns: The Julian day number corresponding to the requested date.
 public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	var Y = Y
 	var ΔcalendarCycles = 0
