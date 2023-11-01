@@ -28,7 +28,7 @@ let earliestSupportedIslamicCalendarJDN = -1595227
 /// This JDN corresponds to 99999-12-29 12:00:00 in the Islamic calendar
 let latestSupportedIslamicCalendarJDN = 37384751
 
-/// Converts a date in the Islamic calendar to a Julian day number.
+/// Converts a year, month, and day in the Islamic calendar to a Julian day number.
 ///
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
 /// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC (-4712-01-01 12:00:00) in the proleptic Julian calendar.
@@ -40,7 +40,7 @@ let latestSupportedIslamicCalendarJDN = 37384751
 /// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 ///
-/// - returns: The Julian day number corresponding to the requested date.
+/// - returns: The Julian day number corresponding to the specified year, month, and day.
 public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> Int {
 	var Y = Y
 	var ΔcalendarCycles = 0
@@ -68,11 +68,11 @@ public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day 
 	return J
 }
 
-/// Converts the Julian day number `J` to a date in the Islamic calendar.
+/// Converts the Julian day number `J` to a year, month, and day in the Islamic calendar.
 ///
 /// - parameter J: A Julian day number between `-1595227` and `37384751`.
 ///
-/// - returns: The calendar date corresponding to `J`.
+/// - returns: The year, month, and day corresponding to the specified Julian day number.
 public func julianDayNumberToIslamicCalendarDate(_ J: Int) -> (year: Int, month: Int, day: Int) {
 	var J = J
 	var ΔcalendarCycles = 0
