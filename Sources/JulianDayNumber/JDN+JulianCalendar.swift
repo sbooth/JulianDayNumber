@@ -67,7 +67,7 @@ public func julianCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day D
 	return J
 }
 
-/// Converts the Julian day number `J` to a year, month, and day in the Julian calendar.
+/// Converts a Julian day number to a year, month, and day in the Julian calendar.
 ///
 /// - parameter J: A Julian day number between `-1931076` and `38246057`.
 ///
