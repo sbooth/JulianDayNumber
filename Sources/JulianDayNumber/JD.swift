@@ -14,7 +14,7 @@ public struct JD: Hashable {
 	/// The Julian date.
 	public let julianDate: Double
 
-	/// Initializes a Julian date to `julianDate`.
+	/// Creates a Julian date value initialized to the specified Julian date.
 	///
 	/// - parameter julianDate: A Julian date.
 	public init(_ julianDate: Double) {
@@ -25,7 +25,7 @@ public struct JD: Hashable {
 extension JD {
 	public typealias Calendar = JDN.Calendar
 
-	/// Converts a year, month, day, hour, minute, and second in `calendar` to a Julian date.
+	/// Creates a Julian date value initialized to the specified year, month, day, hour, minute, and second in `calendar`.
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
@@ -41,7 +41,7 @@ extension JD {
 		self.init(Double(J.julianDayNumber) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s))
 	}
 
-	/// Converts a year, month, and decimal day in `calendar` to a Julian date.
+	/// Creates a Julian date value initialized to the specified year, month, and decimal day in `calendar`.
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
@@ -80,7 +80,7 @@ extension JD {
 }
 
 extension JD: ExpressibleByIntegerLiteral {
-	/// Initializes a Julian date with `value`.
+	/// Creates a Julian date value initialized to the specified Julian date.
 	///
 	/// - parameter value: A Julian date.
 	public init(integerLiteral value: IntegerLiteralType) {

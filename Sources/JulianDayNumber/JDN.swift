@@ -14,7 +14,7 @@ public struct JDN: Hashable {
 	/// The Julian day number.
 	public let julianDayNumber: Int
 
-	/// Initializes a Julian day number to `julianDayNumber`.
+	/// Creates a Julian day number value initialized to the specified Julian day number.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	public init(_ julianDayNumber: Int) {
@@ -47,7 +47,7 @@ extension JDN {
 		case islamic
 	}
 
-	/// Converts a year, month, and day in `calendar` to a Julian day number.
+	/// Creates a Julian day number value initialized to the specified year, month, and day in `calendar`.
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
@@ -96,7 +96,7 @@ extension JDN {
 }
 
 extension JDN: ExpressibleByIntegerLiteral {
-	/// Initializes a Julian day number with `value`.
+	/// Creates a Julian day number value initialized to the specified Julian day number.
 	///
 	/// - parameter value: A Julian day number.
 	public init(integerLiteral value: IntegerLiteralType) {
