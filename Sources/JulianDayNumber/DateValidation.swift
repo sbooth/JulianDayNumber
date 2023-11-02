@@ -6,20 +6,28 @@
 
 import Foundation
 
-/// Returns `true` if year `Y`, month `M`, and day `D` form a valid date.
-///
-/// Years before 1582 are interpreted in the Julian calendar and years after 1582 are interpreted in the Gregorian calendar.
+/// Returns `true` if year `Y`, month `M`, and day `D` form a valid date in `calendar`.
 ///
 /// - parameter Y: A year number.
-/// - parameter M: A month number between `1` (January) and `12` (December).
+/// - parameter M: A month number between `1` and the maximum number of months in year `Y`.
 /// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+/// - parameter calendar: The calendar used to interpret the month and year.
 ///
 /// - returns: `true` if `Y`, `M`, `D` is a valid date.
-public func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
-	if (Y, M, D) < gregorianCalendarChangeoverDate {
+public func isDateValid(year Y: Int, month M: Int, day D: Int, calendar: JDN.Calendar = .julianGregorian) -> Bool {
+	switch calendar {
+	case .julian:
 		return isJulianCalendarDateValid(year: Y, month: M, day: D)
-	} else {
+	case .gregorian:
 		return isGregorianCalendarDateValid(year: Y, month: M, day: D)
+	case .julianGregorian:
+		if (Y, M, D) < gregorianCalendarChangeoverDate {
+			return isJulianCalendarDateValid(year: Y, month: M, day: D)
+		} else {
+			return isGregorianCalendarDateValid(year: Y, month: M, day: D)
+		}
+	case .islamic:
+		return isIslamicCalendarDateValid(year: Y, month: M, day: D)
 	}
 }
 

@@ -6,21 +6,32 @@
 
 import Foundation
 
-/// Returns the number of days in month `M` in year `Y` in the Julian or Gregorian calendar.
+/// Returns the number of days in month `M` in year `Y` in `calendar`.
 ///
-/// Years before 1582 are interpreted in the Julian calendar and years after
-/// 1582 are interpreted in the Gregorian calendar.
-///
-/// - parameter year: A year number.
-/// - parameter month: A month number between `1` (January) and `12` (December).
+/// - parameter Y: A year number.
+/// - parameter M: A month number between `1` and the maximum number of months in year `Y`.
+/// - parameter calendar: The calendar used to interpret the month and year.
 ///
 /// - returns: The number of days in the requested month.
-public func daysInMonth(year Y: Int, month M: Int) -> Int {
+public func daysInMonth(year Y: Int, month M: Int, calendar: JDN.Calendar = .julianGregorian) -> Int {
 	guard M > 0, M <= 12 else {
 		return 0
 	}
 
-	return Y < 1582 ? daysInJulianCalendarMonth(year: Y, month: M) : daysInGregorianCalendarMonth(year: Y, month: M)
+	switch calendar {
+	case .julian:
+		return daysInJulianCalendarMonth(year: Y, month: M)
+	case .gregorian:
+		return daysInGregorianCalendarMonth(year: Y, month: M)
+	case .julianGregorian:
+		if Y < gregorianCalendarChangeoverDate.year {
+			return daysInJulianCalendarMonth(year: Y, month: M)
+		} else {
+			return daysInGregorianCalendarMonth(year: Y, month: M)
+		}
+	case .islamic:
+		return daysInIslamicCalendarMonth(year: Y, month: M)
+	}
 }
 
 /// The number of days in each month indexed from `0` (January) to `11` (December).
