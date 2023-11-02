@@ -28,7 +28,7 @@ extension JulianGregorianCalendar: JulianDayNumberConverting {
 
 	/// Converts a Julian day number to a year, month, and day in the Julian or Gregorian calendar.
 	///
-	/// Julian day numbers less than 2299161 treated as dates in the Julian calendar, while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
+	/// Julian day numbers less than 2299161 treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
