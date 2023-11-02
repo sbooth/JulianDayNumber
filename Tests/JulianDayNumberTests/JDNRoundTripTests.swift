@@ -38,7 +38,6 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	#if false
 	func testJulianGregorianCalendarJDNRoundTrip() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
@@ -57,7 +56,6 @@ final class JDNRoundTripTests: XCTestCase {
 			}
 		}
 	}
-	#endif
 
 	func testIslamicCalendarJDNRoundTrip() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
