@@ -9,7 +9,7 @@ import Foundation
 /// The earliest supported JD using the Julian calendar.
 ///
 /// This JD corresponds to -9999-01-01 00:00:00 in the Julian calendar.
-let earliestSupportedJulianCalendarJD = earliestSupportedJD
+let earliestSupportedJulianCalendarJD = -1931076.5
 
 /// The latest supported JD using the Julian calendar.
 ///
@@ -30,7 +30,7 @@ let latestSupportedJulianCalendarJD = 38246056.5
 /// - parameter m: A minute number between `0` and `59`.
 /// - parameter s: A second number between `0` and `59`.
 ///
-/// - returns: The JD corresponding to the requested date.
+/// - returns: The Julian date corresponding to the requested date.
 public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
 	Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
 }
@@ -46,17 +46,17 @@ public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int
 /// - parameter M: A month number between `1` (January) and `12` (December).
 /// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
 ///
-/// - returns: The JD corresponding to the requested date.
+/// - returns: The Julian date corresponding to the requested date.
 public func julianCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -> Double {
 	let (day, dayFraction) = modf(D)
 	return Double(julianCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 }
 
-/// Converts the Julian date `JD` to a date in the Julian calendar.
+/// Converts a Julian date to a year, month, and day in the Julian calendar.
 ///
 /// - parameter JD: A Julian date between `-1931076.5` and `38246056.5`.
 ///
-/// - returns: A tuple specifying the requested date.
+/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
 public func julianDateToJulianCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToJulianCalendarDate)
+	julianDateToCalendarDate(JD, julianDayNumberToDate: julianDayNumberToJulianCalendarDate)
 }

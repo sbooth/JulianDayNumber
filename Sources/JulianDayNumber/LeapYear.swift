@@ -6,16 +6,27 @@
 
 import Foundation
 
-/// Returns `true` if `Y` is a leap year in the Julian or Gregorian calendar.
-///
-/// Years before 1582 are interpreted in the Julian calendar and years after
-/// 1582 are interpreted in the Gregorian calendar.
+/// Returns `true` if `Y` is a leap year in `calendar`.
 ///
 /// - parameter Y: A year number.
+/// - parameter calendar: The calendar used to interpret the year.
 ///
-/// - returns: `true` if `Y` is a leap year.
-public func isLeapYear(_ Y: Int) -> Bool {
-	Y < 1582 ? isJulianCalendarLeapYear(Y) : isGregorianCalendarLeapYear(Y)
+/// - returns: `true` if `Y` is a leap year in the specified calendar.
+public func isLeapYear(_ Y: Int, calendar: JDN.Calendar = .julianGregorian) -> Bool {
+	switch calendar {
+	case .julian:
+		return isJulianCalendarLeapYear(Y)
+	case .gregorian:
+		return isGregorianCalendarLeapYear(Y)
+	case .julianGregorian:
+		if Y < gregorianCalendarChangeoverDate.year {
+			return isJulianCalendarLeapYear(Y)
+		} else {
+			return isGregorianCalendarLeapYear(Y)
+		}
+	case .islamic:
+		return isIslamicCalendarLeapYear(Y)
+	}
 }
 
 /// Returns `true` if `Y` is a leap year in the Julian calendar.

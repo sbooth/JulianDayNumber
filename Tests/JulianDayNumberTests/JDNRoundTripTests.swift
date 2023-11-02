@@ -16,8 +16,8 @@ final class JDNRoundTripTests: XCTestCase {
 			for month in stride(from: 1, through: 12, by: 1) {
 				let days = daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = calendarDateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = julianDayNumberToCalendarDate(jdn)
+					let J = JDN(year: year, month: month, day: day)
+					let (Y, M, D) = J.toDate()
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					// Handle Julian to Gregorian calendar changeover by ignoring "nonexistent" dates
