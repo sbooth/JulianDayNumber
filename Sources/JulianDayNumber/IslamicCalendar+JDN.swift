@@ -57,7 +57,7 @@ extension IslamicCalendar: JulianDayNumberConverting {
 
 	/// Converts a Julian day number to a year, month, and day in the Islamic calendar.
 	///
-	/// - parameter J: A Julian day number between `-1595227` and `37384751`.
+	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The year, month, and day corresponding to the specified Julian day number.
 	public static func julianDayNumberToDate(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
