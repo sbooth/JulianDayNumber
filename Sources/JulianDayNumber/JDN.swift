@@ -15,7 +15,7 @@ import Foundation
 /// JDN 0 is Shaabán 17, 5499 B.H. in the proleptic Islamic calendar.
 public typealias JulianDayNumber = Int
 
-/// Julian day number to date conversion.
+/// Julian day number to year, month, and day conversion.
 public protocol JulianDayNumberConverting {
 	/// Converts a year, month, and day to a Julian day number and returns the result.
 	///
