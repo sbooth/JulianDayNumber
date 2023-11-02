@@ -16,7 +16,7 @@ let earliestSupportedIslamicCalendarJD = -1595227.5
 /// This JD corresponds to 99999-12-29 00:00:00 in the Islamic calendar.
 let latestSupportedIslamicCalendarJD = 37384750.5
 
-/// Converts a date in the Islamic calendar to a Julian date.
+/// Converts a year, month, day, hour, minute, and second in the Islamic calendar to a Julian date.
 ///
 /// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
 /// Julian dates are expressed as a JDN with a decimal fraction added.
@@ -30,12 +30,12 @@ let latestSupportedIslamicCalendarJD = 37384750.5
 /// - parameter m: A minute number between `0` and `59`.
 /// - parameter s: A second number between `0` and `59`.
 ///
-/// - returns: The JD corresponding to the requested date.
+/// - returns: The Julian date corresponding to the specified year, month, day, hour, minute, and second.
 public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> Double {
 	Double(islamicCalendarDateToJulianDayNumber(year: Y, month: M, day: D)) - 0.5 + timeToFractionalDay(hour: h, minute: m, second: s)
 }
 
-/// Converts a date in the Islamic calendar to a Julian date.
+/// Converts a year, month, and decimal day in the Islamic calendar to a Julian date.
 ///
 /// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
 /// Julian dates are expressed as a JDN with a decimal fraction added.
@@ -46,17 +46,17 @@ public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: In
 /// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 /// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
 ///
-/// - returns: The JD corresponding to the requested date.
+/// - returns: The Julian date corresponding to the specified year, month, and decimal day.
 public func islamicCalendarDateToJulianDate(year Y: Int, month M: Int, day D: Double) -> Double {
 	let (day, dayFraction) = modf(D)
 	return Double(islamicCalendarDateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 }
 
-/// Converts the Julian date `JD` to a date in the Islamic calendar.
+/// Converts a Julian date to a year, month, and day in the Islamic calendar.
 ///
 /// - parameter JD: A Julian date between `-1595227.5` and `37384750.5`.
 ///
-/// - returns: A tuple specifying the requested date.
+/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
 public func julianDateToIslamicCalendarDate(_ JD: Double) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
-	convertJDToCalendarDate(JD, usingJDNConversionFunction: julianDayNumberToIslamicCalendarDate)
+	julianDateToCalendarDate(JD, julianDayNumberToDate: julianDayNumberToIslamicCalendarDate)
 }
