@@ -68,7 +68,7 @@ public func islamicCalendarDateToJulianDayNumber(year Y: Int, month M: Int, day 
 	return J
 }
 
-/// Converts the Julian day number `J` to a year, month, and day in the Islamic calendar.
+/// Converts a Julian day number to a year, month, and day in the Islamic calendar.
 ///
 /// - parameter J: A Julian day number between `-1595227` and `37384751`.
 ///
