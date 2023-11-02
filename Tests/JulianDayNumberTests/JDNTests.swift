@@ -9,26 +9,26 @@ import XCTest
 
 final class JDNTests: XCTestCase {
 	func testJDN() {
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: 1582, month: 10, day: 4), 2299160)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: 1582, month: 10, day: 15), 2299161)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451545)
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: -5000, month: 1, day: 1), -105192)
+		XCTAssertEqual(JDN(year: -9999, month: 1, day: 1), -1931076)
+		XCTAssertEqual(JDN(year: 99999, month: 12, day: 31), 38245309)
+		XCTAssertEqual(JDN(year: -4712, month: 1, day: 1), 0)
+		XCTAssertEqual(JDN(year: 1582, month: 10, day: 4), 2299160)
+		XCTAssertEqual(JDN(year: 1582, month: 10, day: 15), 2299161)
+		XCTAssertEqual(JDN(year: 2000, month: 1, day: 1), 2451545)
+		XCTAssertEqual(JDN(year: -5000, month: 1, day: 1), -105192)
 
-		XCTAssertTrue(julianDayNumberToCalendarDate(-1931076) == (-9999, 1, 1))
-		XCTAssertTrue(julianDayNumberToCalendarDate(38245309) == (99999, 12, 31))
-		XCTAssertTrue(julianDayNumberToCalendarDate(0) == (-4712, 1, 1))
-		XCTAssertTrue(julianDayNumberToCalendarDate(2299160) == (1582, 10, 4))
-		XCTAssertTrue(julianDayNumberToCalendarDate(2299161) == (1582, 10, 15))
-		XCTAssertTrue(julianDayNumberToCalendarDate(2451545) == (2000, 1, 1))
-		XCTAssertTrue(julianDayNumberToCalendarDate(-105192) == (-5000, 1, 1))
+		XCTAssertTrue(JDN(-1931076).toDate() == (-9999, 1, 1))
+		XCTAssertTrue(JDN(38245309).toDate() == (99999, 12, 31))
+		XCTAssertTrue(JDN(0).toDate() == (-4712, 1, 1))
+		XCTAssertTrue(JDN(2299160).toDate() == (1582, 10, 4))
+		XCTAssertTrue(JDN(2299161).toDate() == (1582, 10, 15))
+		XCTAssertTrue(JDN(2451545).toDate() == (2000, 1, 1))
+		XCTAssertTrue(JDN(-105192).toDate() == (-5000, 1, 1))
 
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: -9999, month: 1, day: 1), julianCalendarDateToJulianDayNumber(year: -9999, month: 1, day: 1))
-		XCTAssertNotEqual(calendarDateToJulianDayNumber(year: 99999, month: 12, day: 31), julianCalendarDateToJulianDayNumber(year: 99999, month: 12, day: 31))
-		XCTAssertEqual(calendarDateToJulianDayNumber(year: -4712, month: 1, day: 1), julianCalendarDateToJulianDayNumber(year: -4712, month: 1, day: 1))
-		XCTAssertNotEqual(calendarDateToJulianDayNumber(year: 2000, month: 1, day: 1), julianCalendarDateToJulianDayNumber(year: 2000, month: 1, day: 1))
+		XCTAssertEqual(JDN(year: -9999, month: 1, day: 1), JDN(year: -9999, month: 1, day: 1, calendar: .julian))
+		XCTAssertNotEqual(JDN(year: 99999, month: 12, day: 31), JDN(year: 99999, month: 12, day: 31, calendar: .julian))
+		XCTAssertEqual(JDN(year: -4712, month: 1, day: 1), JDN(year: -4712, month: 1, day: 1, calendar: .julian))
+		XCTAssertNotEqual(JDN(year: 2000, month: 1, day: 1), JDN(year: 2000, month: 1, day: 1, calendar: .julian))
 	}
 
 	func testJDNJulian() {
