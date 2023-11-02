@@ -97,6 +97,21 @@ extension JD: ExpressibleByFloatLiteral {
 	}
 }
 
+extension JD: CustomStringConvertible {
+	/// Returns a string representation of `self`.
+	public var description: String {
+		"JD \(julianDate)"
+	}
+}
+
+extension JD: CustomDebugStringConvertible {
+	/// Returns a string representation of `self` suitable for debugging.
+	public var debugDescription: String {
+		let d = toDate()
+		return String(format: "JD %.1f (%02d-%02d-%02dT%02d:%02d:%02d)", julianDate, d.year, d.month, d.day, d.hour, d.minute, Int(d.second))
+	}
+}
+
 // MARK: Operator Overloads
 
 extension JD {

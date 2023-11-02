@@ -104,6 +104,21 @@ extension JDN: ExpressibleByIntegerLiteral {
 	}
 }
 
+extension JDN: CustomStringConvertible {
+	/// Returns a string representation of `self`.
+	public var description: String {
+		"JDN \(julianDayNumber)"
+	}
+}
+
+extension JDN: CustomDebugStringConvertible {
+	/// Returns a string representation of `self` suitable for debugging.
+	public var debugDescription: String {
+		let d = toDate()
+		return String(format: "JDN %d (%02d-%02d-%02d)", julianDayNumber, d.year, d.month, d.day)
+	}
+}
+
 // MARK: Operator Overloads
 
 extension JDN {
