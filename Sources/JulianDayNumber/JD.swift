@@ -46,7 +46,7 @@ extension JD {
 	/// - note: No validation checks are performed on the date values.
 	///
 	/// - parameter Y: A year number between `-9999` and `99999`.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
+	/// - parameter M: A month number between `1` and the maximum number of months in year `Y`.
 	/// - parameter D: A decimal day between `1` and the maximum number of days in month `M` for year `Y`.
 	/// - parameter calendar: The calendar used to interpret the year, month, and day.
 	public init(year Y: Int, month M: Int, day D: Double, calendar: Calendar = .julianGregorian) {
