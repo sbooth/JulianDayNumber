@@ -7,6 +7,8 @@
 import Foundation
 
 /// The year, month, and day of the introduction of the Islamic calendar.
+///
+/// The Islamic calendar was introduced on 0001-01-01.
 public let islamicCalendarIntroductionDate = (year: 1, month: 1, day: 1)
 
 /// The Julian day number of the introduction of the Islamic calendar.
@@ -21,7 +23,7 @@ public let islamicCalendarIntroductionJD = 1948439.5
 
 /// The Islamic calendar.
 ///
-/// The Islamic calendar took effect on 1 Muharram 1, A.H. (0001-01-01).
+/// The Islamic calendar took effect on 1 Muharram 1, AH (0001-01-01).
 public enum IslamicCalendar {
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	///
@@ -73,7 +75,7 @@ public enum IslamicCalendar {
 	///
 	/// There are eleven leap years in a cycle of thirty years.
 	/// These are years 2, 5, 7, 10, 13, 16, 18, 21, 24, 26, and 29 of the cycle.
-	/// The year 1 A.H. was the first of a cycle.
+	/// The year 1 AH was the first of a cycle.
 	///
 	/// - parameter Y: A year number.
 	///

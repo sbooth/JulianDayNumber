@@ -18,9 +18,6 @@ public let gregorianCalendarChangeoverDate = (year: 1582, month: 10, day: 15)
 
 /// The Julian day number of the changeover from Julian to Gregorian calendars.
 ///
-/// The Julian to Gregorian calendar changeover occurred on 1582-10-15.
-/// Julian Thursday 1582-10-04 was followed by Gregorian Friday 1582-10-15.
-///
 /// Julian day numbers less than this value are typically interpreted in the Julian calendar while equal or greater Julian day numbers are typically interpreted in the Gregorian calendar.
 ///
 /// This JDN corresponds to 1582-10-15 12:00 in the Gregorian calendar.
@@ -29,9 +26,6 @@ public let gregorianCalendarChangeoverDate = (year: 1582, month: 10, day: 15)
 public let gregorianCalendarChangeoverJDN = 2299161
 
 /// The Julian date of the changeover from Julian to Gregorian calendars.
-///
-/// The Julian to Gregorian calendar changeover occurred on 1582-10-15.
-/// Julian Thursday 1582-10-04 was followed by Gregorian Friday 1582-10-15.
 ///
 /// Julian dates less than this value are typically interpreted in the Julian calendar while equal or greater Julian dates are typically interpreted in the Gregorian calendar.
 ///

@@ -13,14 +13,10 @@ public let julianCalendarIntroductionDate = (year: -45, month: 1, day: 1)
 
 /// The Julian day number of the introduction of the Julian calendar.
 ///
-/// The Julian calendar was introduced on -0045-01-01.
-///
 /// This JDN corresponds to -0045-01-01 12:00 in the Julian calendar.
 public let julianCalendarIntroductionJDN = 1704622
 
 /// The Julian date of the introduction of the Julian calendar.
-///
-/// The Julian calendar was introduced on -0045-01-01.
 ///
 /// This JD corresponds to -0045-01-01 00:00 in the Julian calendar.
 public let julianCalendarIntroductionJD = 1704621.5
