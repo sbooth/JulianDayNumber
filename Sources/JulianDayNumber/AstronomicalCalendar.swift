@@ -32,8 +32,6 @@ enum AstronomicalCalendar {
 
 	/// Returns `true` if the specified Julian day number occurred before the introduction of the Gregorian calendar.
 	///
-	/// The Julian calendar was introduced on JDN 1704622.
-	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Gregorian calendar.
@@ -42,8 +40,6 @@ enum AstronomicalCalendar {
 	}
 
 	/// Returns `true` if the specified Julian date occurred before the introduction of the Gregorian calendar.
-	///
-	/// The Julian calendar was introduced on JD 1704621.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
