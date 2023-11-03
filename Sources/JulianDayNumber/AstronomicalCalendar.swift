@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// The Julian calendar for dates before 1582-10-15 and the Gregorian calendar for equal or later dates.
+/// A calendar that uses the Julian calendar for dates before 1582-10-15 and the Gregorian calendar for equal or later dates.
 enum AstronomicalCalendar {
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian or Gregorian calendar.
 	///
