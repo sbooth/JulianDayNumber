@@ -39,7 +39,7 @@ For reference, these limits correspond to the following dates which should also 
 
 ### Julian Dates
 
-The following table summarizes the **absolute limit** for 64-bit floating point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
+The following table summarizes the **absolute limit** for 64-bit floating-point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
