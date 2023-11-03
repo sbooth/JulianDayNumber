@@ -4,7 +4,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting Julian, Gre
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-The algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all dates in the years -999,999 to +999,999.
+The JDN algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all valid Julian day numbers in the years -999,999 to +999,999.
 
 ## Installation
 
