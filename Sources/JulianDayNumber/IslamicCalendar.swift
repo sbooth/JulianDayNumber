@@ -8,22 +8,24 @@ import Foundation
 
 /// The Islamic calendar.
 ///
-/// The Islamic calendar took effect on 1 Muharram 1, AH (0001-01-01).
+/// The Islamic calendar took effect on 1 Muharram 1, AH.
+///
+/// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
 public struct IslamicCalendar {
-	/// The year, month, and day of the introduction of the Islamic calendar.
+	/// The year, month, and day when the Islamic calendar took effect.
 	///
-	/// The Islamic calendar was introduced on 0001-01-01.
-	public static let introductionDate = (year: 1, month: 1, day: 1)
+	/// The Islamic calendar took effect on 1 Muharram 1, AH.
+	public static let effectiveDate = (year: 1, month: 1, day: 1)
 
-	/// The Julian day number of the introduction of the Islamic calendar.
+	/// The Julian day number when the Islamic calendar took effect.
 	///
-	/// This JDN corresponds to 0001-01-01 12:00 in the Islamic calendar.
-	public static let introductionJulianDayNumber = 1948440
+	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
+	public static let effectiveJulianDayNumber = 1948440
 
-	/// The Julian date of the introduction of the Islamic calendar.
+	/// The Julian date when the Islamic calendar took effect.
 	///
-	/// This JD corresponds to 0001-01-01 00:00 in the Islamic calendar.
-	public static let introductionJulianDate = 1948439.5
+	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
+	public static let effectiveJulianDate = 1948439.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	///
@@ -36,39 +38,39 @@ public struct IslamicCalendar {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
-	/// Returns `true` if the specified year, month, and day occurred before the introduction of the Islamic calendar.
+	/// Returns `true` if the specified year, month, and day occurred before the Islamic calendar took effect.
 	///
-	/// The Islamic calendar was introduced on -0045-01-01.
+	/// The Islamic calendar took effect on 1 Muharram 1, AH.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
-	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Islamic calendar.
+	/// - returns: `true` if the specified year, month, and day occurred before the Islamic calendar took effect.
 	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < introductionDate
+		(Y, M, D) < effectiveDate
 	}
 
-	/// Returns `true` if the specified Julian day number occurred before the introduction of the Islamic calendar.
+	/// Returns `true` if the specified Julian day number occurred before the Islamic calendar took effect.
 	///
-	/// The Islamic calendar was introduced on JDN 1948440.
+	/// The Islamic calendar took effect on JDN 1948440.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
-	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Islamic calendar.
+	/// - returns: `true` if the specified specified Julian day number occurred before the Islamic calendar took effect.
 	public static func isProleptic(julianDayNumber: Int) -> Bool {
-		julianDayNumber < introductionJulianDayNumber
+		julianDayNumber < effectiveJulianDayNumber
 	}
 
-	/// Returns `true` if the specified Julian date occurred before the introduction of the Islamic calendar.
+	/// Returns `true` if the specified Julian date occurred before the Islamic calendar took effect.
 	///
-	/// The Islamic calendar was introduced on JD 1948439.5.
+	/// The Islamic calendar took effect on JD 1948439.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
-	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Islamic calendar.
+	/// - returns: `true` if the specified specified Julian date occurred before the Islamic calendar took effect.
 	public static func isProleptic(julianDate: Double) -> Bool {
-		julianDate < introductionJulianDate
+		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Islamic calendar.

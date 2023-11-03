@@ -8,22 +8,26 @@ import Foundation
 
 /// The Julian calendar.
 ///
-/// The Julian calendar took effect on January 1, 45 BC (-0044-01-01).
+///The Julian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+///
+/// The Julian calendar took effect on January 1, 45 BC.
+///
+/// The Julian calendar epoch in the Julian calendar is January 1, 1 AD.
 public struct JulianCalendar {
-	/// The year, month, and day of the introduction of the Julian calendar.
+	/// The year, month, and day when the Julian calendar took effect.
 	///
-	/// The Julian calendar was introduced on -0044-01-01.
-	public static let introductionDate = (year: -44, month: 1, day: 1)
+	/// The Julian calendar took effect on January 1, 45 BC.
+	public static let effectiveDate = (year: -44, month: 1, day: 1)
 
-	/// The Julian day number of the introduction of the Julian calendar.
+	/// The Julian day number when the Julian calendar took effect.
 	///
-	/// This JDN corresponds to -0044-01-01 12:00 in the Julian calendar.
-	public static let introductionJulianDayNumber = 1704987
+	/// This JDN corresponds to noon on January 1, 45 BC.
+	public static let effectiveJulianDayNumber = 1704987
 
-	/// The Julian date of the introduction of the Julian calendar.
+	/// The Julian date when the Julian calendar took effect.
 	///
-	/// This JD corresponds to -0044-01-01 00:00 in the Julian calendar.
-	public static let introductionJulianDate = 1704986.5
+	/// This JD corresponds to midnight on January 1, 45 BC.
+	public static let effectiveJulianDate = 1704986.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	///
@@ -36,39 +40,39 @@ public struct JulianCalendar {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
-	/// Returns `true` if the specified year, month, and day occurred before the introduction of the Julian calendar.
+	/// Returns `true` if the specified year, month, and day occurred before the Julian calendar took effect.
 	///
-	/// The Julian calendar was introduced on -0044-01-01.
+	/// The Julian calendar took effect on January 1, 45 BC.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
-	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Julian calendar.
+	/// - returns: `true` if the specified year, month, and day occurred before the Julian calendar took effect.
 	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < introductionDate
+		(Y, M, D) < effectiveDate
 	}
 
-	/// Returns `true` if the specified Julian day number occurred before the introduction of the Julian calendar.
+	/// Returns `true` if the specified Julian day number occurred before the Julian calendar took effect.
 	///
-	/// The Julian calendar was introduced on JDN 1704987.
+	/// The Julian calendar took effect on JDN 1704987.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
-	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Julian calendar.
+	/// - returns: `true` if the specified specified Julian day number occurred before the Julian calendar took effect.
 	public static func isProleptic(julianDayNumber: Int) -> Bool {
-		julianDayNumber < introductionJulianDayNumber
+		julianDayNumber < effectiveJulianDayNumber
 	}
 
-	/// Returns `true` if the specified Julian date occurred before the introduction of the Julian calendar.
+	/// Returns `true` if the specified Julian date occurred before the Julian calendar took effect.
 	///
-	/// The Julian calendar was introduced on JD 1704986.5.
+	/// The Julian calendar took effect on JD 1704986.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
-	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Julian calendar.
+	/// - returns: `true` if the specified specified Julian date occurred before the Julian calendar took effect.
 	public static func isProleptic(julianDate: Double) -> Bool {
-		julianDate < introductionJulianDate
+		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Julian calendar.

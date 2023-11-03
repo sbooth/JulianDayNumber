@@ -9,7 +9,7 @@ import Foundation
 extension AstronomicalCalendar: JulianDayNumberConverting {
 	/// Converts a year, month, and day in the astromical calendar to a Julian day number.
 	///
-	/// Dates before 1582-10-15 are treated as dates in the Julian calendar while equal or later dates are treated as dates in the Gregorian calendar.
+	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
@@ -19,7 +19,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
 	public static func dateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		if (Y, M, D) < GregorianCalendar.changeoverDate {
+		if (Y, M, D) < GregorianCalendar.effectiveDate {
 			return JulianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		} else {
 			return GregorianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
@@ -34,7 +34,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 	///
 	/// - returns: The year, month, and day corresponding to the specified Julian day number.
 	public static func julianDayNumberToDate(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
-		if J < GregorianCalendar.changeoverJulianDayNumber {
+		if J < GregorianCalendar.effectiveJulianDayNumber {
 			return JulianCalendar.julianDayNumberToDate(J)
 		} else {
 			return GregorianCalendar.julianDayNumberToDate(J)

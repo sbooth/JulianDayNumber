@@ -8,36 +8,26 @@ import Foundation
 
 /// The Gregorian calendar.
 ///
-/// The Gregorian calendar was officially introduced on 1582-10-15.
-/// Julian Thursday 1582-10-04 was followed by Gregorian Friday 1582-10-15.
+/// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
+///
+/// The Gregorian calendar epoch in the Julian calendar is January 1, 1 AD.
+///
+/// - note: The actual adoption date of the Gregorian calendar varies by country.
 public struct GregorianCalendar {
-	/// The year, month, and day of the changeover from Julian to Gregorian calendars.
+	/// The year, month, and day when the Gregorian calendar took effect.
 	///
-	/// The Julian to Gregorian calendar changeover occurred on 1582-10-15.
-	/// Julian Thursday 1582-10-04 was followed by Gregorian Friday 1582-10-15.
-	///
-	/// Dates earlier than this value are typically interpreted in the Julian calendar while equal or later dates are typically interpreted in the Gregorian calendar.
-	///
-	/// - note: The actual adoption date of the Gregorian calendar varies by country.
-	public static let changeoverDate = (year: 1582, month: 10, day: 15)
+	/// The Gregorian calendar took effect on October 15, 1582.
+	public static let effectiveDate = (year: 1582, month: 10, day: 15)
 
-	/// The Julian day number of the changeover from Julian to Gregorian calendars.
+	/// The Julian day number when the Gregorian calendar took effect.
 	///
-	/// Julian day numbers less than this value are typically interpreted in the Julian calendar while equal or greater Julian day numbers are typically interpreted in the Gregorian calendar.
-	///
-	/// This JDN corresponds to 1582-10-15 12:00 in the Gregorian calendar.
-	///
-	/// - note: The actual adoption date of the Gregorian calendar varies by country.
-	public static let changeoverJulianDayNumber = 2299161
+	/// This JDN corresponds to noon on October 15, 1582 in the Gregorian calendar.
+	public static let effectiveJulianDayNumber = 2299161
 
-	/// The Julian date of the changeover from Julian to Gregorian calendars.
+	/// The Julian date when the Gregorian calendar took effect.
 	///
-	/// Julian dates less than this value are typically interpreted in the Julian calendar while equal or greater Julian dates are typically interpreted in the Gregorian calendar.
-	///
-	/// This JD corresponds to 1582-10-15 00:00 in the Gregorian calendar.
-	///
-	/// - note: The actual adoption date of the Gregorian calendar varies by country.
-	public static let changeoverJulianDate = 2299160.5
+	/// This JD corresponds to midnight on October 15, 1582 in the Gregorian calendar.
+	public static let effectiveJulianDate = 2299160.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
 	///
@@ -50,39 +40,39 @@ public struct GregorianCalendar {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
-	/// Returns `true` if the specified year, month, and day occurred before the official introduction of the Gregorian calendar.
+	/// Returns `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
 	///
-	/// The Gregorian calendar was officially introduced on 1582-10-15.
+	/// The Gregorian calendar took effect on October 15, 1582.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
-	/// - returns: `true` if the specified year, month, and day occurred before the official introduction of the Gregorian calendar.
+	/// - returns: `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
 	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < changeoverDate
+		(Y, M, D) < effectiveDate
 	}
 
-	/// Returns `true` if the specified Julian day number occurred before the official introduction of the Gregorian calendar.
+	/// Returns `true` if the specified Julian day number occurred before the Gregorian calendar took effect.
 	///
-	/// The Gregorian calendar was officially introduced on JDN 2299161.
+	/// The Gregorian calendar took effect on JDN 2299161.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
-	/// - returns: `true` if the specified specified Julian day number occurred before the official introduction of the Gregorian calendar.
+	/// - returns: `true` if the specified specified Julian day number occurred before the Gregorian calendar took effect.
 	public static func isProleptic(julianDayNumber: Int) -> Bool {
-		julianDayNumber < changeoverJulianDayNumber
+		julianDayNumber < effectiveJulianDayNumber
 	}
 
-	/// Returns `true` if the specified Julian date occurred before the official introduction of the Gregorian calendar.
+	/// Returns `true` if the specified Julian date occurred before the Gregorian calendar took effect.
 	///
-	/// The Gregorian calendar was officially introduced on JD 2299160.5.
+	/// The Gregorian calendar took effect on JD 2299160.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
-	/// - returns: `true` if the specified specified Julian date occurred before the official introduction of the Gregorian calendar.
+	/// - returns: `true` if the specified specified Julian date occurred before the Gregorian calendar took effect.
 	public static func isProleptic(julianDate: Double) -> Bool {
-		julianDate < changeoverJulianDate
+		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Gregorian calendar.
