@@ -27,7 +27,7 @@ let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
 ```
 
 > [!NOTE]
-> `AstronomicalCalendar` uses the Julian calendar for dates before the Gregorian to Julian calendar changeover on 1582-10-15, and the Gregorian calendar for later dates.
+> `AstronomicalCalendar` uses the Julian calendar for dates before 1582-10-15 and the Gregorian calendar for later dates.
 
 2. Convert the Julian date 2422107.5 to a `Date` instance.
 
