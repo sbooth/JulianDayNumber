@@ -1,3 +1,4 @@
+//
 // Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
@@ -6,7 +7,7 @@
 import Foundation
 
 extension AstronomicalCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the Julian or Gregorian calendar to a Julian day number.
+	/// Converts a year, month, and day in the astromical calendar to a Julian day number.
 	///
 	/// Dates before 1582-10-15 are treated as dates in the Julian calendar while equal or later dates are treated as dates in the Gregorian calendar.
 	///
@@ -25,7 +26,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 		}
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the Julian or Gregorian calendar.
+	/// Converts a Julian day number to a year, month, and day in the astromical calendar.
 	///
 	/// Julian day numbers less than 2299161 treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
 	///

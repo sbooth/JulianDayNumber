@@ -8,13 +8,13 @@ import Foundation
 
 /// A calendar that uses the Julian calendar for dates before 1582-10-15 and the Gregorian calendar for equal or later dates.
 enum AstronomicalCalendar {
-	/// Returns `true` if the specified year, month, and day form a valid date in the Julian or Gregorian calendar.
+	/// Returns `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Julian or Gregorian calendar.
+	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	static public func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		(Y, M, D) < gregorianCalendarChangeoverDate ? JulianCalendar.isValid(year: Y, month: M, day: D) : GregorianCalendar.isValid(year: Y, month: M, day: D)
 	}
@@ -52,11 +52,11 @@ enum AstronomicalCalendar {
 		julianDate < gregorianCalendarChangeoverJD
 	}
 
-	/// Returns `true` if the specified year is a leap year in the Julian or Gregorian calendar.
+	/// Returns `true` if the specified year is a leap year in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
 	///
-	/// - returns: `true` if the specified year is a leap year in the Julian or Gregorian calendar.
+	/// - returns: `true` if the specified year is a leap year in the astromical calendar.
 	static public func isLeapYear(_ Y: Int) -> Bool {
 		Y < gregorianCalendarChangeoverDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
@@ -64,7 +64,7 @@ enum AstronomicalCalendar {
 	/// The number of days in each month indexed from `0` (January) to `11` (December).
 	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
-	/// Returns the number of days in the specified month and year in the Julian or Gregorian calendar.
+	/// Returns the number of days in the specified month and year in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
@@ -74,7 +74,7 @@ enum AstronomicalCalendar {
 		Y < gregorianCalendarChangeoverDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
 	}
 
-	/// Returns the month and day of Easter in the specified year in the Julian or Gregorian calendar.
+	/// Returns the month and day of Easter in the specified year in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
 	///
