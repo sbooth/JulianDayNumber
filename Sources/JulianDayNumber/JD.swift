@@ -8,7 +8,7 @@ import Foundation
 
 /// A Julian date.
 ///
-/// The Julian date (JD) is the Julian Day Number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
+/// The Julian date (JD) is the Julian day number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
 /// Julian dates are expressed as a JDN with a decimal fraction added.
 public typealias JulianDate = Double
 
