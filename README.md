@@ -33,7 +33,7 @@ let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
 
 ```swift
 let d = Date(julianDate: 2422107.5)
-//Foundation.Date	1919-05-29 00:00:00 UTC
+// Foundation.Date	1919-05-29 00:00:00 UTC
 ```
 
 ## License
