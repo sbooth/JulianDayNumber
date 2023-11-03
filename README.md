@@ -37,8 +37,6 @@ For reference, these limits correspond to the following dates which should also 
 | Gregorian | -25252734927771113-11-25 | 6313054097774049-04-05 |
 | Islamic | -26027764190170417-01-01 | 867592139666645-01-11 |
 
-### Julian Dates
-
 ## Examples
 
 1. Calculate the Julian date for the total solar eclipse on 1919-05-29.
