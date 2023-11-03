@@ -25,8 +25,8 @@ final class LeapYearTests: XCTestCase {
 		XCTAssertFalse(GregorianCalendar.isLeapYear(2100))
 	}
 
-	func testJulianGregorianLeapYear() {
-		XCTAssertTrue(JulianGregorianCalendar.isLeapYear(900))
+	func testAstronomicalLeapYear() {
+		XCTAssertTrue(AstronomicalCalendar.isLeapYear(900))
 	}
 
 	func testIslamicLeapYear() {

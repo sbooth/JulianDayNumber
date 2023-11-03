@@ -18,20 +18,20 @@ final class MonthLengthTests: XCTestCase {
 		XCTAssertEqual(GregorianCalendar.daysInMonth(year: 1700, month: 2), 28)
 	}
 
-	func testJulianGregorianMonthLength() {
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 1), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 2), 28)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 3), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 4), 30)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 5), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 6), 30)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 7), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 8), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 9), 30)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 10), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 11), 30)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1900, month: 12), 31)
-		XCTAssertEqual(JulianGregorianCalendar.daysInMonth(year: 1600, month: 2), 29)
+	func testAstronomicalMonthLength() {
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 1), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 2), 28)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 3), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 4), 30)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 5), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 6), 30)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 7), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 8), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 9), 30)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 10), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 11), 30)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 12), 31)
+		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1600, month: 2), 29)
 	}
 
 	func testIslamicMonthLength() {

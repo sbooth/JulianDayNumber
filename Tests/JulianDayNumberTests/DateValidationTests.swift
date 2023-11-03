@@ -18,9 +18,9 @@ final class DateValidationTests: XCTestCase {
 		XCTAssertFalse(GregorianCalendar.isValid(year: 1700, month: 2, day: 29))
 	}
 
-	func testJulianGregorianDateValidation() {
-		XCTAssertTrue(JulianGregorianCalendar.isValid(year: 1969, month: 7, day: 20))
-		XCTAssertFalse(JulianGregorianCalendar.isValid(year: 1969, month: 7, day: 40))
-		XCTAssertTrue(JulianGregorianCalendar.isValid(year: 1600, month: 2, day: 29))
+	func testAstronomicalDateValidation() {
+		XCTAssertTrue(AstronomicalCalendar.isValid(year: 1969, month: 7, day: 20))
+		XCTAssertFalse(AstronomicalCalendar.isValid(year: 1969, month: 7, day: 40))
+		XCTAssertTrue(AstronomicalCalendar.isValid(year: 1600, month: 2, day: 29))
 	}
 }

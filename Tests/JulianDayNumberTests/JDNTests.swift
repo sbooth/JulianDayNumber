@@ -9,26 +9,26 @@ import XCTest
 
 final class JDNTests: XCTestCase {
 	func testJDN() {
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 4), 2299160)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 15), 2299161)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451545)
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -105192)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 4), 2299160)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 15), 2299161)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451545)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -105192)
 
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(-1931076) == (-9999, 1, 1))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(38245309) == (99999, 12, 31))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(0) == (-4712, 1, 1))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(2299160) == (1582, 10, 4))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(2299161) == (1582, 10, 15))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(2451545) == (2000, 1, 1))
-		XCTAssertTrue(JulianGregorianCalendar.julianDayNumberToDate(-105192) == (-5000, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(-1931076) == (-9999, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(38245309) == (99999, 12, 31))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(0) == (-4712, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(2299160) == (1582, 10, 4))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(2299161) == (1582, 10, 15))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(2451545) == (2000, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(-105192) == (-5000, 1, 1))
 
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1))
-		XCTAssertNotEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), JulianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31))
-		XCTAssertEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1))
-		XCTAssertNotEqual(JulianGregorianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1))
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1))
+		XCTAssertNotEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), JulianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31))
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1))
+		XCTAssertNotEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1))
 	}
 
 	func testJDNJulian() {

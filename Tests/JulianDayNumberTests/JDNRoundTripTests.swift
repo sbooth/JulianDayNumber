@@ -38,13 +38,13 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testJulianGregorianCalendarJDNRoundTrip() {
+	func testAstronomicalCalendarJDNRoundTrip() {
 		for year in stride(from: -9999, through: 99999, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days = JulianGregorianCalendar.daysInMonth(year: year, month: month)
+				let days = AstronomicalCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = JulianGregorianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = JulianGregorianCalendar.julianDayNumberToDate(jdn)
+					let jdn = AstronomicalCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = AstronomicalCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					// Handle Julian to Gregorian calendar changeover by ignoring "nonexistent" dates

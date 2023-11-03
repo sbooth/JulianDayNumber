@@ -80,7 +80,7 @@ extension JulianCalendar: JulianDateConverting
 extension GregorianCalendar: JulianDateConverting
 {}
 
-extension JulianGregorianCalendar: JulianDateConverting
+extension AstronomicalCalendar: JulianDateConverting
 {}
 
 extension IslamicCalendar: JulianDateConverting

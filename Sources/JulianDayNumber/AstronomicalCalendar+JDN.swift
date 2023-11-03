@@ -5,7 +5,7 @@
 
 import Foundation
 
-extension JulianGregorianCalendar: JulianDayNumberConverting {
+extension AstronomicalCalendar: JulianDayNumberConverting {
 	/// Converts a year, month, and day in the Julian or Gregorian calendar to a Julian day number.
 	///
 	/// Dates before 1582-10-15 are treated as dates in the Julian calendar while equal or later dates are treated as dates in the Gregorian calendar.
