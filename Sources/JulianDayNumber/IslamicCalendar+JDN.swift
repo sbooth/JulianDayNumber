@@ -23,7 +23,7 @@ extension IslamicCalendar: JulianDayNumberConverting {
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
-	/// - parameter Y: A year number between `-9999` and `99999`.
+	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///

@@ -23,7 +23,7 @@ extension JulianCalendar: JulianDayNumberConverting {
 	///
 	/// - note: No validation checks are performed on the date values.
 	///
-	/// - parameter Y: A year number between `-9999` and `99999`.
+	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
