@@ -114,4 +114,52 @@ final class JDTests: XCTestCase {
 		XCTAssertEqual(Date.j2000, Date(julianDate: 2451544.9992571296))
 		XCTAssertEqual(Date(julianDate: 2451544.9992571296).daysSinceJ2000, 0)
 	}
+
+	func testArithmeticLimits() {
+		var Y, M, D, h, m: Int
+		var s: Double
+		var jd: Double
+
+		// Arithmetic limits for JD to Julian calendar date conversion using 64-bit doubles
+
+		// Values smaller than this cause an arithmetic overflow in JulianCalendar.julianDateToDate
+		let smallestJDNForJulianCalendar = -0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = JulianCalendar.julianDateToDate(smallestJDNForJulianCalendar)
+		jd = JulianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForJulianCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in JulianCalendar.julianDateToDate
+		let largestJDNForJulianCalendar = 0x1.ffffffffffffap+60
+		(Y, M, D, h, m, s) = JulianCalendar.julianDateToDate(largestJDNForJulianCalendar)
+		jd = JulianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForJulianCalendar, jd)
+
+		// Arithmetic limits for JD to Gregorian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in GregorianCalendar.julianDateToDate
+		let smallestJDNForGregorianCalendar = -0x1.fffffffffffc8p+62
+		(Y, M, D, h, m, s) = GregorianCalendar.julianDateToDate(smallestJDNForGregorianCalendar)
+		jd = GregorianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForGregorianCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in GregorianCalendar.julianDateToDate
+		let largestJDNForGregorianCalendar = 0x1.fffd4eff4e5d7p+60
+		(Y, M, D, h, m, s) = GregorianCalendar.julianDateToDate(largestJDNForGregorianCalendar)
+		jd = GregorianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForGregorianCalendar, jd)
+
+		// Arithmetic limits for JD to Islamic calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in IslamicCalendar.julianDateToDate
+		let smallestJDNForIslamicCalendar = -0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(smallestJDNForIslamicCalendar)
+		jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForIslamicCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in IslamicCalendar.julianDateToDate
+		let largestJDNForIslamicCalendar = 0x1.1111111111099p+58
+		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(largestJDNForIslamicCalendar)
+		jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForIslamicCalendar, jd)
+	}
 }
