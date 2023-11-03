@@ -10,14 +10,14 @@ import XCTest
 final class EasterTests: XCTestCase {
 	func testEaster() {
 		// Dates from Meeus (1998)
-		XCTAssertTrue(easter(year: 1991) == (3, 31))
-		XCTAssertTrue(easter(year: 1992) == (4, 19))
-		XCTAssertTrue(easter(year: 1993) == (4, 11))
-		XCTAssertTrue(easter(year: 1954) == (4, 18))
-		XCTAssertTrue(easter(year: 2000) == (4, 23))
-		XCTAssertTrue(easter(year: 1818) == (3, 22))
-		XCTAssertTrue(easter(year: 179) == (4, 12))
-		XCTAssertTrue(easter(year: 711) == (4, 12))
-		XCTAssertTrue(easter(year: 1243) == (4, 12))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1991) == (3, 31))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1992) == (4, 19))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1993) == (4, 11))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1954) == (4, 18))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 2000) == (4, 23))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1818) == (3, 22))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 179) == (4, 12))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 711) == (4, 12))
+		XCTAssertTrue(AstronomicalCalendar.easter(year: 1243) == (4, 12))
 	}
 }

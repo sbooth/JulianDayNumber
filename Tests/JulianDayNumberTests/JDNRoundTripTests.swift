@@ -7,17 +7,55 @@
 import XCTest
 @testable import JulianDayNumber
 
-private let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
-
 final class JDNRoundTripTests: XCTestCase {
-	// Round-trip test of all supported JDNs
-	func testJDNRoundTrip() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+#if LONG_ROUND_TRIP_TEST
+	let minYear = -999999
+	let maxYear = 999999
+#elseif MEDIUM_ROUND_TRIP_TEST
+	let minYear = -99999
+	let maxYear = 99999
+#else
+	let minYear = -9999
+	let maxYear = 9999
+#endif
+
+	func testJulianCalendarJDNRoundTrip() {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days = daysInMonth(year: year, month: month)
+				let days = JulianCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
-					let J = JDN(year: year, month: month, day: day)
-					let (Y, M, D) = J.toDate()
+					let jdn = JulianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = JulianCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testGregorianCalendarJDNRoundTrip() {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
+			for month in stride(from: 1, through: 12, by: 1) {
+				let days = GregorianCalendar.daysInMonth(year: year, month: month)
+				for day in stride(from: 1, through: days, by: 1) {
+					let jdn = GregorianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = GregorianCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testAstronomicalCalendarJDNRoundTrip() {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
+			for month in stride(from: 1, through: 12, by: 1) {
+				let days = AstronomicalCalendar.daysInMonth(year: year, month: month)
+				for day in stride(from: 1, through: days, by: 1) {
+					let jdn = AstronomicalCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = AstronomicalCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					// Handle Julian to Gregorian calendar changeover by ignoring "nonexistent" dates
@@ -30,46 +68,13 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	// Round-trip test of all supported JDNs using the Julian calendar
-	func testJDNRoundTripJulian() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+	func testIslamicCalendarJDNRoundTrip() {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
-				let days = daysInJulianCalendarMonth(year: year, month: month)
+				let days = IslamicCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = julianCalendarDateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = julianDayNumberToJulianCalendarDate(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
-		}
-	}
-
-	// Round-trip test of all supported JDNs using the Gregorian calendar
-	func testJDNRoundTripGregorian() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = daysInGregorianCalendarMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = gregorianCalendarDateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = julianDayNumberToGregorianCalendarDate(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
-		}
-	}
-
-	// Round-trip test of all supported JDNs using the Islamic calendar
-	func testJDNRoundTripIslamic() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = daysInIslamicCalendarMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = islamicCalendarDateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = julianDayNumberToIslamicCalendarDate(jdn)
+					let jdn = IslamicCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = IslamicCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)

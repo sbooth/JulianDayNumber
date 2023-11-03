@@ -52,11 +52,3 @@ extension Date {
 		Date(julianDate: J2000JD_UTC)
 	}
 }
-
-extension Date {
-	/// True if the Julian date in UTC for `self` is at or after the Julian to Gregorian calendar changeover.
-	/// - note: The Julian to Gregorian calendar changeover occurred on 1582-10-15 and corresponds to Julian date 2299160.5 in UTC.
-	public var atOrAfterGregorianCalendarChangeover: Bool {
-		julianDate >= gregorianCalendarChangeoverJD
-	}
-}
