@@ -4,7 +4,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting Julian, Gre
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-The algorithms use integer math to avoid rounding errors and the implementations have been tested from years -999,999 to +999,999.
+The algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all dates in years -999,999 to +999,999.
 
 ## Installation
 
@@ -36,6 +36,24 @@ For reference, these limits correspond to the following dates which should also 
 | Julian | -25252216391119772-01-02 | 6313054097774049-04-05 |
 | Gregorian | -25252734927771113-11-25 | 6313054097774049-04-05 |
 | Islamic | -26027764190170417-01-01 | 867592139666645-01-11 |
+
+### Julian Dates
+
+The following table summarizes the **absolute limit** for Julian dates. Julian dates outside these values cause a numerical overflow in `julianDateToDate`.
+
+| Calendar | Minimum JD | Maximum JD |
+| --- | --- | --- |
+| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
+| Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
+| Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
+
+For reference, these limits correspond to the following dates and times which should also be considered limiting:
+
+| Calendar | Minimum Date and Time | Maximum Date and Time |
+| --- | --- | --- |
+| Julian | -25252216391119770-05-31 00:00:00 | 6313054097774048-11-22 00:00:00 |
+| Gregorian | -25252734927771110-04-30 00:00:00 | 6313054097774048-09-10 00:00:00 |
+| Islamic | -26027764190170416-08-08 00:00:00 | 867592139666644-12-21 00:00:00 |
 
 ## Examples
 
