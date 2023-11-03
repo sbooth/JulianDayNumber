@@ -13,7 +13,7 @@ import Foundation
 public typealias JulianDate = Double
 
 /// Julian date to year, month, day, hour, minute, and second conversion.
-public protocol JulianDateConverting: JulianDayNumberConverting {
+extension JulianDayNumberConverting {
 	/// Converts the specified year, month, day, hour, minute, and second to a Julian date and returns the result.
 	///
 	/// - note: No validation checks are performed on the date values.
@@ -26,7 +26,9 @@ public protocol JulianDateConverting: JulianDayNumberConverting {
 	/// - parameter s: A second number between `0` and `59`.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, day, hour, minute, and second.
-	static func dateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int, minute m: Int, second s: Double) -> JulianDate
+	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> JulianDate {
+		dateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
+	}
 
 	/// Converts the specified year, month, and decimal day to a Julian date and returns the result.
 	///
@@ -37,28 +39,16 @@ public protocol JulianDateConverting: JulianDayNumberConverting {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, and decimal day.
-	static func dateToJulianDate(year Y: Int, month M: Int, day D: Double) -> JulianDate
+	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Double) -> JulianDate {
+		let (day, dayFraction) = modf(D)
+		return Double(dateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
+	}
 
 	/// Converts the specified Julian date to a year, month, day, hour, minute, and second and returns the result.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
-	static func julianDateToDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double)
-}
-
-// MARK: JulianDateConverting Implementation
-
-extension JulianDateConverting {
-	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> JulianDate {
-		dateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
-	}
-
-	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Double) -> JulianDate {
-		let (day, dayFraction) = modf(D)
-		return Double(dateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
-	}
-
 	public static func julianDateToDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
 		let julianDatePlus12Hours = julianDate + 0.5
 		let J = Int(julianDatePlus12Hours.rounded(.down))
@@ -71,20 +61,6 @@ extension JulianDateConverting {
 		return (Y, M, D, h, m, s)
 	}
 }
-
-// MARK: Conformance
-
-extension JulianCalendar: JulianDateConverting
-{}
-
-extension GregorianCalendar: JulianDateConverting
-{}
-
-extension AstronomicalCalendar: JulianDateConverting
-{}
-
-extension IslamicCalendar: JulianDateConverting
-{}
 
 // MARK: - Internal Functions
 
