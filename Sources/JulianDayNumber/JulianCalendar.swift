@@ -8,22 +8,22 @@ import Foundation
 
 /// The year, month, and day of the introduction of the Julian calendar.
 ///
-/// The Julian calendar was introduced on -0045-01-01.
-public let julianCalendarIntroductionDate = (year: -45, month: 1, day: 1)
+/// The Julian calendar was introduced on -0044-01-01.
+public let julianCalendarIntroductionDate = (year: -44, month: 1, day: 1)
 
 /// The Julian day number of the introduction of the Julian calendar.
 ///
-/// This JDN corresponds to -0045-01-01 12:00 in the Julian calendar.
-public let julianCalendarIntroductionJDN = 1704622
+/// This JDN corresponds to -0044-01-01 12:00 in the Julian calendar.
+public let julianCalendarIntroductionJDN = 1704987
 
 /// The Julian date of the introduction of the Julian calendar.
 ///
-/// This JD corresponds to -0045-01-01 00:00 in the Julian calendar.
-public let julianCalendarIntroductionJD = 1704621.5
+/// This JD corresponds to -0044-01-01 00:00 in the Julian calendar.
+public let julianCalendarIntroductionJD = 1704986.5
 
 /// The Julian calendar.
 ///
-/// The Julian calendar took effect on January 1, 45 BC (-0045-01-01).
+/// The Julian calendar took effect on January 1, 45 BC (-0044-01-01).
 public enum JulianCalendar {
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	///
@@ -38,7 +38,7 @@ public enum JulianCalendar {
 
 	/// Returns `true` if the specified year, month, and day occurred before the introduction of the Julian calendar.
 	///
-	/// The Julian calendar was introduced on -0045-01-01.
+	/// The Julian calendar was introduced on -0044-01-01.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (January) and `12` (December).
@@ -51,7 +51,7 @@ public enum JulianCalendar {
 
 	/// Returns `true` if the specified Julian day number occurred before the introduction of the Julian calendar.
 	///
-	/// The Julian calendar was introduced on JDN 1704622.
+	/// The Julian calendar was introduced on JDN 1704987.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
@@ -62,7 +62,7 @@ public enum JulianCalendar {
 
 	/// Returns `true` if the specified Julian date occurred before the introduction of the Julian calendar.
 	///
-	/// The Julian calendar was introduced on JD 1704621.5.
+	/// The Julian calendar was introduced on JD 1704986.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
