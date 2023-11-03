@@ -8,7 +8,7 @@ import XCTest
 @testable import JulianDayNumber
 
 final class JDTests: XCTestCase {
-	func testJD() {
+	func testAstronomical() {
 		// Values from Meeus (1998)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDate(year: 2000, month: 1, day: 1.5), 2451545)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDate(year: 1999, month: 1, day: 1), 2451179.5)
@@ -70,7 +70,7 @@ final class JDTests: XCTestCase {
 		XCTAssertTrue(AstronomicalCalendar.julianDateToDate(1.75) == (-4712, 1, 3, 6, 0, 0))
 	}
 
-	func testJDLimits() {
+	func testLimits() {
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1931076.5)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDate(year: 99999, month: 12, day: 31), 38245308.5)
 		XCTAssertEqual(JulianCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1931076.5)

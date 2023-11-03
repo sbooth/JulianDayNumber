@@ -8,7 +8,7 @@ import XCTest
 @testable import JulianDayNumber
 
 final class JDNTests: XCTestCase {
-	func testJDNJulian() {
+	func testJulian() {
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38246057)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -4713, month: 12, day: 31), -1)
@@ -30,7 +30,7 @@ final class JDNTests: XCTestCase {
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(-105192) == (-5000, 1, 1))
 	}
 
-	func testJDNGregorian() {
+	func testGregorian() {
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1930999)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 38)
@@ -54,7 +54,7 @@ final class JDNTests: XCTestCase {
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(-105152) == (-5000, 1, 1))
 	}
 
-	func testJDNAstronomical() {
+	func testAstronomical() {
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
@@ -77,7 +77,14 @@ final class JDNTests: XCTestCase {
 		XCTAssertNotEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1))
 	}
 
-	func testJDNGregorianToJulianConversion() {
+	func testIslamic() {
+		// From Richards
+		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1948440)
+		// From Meeus
+		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1421, month: 1, day: 1), 2451641)
+	}
+
+	func testGregorianToJulianConversion() {
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: -10000, month: 10, day: 16))
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), JulianCalendar.dateToJulianDayNumber(year: 99997, month: 12, day: 13))
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: -4713, month: 11, day: 24))
@@ -85,7 +92,7 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 15), JulianCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 5))
 	}
 
-	func testExtremes() {
+	func testArithmeticLimits() {
 		var y,m,d: Int
 		var jdn: Int
 
@@ -132,12 +139,5 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = IslamicCalendar.julianDayNumberToDate(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
-	}
-
-	func testJDNIslamic() {
-		// From Richards
-		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1948440)
-		// From Meeus
-		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1421, month: 1, day: 1), 2451641)
 	}
 }
