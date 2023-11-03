@@ -6,25 +6,25 @@
 
 import Foundation
 
-/// The year, month, and day of the introduction of the Islamic calendar.
-///
-/// The Islamic calendar was introduced on 0001-01-01.
-public let islamicCalendarIntroductionDate = (year: 1, month: 1, day: 1)
-
-/// The Julian day number of the introduction of the Islamic calendar.
-///
-/// This JDN corresponds to 0001-01-01 12:00 in the Islamic calendar.
-public let islamicCalendarIntroductionJDN = 1948440
-
-/// The Julian date of the introduction of the Islamic calendar.
-///
-/// This JD corresponds to 0001-01-01 00:00 in the Islamic calendar.
-public let islamicCalendarIntroductionJD = 1948439.5
-
 /// The Islamic calendar.
 ///
 /// The Islamic calendar took effect on 1 Muharram 1, AH (0001-01-01).
-public enum IslamicCalendar {
+public struct IslamicCalendar {
+	/// The year, month, and day of the introduction of the Islamic calendar.
+	///
+	/// The Islamic calendar was introduced on 0001-01-01.
+	public static let introductionDate = (year: 1, month: 1, day: 1)
+
+	/// The Julian day number of the introduction of the Islamic calendar.
+	///
+	/// This JDN corresponds to 0001-01-01 12:00 in the Islamic calendar.
+	public static let introductionJulianDayNumber = 1948440
+
+	/// The Julian date of the introduction of the Islamic calendar.
+	///
+	/// This JD corresponds to 0001-01-01 00:00 in the Islamic calendar.
+	public static let introductionJulianDate = 1948439.5
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	///
 	/// - parameter Y: A year number.
@@ -46,7 +46,7 @@ public enum IslamicCalendar {
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Islamic calendar.
 	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < islamicCalendarIntroductionDate
+		(Y, M, D) < introductionDate
 	}
 
 	/// Returns `true` if the specified Julian day number occurred before the introduction of the Islamic calendar.
@@ -57,7 +57,7 @@ public enum IslamicCalendar {
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Islamic calendar.
 	public static func isProleptic(julianDayNumber: Int) -> Bool {
-		julianDayNumber < islamicCalendarIntroductionJDN
+		julianDayNumber < introductionJulianDayNumber
 	}
 
 	/// Returns `true` if the specified Julian date occurred before the introduction of the Islamic calendar.
@@ -68,7 +68,7 @@ public enum IslamicCalendar {
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Islamic calendar.
 	public static func isProleptic(julianDate: Double) -> Bool {
-		julianDate < islamicCalendarIntroductionJD
+		julianDate < introductionJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Islamic calendar.

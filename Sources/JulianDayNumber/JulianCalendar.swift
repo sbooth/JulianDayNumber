@@ -6,25 +6,25 @@
 
 import Foundation
 
-/// The year, month, and day of the introduction of the Julian calendar.
-///
-/// The Julian calendar was introduced on -0044-01-01.
-public let julianCalendarIntroductionDate = (year: -44, month: 1, day: 1)
-
-/// The Julian day number of the introduction of the Julian calendar.
-///
-/// This JDN corresponds to -0044-01-01 12:00 in the Julian calendar.
-public let julianCalendarIntroductionJDN = 1704987
-
-/// The Julian date of the introduction of the Julian calendar.
-///
-/// This JD corresponds to -0044-01-01 00:00 in the Julian calendar.
-public let julianCalendarIntroductionJD = 1704986.5
-
 /// The Julian calendar.
 ///
 /// The Julian calendar took effect on January 1, 45 BC (-0044-01-01).
-public enum JulianCalendar {
+public struct JulianCalendar {
+	/// The year, month, and day of the introduction of the Julian calendar.
+	///
+	/// The Julian calendar was introduced on -0044-01-01.
+	public static let introductionDate = (year: -44, month: 1, day: 1)
+
+	/// The Julian day number of the introduction of the Julian calendar.
+	///
+	/// This JDN corresponds to -0044-01-01 12:00 in the Julian calendar.
+	public static let introductionJulianDayNumber = 1704987
+
+	/// The Julian date of the introduction of the Julian calendar.
+	///
+	/// This JD corresponds to -0044-01-01 00:00 in the Julian calendar.
+	public static let introductionJulianDate = 1704986.5
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	///
 	/// - parameter Y: A year number.
@@ -46,7 +46,7 @@ public enum JulianCalendar {
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Julian calendar.
 	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < julianCalendarIntroductionDate
+		(Y, M, D) < introductionDate
 	}
 
 	/// Returns `true` if the specified Julian day number occurred before the introduction of the Julian calendar.
@@ -57,7 +57,7 @@ public enum JulianCalendar {
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Julian calendar.
 	public static func isProleptic(julianDayNumber: Int) -> Bool {
-		julianDayNumber < julianCalendarIntroductionJDN
+		julianDayNumber < introductionJulianDayNumber
 	}
 
 	/// Returns `true` if the specified Julian date occurred before the introduction of the Julian calendar.
@@ -68,7 +68,7 @@ public enum JulianCalendar {
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Julian calendar.
 	public static func isProleptic(julianDate: Double) -> Bool {
-		julianDate < julianCalendarIntroductionJD
+		julianDate < introductionJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Julian calendar.
