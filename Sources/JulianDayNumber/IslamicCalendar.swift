@@ -32,7 +32,7 @@ public struct IslamicCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Islamic calendar.
-	public static func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 

@@ -15,8 +15,8 @@ enum AstronomicalCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
-	public static func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < GregorianCalendar.changeoverDate ? JulianCalendar.isValid(year: Y, month: M, day: D) : GregorianCalendar.isValid(year: Y, month: M, day: D)
+	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+		(Y, M, D) < GregorianCalendar.changeoverDate ? JulianCalendar.isDateValid(year: Y, month: M, day: D) : GregorianCalendar.isDateValid(year: Y, month: M, day: D)
 	}
 
 	/// Returns `true` if the specified year, month, and day occurred before the introduction of the Gregorian calendar.
