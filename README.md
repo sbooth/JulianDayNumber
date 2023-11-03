@@ -24,7 +24,7 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 The following tables summarizes the **absolute** limit for Julian day numbers. Julian day numbers outside these values cause a numerical overflow in `julianDayNumberToDate`.
 
 | Calendar | Minimum JDN | Maximum JDN |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Julian | -9223372036854775664 | 2305843009213692550 |
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
@@ -32,7 +32,7 @@ The following tables summarizes the **absolute** limit for Julian day numbers. J
 For reference, these limits correspond to the following dates (YYYY-MM-DD) which should also be considered limiting:
 
 | Calendar | Minimum Date | Maximum Date |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Julian | -25252216391119772-01-02 | 6313054097774049-04-05 |
 | Gregorian | -25252734927771113-11-25 | 6313054097774049-04-05 |
 | Islamic | -26027764190170417-01-01 | 867592139666645-01-11 |
