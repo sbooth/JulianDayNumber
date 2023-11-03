@@ -12,7 +12,6 @@ import Foundation
 /// Julian dates are expressed as a JDN with a decimal fraction added.
 public typealias JulianDate = Double
 
-/// Julian date to year, month, day, hour, minute, and second conversion.
 extension JulianDayNumberConverting {
 	/// Converts the specified year, month, day, hour, minute, and second to a Julian date and returns the result.
 	///
