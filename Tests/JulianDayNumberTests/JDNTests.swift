@@ -9,8 +9,12 @@ import XCTest
 
 final class JDNTests: XCTestCase {
 	func testJulian() {
+		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -999999, month: 1, day: 1), -363528576)
+		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -99999, month: 1, day: 1), -34803576)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
+		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: 9999, month: 12, day: 31), 5373557)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38246057)
+		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: 999999, month: 12, day: 31), 366971057)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -4713, month: 12, day: 31), -1)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 2), 1)
@@ -19,8 +23,12 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451558)
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -105192)
 
+		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(-363528576) == (-999999, 1, 1))
+		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(-34803576) == (-99999, 1, 1))
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(-1931076) == (-9999, 1, 1))
+		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(5373557) == (9999, 12, 31))
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(38246057) == (99999, 12, 31))
+		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(366971057) == (999999, 12, 31))
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(-1) == (-4713, 12, 31))
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(0) == (-4712, 1, 1))
 		XCTAssertTrue(JulianCalendar.julianDayNumberToDate(1) == (-4712, 1, 2))
@@ -31,8 +39,12 @@ final class JDNTests: XCTestCase {
 	}
 
 	func testGregorian() {
+		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -999999, month: 1, day: 1), -363521074)
+		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -99999, month: 1, day: 1), -34802824)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1930999)
+		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 9999, month: 12, day: 31), 5373484)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
+		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 999999, month: 12, day: 31), 366963559)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 38)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -4713, month: 11, day: 23), -1)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -4713, month: 11, day: 24), 0)
@@ -42,8 +54,12 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451545)
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -105152)
 
+		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(-363521074) == (-999999, 1, 1))
+		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(-34802824) == (-99999, 1, 1))
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(-1930999) == (-9999, 1, 1))
+		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(5373484) == (9999, 12, 31))
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(38245309) == (99999, 12, 31))
+		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(366963559) == (999999, 12, 31))
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(38) == (-4712, 1, 1))
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(-1) == (-4713, 11, 23))
 		XCTAssertTrue(GregorianCalendar.julianDayNumberToDate(0) == (-4713, 11, 24))
@@ -55,8 +71,12 @@ final class JDNTests: XCTestCase {
 	}
 
 	func testAstronomical() {
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -999999, month: 1, day: 1), -363528576)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -99999, month: 1, day: 1), -34803576)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -1931076)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 9999, month: 12, day: 31), 5373484)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), 38245309)
+		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 999999, month: 12, day: 31), 366963559)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -4712, month: 1, day: 1), 0)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 4), 2299160)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 1582, month: 10, day: 15), 2299161)
@@ -68,8 +88,12 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2451545)
 		XCTAssertEqual(AstronomicalCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -105192)
 
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(-363528576) == (-999999, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(-34803576) == (-99999, 1, 1))
 		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(-1931076) == (-9999, 1, 1))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(5373484) == (9999, 12, 31))
 		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(38245309) == (99999, 12, 31))
+		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(366963559) == (999999, 12, 31))
 		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(0) == (-4712, 1, 1))
 		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(2299160) == (1582, 10, 4))
 		XCTAssertTrue(AstronomicalCalendar.julianDayNumberToDate(2299161) == (1582, 10, 15))
