@@ -46,7 +46,7 @@ public enum GregorianCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
-	static public func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -59,7 +59,7 @@ public enum GregorianCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the official introduction of the Gregorian calendar.
-	static public func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
 		(Y, M, D) < gregorianCalendarChangeoverDate
 	}
 
@@ -70,7 +70,7 @@ public enum GregorianCalendar {
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the official introduction of the Gregorian calendar.
-	static public func isProleptic(julianDayNumber: Int) -> Bool {
+	public static func isProleptic(julianDayNumber: Int) -> Bool {
 		julianDayNumber < gregorianCalendarChangeoverJDN
 	}
 
@@ -81,7 +81,7 @@ public enum GregorianCalendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the official introduction of the Gregorian calendar.
-	static public func isProleptic(julianDate: Double) -> Bool {
+	public static func isProleptic(julianDate: Double) -> Bool {
 		julianDate < gregorianCalendarChangeoverJD
 	}
 
@@ -93,7 +93,7 @@ public enum GregorianCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Gregorian calendar.
-	static public func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Int) -> Bool {
 		Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
 	}
 
@@ -106,7 +106,7 @@ public enum GregorianCalendar {
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	///
 	/// - returns: The number of days in the specified month and year.
-	static public func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
 		guard M > 0, M <= 12 else {
 			return 0
 		}
@@ -123,7 +123,7 @@ public enum GregorianCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The month and day of Easter in the specified year.
-	static public func easter(year Y: Int) -> (month: Int, day: Int) {
+	public static func easter(year Y: Int) -> (month: Int, day: Int) {
 		// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 		let a = Y / 100
 		let b = a - a / 4

@@ -32,7 +32,7 @@ public enum IslamicCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Islamic calendar.
-	static public func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -45,7 +45,7 @@ public enum IslamicCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Islamic calendar.
-	static public func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
 		(Y, M, D) < islamicCalendarIntroductionDate
 	}
 
@@ -56,7 +56,7 @@ public enum IslamicCalendar {
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Islamic calendar.
-	static public func isProleptic(julianDayNumber: Int) -> Bool {
+	public static func isProleptic(julianDayNumber: Int) -> Bool {
 		julianDayNumber < islamicCalendarIntroductionJDN
 	}
 
@@ -67,7 +67,7 @@ public enum IslamicCalendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Islamic calendar.
-	static public func isProleptic(julianDate: Double) -> Bool {
+	public static func isProleptic(julianDate: Double) -> Bool {
 		julianDate < islamicCalendarIntroductionJD
 	}
 
@@ -80,7 +80,7 @@ public enum IslamicCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if `Y` is a leap year in the Islamic calendar.
-	static public func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Int) -> Bool {
 		let yearInCycle = (Y - 1) % 30 + (Y < 1 ? 31 : 1)
 		return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
 	}
@@ -94,7 +94,7 @@ public enum IslamicCalendar {
 	/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
 	///
 	/// - returns: The number of days in the specified month and year.
-	static public func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
 		guard M > 0, M <= 12 else {
 			return 0
 		}

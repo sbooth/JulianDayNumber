@@ -15,7 +15,7 @@ enum AstronomicalCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
-	static public func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		(Y, M, D) < gregorianCalendarChangeoverDate ? JulianCalendar.isValid(year: Y, month: M, day: D) : GregorianCalendar.isValid(year: Y, month: M, day: D)
 	}
 
@@ -26,7 +26,7 @@ enum AstronomicalCalendar {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the introduction of the Gregorian calendar.
-	static public func isJulian(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isJulian(year Y: Int, month M: Int, day D: Int) -> Bool {
 		(Y, M, D) < gregorianCalendarChangeoverDate
 	}
 
@@ -35,7 +35,7 @@ enum AstronomicalCalendar {
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the introduction of the Gregorian calendar.
-	static public func isJulian(julianDayNumber: Int) -> Bool {
+	public static func isJulian(julianDayNumber: Int) -> Bool {
 		julianDayNumber < gregorianCalendarChangeoverJDN
 	}
 
@@ -44,7 +44,7 @@ enum AstronomicalCalendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the introduction of the Gregorian calendar.
-	static public func isJulian(julianDate: Double) -> Bool {
+	public static func isJulian(julianDate: Double) -> Bool {
 		julianDate < gregorianCalendarChangeoverJD
 	}
 
@@ -53,7 +53,7 @@ enum AstronomicalCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the astromical calendar.
-	static public func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Int) -> Bool {
 		Y < gregorianCalendarChangeoverDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
@@ -66,7 +66,7 @@ enum AstronomicalCalendar {
 	/// - parameter M: A month number between `1` (January) and `12` (December).
 	///
 	/// - returns: The number of days in the specified month and year.
-	static public func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
 		Y < gregorianCalendarChangeoverDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
 	}
 
@@ -75,7 +75,7 @@ enum AstronomicalCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The month and day of Easter in the specified year.
-	static public func easter(year Y: Int) -> (month: Int, day: Int) {
+	public static func easter(year Y: Int) -> (month: Int, day: Int) {
 		Y < gregorianCalendarChangeoverDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
 	}
 }
