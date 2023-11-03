@@ -4,7 +4,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting Julian, Gre
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-The algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all dates in years -999,999 to +999,999.
+The algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all dates in the years -999,999 to +999,999.
 
 ## Installation
 
@@ -21,7 +21,7 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 
 ### Julian Day Numbers
 
-The following table summarizes the **absolute limit** for Julian day numbers. Julian day numbers outside these values cause a numerical overflow in `julianDayNumberToDate`.
+The following table summarizes the **absolute limit** for 64-bit integer Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
@@ -39,7 +39,7 @@ For reference, these limits correspond to the following dates which should also 
 
 ### Julian Dates
 
-The following table summarizes the **absolute limit** for Julian dates. Julian dates outside these values cause a numerical overflow in `julianDateToDate`.
+The following table summarizes the **absolute limit** for 64-bit floating point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
