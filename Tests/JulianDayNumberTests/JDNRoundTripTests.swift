@@ -8,8 +8,19 @@ import XCTest
 @testable import JulianDayNumber
 
 final class JDNRoundTripTests: XCTestCase {
+#if LONG_ROUND_TRIP_TEST
+	let minYear = -999999
+	let maxYear = 999999
+#elseif MEDIUM_ROUND_TRIP_TEST
+	let minYear = -99999
+	let maxYear = 99999
+#else
+	let minYear = -9999
+	let maxYear = 9999
+#endif
+
 	func testJulianCalendarJDNRoundTrip() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
 				let days = JulianCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
@@ -24,7 +35,7 @@ final class JDNRoundTripTests: XCTestCase {
 	}
 
 	func testGregorianCalendarJDNRoundTrip() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
 				let days = GregorianCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
@@ -39,7 +50,7 @@ final class JDNRoundTripTests: XCTestCase {
 	}
 
 	func testAstronomicalCalendarJDNRoundTrip() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
 				let days = AstronomicalCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
@@ -58,7 +69,7 @@ final class JDNRoundTripTests: XCTestCase {
 	}
 
 	func testIslamicCalendarJDNRoundTrip() {
-		for year in stride(from: -9999, through: 99999, by: 1) {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
 			for month in stride(from: 1, through: 12, by: 1) {
 				let days = IslamicCalendar.daysInMonth(year: year, month: month)
 				for day in stride(from: 1, through: days, by: 1) {
