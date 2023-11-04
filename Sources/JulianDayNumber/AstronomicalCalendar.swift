@@ -7,7 +7,7 @@
 import Foundation
 
 /// A hybrid calendar that uses the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
-enum AstronomicalCalendar {
+public struct AstronomicalCalendar {
 	/// Returns `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
