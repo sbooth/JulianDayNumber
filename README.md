@@ -22,48 +22,6 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 1. Clone the [JulianDayNumber](https://github.com/sbooth/JulianDayNumber) repository.
 2. `swift build`.
 
-## Limits
-
-### Julian Day Numbers
-
-The following table summarizes the **absolute limit** for 64-bit integer Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
-
-| Calendar | Minimum JDN | Maximum JDN |
-| --- | --- | --- |
-| Julian | -9223372036854775664 | 2305843009213692550 |
-| Gregorian | -9223372036854719351 | 2305795661307959247 |
-| Islamic | -9223372036854775352 | 307445734561818195 |
-| Egyptian | -9223372036854775514 | 9223372036854775760 |
-
-For reference, these limits correspond to the following dates which should also be considered limiting:
-
-| Calendar | Minimum Date | Maximum Date |
-| --- | --- | --- |
-| Julian | -25252216391119772-01-02 | 6313054097774049-04-05 |
-| Gregorian | -25252734927771113-11-25 | 6313054097774049-04-05 |
-| Islamic | -26027764190170417-01-01 | 867592139666645-01-11 |
-| Egyptian | -25269512429743079-02-19 | 25269512429735143-10-23 |
-
-### Julian Dates
-
-The following table summarizes the **absolute limit** for 64-bit floating-point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
-
-| Calendar | Minimum JD | Maximum JD |
-| --- | --- | --- |
-| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
-| Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
-| Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
-| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
-
-For reference, these limits correspond to the following dates and times which should also be considered limiting:
-
-| Calendar | Minimum Date and Time | Maximum Date and Time |
-| --- | --- | --- |
-| Julian | -25252216391119770-05-31 00:00:00 | 6313054097774048-11-22 00:00:00 |
-| Gregorian | -25252734927771110-04-30 00:00:00 | 6313054097774048-09-10 00:00:00 |
-| Islamic | -26027764190170416-08-08 00:00:00 | 867592139666644-12-21 00:00:00 |
-| Egyptian | -25269512429743077-02-19 00:00:00 | 25269512429735141-02-17 00:00:00 |
-
 ## Examples
 
 1. Calculate the Julian date for the total solar eclipse on 1919-05-29.
@@ -90,6 +48,30 @@ let j = GregorianCalendar.dateToJulianDayNumber(year: 2013, month: 10, day: 31)
 let julianYMD = JulianCalendar.julianDayNumberToDate(j)
 // (year: 2013, month: 10, day: 18)
 ```
+
+## Limits
+
+### Julian Day Numbers
+
+The following table summarizes the **absolute limit** for 64-bit integer Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
+
+| Calendar | Minimum JDN | Maximum JDN |
+| --- | --- | --- |
+| Julian | -9223372036854775664 | 2305843009213692550 |
+| Gregorian | -9223372036854719351 | 2305795661307959247 |
+| Islamic | -9223372036854775352 | 307445734561818195 |
+| Egyptian | -9223372036854775514 | 9223372036854775760 |
+
+### Julian Dates
+
+The following table summarizes the **absolute limit** for 64-bit floating-point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
+
+| Calendar | Minimum JD | Maximum JD |
+| --- | --- | --- |
+| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
+| Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
+| Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
+| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 
 ## License
 
