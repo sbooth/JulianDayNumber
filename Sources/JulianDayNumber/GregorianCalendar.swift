@@ -8,11 +8,19 @@ import Foundation
 
 /// The Gregorian calendar.
 ///
+/// The Gregorian calendar, like the Julian calendar, is a solar calendar with 12 months of 28–31 days each.
+/// The year in both calendars consists of 365 days, with a leap day being added to February in the leap years.
+/// The months and length of months in the Gregorian calendar are the same as for the Julian calendar.
+/// The only difference is that the Gregorian reform omitted a leap day in three centurial years every 400 years and left the leap day unchanged.
+///
 /// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
 ///
+/// The Gregorian calendar epoch in the Gregorian calendar is December 30, 1 BC.
 /// The Gregorian calendar epoch in the Julian calendar is January 1, 1 AD.
 ///
 /// - note: The actual adoption date of the Gregorian calendar varies by country.
+///
+/// - seealso: [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
 public struct GregorianCalendar {
 	/// The year, month, and day when the Gregorian calendar took effect.
 	///
@@ -28,6 +36,22 @@ public struct GregorianCalendar {
 	///
 	/// This JD corresponds to midnight on October 15, 1582 in the Gregorian calendar.
 	public static let effectiveJulianDate = 2299160.5
+
+	/// The year, month, and day of the epoch of the Gregorian calendar.
+	///
+	/// The Gregorian calendar epoch in the Gregorian calendar is December 30, 1 BC.
+	/// The Gregorian calendar epoch in the Julian calendar is January 1, 1 AD.
+	public static let epochDate = (year: 0, month: 12, day: 30)
+
+	/// The Julian day number of the epoch of the Gregorian calendar.
+	///
+	/// This JDN corresponds to noon on December 30, 1 BC in the Gregorian calendar.
+	public static let epochJulianDayNumber = JulianCalendar.epochJulianDayNumber
+
+	/// The Julian date of the epoch of the Gregorian calendar.
+	///
+	/// This JD corresponds to midnight on December 30, 1 BC in the Gregorian calendar.
+	public static let epochJulianDate = JulianCalendar.epochJulianDate
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
 	///

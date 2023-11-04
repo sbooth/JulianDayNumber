@@ -8,9 +8,14 @@ import Foundation
 
 /// The Islamic calendar.
 ///
+/// The Islamic calendar is a lunar calendar consisting of 12 lunar months in a year of 354 or 355 days.
+///
 /// The Islamic calendar took effect on 1 Muharram 1, AH.
 ///
+/// The Islamic calendar epoch in the Islamic calendar is 1 Muharram 1, AH.
 /// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
+///
+/// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
 public struct IslamicCalendar {
 	/// The year, month, and day when the Islamic calendar took effect.
 	///
@@ -26,6 +31,22 @@ public struct IslamicCalendar {
 	///
 	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
 	public static let effectiveJulianDate = 1948439.5
+
+	/// The year, month, and day of the epoch of the Islamic calendar.
+	///
+	/// The Islamic calendar epoch in the Islamic calendar is 1 Muharram 1, AH.
+	/// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
+	public static let epochDate = (year: 1, month: 1, day: 1)
+
+	/// The Julian day number of the epoch of the Islamic calendar.
+	///
+	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
+	public static let epochJulianDayNumber = 1948440
+
+	/// The Julian date of the epoch of the Islamic calendar.
+	///
+	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
+	public static let epochJulianDate = 1948439.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	///

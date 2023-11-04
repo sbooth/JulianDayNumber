@@ -8,11 +8,13 @@ import Foundation
 
 /// The Julian calendar.
 ///
-///The Julian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The Julian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
 ///
 /// The Julian calendar took effect on January 1, 45 BC.
 ///
 /// The Julian calendar epoch in the Julian calendar is January 1, 1 AD.
+///
+/// - seealso: [Julian calendar](https://en.wikipedia.org/wiki/Julian_calendar)
 public struct JulianCalendar {
 	/// The year, month, and day when the Julian calendar took effect.
 	///
@@ -28,6 +30,21 @@ public struct JulianCalendar {
 	///
 	/// This JD corresponds to midnight on January 1, 45 BC.
 	public static let effectiveJulianDate = 1704986.5
+
+	/// The year, month, and day of the epoch of the Julian calendar.
+	///
+	/// The Julian calendar epoch in the Julian calendar is January 1, 1 AD.
+	public static let epochDate = (year: 1, month: 1, day: 1)
+
+	/// The Julian day number of the epoch of the Julian calendar.
+	///
+	/// This JDN corresponds to noon on January 1, 1 AD in the Julian calendar.
+	public static let epochJulianDayNumber = 1721424
+
+	/// The Julian date of the epoch of the Julian calendar.
+	///
+	/// This JD corresponds to midnight on January 1, 1 AD in the Julian calendar.
+	public static let epochJulianDate = 1721423.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	///
