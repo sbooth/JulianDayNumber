@@ -61,7 +61,7 @@ For reference, these limits correspond to the following dates and times which sh
 
 ```swift
 let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
-// JulianDayNumber.JulianDate	2422107.5
+// 2422107.5
 ```
 
 > [!NOTE]
@@ -72,6 +72,14 @@ let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
 ```swift
 let d = Date(julianDate: 2422107.5)
 // Foundation.Date	1919-05-29 00:00:00 UTC
+```
+
+3. Convert the Gregorian calendar date 2013-10-31 to the Julian calendar.
+
+```swift
+let j = GregorianCalendar.dateToJulianDayNumber(year: 2013, month: 10, day: 31)
+let julianYMD = JulianCalendar.julianDayNumberToDate(j)
+// (year: 2013, month: 10, day: 18)
 ```
 
 ## License
