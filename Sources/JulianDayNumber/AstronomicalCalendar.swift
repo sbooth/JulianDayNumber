@@ -35,7 +35,7 @@ public struct AstronomicalCalendar {
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the Gregorian calendar took effect.
-	public static func isJulian(julianDayNumber: Int) -> Bool {
+	public static func isJulian(julianDayNumber: JulianDayNumber) -> Bool {
 		julianDayNumber < GregorianCalendar.effectiveJulianDayNumber
 	}
 
@@ -44,7 +44,7 @@ public struct AstronomicalCalendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the Gregorian calendar took effect.
-	public static func isJulian(julianDate: Double) -> Bool {
+	public static func isJulian(julianDate: JulianDate) -> Bool {
 		julianDate < GregorianCalendar.effectiveJulianDate
 	}
 

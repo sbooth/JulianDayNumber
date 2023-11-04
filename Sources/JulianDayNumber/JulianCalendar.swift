@@ -77,7 +77,7 @@ public struct JulianCalendar {
 	/// - parameter julianDayNumber: A Julian day number.
 	///
 	/// - returns: `true` if the specified specified Julian day number occurred before the Julian calendar took effect.
-	public static func isProleptic(julianDayNumber: Int) -> Bool {
+	public static func isProleptic(julianDayNumber: JulianDayNumber) -> Bool {
 		julianDayNumber < effectiveJulianDayNumber
 	}
 
@@ -88,7 +88,7 @@ public struct JulianCalendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: `true` if the specified specified Julian date occurred before the Julian calendar took effect.
-	public static func isProleptic(julianDate: Double) -> Bool {
+	public static func isProleptic(julianDate: JulianDate) -> Bool {
 		julianDate < effectiveJulianDate
 	}
 
