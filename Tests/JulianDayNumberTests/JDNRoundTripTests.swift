@@ -82,4 +82,19 @@ final class JDNRoundTripTests: XCTestCase {
 			}
 		}
 	}
+
+	func testEgyptianCalendarJDNRoundTrip() {
+		for year in stride(from: minYear, through: maxYear, by: 1) {
+			for month in stride(from: 1, through: 13, by: 1) {
+				let days = EgyptianCalendar.daysInMonth(month: month)
+				for day in stride(from: 1, through: days, by: 1) {
+					let jdn = EgyptianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = EgyptianCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
 }
