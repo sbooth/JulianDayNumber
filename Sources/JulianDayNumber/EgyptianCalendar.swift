@@ -26,12 +26,11 @@ public struct EgyptianCalendar {
 	/// The number of days in each month indexed from `0` (Thoth) to `11` (Mesori), with the 5 epagomenal days treated as month `12`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
-	/// Returns the number of days in the specified month and year in the Egyptian calendar.
+	/// Returns the number of days in the specified month in the Egyptian calendar.
 	///
-	/// - parameter Y: A year number.
 	/// - parameter M: A month number between `1` (Thoth) and `12` (Mesori). The five epagomenal days are treated as month `13`.
 	///
-	/// - returns: The number of days in the specified month and year.
+	/// - returns: The number of days in the specified month.
 	public static func daysInMonth(month M: Int) -> Int {
 		guard M > 0, M <= 13 else {
 			return 0
