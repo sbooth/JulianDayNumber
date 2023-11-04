@@ -33,6 +33,7 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 | Julian | -9223372036854775664 | 2305843009213692550 |
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
+| Egyptian | -9223372036854775514 | 9223372036854775760 |
 
 For reference, these limits correspond to the following dates which should also be considered limiting:
 
@@ -51,6 +52,7 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
 | Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
+| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 
 For reference, these limits correspond to the following dates and times which should also be considered limiting:
 
