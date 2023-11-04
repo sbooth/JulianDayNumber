@@ -24,7 +24,7 @@ extension CopticCalendar: JulianDayNumberConverting {
 	/// - note: No validation checks are performed on the date values.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Tut) and `13` (Pi Kogi Enavot).
+	/// - parameter M: A month number between `1` (Tut) and `13` (Nissieh).
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
