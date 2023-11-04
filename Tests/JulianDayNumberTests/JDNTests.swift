@@ -173,5 +173,19 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = IslamicCalendar.julianDayNumberToDate(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
+
+		// Arithmetic limits for JDN to Egyptian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in EgyptianCalendar.julianDayNumberToDate
+		let smallestJDNForEgyptianCalendar = -9223372036854775514
+		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(smallestJDNForEgyptianCalendar)
+		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForEgyptianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in EgyptianCalendar.julianDayNumberToDate
+		let largestJDNForEgyptianCalendar = 9223372036854775760
+		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(largestJDNForEgyptianCalendar)
+		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
 	}
 }
