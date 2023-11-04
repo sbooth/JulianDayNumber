@@ -24,12 +24,12 @@ public struct JulianCalendar {
 	/// The Julian day number when the Julian calendar took effect.
 	///
 	/// This JDN corresponds to noon on January 1, 45 BC.
-	public static let effectiveJulianDayNumber = 1704987
+	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
 
 	/// The Julian date when the Julian calendar took effect.
 	///
 	/// This JD corresponds to midnight on January 1, 45 BC.
-	public static let effectiveJulianDate = 1704986.5
+	public static let effectiveJulianDate: JulianDate = 1704986.5
 
 	/// The year, month, and day of the epoch of the Julian calendar.
 	///
@@ -39,12 +39,12 @@ public struct JulianCalendar {
 	/// The Julian day number of the epoch of the Julian calendar.
 	///
 	/// This JDN corresponds to noon on January 1, 1 AD in the Julian calendar.
-	public static let epochJulianDayNumber = 1721424
+	public static let epochJulianDayNumber: JulianDayNumber = 1721424
 
 	/// The Julian date of the epoch of the Julian calendar.
 	///
 	/// This JD corresponds to midnight on January 1, 1 AD in the Julian calendar.
-	public static let epochJulianDate = 1721423.5
+	public static let epochJulianDate: JulianDate = 1721423.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	///

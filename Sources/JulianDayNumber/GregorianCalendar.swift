@@ -30,12 +30,12 @@ public struct GregorianCalendar {
 	/// The Julian day number when the Gregorian calendar took effect.
 	///
 	/// This JDN corresponds to noon on October 15, 1582 in the Gregorian calendar.
-	public static let effectiveJulianDayNumber = 2299161
+	public static let effectiveJulianDayNumber: JulianDayNumber = 2299161
 
 	/// The Julian date when the Gregorian calendar took effect.
 	///
 	/// This JD corresponds to midnight on October 15, 1582 in the Gregorian calendar.
-	public static let effectiveJulianDate = 2299160.5
+	public static let effectiveJulianDate: JulianDate = 2299160.5
 
 	/// The year, month, and day of the epoch of the Gregorian calendar.
 	///

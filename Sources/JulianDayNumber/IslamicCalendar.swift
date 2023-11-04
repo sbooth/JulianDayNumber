@@ -25,12 +25,12 @@ public struct IslamicCalendar {
 	/// The Julian day number when the Islamic calendar took effect.
 	///
 	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
-	public static let effectiveJulianDayNumber = 1948440
+	public static let effectiveJulianDayNumber: JulianDayNumber = 1948440
 
 	/// The Julian date when the Islamic calendar took effect.
 	///
 	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
-	public static let effectiveJulianDate = 1948439.5
+	public static let effectiveJulianDate: JulianDate = 1948439.5
 
 	/// The year, month, and day of the epoch of the Islamic calendar.
 	///
@@ -41,12 +41,12 @@ public struct IslamicCalendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
 	///
 	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
-	public static let epochJulianDayNumber = 1948440
+	public static let epochJulianDayNumber: JulianDayNumber = 1948440
 
 	/// The Julian date of the epoch of the Islamic calendar.
 	///
 	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
-	public static let epochJulianDate = 1948439.5
+	public static let epochJulianDate: JulianDate = 1948439.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	///
