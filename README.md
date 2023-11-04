@@ -6,6 +6,8 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - Astronomical
 - Islamic
 - Egyptian
+- Ethiopian
+- Coptic
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
