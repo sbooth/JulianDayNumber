@@ -134,7 +134,7 @@ final class JDTests: XCTestCase {
 		jd = JulianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDNForJulianCalendar, jd)
 
-		// Arithmetic limits for JD to Gregorian calendar date conversion using 64-bit integers
+		// Arithmetic limits for JD to Gregorian calendar date conversion using 64-bit doubles
 
 		// Values smaller than this cause an arithmetic overflow in GregorianCalendar.julianDateToDate
 		let smallestJDNForGregorianCalendar = -0x1.fffffffffffc8p+62
@@ -148,7 +148,7 @@ final class JDTests: XCTestCase {
 		jd = GregorianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jd)
 
-		// Arithmetic limits for JD to Islamic calendar date conversion using 64-bit integers
+		// Arithmetic limits for JD to Islamic calendar date conversion using 64-bit doubles
 
 		// Values smaller than this cause an arithmetic overflow in IslamicCalendar.julianDateToDate
 		let smallestJDNForIslamicCalendar = -0x1.fffffffffffffp+62
@@ -161,5 +161,19 @@ final class JDTests: XCTestCase {
 		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(largestJDNForIslamicCalendar)
 		jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jd)
+
+		// Arithmetic limits for JD to Egyptian calendar date conversion using 64-bit doubles
+
+		// Values smaller than this cause an arithmetic overflow in EgyptianCalendar.julianDateToDate
+		let smallestJDNForEgyptianCalendar = -0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = EgyptianCalendar.julianDateToDate(smallestJDNForEgyptianCalendar)
+		jd = EgyptianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForEgyptianCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in EgyptianCalendar.julianDateToDate
+		let largestJDNForEgyptianCalendar = 0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = EgyptianCalendar.julianDateToDate(largestJDNForEgyptianCalendar)
+		jd = EgyptianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForEgyptianCalendar, jd)
 	}
 }

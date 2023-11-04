@@ -113,6 +113,11 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1421, month: 1, day: 1), 2451641)
 	}
 
+	func testEgyptian() {
+		// From Richards
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1448638)
+	}
+
 	func testGregorianToJulianConversion() {
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: -10000, month: 10, day: 16))
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), JulianCalendar.dateToJulianDayNumber(year: 99997, month: 12, day: 13))
@@ -168,5 +173,19 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = IslamicCalendar.julianDayNumberToDate(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
+
+		// Arithmetic limits for JDN to Egyptian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in EgyptianCalendar.julianDayNumberToDate
+		let smallestJDNForEgyptianCalendar = -9223372036854775514
+		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(smallestJDNForEgyptianCalendar)
+		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForEgyptianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in EgyptianCalendar.julianDayNumberToDate
+		let largestJDNForEgyptianCalendar = 9223372036854775760
+		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(largestJDNForEgyptianCalendar)
+		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
 	}
 }
