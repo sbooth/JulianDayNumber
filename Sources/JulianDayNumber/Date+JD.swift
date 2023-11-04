@@ -8,23 +8,23 @@ import Foundation
 
 /// The Julian date in UTC corresponding to the Unix epoch.
 /// - note: The Unix epoch is 1970-01-01 00:00:00 UTC.
-let unixEpochJD_UTC = 2440587.5
+let unixEpochJD_UTC: JulianDate = 2440587.5
 /// The Julian date in UTC for epoch J2000.
 /// - note: The J2000 epoch is 2000-01-01 11:58:55.816 UTC.
-let J2000JD_UTC = 2451544.9992571296
+let J2000JD_UTC: JulianDate = 2451544.9992571296
 /// The Julian date in TT for epoch J2000.
 /// - note: The J2000 epoch is 2000-01-01 12:00:00 TT.
-let J2000JD_TT = 2451545.0
+let J2000JD_TT: JulianDate = 2451545.0
 
 extension Date {
 	/// Returns the Julian date in UTC corresponding to `self`.
-	public var julianDate: Double {
+	public var julianDate: JulianDate {
 		timeIntervalSince1970 / 86400 + unixEpochJD_UTC
 	}
 
 	/// Creates a date value initialized to the specified Julian date in UTC.
 	/// - parameter JD: A Julian date in UTC.
-	public init(julianDate JD: Double) {
+	public init(julianDate JD: JulianDate) {
 		self.init(timeIntervalSince1970: (JD - unixEpochJD_UTC) * 86400)
 	}
 
