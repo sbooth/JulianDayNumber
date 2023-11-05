@@ -12,6 +12,7 @@ final class CongruenceTests: XCTestCase {
 		XCTAssertEqual(CopticCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 284, month: 8, day: 29))
 		XCTAssertEqual(EgyptianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -746, month: 2, day: 26))
 		XCTAssertEqual(EthiopianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 8, month: 8, day: 29))
+		// Strictly speaking the Gregorian calendar epoch is January 1, 1 AD in the Julian calendar
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 3))
 		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 622, month: 7, day: 16))
 	}
