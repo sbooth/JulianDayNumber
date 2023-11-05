@@ -9,9 +9,6 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - Islamic
 - Julian
 
-> [!NOTE]
-> The astronomical calendar is a hybrid calendar using the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
-
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
 The JDN algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all valid Julian day numbers in the years -999,999 to +999,999.
@@ -35,6 +32,9 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
 // 2422107.5
 ```
+
+> [!NOTE]
+> The astronomical calendar is a hybrid calendar using the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
 
 2. Convert the Julian date 2422107.5 to a `Date` instance.
 
