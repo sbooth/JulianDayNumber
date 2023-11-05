@@ -23,4 +23,18 @@ final class DateValidationTests: XCTestCase {
 		XCTAssertFalse(AstronomicalCalendar.isDateValid(year: 1969, month: 7, day: 40))
 		XCTAssertTrue(AstronomicalCalendar.isDateValid(year: 1600, month: 2, day: 29))
 	}
+
+	func testCopticDateValidation() {
+		XCTAssertTrue(CopticCalendar.isDateValid(year: 1739, month: 13, day: 6))
+		XCTAssertFalse(CopticCalendar.isDateValid(year: 1740, month: 13, day: 6))
+	}
+
+	func testEthiopianDateValidation() {
+		XCTAssertTrue(EthiopianCalendar.isDateValid(year: 2015, month: 13, day: 6))
+		XCTAssertFalse(EthiopianCalendar.isDateValid(year: 2016, month: 13, day: 6))
+	}
+
+	func testEgyptianDateValidation() {
+		XCTAssertTrue(EgyptianCalendar.isDateValid(year: 1600, month: 2, day: 30))
+	}
 }

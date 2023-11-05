@@ -51,4 +51,54 @@ final class MonthLengthTests: XCTestCase {
 		XCTAssertEqual(IslamicCalendar.daysInMonth(year: 4, month: 12), 29)
 		XCTAssertEqual(IslamicCalendar.daysInMonth(year: 7, month: 12), 30)
 	}
+
+	func testCopticMonthLength() {
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 1), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 2), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 3), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 4), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 5), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 6), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 7), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 8), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 9), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 10), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 11), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 12), 30)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 13), 5)
+		XCTAssertEqual(CopticCalendar.daysInMonth(year: 3, month: 13), 6)
+	}
+
+	func testEthiopianMonthLength() {
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 1), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 2), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 3), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 4), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 5), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 6), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 7), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 8), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 9), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 10), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 11), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 12), 30)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 13), 5)
+		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 3, month: 13), 6)
+	}
+
+	func testEgyptianMonthLength() {
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 1), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 2), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 3), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 4), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 5), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 6), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 7), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 8), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 9), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 10), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 11), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 12), 30)
+		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 13), 5)
+	}
 }
