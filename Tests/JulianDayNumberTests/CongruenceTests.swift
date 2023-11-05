@@ -15,6 +15,7 @@ final class CongruenceTests: XCTestCase {
 		// Strictly speaking the Gregorian calendar epoch is January 1, 1 AD in the Julian calendar
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 3))
 		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 622, month: 7, day: 16))
+		XCTAssertEqual(FrenchRepublicanCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: 1792, month: 9, day: 22))
 	}
 
 	func testGregorianToJulianConversion() {
