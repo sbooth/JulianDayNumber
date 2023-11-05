@@ -11,8 +11,7 @@ import Foundation
 /// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
 /// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BC in the proleptic Julian calendar.
 ///
-/// JDN 0 is November 24, 4714 BC in the proleptic Gregorian calendar.
-/// JDN 0 is Shaabán 17, 5499 BH in the proleptic Islamic calendar.
+/// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
 public typealias JulianDayNumber = Int
 
 /// Julian day number to year, month, and day conversion.
