@@ -19,7 +19,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
 	public static func dateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		if (Y, M, D) < GregorianCalendar.effectiveDate {
+		if (Y, M, D) < gregorianCalendarEffectiveDate {
 			return JulianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		} else {
 			return GregorianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)

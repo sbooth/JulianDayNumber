@@ -21,11 +21,6 @@ import Foundation
 ///
 /// - seealso: [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
 public struct GregorianCalendar {
-	/// The year, month, and day when the Gregorian calendar took effect.
-	///
-	/// The Gregorian calendar took effect on October 15, 1582.
-	public static let effectiveDate = (year: 1582, month: 10, day: 15)
-
 	/// The Julian day number when the Gregorian calendar took effect.
 	///
 	/// This JDN corresponds to noon on October 15, 1582 in the Gregorian calendar.
@@ -55,19 +50,6 @@ public struct GregorianCalendar {
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
 	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
-
-	/// Returns `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
-	///
-	/// The Gregorian calendar took effect on October 15, 1582.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
-	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < effectiveDate
 	}
 
 	/// Returns `true` if the specified Julian day number occurred before the Gregorian calendar took effect.

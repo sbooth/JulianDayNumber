@@ -8,6 +8,9 @@ import Foundation
 
 /// A hybrid calendar that uses the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
 public struct AstronomicalCalendar {
+	/// The year, month, and day when the Gregorian calendar took effect.
+	static let gregorianCalendarEffectiveDate = (year: 1582, month: 10, day: 15)
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
@@ -16,7 +19,7 @@ public struct AstronomicalCalendar {
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < GregorianCalendar.effectiveDate ? JulianCalendar.isDateValid(year: Y, month: M, day: D) : GregorianCalendar.isDateValid(year: Y, month: M, day: D)
+		(Y, M, D) < gregorianCalendarEffectiveDate ? JulianCalendar.isDateValid(year: Y, month: M, day: D) : GregorianCalendar.isDateValid(year: Y, month: M, day: D)
 	}
 
 	/// Returns `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
@@ -27,7 +30,7 @@ public struct AstronomicalCalendar {
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
 	public static func isJulian(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < GregorianCalendar.effectiveDate
+		(Y, M, D) < gregorianCalendarEffectiveDate
 	}
 
 	/// Returns `true` if the specified Julian day number occurred before the Gregorian calendar took effect.
@@ -54,7 +57,7 @@ public struct AstronomicalCalendar {
 	///
 	/// - returns: `true` if the specified year is a leap year in the astromical calendar.
 	public static func isLeapYear(_ Y: Int) -> Bool {
-		Y < GregorianCalendar.effectiveDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
+		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
 	/// The number of months in one year.
@@ -70,7 +73,7 @@ public struct AstronomicalCalendar {
 	///
 	/// - returns: The number of days in the specified month and year.
 	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
-		Y < GregorianCalendar.effectiveDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
+		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
 	}
 
 	/// Returns the month and day of Easter in the specified year in the astromical calendar.
@@ -79,7 +82,7 @@ public struct AstronomicalCalendar {
 	///
 	/// - returns: The month and day of Easter in the specified year.
 	public static func easter(year Y: Int) -> (month: Int, day: Int) {
-		Y < GregorianCalendar.effectiveDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
+		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
 	}
 }
 
