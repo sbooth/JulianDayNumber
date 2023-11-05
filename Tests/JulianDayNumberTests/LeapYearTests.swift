@@ -61,4 +61,14 @@ final class LeapYearTests: XCTestCase {
 		XCTAssertTrue(IslamicCalendar.isLeapYear(29))
 		XCTAssertFalse(IslamicCalendar.isLeapYear(30))
 	}
+
+	func testCopticLeapYear() {
+		XCTAssertTrue(CopticCalendar.isLeapYear(1739))
+		XCTAssertFalse(CopticCalendar.isLeapYear(1740))
+	}
+
+	func testEthiopianLeapYear() {
+		XCTAssertTrue(EthiopianCalendar.isLeapYear(2015))
+		XCTAssertFalse(EthiopianCalendar.isLeapYear(2016))
+	}
 }
