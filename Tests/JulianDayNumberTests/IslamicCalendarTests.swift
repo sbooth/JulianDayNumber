@@ -96,25 +96,25 @@ final class IslamicCalendarTests: XCTestCase {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in IslamicCalendar.julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
 		let smallestJDNForIslamicCalendar = -9223372036854775352
 		(Y, M, D) = IslamicCalendar.julianDayNumberToDate(smallestJDNForIslamicCalendar)
 		var jdn = IslamicCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in IslamicCalendar.julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
 		let largestJDNForIslamicCalendar = 307445734561818195
 		(Y, M, D) = IslamicCalendar.julianDayNumberToDate(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in IslamicCalendar.julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in julianDateToDate
 		let smallestJDForIslamicCalendar = -0x1.fffffffffffffp+62
 		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(smallestJDForIslamicCalendar)
 		var jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForIslamicCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in IslamicCalendar.julianDateToDate
+		// Values larger than this cause an arithmetic overflow in julianDateToDate
 		let largestJDForIslamicCalendar = 0x1.1111111111099p+58
 		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(largestJDForIslamicCalendar)
 		jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)

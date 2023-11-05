@@ -94,25 +94,25 @@ final class GregorianCalendarTests: XCTestCase {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in GregorianCalendar.julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
 		let smallestJDNForGregorianCalendar = -9223372036854719351
 		(Y, M, D) = GregorianCalendar.julianDayNumberToDate(smallestJDNForGregorianCalendar)
 		var jdn = GregorianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForGregorianCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in GregorianCalendar.julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
 		let largestJDNForGregorianCalendar = 2305795661307959247
 		(Y, M, D) = GregorianCalendar.julianDayNumberToDate(largestJDNForGregorianCalendar)
 		jdn = GregorianCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in GregorianCalendar.julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in julianDateToDate
 		let smallestJDForGregorianCalendar = -0x1.fffffffffffc8p+62
 		(Y, M, D, h, m, s) = GregorianCalendar.julianDateToDate(smallestJDForGregorianCalendar)
 		var jd = GregorianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForGregorianCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in GregorianCalendar.julianDateToDate
+		// Values larger than this cause an arithmetic overflow in julianDateToDate
 		let largestJDForGregorianCalendar = 0x1.fffd4eff4e5d7p+60
 		(Y, M, D, h, m, s) = GregorianCalendar.julianDateToDate(largestJDForGregorianCalendar)
 		jd = GregorianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
