@@ -44,13 +44,13 @@ public struct CopticCalendar {
 
 	/// Returns `true` if the specified year is a leap year in the Coptic calendar.
 	///
-	/// A Coptic year is a leap year if its numerical designation is divisible by 4.
+	/// A Coptic year is a leap year if its numerical designation plus one is divisible by 4.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Coptic calendar.
 	public static func isLeapYear(_ Y: Int) -> Bool {
-		Y % 4 == 0
+		(Y + 1) % 4 == 0
 	}
 
 	/// The number of days in each month indexed from `0` (Tut) to `12` (Nissieh).

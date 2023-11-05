@@ -44,13 +44,13 @@ public struct EthiopianCalendar {
 
 	/// Returns `true` if the specified year is a leap year in the Ethiopian calendar.
 	///
-	/// An Ethiopian year is a leap year if its numerical designation is divisible by 4.
+	/// An Ethiopian year is a leap year if its numerical designation plus one is divisible by 4.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Ethiopian calendar.
 	public static func isLeapYear(_ Y: Int) -> Bool {
-		Y % 4 == 0
+		(Y + 1) % 4 == 0
 	}
 
 	/// The number of days in each month indexed from `0` (Mäskäräm) to `12` (Ṗagumen).
