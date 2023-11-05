@@ -41,7 +41,19 @@ final class CopticCalendarTests: XCTestCase {
 	}
 
 	func testLimits() {
-		// FIXME: Add tests
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -363424970.5)
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -34699970.5)
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1827470.5)
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 9999, month: 13, day: 5), 5477162.5)
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 99999, month: 13, day: 5), 38349662.5)
+		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 999999, month: 13, day: 5), 367074662.5)
+
+		XCTAssertTrue(CopticCalendar.julianDateToDate(-363424970.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.julianDateToDate(-34699970.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.julianDateToDate(-1827470.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.julianDateToDate(5477162.5) == (9999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.julianDateToDate(38349662.5) == (99999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.julianDateToDate(367074662.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {

@@ -9,7 +9,9 @@ import XCTest
 
 final class IslamicCalendarTests: XCTestCase {
 	func testDateValidation() {
-		// FIXME: Add tests
+		XCTAssertTrue(IslamicCalendar.isDateValid(year: 7, month: 12, day: 30))
+		XCTAssertFalse(IslamicCalendar.isDateValid(year: 7, month: 12, day: 31))
+		XCTAssertFalse(IslamicCalendar.isDateValid(year: 38, month: 12, day: 30))
 	}
 
 	func testLeapYear() {
@@ -71,7 +73,19 @@ final class IslamicCalendarTests: XCTestCase {
 	}
 
 	func testLimits() {
-		// FIXME: Add tests
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -352418227.5)
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -33488227.5)
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1595227.5)
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 9999, month: 12, day: 29), 5491750.5)
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 99999, month: 12, day: 29), 37384750.5)
+		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 999999, month: 12, day: 29), 356314750.5)
+
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(-352418227.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(-33488227.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(-1595227.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(5491750.5) == (9999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(37384750.5) == (99999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.julianDateToDate(356314750.5) == (999999, 12, 29, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {

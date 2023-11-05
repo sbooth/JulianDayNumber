@@ -34,7 +34,19 @@ final class EgyptianCalendarTests: XCTestCase {
 	}
 
 	func testLimits() {
-		// FIXME: Add tests
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -363551362.5)
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -35051362.5)
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -2201362.5)
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: 9999, month: 13, day: 5), 5098271.5)
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: 99999, month: 13, day: 5), 37948271.5)
+		XCTAssertEqual(EgyptianCalendar.dateToJulianDate(year: 999999, month: 13, day: 5), 366448271.5)
+
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(-363551362.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(-35051362.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(-2201362.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(5098271.5) == (9999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(37948271.5) == (99999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(EgyptianCalendar.julianDateToDate(366448271.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {
