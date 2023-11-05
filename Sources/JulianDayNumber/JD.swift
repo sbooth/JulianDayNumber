@@ -10,6 +10,8 @@ import Foundation
 ///
 /// The Julian date (JD) is the Julian day number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
 /// Julian dates are expressed as a JDN with a decimal fraction added.
+///
+/// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
 public typealias JulianDate = Double
 
 extension JulianDayNumberConverting {
