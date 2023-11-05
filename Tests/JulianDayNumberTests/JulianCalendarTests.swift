@@ -14,10 +14,17 @@ final class JulianCalendarTests: XCTestCase {
 	}
 
 	func testLeapYear() {
+		XCTAssertFalse(JulianCalendar.isLeapYear(1))
+		XCTAssertTrue(JulianCalendar.isLeapYear(4))
+		XCTAssertTrue(JulianCalendar.isLeapYear(100))
+		XCTAssertFalse(JulianCalendar.isLeapYear(750))
 		XCTAssertTrue(JulianCalendar.isLeapYear(900))
 		XCTAssertTrue(JulianCalendar.isLeapYear(1236))
-		XCTAssertFalse(JulianCalendar.isLeapYear(750))
 		XCTAssertFalse(JulianCalendar.isLeapYear(1429))
+		XCTAssertFalse(JulianCalendar.isLeapYear(-3))
+		XCTAssertTrue(JulianCalendar.isLeapYear(-4))
+		XCTAssertTrue(JulianCalendar.isLeapYear(-8))
+		XCTAssertTrue(JulianCalendar.isLeapYear(-100))
 	}
 
 	func testMonthCount() {
