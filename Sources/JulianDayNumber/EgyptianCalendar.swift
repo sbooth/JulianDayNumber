@@ -23,6 +23,9 @@ public struct EgyptianCalendar {
 		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(month: M)
 	}
 
+	/// The number of months in one year.
+	public static let monthsInYear = 13
+
 	/// The number of days in each month indexed from `0` (Thoth) to `11` (Mesori), with the 5 epagomenal days treated as month `12`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
