@@ -14,6 +14,13 @@ final class EthiopianCalendarTests: XCTestCase {
 	}
 
 	func testLeapYear() {
+		XCTAssertFalse(EthiopianCalendar.isLeapYear(1))
+		XCTAssertTrue(EthiopianCalendar.isLeapYear(3))
+		XCTAssertTrue(EthiopianCalendar.isLeapYear(7))
+		XCTAssertTrue(EthiopianCalendar.isLeapYear(1739))
+		XCTAssertFalse(EthiopianCalendar.isLeapYear(1740))
+		XCTAssertTrue(EthiopianCalendar.isLeapYear(-1))
+		XCTAssertFalse(EthiopianCalendar.isLeapYear(-2))
 		XCTAssertTrue(EthiopianCalendar.isLeapYear(2015))
 		XCTAssertFalse(EthiopianCalendar.isLeapYear(2016))
 	}

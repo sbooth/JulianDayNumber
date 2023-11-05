@@ -37,13 +37,13 @@ public struct EthiopianCalendar {
 
 	/// Returns `true` if the specified year is a leap year in the Ethiopian calendar.
 	///
-	/// An Ethiopian year is a leap year if its numerical designation plus one is divisible by 4.
+	/// An Ethiopian leap year occurs every four years and the first leap year was year 3.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Ethiopian calendar.
 	public static func isLeapYear(_ Y: Int) -> Bool {
-		(Y + 1) % 4 == 0
+		Y > 0 ? Y % 4 == 3 : Y % 4 == -1
 	}
 
 	/// The number of months in one year.
