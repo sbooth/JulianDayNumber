@@ -14,13 +14,19 @@ final class GregorianCalendarTests: XCTestCase {
 	}
 
 	func testLeapYear() {
+		XCTAssertTrue(GregorianCalendar.isLeapYear(4))
+		XCTAssertFalse(GregorianCalendar.isLeapYear(100))
 		XCTAssertTrue(GregorianCalendar.isLeapYear(1600))
-		XCTAssertTrue(GregorianCalendar.isLeapYear(2000))
-		XCTAssertTrue(GregorianCalendar.isLeapYear(2400))
 		XCTAssertFalse(GregorianCalendar.isLeapYear(1700))
 		XCTAssertFalse(GregorianCalendar.isLeapYear(1800))
 		XCTAssertFalse(GregorianCalendar.isLeapYear(1900))
+		XCTAssertTrue(GregorianCalendar.isLeapYear(2000))
 		XCTAssertFalse(GregorianCalendar.isLeapYear(2100))
+		XCTAssertTrue(GregorianCalendar.isLeapYear(2400))
+		XCTAssertFalse(GregorianCalendar.isLeapYear(-3))
+		XCTAssertTrue(GregorianCalendar.isLeapYear(-4))
+		XCTAssertTrue(GregorianCalendar.isLeapYear(-8))
+		XCTAssertFalse(GregorianCalendar.isLeapYear(-100))
 	}
 
 	func testMonthCount() {
