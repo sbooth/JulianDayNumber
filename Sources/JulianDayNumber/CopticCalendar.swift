@@ -53,6 +53,9 @@ public struct CopticCalendar {
 		(Y + 1) % 4 == 0
 	}
 
+	/// The number of months in one year.
+	public static let monthsInYear = 13
+
 	/// The number of days in each month indexed from `0` (Tut) to `12` (Nissieh).
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 

@@ -18,6 +18,10 @@ final class AstronomicalCalendarTests: XCTestCase {
 		XCTAssertTrue(AstronomicalCalendar.isLeapYear(900))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(AstronomicalCalendar.monthsInYear, 12)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 1), 31)
 		XCTAssertEqual(AstronomicalCalendar.daysInMonth(year: 1900, month: 2), 28)

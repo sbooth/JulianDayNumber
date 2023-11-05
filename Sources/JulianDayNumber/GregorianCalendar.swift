@@ -111,6 +111,9 @@ public struct GregorianCalendar {
 		Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
 	}
 
+	/// The number of months in one year.
+	public static let monthsInYear = 12
+
 	/// The number of days in each month indexed from `0` (January) to `11` (December).
 	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 

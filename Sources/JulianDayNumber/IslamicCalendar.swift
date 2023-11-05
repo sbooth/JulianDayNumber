@@ -108,6 +108,9 @@ public struct IslamicCalendar {
 		return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
 	}
 
+	/// The number of months in one year.
+	public static let monthsInYear = 12
+
 	/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhú’l-Hijjab).
 	static let monthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
 

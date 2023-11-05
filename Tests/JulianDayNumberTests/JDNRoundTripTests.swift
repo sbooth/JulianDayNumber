@@ -19,41 +19,10 @@ final class JDNRoundTripTests: XCTestCase {
 	let maxYear = 9999
 #endif
 
-	func testJulianCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = JulianCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = JulianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = JulianCalendar.julianDayNumberToDate(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
-		}
-	}
-
-	func testGregorianCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = GregorianCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = GregorianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = GregorianCalendar.julianDayNumberToDate(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
-		}
-	}
-
-	func testAstronomicalCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = AstronomicalCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
+	func testAstronomical() {
+		for year in minYear...maxYear {
+			for month in 1...AstronomicalCalendar.monthsInYear {
+				for day in 1...AstronomicalCalendar.daysInMonth(year: year, month: month) {
 					let jdn = AstronomicalCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = AstronomicalCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
@@ -68,13 +37,12 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testIslamicCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 12, by: 1) {
-				let days = IslamicCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = IslamicCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = IslamicCalendar.julianDayNumberToDate(jdn)
+	func testCoptic() {
+		for year in minYear...maxYear {
+			for month in 1...CopticCalendar.monthsInYear {
+				for day in 1...CopticCalendar.daysInMonth(year: year, month: month) {
+					let jdn = CopticCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = CopticCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
@@ -83,11 +51,10 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testEgyptianCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 13, by: 1) {
-				let days = EgyptianCalendar.daysInMonth(month: month)
-				for day in stride(from: 1, through: days, by: 1) {
+	func testEgyptian() {
+		for year in minYear...maxYear {
+			for month in 1...EgyptianCalendar.monthsInYear {
+				for day in 1...EgyptianCalendar.daysInMonth(month: month) {
 					let jdn = EgyptianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = EgyptianCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
@@ -98,11 +65,10 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testEthiopianCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 13, by: 1) {
-				let days = EthiopianCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
+	func testEthiopian() {
+		for year in minYear...maxYear {
+			for month in 1...EthiopianCalendar.monthsInYear {
+				for day in 1...EthiopianCalendar.daysInMonth(year: year, month: month) {
 					let jdn = EthiopianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = EthiopianCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
@@ -113,13 +79,40 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testCopticCalendarJDNRoundTrip() {
-		for year in stride(from: minYear, through: maxYear, by: 1) {
-			for month in stride(from: 1, through: 13, by: 1) {
-				let days = CopticCalendar.daysInMonth(year: year, month: month)
-				for day in stride(from: 1, through: days, by: 1) {
-					let jdn = CopticCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = CopticCalendar.julianDayNumberToDate(jdn)
+	func testGregorian() {
+		for year in minYear...maxYear {
+			for month in 1...GregorianCalendar.monthsInYear {
+				for day in 1...GregorianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = GregorianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = GregorianCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testIslamic() {
+		for year in minYear...maxYear {
+			for month in 1...IslamicCalendar.monthsInYear {
+				for day in 1...IslamicCalendar.daysInMonth(year: year, month: month) {
+					let jdn = IslamicCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = IslamicCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testJulian() {
+		for year in minYear...maxYear {
+			for month in 1...JulianCalendar.monthsInYear {
+				for day in 1...JulianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = JulianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = JulianCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)

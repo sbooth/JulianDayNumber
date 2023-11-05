@@ -18,6 +18,10 @@ final class CopticCalendarTests: XCTestCase {
 		XCTAssertFalse(CopticCalendar.isLeapYear(1740))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(CopticCalendar.monthsInYear, 13)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 1), 30)
 		XCTAssertEqual(CopticCalendar.daysInMonth(year: 1, month: 2), 30)

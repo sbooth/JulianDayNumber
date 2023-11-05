@@ -20,6 +20,10 @@ final class JulianCalendarTests: XCTestCase {
 		XCTAssertFalse(JulianCalendar.isLeapYear(1429))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(JulianCalendar.monthsInYear, 12)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(JulianCalendar.daysInMonth(year: 1600, month: 2), 29)
 		XCTAssertEqual(JulianCalendar.daysInMonth(year: 1700, month: 2), 29)
