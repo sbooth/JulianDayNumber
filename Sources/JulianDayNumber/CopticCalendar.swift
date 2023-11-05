@@ -8,27 +8,20 @@ import Foundation
 
 /// The Coptic calendar.
 ///
-/// The Coptic calendar is a solar calendar of 365 days in every year.
+/// The Coptic calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
 ///
-/// The Coptic calendar epoch in the Coptic calendar is 1 Tut 1.
-/// The Coptic calendar epoch in the Julian calendar is August 29, 284 AD.
+/// The Coptic calendar epoch in the Julian calendar is August 29, 284.
 ///
 /// - seealso: [Coptic calendar](https://en.wikipedia.org/wiki/Coptic_calendar)
 public struct CopticCalendar {
-	/// The year, month, and day of the epoch of the Coptic calendar.
-	///
-	/// The Coptic calendar epoch in the Coptic calendar is 1 Tut 1.
-	/// The Coptic calendar epoch in the Julian calendar is August 29, 284 AD.
-	public static let epochDate = (year: 1, month: 1, day: 1)
-
 	/// The Julian day number of the epoch of the Coptic calendar.
 	///
-	/// This JDN corresponds to noon on 1 Tut 1 in the Coptic calendar.
+	/// This JDN corresponds to noon on August 29, 284 in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1825030
 
 	/// The Julian date of the epoch of the Coptic calendar.
 	///
-	/// This JD corresponds to midnight on 1 Tut 1 in the Coptic calendar.
+	/// This JD corresponds to midnight on August 29, 284 in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1825029.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Coptic calendar.

@@ -10,42 +10,18 @@ import Foundation
 ///
 /// The Islamic calendar is a lunar calendar consisting of 12 lunar months in a year of 354 or 355 days.
 ///
-/// The Islamic calendar took effect on 1 Muharram 1, AH.
-///
-/// The Islamic calendar epoch in the Islamic calendar is 1 Muharram 1, AH.
-/// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
+/// The Islamic calendar epoch in the Julian calendar is July 16, 622.
 ///
 /// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
 public struct IslamicCalendar {
-	/// The year, month, and day when the Islamic calendar took effect.
-	///
-	/// The Islamic calendar took effect on 1 Muharram 1, AH.
-	public static let effectiveDate = (year: 1, month: 1, day: 1)
-
-	/// The Julian day number when the Islamic calendar took effect.
-	///
-	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
-	public static let effectiveJulianDayNumber: JulianDayNumber = 1948440
-
-	/// The Julian date when the Islamic calendar took effect.
-	///
-	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
-	public static let effectiveJulianDate: JulianDate = 1948439.5
-
-	/// The year, month, and day of the epoch of the Islamic calendar.
-	///
-	/// The Islamic calendar epoch in the Islamic calendar is 1 Muharram 1, AH.
-	/// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
-	public static let epochDate = (year: 1, month: 1, day: 1)
-
 	/// The Julian day number of the epoch of the Islamic calendar.
 	///
-	/// This JDN corresponds to noon on 1 Muharram 1, AH in the Islamic calendar.
+	/// This JDN corresponds to noon on July 16, 622 in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1948440
 
 	/// The Julian date of the epoch of the Islamic calendar.
 	///
-	/// This JD corresponds to midnight on 1 Muharram 1, AH in the Islamic calendar.
+	/// This JD corresponds to midnight on July 16, 622 in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1948439.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
@@ -57,41 +33,6 @@ public struct IslamicCalendar {
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Islamic calendar.
 	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
-
-	/// Returns `true` if the specified year, month, and day occurred before the Islamic calendar took effect.
-	///
-	/// The Islamic calendar took effect on 1 Muharram 1, AH.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Muharram) and `12` (Dhú’l-Hijjab).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: `true` if the specified year, month, and day occurred before the Islamic calendar took effect.
-	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < effectiveDate
-	}
-
-	/// Returns `true` if the specified Julian day number occurred before the Islamic calendar took effect.
-	///
-	/// The Islamic calendar took effect on JDN 1948440.
-	///
-	/// - parameter julianDayNumber: A Julian day number.
-	///
-	/// - returns: `true` if the specified specified Julian day number occurred before the Islamic calendar took effect.
-	public static func isProleptic(julianDayNumber: JulianDayNumber) -> Bool {
-		julianDayNumber < effectiveJulianDayNumber
-	}
-
-	/// Returns `true` if the specified Julian date occurred before the Islamic calendar took effect.
-	///
-	/// The Islamic calendar took effect on JD 1948439.5.
-	///
-	/// - parameter julianDate: A Julian date.
-	///
-	/// - returns: `true` if the specified specified Julian date occurred before the Islamic calendar took effect.
-	public static func isProleptic(julianDate: JulianDate) -> Bool {
-		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Islamic calendar.

@@ -10,25 +10,18 @@ import Foundation
 ///
 /// The Ethiopian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
 ///
-/// The Ethiopian calendar epoch in the Ethiopian calendar is 1 Mäskäräm 1.
-/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8 AD.
+/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8.
 ///
 /// - seealso: [Ethiopian calendar](https://en.wikipedia.org/wiki/Ethiopian_calendar)
 public struct EthiopianCalendar {
-	/// The year, month, and day of the epoch of the Ethiopian calendar.
-	///
-	/// The Ethiopian calendar epoch in the Ethiopian calendar is 1 Mäskäräm 1.
-	/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8 AD.
-	public static let epochDate = (year: 1, month: 1, day: 1)
-
 	/// The Julian day number of the epoch of the Ethiopian calendar.
 	///
-	/// This JDN corresponds to noon on 1 Mäskäräm 1 in the Ethiopian calendar.
+	/// This JDN corresponds to noon on August 29, 8 in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1724221
 
 	/// The Julian date of the epoch of the Ethiopian calendar.
 	///
-	/// This JD corresponds to midnight on 1 Mäskäräm 1 in the Ethiopian calendar.
+	/// This JD corresponds to midnight on August 29, 8 in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1724220.5
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Ethiopian calendar.
