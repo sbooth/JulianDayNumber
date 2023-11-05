@@ -16,25 +16,15 @@ import Foundation
 ///
 /// - seealso: [Julian calendar](https://en.wikipedia.org/wiki/Julian_calendar)
 public struct JulianCalendar {
-	/// The year, month, and day when the Julian calendar took effect.
-	///
-	/// The Julian calendar took effect on January 1, 45 BC.
-	public static let effectiveDate = (year: -44, month: 1, day: 1)
-
 	/// The Julian day number when the Julian calendar took effect.
 	///
-	/// This JDN corresponds to noon on January 1, 45 BC.
+	/// This JDN corresponds to noon on January 1, 45 BC in the Julian calendar.
 	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
 
 	/// The Julian date when the Julian calendar took effect.
 	///
-	/// This JD corresponds to midnight on January 1, 45 BC.
+	/// This JD corresponds to midnight on January 1, 45 BC in the Julian calendar.
 	public static let effectiveJulianDate: JulianDate = 1704986.5
-
-	/// The year, month, and day of the epoch of the Julian calendar.
-	///
-	/// The Julian calendar epoch in the Julian calendar is January 1, 1 AD.
-	public static let epochDate = (year: 1, month: 1, day: 1)
 
 	/// The Julian day number of the epoch of the Julian calendar.
 	///
@@ -55,19 +45,6 @@ public struct JulianCalendar {
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Julian calendar.
 	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
-
-	/// Returns `true` if the specified year, month, and day occurred before the Julian calendar took effect.
-	///
-	/// The Julian calendar took effect on January 1, 45 BC.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: `true` if the specified year, month, and day occurred before the Julian calendar took effect.
-	public static func isProleptic(year Y: Int, month M: Int, day D: Int) -> Bool {
-		(Y, M, D) < effectiveDate
 	}
 
 	/// Returns `true` if the specified Julian day number occurred before the Julian calendar took effect.
