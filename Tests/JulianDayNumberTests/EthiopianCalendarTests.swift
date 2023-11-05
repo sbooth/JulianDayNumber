@@ -18,6 +18,10 @@ final class EthiopianCalendarTests: XCTestCase {
 		XCTAssertFalse(EthiopianCalendar.isLeapYear(2016))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(EthiopianCalendar.monthsInYear, 13)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 1), 30)
 		XCTAssertEqual(EthiopianCalendar.daysInMonth(year: 1, month: 2), 30)

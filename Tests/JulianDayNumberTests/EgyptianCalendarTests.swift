@@ -12,6 +12,10 @@ final class EgyptianCalendarTests: XCTestCase {
 		XCTAssertTrue(EgyptianCalendar.isDateValid(year: 1600, month: 2, day: 30))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(EgyptianCalendar.monthsInYear, 13)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 1), 30)
 		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 2), 30)

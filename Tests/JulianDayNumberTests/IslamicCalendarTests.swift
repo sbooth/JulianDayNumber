@@ -47,6 +47,10 @@ final class IslamicCalendarTests: XCTestCase {
 		XCTAssertFalse(IslamicCalendar.isLeapYear(30))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(IslamicCalendar.monthsInYear, 12)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(IslamicCalendar.daysInMonth(year: 1, month: 1), 30)
 		XCTAssertEqual(IslamicCalendar.daysInMonth(year: 1, month: 2), 29)

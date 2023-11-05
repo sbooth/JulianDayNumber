@@ -23,6 +23,10 @@ final class GregorianCalendarTests: XCTestCase {
 		XCTAssertFalse(GregorianCalendar.isLeapYear(2100))
 	}
 
+	func testMonthCount() {
+		XCTAssertEqual(GregorianCalendar.monthsInYear, 12)
+	}
+
 	func testMonthLength() {
 		XCTAssertEqual(GregorianCalendar.daysInMonth(year: 1600, month: 2), 29)
 		XCTAssertEqual(GregorianCalendar.daysInMonth(year: 1700, month: 2), 28)
