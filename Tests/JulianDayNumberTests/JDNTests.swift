@@ -198,5 +198,33 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(largestJDNForEgyptianCalendar)
 		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Ethiopian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in EthiopianCalendar.julianDayNumberToDate
+		let smallestJDNForEthiopianCalendar = -9223372036854775664
+		(y,m,d) = EthiopianCalendar.julianDayNumberToDate(smallestJDNForEthiopianCalendar)
+		jdn = EthiopianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForEthiopianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in EthiopianCalendar.julianDayNumberToDate
+		let largestJDNForEthiopianCalendar = 2305843009213693827
+		(y,m,d) = EthiopianCalendar.julianDayNumberToDate(largestJDNForEthiopianCalendar)
+		jdn = EthiopianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForEthiopianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Coptic calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in CopticCalendar.julianDayNumberToDate
+		let smallestJDNForCopticCalendar = -9223372036854775664
+		(y,m,d) = CopticCalendar.julianDayNumberToDate(smallestJDNForCopticCalendar)
+		jdn = CopticCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForCopticCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in CopticCalendar.julianDayNumberToDate
+		let largestJDNForCopticCalendar = 2305843009213693827
+		(y,m,d) = CopticCalendar.julianDayNumberToDate(largestJDNForCopticCalendar)
+		jdn = CopticCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForCopticCalendar, jdn)
 	}
 }
