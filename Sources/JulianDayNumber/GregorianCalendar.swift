@@ -15,7 +15,6 @@ import Foundation
 ///
 /// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
 ///
-/// The Gregorian calendar epoch in the Gregorian calendar is December 30, 1 BC.
 /// The Gregorian calendar epoch in the Julian calendar is January 1, 1 AD.
 ///
 /// - note: The actual adoption date of the Gregorian calendar varies by country.
@@ -37,20 +36,14 @@ public struct GregorianCalendar {
 	/// This JD corresponds to midnight on October 15, 1582 in the Gregorian calendar.
 	public static let effectiveJulianDate: JulianDate = 2299160.5
 
-	/// The year, month, and day of the epoch of the Gregorian calendar.
-	///
-	/// The Gregorian calendar epoch in the Gregorian calendar is December 30, 1 BC.
-	/// The Gregorian calendar epoch in the Julian calendar is January 1, 1 AD.
-	public static let epochDate = (year: 0, month: 12, day: 30)
-
 	/// The Julian day number of the epoch of the Gregorian calendar.
 	///
-	/// This JDN corresponds to noon on December 30, 1 BC in the Gregorian calendar.
+	/// This JDN corresponds to noon on January 1, 1 AD in the Julian calendar.
 	public static let epochJulianDayNumber = JulianCalendar.epochJulianDayNumber
 
 	/// The Julian date of the epoch of the Gregorian calendar.
 	///
-	/// This JD corresponds to midnight on December 30, 1 BC in the Gregorian calendar.
+	/// This JD corresponds to midnight on January 1, 1 AD in the Julian calendar.
 	public static let epochJulianDate = JulianCalendar.epochJulianDate
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
