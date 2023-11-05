@@ -175,5 +175,33 @@ final class JDTests: XCTestCase {
 		(Y, M, D, h, m, s) = EgyptianCalendar.julianDateToDate(largestJDNForEgyptianCalendar)
 		jd = EgyptianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDNForEgyptianCalendar, jd)
+
+		// Arithmetic limits for JD to Ethiopian calendar date conversion using 64-bit doubles
+
+		// Values smaller than this cause an arithmetic overflow in EthiopianCalendar.julianDateToDate
+		let smallestJDNForEthiopianCalendar = -0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = EthiopianCalendar.julianDateToDate(smallestJDNForEthiopianCalendar)
+		jd = EthiopianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForEthiopianCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in EthiopianCalendar.julianDateToDate
+		let largestJDNForEthiopianCalendar = 0x1.fffffffffffffp+60
+		(Y, M, D, h, m, s) = EthiopianCalendar.julianDateToDate(largestJDNForEthiopianCalendar)
+		jd = EthiopianCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForEthiopianCalendar, jd)
+
+		// Arithmetic limits for JD to Coptic calendar date conversion using 64-bit doubles
+
+		// Values smaller than this cause an arithmetic overflow in CopticCalendar.julianDateToDate
+		let smallestJDNForCopticCalendar = -0x1.fffffffffffffp+62
+		(Y, M, D, h, m, s) = CopticCalendar.julianDateToDate(smallestJDNForCopticCalendar)
+		jd = CopticCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(smallestJDNForCopticCalendar, jd)
+
+		// Values larger than this cause an arithmetic overflow in CopticCalendar.julianDateToDate
+		let largestJDNForCopticCalendar = 0x1.fffffffffffffp+60
+		(Y, M, D, h, m, s) = CopticCalendar.julianDateToDate(largestJDNForCopticCalendar)
+		jd = CopticCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		XCTAssertEqual(largestJDNForCopticCalendar, jd)
 	}
 }

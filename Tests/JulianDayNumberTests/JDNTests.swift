@@ -118,6 +118,17 @@ final class JDNTests: XCTestCase {
 		XCTAssertEqual(EgyptianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1448638)
 	}
 
+	func testEthiopian() {
+		XCTAssertEqual(EthiopianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1724221)
+		XCTAssertTrue(EthiopianCalendar.julianDayNumberToDate(1724221) == (1, 1, 1))
+		XCTAssertEqual(EthiopianCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 2454356)
+	}
+
+	func testCoptic() {
+		XCTAssertEqual(CopticCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1825030)
+		XCTAssertTrue(CopticCalendar.julianDayNumberToDate(1825030) == (1, 1, 1))
+	}
+
 	func testGregorianToJulianConversion() {
 		XCTAssertEqual(JulianCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: -10000, month: 10, day: 16))
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 31), JulianCalendar.dateToJulianDayNumber(year: 99997, month: 12, day: 13))
@@ -187,5 +198,33 @@ final class JDNTests: XCTestCase {
 		(y,m,d) = EgyptianCalendar.julianDayNumberToDate(largestJDNForEgyptianCalendar)
 		jdn = EgyptianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
 		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Ethiopian calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in EthiopianCalendar.julianDayNumberToDate
+		let smallestJDNForEthiopianCalendar = -9223372036854775664
+		(y,m,d) = EthiopianCalendar.julianDayNumberToDate(smallestJDNForEthiopianCalendar)
+		jdn = EthiopianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForEthiopianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in EthiopianCalendar.julianDayNumberToDate
+		let largestJDNForEthiopianCalendar = 2305843009213693827
+		(y,m,d) = EthiopianCalendar.julianDayNumberToDate(largestJDNForEthiopianCalendar)
+		jdn = EthiopianCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForEthiopianCalendar, jdn)
+
+		// Arithmetic limits for JDN to Coptic calendar date conversion using 64-bit integers
+
+		// Values smaller than this cause an arithmetic overflow in CopticCalendar.julianDayNumberToDate
+		let smallestJDNForCopticCalendar = -9223372036854775664
+		(y,m,d) = CopticCalendar.julianDayNumberToDate(smallestJDNForCopticCalendar)
+		jdn = CopticCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(smallestJDNForCopticCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in CopticCalendar.julianDayNumberToDate
+		let largestJDNForCopticCalendar = 2305843009213693827
+		(y,m,d) = CopticCalendar.julianDayNumberToDate(largestJDNForCopticCalendar)
+		jdn = CopticCalendar.dateToJulianDayNumber(year: y, month: m, day: d)
+		XCTAssertEqual(largestJDNForCopticCalendar, jdn)
 	}
 }

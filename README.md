@@ -1,11 +1,13 @@
 # JulianDayNumber
 
 Julian day number (JDN) and Julian date (JD) calculations supporting the following calendars:
-- Julian
-- Gregorian
 - Astronomical
-- Islamic
+- Coptic
 - Egyptian
+- Ethiopian
+- Gregorian
+- Islamic
+- Julian
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
@@ -32,7 +34,7 @@ let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
 ```
 
 > [!NOTE]
-> `AstronomicalCalendar` uses the Julian calendar for dates before 1582-10-15 and the Gregorian calendar for later dates.
+> The astronomical calendar is a hybrid calendar using the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
 
 2. Convert the Julian date 2422107.5 to a `Date` instance.
 
@@ -57,10 +59,12 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Julian | -9223372036854775664 | 2305843009213692550 |
+| Coptic | -9223372036854775664 | 2305843009213693827 |
+| Egyptian | -9223372036854775514 | 9223372036854775760 |
+| Ethiopian | -9223372036854775664 | 2305843009213693827 |
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
-| Egyptian | -9223372036854775514 | 9223372036854775760 |
+| Julian | -9223372036854775664 | 2305843009213692550 |
 
 ### Julian Dates
 
@@ -68,10 +72,12 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
-| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
+| Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
+| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
+| Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
-| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
+| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
 
 ## License
 
