@@ -74,15 +74,13 @@ public struct FrenchRepublicanCalendar {
 
 	/// Returns `true` if the specified year is a leap year in the French Republican calendar.
 	///
-	/// A French Republican year is a leap (sextile) year if its numerical designation plus one
-	/// is divisible by 4 excluding centurial years *not* divisible by 400.
+	/// A French Republican year is a leap year if its numerical designation plus one would be a leap year in the Gregorian calendar.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the French Republican calendar.
 	public static func isLeapYear(_ Y: Int) -> Bool {
-		let Y = Y + 1
-		return Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
+		GregorianCalendar.isLeapYear(Y + 1)
 	}
 
 	/// The number of months in one year.

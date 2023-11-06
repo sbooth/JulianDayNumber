@@ -26,6 +26,14 @@ final class FrenchRepublicanCalendarTests: XCTestCase {
 		XCTAssertTrue(FrenchRepublicanCalendar.isLeapYear(-1))
 		XCTAssertFalse(FrenchRepublicanCalendar.isLeapYear(-2))
 		XCTAssertTrue(FrenchRepublicanCalendar.isLeapYear(-5))
+
+		for y in -500...500 {
+			let isLeap = FrenchRepublicanCalendar.isLeapYear(y)
+			let j = FrenchRepublicanCalendar.dateToJulianDayNumber(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = FrenchRepublicanCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 13)
+			XCTAssertEqual(d.day, isLeap ? 6 : 5)
+		}
 	}
 
 	func testMonthCount() {
