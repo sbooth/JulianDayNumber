@@ -10,13 +10,13 @@ import Foundation
 
 /// The number of years in a cycle of the French Republican calendar.
 ///
-/// A cycle in the French Republican calendar consists of 3 common years and 1 leap year.
-let frenchRepublicanCalendarCycleYears = 4
+/// A cycle in the modified French Republican calendar consists of 303 common years and 97 leap years.
+let frenchRepublicanCalendarCycleYears = 400
 
 /// The number of days in a cycle of the French Republican calendar.
 ///
-/// A cycle in the French Republican calendar consists of 3 years of 365 days and 1 leap year of 366 days.
-let frenchRepublicanCalendarCycleDays = 1461
+/// A cycle in the modified French Republican calendar consists of 303 years of 365 days and 97 leap year of 366 days.
+let frenchRepublicanCalendarCycleDays = 146097
 
 extension FrenchRepublicanCalendar: JulianDayNumberConverting {
 	/// Converts a year, month, and day in the French Republican calendar to a Julian day number.
@@ -33,7 +33,7 @@ extension FrenchRepublicanCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
-		// JDN 0 is -6504-Frimaire-3 in the proleptic French Republican calendar.
+		// JDN 0 is -6504-Frimaire(03)-03 in the proleptic French Republican calendar.
 		// Adjust the year of earlier dates forward in time by a multiple of
 		// the calendar's cycle before calculating the JDN, and then translate
 		// the result backward in time by the period of adjustment.
