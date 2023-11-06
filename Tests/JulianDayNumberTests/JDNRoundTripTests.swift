@@ -120,4 +120,18 @@ final class JDNRoundTripTests: XCTestCase {
 			}
 		}
 	}
+
+	func testFrenchRepublican() {
+		for year in minYear...maxYear {
+			for month in 1...FrenchRepublicanCalendar.monthsInYear {
+				for day in 1...FrenchRepublicanCalendar.daysInMonth(year: year, month: month) {
+					let jdn = FrenchRepublicanCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = FrenchRepublicanCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
 }

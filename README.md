@@ -8,6 +8,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar)
 - [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar)
 - [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar)
+- [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar)
 - [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar)
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
@@ -69,6 +70,7 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 | Coptic | -9223372036854775664 | 2305843009213693827 |
 | Egyptian | -9223372036854775514 | 9223372036854775760 |
 | Ethiopian | -9223372036854775664 | 2305843009213693827 |
+| French Republican | -9223372036854719351 | 2305795661307960548 |
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
@@ -82,6 +84,7 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 | Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
+| French Republican | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5dcp+60 |
 | Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
