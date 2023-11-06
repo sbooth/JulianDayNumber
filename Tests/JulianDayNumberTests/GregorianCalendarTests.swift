@@ -27,6 +27,14 @@ final class GregorianCalendarTests: XCTestCase {
 		XCTAssertTrue(GregorianCalendar.isLeapYear(-4))
 		XCTAssertTrue(GregorianCalendar.isLeapYear(-8))
 		XCTAssertFalse(GregorianCalendar.isLeapYear(-100))
+
+		for y in 1583...2500 {
+			let isLeap = GregorianCalendar.isLeapYear(y)
+			let j = GregorianCalendar.dateToJulianDayNumber(year: y, month: 2, day: isLeap ? 29 : 28)
+			let d = GregorianCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 2)
+			XCTAssertEqual(d.day, isLeap ? 29 : 28)
+		}
 	}
 
 	func testMonthCount() {

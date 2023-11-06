@@ -16,6 +16,14 @@ final class AstronomicalCalendarTests: XCTestCase {
 
 	func testLeapYear() {
 		XCTAssertTrue(AstronomicalCalendar.isLeapYear(900))
+
+		for y in -1000...2000 {
+			let isLeap = AstronomicalCalendar.isLeapYear(y)
+			let j = AstronomicalCalendar.dateToJulianDayNumber(year: y, month: 2, day: isLeap ? 29 : 28)
+			let d = AstronomicalCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 2)
+			XCTAssertEqual(d.day, isLeap ? 29 : 28)
+		}
 	}
 
 	func testMonthCount() {

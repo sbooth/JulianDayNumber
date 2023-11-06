@@ -25,6 +25,14 @@ final class JulianCalendarTests: XCTestCase {
 		XCTAssertTrue(JulianCalendar.isLeapYear(-4))
 		XCTAssertTrue(JulianCalendar.isLeapYear(-8))
 		XCTAssertTrue(JulianCalendar.isLeapYear(-100))
+
+		for y in -500...1752 {
+			let isLeap = JulianCalendar.isLeapYear(y)
+			let j = JulianCalendar.dateToJulianDayNumber(year: y, month: 2, day: isLeap ? 29 : 28)
+			let d = JulianCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 2)
+			XCTAssertEqual(d.day, isLeap ? 29 : 28)
+		}
 	}
 
 	func testMonthCount() {

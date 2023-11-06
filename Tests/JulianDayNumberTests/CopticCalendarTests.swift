@@ -21,6 +21,14 @@ final class CopticCalendarTests: XCTestCase {
 		XCTAssertFalse(CopticCalendar.isLeapYear(1740))
 		XCTAssertTrue(CopticCalendar.isLeapYear(-1))
 		XCTAssertFalse(CopticCalendar.isLeapYear(-2))
+
+		for y in -500...500 {
+			let isLeap = CopticCalendar.isLeapYear(y)
+			let j = CopticCalendar.dateToJulianDayNumber(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = CopticCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 13)
+			XCTAssertEqual(d.day, isLeap ? 6 : 5)
+		}
 	}
 
 	func testMonthCount() {

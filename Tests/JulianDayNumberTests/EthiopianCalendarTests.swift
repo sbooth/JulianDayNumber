@@ -23,6 +23,14 @@ final class EthiopianCalendarTests: XCTestCase {
 		XCTAssertFalse(EthiopianCalendar.isLeapYear(-2))
 		XCTAssertTrue(EthiopianCalendar.isLeapYear(2015))
 		XCTAssertFalse(EthiopianCalendar.isLeapYear(2016))
+
+		for y in -500...500 {
+			let isLeap = EthiopianCalendar.isLeapYear(y)
+			let j = EthiopianCalendar.dateToJulianDayNumber(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = EthiopianCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 13)
+			XCTAssertEqual(d.day, isLeap ? 6 : 5)
+		}
 	}
 
 	func testMonthCount() {

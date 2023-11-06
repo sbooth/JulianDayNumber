@@ -45,6 +45,14 @@ final class IslamicCalendarTests: XCTestCase {
 		XCTAssertFalse(IslamicCalendar.isLeapYear(28))
 		XCTAssertTrue(IslamicCalendar.isLeapYear(29))
 		XCTAssertFalse(IslamicCalendar.isLeapYear(30))
+
+		for y in -500...500 {
+			let isLeap = IslamicCalendar.isLeapYear(y)
+			let j = IslamicCalendar.dateToJulianDayNumber(year: y, month: 12, day: isLeap ? 30 : 29)
+			let d = IslamicCalendar.julianDayNumberToDate(j)
+			XCTAssertEqual(d.month, 12)
+			XCTAssertEqual(d.day, isLeap ? 30 : 29)
+		}
 	}
 
 	func testMonthCount() {
