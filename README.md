@@ -13,6 +13,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar)
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
+- Śaka
 
 The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
@@ -76,6 +77,7 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
+| Śaka | -9223372036854719351 | 2305795661307959298 |
 
 ### Julian Dates
 
@@ -91,6 +93,7 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 | Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
+| Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
 
 ## License
 
