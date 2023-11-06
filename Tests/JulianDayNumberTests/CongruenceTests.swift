@@ -9,13 +9,14 @@ import XCTest
 
 final class CongruenceTests: XCTestCase {
 	func testEpoch() {
+		XCTAssertEqual(BahaiCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: 1844, month: 3, day: 21))
 		XCTAssertEqual(CopticCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 284, month: 8, day: 29))
 		XCTAssertEqual(EgyptianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: -746, month: 2, day: 26))
 		XCTAssertEqual(EthiopianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 8, month: 8, day: 29))
+		XCTAssertEqual(FrenchRepublicanCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: 1792, month: 9, day: 22))
 		// Strictly speaking the Gregorian calendar epoch is January 1, 1 AD in the Julian calendar
 		XCTAssertEqual(GregorianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 3))
 		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), JulianCalendar.dateToJulianDayNumber(year: 622, month: 7, day: 16))
-		XCTAssertEqual(FrenchRepublicanCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), GregorianCalendar.dateToJulianDayNumber(year: 1792, month: 9, day: 22))
 	}
 
 	func testGregorianToJulianConversion() {

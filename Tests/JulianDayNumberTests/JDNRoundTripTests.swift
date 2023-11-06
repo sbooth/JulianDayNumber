@@ -37,6 +37,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testBahai() {
+		for year in minYear...maxYear {
+			for month in 1...BahaiCalendar.monthsInYear {
+				for day in 1...BahaiCalendar.daysInMonth(year: year, month: month) {
+					let jdn = BahaiCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = BahaiCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testCoptic() {
 		for year in minYear...maxYear {
 			for month in 1...CopticCalendar.monthsInYear {
@@ -79,6 +93,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testFrenchRepublican() {
+		for year in minYear...maxYear {
+			for month in 1...FrenchRepublicanCalendar.monthsInYear {
+				for day in 1...FrenchRepublicanCalendar.daysInMonth(year: year, month: month) {
+					let jdn = FrenchRepublicanCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = FrenchRepublicanCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testGregorian() {
 		for year in minYear...maxYear {
 			for month in 1...GregorianCalendar.monthsInYear {
@@ -113,20 +141,6 @@ final class JDNRoundTripTests: XCTestCase {
 				for day in 1...JulianCalendar.daysInMonth(year: year, month: month) {
 					let jdn = JulianCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
 					let (Y, M, D) = JulianCalendar.julianDayNumberToDate(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
-		}
-	}
-
-	func testFrenchRepublican() {
-		for year in minYear...maxYear {
-			for month in 1...FrenchRepublicanCalendar.monthsInYear {
-				for day in 1...FrenchRepublicanCalendar.daysInMonth(year: year, month: month) {
-					let jdn = FrenchRepublicanCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
-					let (Y, M, D) = FrenchRepublicanCalendar.julianDayNumberToDate(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
