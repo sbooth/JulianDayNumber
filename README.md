@@ -68,7 +68,7 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Baháʼí | -9223372036854775664 | 2305795661307959248 |
+| Baháʼí | -9223372036854719351 | 2305795661307959248 |
 | Coptic | -9223372036854775664 | 2305843009213693827 |
 | Egyptian | -9223372036854775514 | 9223372036854775760 |
 | Ethiopian | -9223372036854775664 | 2305843009213693827 |
@@ -83,7 +83,7 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
-| Baháʼí | -0x1.fffffffffffffp+62 | 0x1.fffd4eff4e5d7p+60 |
+| Baháʼí | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |

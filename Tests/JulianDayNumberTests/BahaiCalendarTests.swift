@@ -70,16 +70,16 @@ final class BahaiCalendarTests: XCTestCase {
 	}
 
 	func testLimits() {
-		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -362855303.5)
-		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -34130303.5)
-		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1257803.5)
+		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -362847853.5)
+		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -34129603.5)
+		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1257778.5)
 		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: 9999, month: 20, day: 19), 6046704.5)
 		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: 99999, month: 20, day: 19), 38918529.5)
 		XCTAssertEqual(BahaiCalendar.dateToJulianDate(year: 999999, month: 20, day: 19), 367636779.5)
 
-		XCTAssertTrue(BahaiCalendar.julianDateToDate(-362855303.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(BahaiCalendar.julianDateToDate(-34130303.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(BahaiCalendar.julianDateToDate(-1257803.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(BahaiCalendar.julianDateToDate(-362847853.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(BahaiCalendar.julianDateToDate(-34129603.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(BahaiCalendar.julianDateToDate(-1257778.5) == (-9999, 1, 1, 0, 0, 0))
 		XCTAssertTrue(BahaiCalendar.julianDateToDate(6046704.5) == (9999, 20, 19, 0, 0, 0))
 		XCTAssertTrue(BahaiCalendar.julianDateToDate(38918529.5) == (99999, 20, 19, 0, 0, 0))
 		XCTAssertTrue(BahaiCalendar.julianDateToDate(367636779.5) == (999999, 20, 19, 0, 0, 0))
@@ -90,7 +90,7 @@ final class BahaiCalendarTests: XCTestCase {
 		var s: Double
 
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
-		let smallestJDNForBahaiCalendar = -9223372036854775664
+		let smallestJDNForBahaiCalendar = -9223372036854719351
 		(Y, M, D) = BahaiCalendar.julianDayNumberToDate(smallestJDNForBahaiCalendar)
 		var jdn = BahaiCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForBahaiCalendar, jdn)
@@ -102,7 +102,7 @@ final class BahaiCalendarTests: XCTestCase {
 		XCTAssertEqual(largestJDNForBahaiCalendar, jdn)
 
 		// Values smaller than this cause an arithmetic overflow in julianDateToDate
-		let smallestJDForBahaiCalendar = -0x1.fffffffffffffp+62
+		let smallestJDForBahaiCalendar = -0x1.fffffffffffc8p+62
 		(Y, M, D, h, m, s) = BahaiCalendar.julianDateToDate(smallestJDForBahaiCalendar)
 		var jd = BahaiCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForBahaiCalendar, jd)

@@ -10,13 +10,13 @@ import Foundation
 
 /// The number of years in a cycle of the Baháʼí calendar.
 ///
-/// A cycle in the Baháʼí calendar consists of 3 common years and 1 leap year.
-let bahaiCalendarCycleYears = 4
+/// A cycle in the Baháʼí calendar consists of 303 common years and 97 leap years.
+let bahaiCalendarCycleYears = 400
 
 /// The number of days in a cycle of the Baháʼí calendar.
 ///
-/// A cycle in the Baháʼí calendar consists of 3 years of 365 days and 1 leap year of 366 days.
-let bahaiCalendarCycleDays = 1461
+/// A cycle in the Baháʼí calendar consists of 303 years of 365 days and 97 leap year of 366 days.
+let bahaiCalendarCycleDays = 146097
 
 extension BahaiCalendar: JulianDayNumberConverting {
 	/// Converts a year, month, and day in the Baháʼí calendar to a Julian day number.
