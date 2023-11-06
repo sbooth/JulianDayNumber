@@ -5,6 +5,7 @@
 
 Julian day number (JDN) and Julian date (JD) calculations supporting the following calendars:
 - [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar)
+- Baháʼí
 - [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar)
 - [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar)
 - [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar)
@@ -67,6 +68,7 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
+| Baháʼí | -9223372036854775664 | 2305795661307959248 |
 | Coptic | -9223372036854775664 | 2305843009213693827 |
 | Egyptian | -9223372036854775514 | 9223372036854775760 |
 | Ethiopian | -9223372036854775664 | 2305843009213693827 |
@@ -81,6 +83,7 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
+| Baháʼí | -0x1.fffffffffffffp+62 | 0x1.fffd4eff4e5d7p+60 |
 | Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
