@@ -8,7 +8,9 @@ import Foundation
 
 /// The modified French Republican calendar.
 ///
-/// The French Republican calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The French Republican calendar is an astronomical calendar. There were 12 months in the year, each having 30 days and a meteorological name.
+/// These were followed by five epagomenal days (Sansculottides) with a sixth in leap years.
+/// The year began on the day of the autumnal equinox as observed in Paris.
 ///
 /// The French Republican calendar took effect on September 22, 1792 in the Gregorian calendar.
 /// It was abolished by Napoleon in 1806.
