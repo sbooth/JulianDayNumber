@@ -148,4 +148,18 @@ final class JDNRoundTripTests: XCTestCase {
 			}
 		}
 	}
+
+	func testSaka() {
+		for year in minYear...maxYear {
+			for month in 1...SakaCalendar.monthsInYear {
+				for day in 1...SakaCalendar.daysInMonth(year: year, month: month) {
+					let jdn = SakaCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = SakaCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
 }
