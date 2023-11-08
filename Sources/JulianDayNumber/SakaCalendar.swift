@@ -12,7 +12,7 @@ import Foundation
 ///
 /// The Śaka calendar epoch in the Julian calendar is March 24, 79.
 ///
-/// - seealso: [Śaka calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
+/// - seealso: [Indian national calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
 public struct SakaCalendar {
 	/// The Julian day number when the Śaka calendar took effect.
 	///
