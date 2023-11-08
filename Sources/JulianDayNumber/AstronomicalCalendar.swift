@@ -82,4 +82,3 @@ public struct AstronomicalCalendar {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
 	}
 }
-
