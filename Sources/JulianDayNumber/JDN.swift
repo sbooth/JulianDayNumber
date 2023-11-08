@@ -34,3 +34,32 @@ public protocol JulianDayNumberConverting {
 	/// - returns: The year, month, and day corresponding to the specified Julian day number.
 	static func julianDayNumberToDate(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int)
 }
+
+extension JulianDayNumberConverting {
+	/// Normalizes a year, month, and day returns the result.
+	///
+	/// Normalization attempts to convert dates with out-of-range values such as negative month or day numbers to valid equivalents.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The normalized year, month, and day corresponding to the specified year, month, and day.
+	public static func normalizeDate(year Y: Int, month M: Int, day D: Int) -> (year: Int, month: Int, day: Int) {
+		let J = dateToJulianDayNumber(year: Y, month: M, day: D)
+		return julianDayNumberToDate(J)
+	}
+
+	/// Returns `true` if the specified year, month, and day form a normalized date.
+	///
+	/// - note: A normalized date may be considered valid.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: `true` if the specified year, month, and day form a normalized date.
+	public static func isDateNormalized(year Y: Int, month M: Int, day D: Int) -> Bool {
+		normalizeDate(year: Y, month: M, day: D) == (Y, M, D)
+	}
+}
