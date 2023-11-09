@@ -135,6 +135,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testJewish() {
+		for year in minYear...maxYear {
+			for month in 1...JewishCalendar.monthsInYear(year) {
+				for day in 1...JewishCalendar.daysInMonth(year: year, month: month) {
+					let jdn = JewishCalendar.dateToJulianDayNumber(year: year, month: month, day: day)
+					let (Y, M, D) = JewishCalendar.julianDayNumberToDate(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testJulian() {
 		for year in minYear...maxYear {
 			for month in 1...JulianCalendar.monthsInYear {
