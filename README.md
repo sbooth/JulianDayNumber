@@ -50,7 +50,7 @@ let d = Date(julianDate: 2422107.5)
 // Foundation.Date	1919-05-29 00:00:00 UTC
 ```
 
-3. Convert the Gregorian calendar date 2013-10-31 to the Julian calendar.
+3. Convert the Gregorian calendar date 2013-10-31 to a date in the Julian calendar.
 
 ```swift
 let j = GregorianCalendar.dateToJulianDayNumber(year: 2013, month: 10, day: 31)
@@ -81,7 +81,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 | Julian | -9223372036854775664 | 2305843009213692550 |
 | Śaka | -9223372036854719351 | 2305795661307959298 |
 
-¹ The smallest round-trippable JDN for the Jewish calendar is -9223372036747815627
+¹ The smallest round-trippable JDN for the Jewish calendar is -9223372036747815627.
  
 ### Julian Dates
 
@@ -100,7 +100,7 @@ The following table summarizes the limits for Julian dates. Julian dates outside
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
 | Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
 
-¹ The smallest round-trippable JD for the Jewish calendar is -0x1.ffffffffe67fap+62
+¹ The smallest round-trippable JD for the Jewish calendar is -0x1.ffffffffe67fap+62.
 
 ## License
 
