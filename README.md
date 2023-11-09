@@ -12,7 +12,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar)
 - [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar)
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
-- Jewish
+- [Jewish](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/jewishcalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
 - [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
@@ -66,7 +66,7 @@ The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/
 
 ### Julian Day Numbers
 
-The following table summarizes the **absolute limit** for 64-bit integer Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
+The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
@@ -77,12 +77,15 @@ The following table summarizes the **absolute limit** for 64-bit integer Julian 
 | French Republican | -9223372036854719351 | 2305795661307960548 |
 | Gregorian | -9223372036854719351 | 2305795661307959247 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
+| Jewish | -9223372036747815981 ¹ | 355839970905570 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
 | Śaka | -9223372036854719351 | 2305795661307959298 |
 
+¹ The smallest round-trippable JDN for the Jewish calendar is -9223372036747815627
+ 
 ### Julian Dates
 
-The following table summarizes the **absolute limit** for 64-bit floating-point Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
+The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
@@ -93,8 +96,11 @@ The following table summarizes the **absolute limit** for 64-bit floating-point 
 | French Republican | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5dcp+60 |
 | Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
+| Jewish | -0x1.ffffffffe67fbp+62 ¹ | 0x1.43a273100de27p+48 |
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
 | Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
+
+¹ The smallest round-trippable JD for the Jewish calendar is -0x1.ffffffffe67fap+62
 
 ## License
 
