@@ -78,7 +78,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = -Y / jewishCalendarCycleYears + 1
+			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
@@ -104,7 +104,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		if J < epochJulianDayNumber {
-			ΔcalendarCycles = -J / jewishCalendarCycleDays + 1
+			ΔcalendarCycles = (epochJulianDayNumber - J) / jewishCalendarCycleDays + 1
 			J += ΔcalendarCycles * jewishCalendarCycleDays
 		}
 
