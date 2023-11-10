@@ -25,12 +25,12 @@ public protocol JulianDayNumberConverting {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	static func dateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber
+	static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber
 
 	/// Converts a Julian day number to a year, month, and day and returns the result.
 	///
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	static func julianDayNumberToDate(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int)
+	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int)
 }

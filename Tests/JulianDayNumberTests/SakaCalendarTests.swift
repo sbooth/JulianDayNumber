@@ -25,8 +25,8 @@ final class SakaCalendarTests: XCTestCase {
 
 		for y in -500...500 {
 			let isLeap = SakaCalendar.isLeapYear(y)
-			let j = SakaCalendar.dateToJulianDayNumber(year: y, month: 1, day: isLeap ? 31 : 30)
-			let d = SakaCalendar.julianDayNumberToDate(j)
+			let j = SakaCalendar.julianDayNumberFrom(year: y, month: 1, day: isLeap ? 31 : 30)
+			let d = SakaCalendar.dateFromJulianDayNumber(j)
 			XCTAssertEqual(d.month, 1)
 			XCTAssertEqual(d.day, isLeap ? 31 : 30)
 		}
@@ -52,51 +52,51 @@ final class SakaCalendarTests: XCTestCase {
 	}
 
 	func testJulianDayNumber() {
-		XCTAssertEqual(SakaCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1749995)
+		XCTAssertEqual(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1749995)
 	}
 
 	func testLimits() {
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -363492505.5)
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -34774255.5)
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1902430.5)
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: 9999, month: 12, day: 30), 5402053.5)
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: 99999, month: 12, day: 30), 38273878.5)
-		XCTAssertEqual(SakaCalendar.dateToJulianDate(year: 999999, month: 12, day: 30), 366992128.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -363492505.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -34774255.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -1902430.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 9999, month: 12, day: 30), 5402053.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 99999, month: 12, day: 30), 38273878.5)
+		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 999999, month: 12, day: 30), 366992128.5)
 
-		XCTAssertTrue(SakaCalendar.julianDateToDate(-363492505.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.julianDateToDate(-34774255.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.julianDateToDate(-1902430.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.julianDateToDate(5402053.5) == (9999, 12, 30, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.julianDateToDate(38273878.5) == (99999, 12, 30, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.julianDateToDate(366992128.5) == (999999, 12, 30, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-363492505.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-34774255.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-1902430.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(5402053.5) == (9999, 12, 30, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(38273878.5) == (99999, 12, 30, 0, 0, 0))
+		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(366992128.5) == (999999, 12, 30, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let smallestJDNForSakaCalendar = -9223372036854719351
-		(Y, M, D) = SakaCalendar.julianDayNumberToDate(smallestJDNForSakaCalendar)
-		var jdn = SakaCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
+		var jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForSakaCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForSakaCalendar = 2305795661307959298
-		(Y, M, D) = SakaCalendar.julianDayNumberToDate(largestJDNForSakaCalendar)
-		jdn = SakaCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(largestJDNForSakaCalendar)
+		jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForSakaCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let smallestJDForSakaCalendar = -0x1.fffffffffffc8p+62
-		(Y, M, D, h, m, s) = SakaCalendar.julianDateToDate(smallestJDForSakaCalendar)
-		var jd = SakaCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = SakaCalendar.dateAndTimeFromJulianDate(smallestJDForSakaCalendar)
+		var jd = SakaCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForSakaCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in julianDateToDate
+		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let largestJDForSakaCalendar = 0x1.fffd4eff4e5d8p+60
-		(Y, M, D, h, m, s) = SakaCalendar.julianDateToDate(largestJDForSakaCalendar)
-		jd = SakaCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = SakaCalendar.dateAndTimeFromJulianDate(largestJDForSakaCalendar)
+		jd = SakaCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDForSakaCalendar, jd)
 	}
 }

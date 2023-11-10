@@ -48,8 +48,8 @@ final class IslamicCalendarTests: XCTestCase {
 
 		for y in -500...500 {
 			let isLeap = IslamicCalendar.isLeapYear(y)
-			let j = IslamicCalendar.dateToJulianDayNumber(year: y, month: 12, day: isLeap ? 30 : 29)
-			let d = IslamicCalendar.julianDayNumberToDate(j)
+			let j = IslamicCalendar.julianDayNumberFrom(year: y, month: 12, day: isLeap ? 30 : 29)
+			let d = IslamicCalendar.dateFromJulianDayNumber(j)
 			XCTAssertEqual(d.month, 12)
 			XCTAssertEqual(d.day, isLeap ? 30 : 29)
 		}
@@ -79,53 +79,53 @@ final class IslamicCalendarTests: XCTestCase {
 
 	func testJulianDayNumber() {
 		// From Richards
-		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1948440)
+		XCTAssertEqual(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1948440)
 		// From Meeus
-		XCTAssertEqual(IslamicCalendar.dateToJulianDayNumber(year: 1421, month: 1, day: 1), 2451641)
+		XCTAssertEqual(IslamicCalendar.julianDayNumberFrom(year: 1421, month: 1, day: 1), 2451641)
 	}
 
 	func testLimits() {
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -352418227.5)
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -33488227.5)
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1595227.5)
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 9999, month: 12, day: 29), 5491750.5)
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 99999, month: 12, day: 29), 37384750.5)
-		XCTAssertEqual(IslamicCalendar.dateToJulianDate(year: 999999, month: 12, day: 29), 356314750.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -352418227.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -33488227.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -1595227.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: 9999, month: 12, day: 29), 5491750.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: 99999, month: 12, day: 29), 37384750.5)
+		XCTAssertEqual(IslamicCalendar.julianDateFrom(year: 999999, month: 12, day: 29), 356314750.5)
 
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(-352418227.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(-33488227.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(-1595227.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(5491750.5) == (9999, 12, 29, 0, 0, 0))
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(37384750.5) == (99999, 12, 29, 0, 0, 0))
-		XCTAssertTrue(IslamicCalendar.julianDateToDate(356314750.5) == (999999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(-352418227.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(-33488227.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(-1595227.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(5491750.5) == (9999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(37384750.5) == (99999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(IslamicCalendar.dateAndTimeFromJulianDate(356314750.5) == (999999, 12, 29, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let smallestJDNForIslamicCalendar = -9223372036854775352
-		(Y, M, D) = IslamicCalendar.julianDayNumberToDate(smallestJDNForIslamicCalendar)
-		var jdn = IslamicCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(smallestJDNForIslamicCalendar)
+		var jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForIslamicCalendar = 307445734561818195
-		(Y, M, D) = IslamicCalendar.julianDayNumberToDate(largestJDNForIslamicCalendar)
-		jdn = IslamicCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
+		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let smallestJDForIslamicCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(smallestJDForIslamicCalendar)
-		var jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = IslamicCalendar.dateAndTimeFromJulianDate(smallestJDForIslamicCalendar)
+		var jd = IslamicCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForIslamicCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in julianDateToDate
+		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let largestJDForIslamicCalendar = 0x1.1111111111099p+58
-		(Y, M, D, h, m, s) = IslamicCalendar.julianDateToDate(largestJDForIslamicCalendar)
-		jd = IslamicCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = IslamicCalendar.dateAndTimeFromJulianDate(largestJDForIslamicCalendar)
+		jd = IslamicCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDForIslamicCalendar, jd)
 	}
 }

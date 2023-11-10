@@ -36,7 +36,7 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 1. Calculate the Julian date for the total solar eclipse on 1919-05-29.
 
 ```swift
-let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
+let jd = AstronomicalCalendar.julianDateFrom(year: 1919, month: 5, day: 29)
 // 2422107.5
 ```
 
@@ -53,8 +53,8 @@ let d = Date(julianDate: 2422107.5)
 3. Convert the Gregorian calendar date 2013-10-31 to a date in the Julian calendar.
 
 ```swift
-let j = GregorianCalendar.dateToJulianDayNumber(year: 2013, month: 10, day: 31)
-let julianYMD = JulianCalendar.julianDayNumberToDate(j)
+let j = GregorianCalendar.julianDayNumberFrom(year: 2013, month: 10, day: 31)
+let julianYMD = JulianCalendar.dateFromJulianDayNumber(j)
 // (year: 2013, month: 10, day: 18)
 ```
 
@@ -66,7 +66,7 @@ The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/
 
 ### Julian Day Numbers
 
-The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
+The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `dateFromJulianDayNumber`.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
@@ -85,7 +85,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
  
 ### Julian Dates
 
-The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
+The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow in `dateAndTimeFromJulianDate`.
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
