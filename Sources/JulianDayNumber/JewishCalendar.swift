@@ -79,7 +79,7 @@ public struct JewishCalendar {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = -Y / jewishCalendarCycleYears + 1
+			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
@@ -141,7 +141,7 @@ public struct JewishCalendar {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = -Y / jewishCalendarCycleYears + 1
+			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
