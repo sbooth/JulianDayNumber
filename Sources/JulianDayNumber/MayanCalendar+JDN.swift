@@ -121,7 +121,7 @@ extension MayanCalendar {
 	/// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
 	public enum TzolkinDayName: Int {
 		/// Imix
-		case imix = 0
+		case imix = 1
 		/// Ik'
 		case ik
 		/// Akʼbʼal
@@ -167,7 +167,7 @@ extension MayanCalendar {
 	/// - seealso: [Haab'](https://en.wikipedia.org/wiki/Haabʼ)
 	public enum HaabMonth: Int {
 		/// Pop
-		case pop = 0
+		case pop = 1
 		/// Woʼ
 		case uo
 		/// Sip
@@ -222,6 +222,6 @@ extension MayanCalendar {
 		let (number, name) = (T % 13 + 1, T % 20)
 		let (month, day) = (H % 365).quotientAndRemainder(dividingBy: 20)
 
-		return (number, TzolkinDayName(rawValue: name)!, day, HaabMonth(rawValue: month)!)
+		return (number, TzolkinDayName(rawValue: name + 1)!, day, HaabMonth(rawValue: month + 1)!)
 	}
 }
