@@ -206,16 +206,16 @@ extension MayanCalendar {
 		case uayeb
 	}
 
-	/// Converts a Julian day number to a round date in the Mayan calendar.
+	/// Converts a Julian day number to a Calendar Round in the Mayan calendar.
 	///
-	/// A Mayan round date consists of a two distinct dates:
+	/// A Calendar Round consists of a two distinct dates:
 	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name
-	/// - A Haab' comprised of a day in the interval `[0, 19]` and a month.
+	/// - A Haab' date comprised of a day in the interval `[0, 19]` and a month.
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: A round date corresponding to the specified Julian day number.
-	public static func roundDateFromJulianDayNumber(_ J: JulianDayNumber) -> (number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) {
+	/// - returns: A Calendar Round corresponding to the specified Julian day number.
+	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) {
 		let T = J - tzolkinEpochJulianDayNumber
 		let H = J - haabEpochJulianDayNumber
 

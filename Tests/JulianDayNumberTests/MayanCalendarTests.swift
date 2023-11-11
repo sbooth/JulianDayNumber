@@ -33,7 +33,7 @@ final class MayanCalendarTests: XCTestCase {
 	}
 
 	func testRoundDate() {
-		XCTAssertTrue(MayanCalendar.roundDateFromJulianDayNumber(MayanCalendar.longCountEpochJulianDayNumber) == (4, .ahau, 8, .cumku))
-		XCTAssertTrue(MayanCalendar.roundDateFromJulianDayNumber(2460260) == (3, .caban, 5, .ceh))
+		XCTAssertTrue(MayanCalendar.calendarRoundFromJulianDayNumber(MayanCalendar.longCountEpochJulianDayNumber) == (4, .ahau, 8, .cumku))
+		XCTAssertTrue(MayanCalendar.calendarRoundFromJulianDayNumber(2460260) == (3, .caban, 5, .ceh))
 	}
 }
