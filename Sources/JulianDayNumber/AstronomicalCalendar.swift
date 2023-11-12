@@ -34,7 +34,7 @@ public struct AstronomicalCalendar {
 	/// - parameter date: A date to convert consisting of a year number, a month number between `1` (January) and `12` (December), and a day number between `1` and the maximum number of days in the specified month and year.
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
-	public static func isJulian(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isJulian(year Y: Year, month M: Month, day D: Day) -> Bool {
 		(Y, M, D) < gregorianCalendarEffectiveDate
 	}
 
@@ -66,7 +66,7 @@ public struct AstronomicalCalendar {
 	}
 
 	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static let monthsInYear = JulianCalendar.monthsInYear
 
 	/// Returns the number of days in the specified month and year in the astromical calendar.
 	///
@@ -83,7 +83,7 @@ public struct AstronomicalCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The month and day of Easter in the specified year.
-	public static func easter(year Y: Year) -> (month: Int, day: Int) {
+	public static func easter(year Y: Year) -> (month: Month, day: Day) {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
 	}
 }
