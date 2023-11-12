@@ -26,6 +26,19 @@ let calabtunPerKinchiltun = 20
 let kinchiltunPerAlautun = 20
 
 extension MayanCalendar: JulianDayNumberConverting {
+	/// A long count in the Mayan calendar.
+	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		longCountFromJulianDayNumber(J)
+	}
+}
+
+extension MayanCalendar {
 	/// A kin is one day and is numbered from `0` to `19`.
 	public typealias Kin = Int
 	/// A uinal is 20 kin and is numbered from `0` to `19`.
@@ -45,31 +58,6 @@ extension MayanCalendar: JulianDayNumberConverting {
 	/// An alautun is 20 kinchiltun and is numbered from `0` to `19`.
 	public typealias Alautun = Int
 
-	/// A long count in the Mayan calendar.
-	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
-
-	/// Converts a long count in the Mayan calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the cycle values.
-	///
-	/// - parameter longCount: A long count to convert.
-	///
-	/// - returns: The Julian day number corresponding to the specified long count.
-	public static func julianDayNumberFromDate(_ longCount: DateType) -> JulianDayNumber {
-		julianDayNumberFromLongCount(baktun: longCount.baktun, katun: longCount.katun, tun: longCount.tun, uinal: longCount.uinal, kin: longCount.kin)
-	}
-
-	/// Converts a Julian day number to a long count in the Mayan calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The long count corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		longCountFromJulianDayNumber(J)
-	}
-}
-
-extension MayanCalendar {
 	/// Converts a Julian day number to a long count in the Mayan calendar.
 	///
 	/// - parameter J: A Julian day number.
