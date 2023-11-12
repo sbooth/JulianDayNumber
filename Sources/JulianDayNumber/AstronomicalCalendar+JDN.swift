@@ -17,7 +17,6 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 	/// - important: No validation checks are performed on the date values.
 	///
 	/// - parameter date: A date to convert.
-	/// - parameter date: A date to convert consisting of a year number, a month number between `1` (January) and `12` (December), and a day number between `1` and the maximum number of days in the specified month and year.
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
