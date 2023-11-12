@@ -14,9 +14,10 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Jewish](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/jewishcalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
+- Mayan
 - [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
-The JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+Most of the JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
 The JDN algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all valid Julian day numbers in the years -999,999 to +999,999.
 
@@ -66,7 +67,7 @@ The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/
 
 ### Julian Day Numbers
 
-The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow in `julianDayNumberToDate`.
+The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
@@ -79,13 +80,15 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 | Islamic | -9223372036854775352 | 307445734561818195 |
 | Jewish | -9223372036747815981 ¹ | 355839970905570 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
+| Mayan Long Count | -9223372036854191525 ² | Int.max |
 | Śaka | -9223372036854719351 | 2305795661307959298 |
 
 ¹ The smallest round-trippable JDN for the Jewish calendar is -9223372036747815627.
- 
+² The smallest round-trippable JDN for the Mayan Long Count is -9223372036854191517.
+
 ### Julian Dates
 
-The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow in `julianDateToDate`.
+The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow.
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |

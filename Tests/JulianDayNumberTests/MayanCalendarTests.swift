@@ -62,4 +62,22 @@ final class MayanCalendarTests: XCTestCase {
 		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(37083918) == (253, 9, 7, 15, 15))
 		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(365583918) == (2534, 14, 7, 15, 15))
 	}
+
+	func testArithmeticLimits() {
+		var b, k, t, u, d: Int
+
+		// Values smaller than this cause an arithmetic overflow in longCountFromJulianDayNumber
+//		let smallestJDNForMayanCalendar = -9223372036854191525
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFromLongCount
+		let smallestJDNForMayanCalendar = -9223372036854191517
+		(b, k, t, u, d) = MayanCalendar.longCountFromJulianDayNumber(smallestJDNForMayanCalendar)
+		var jdn = MayanCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
+		XCTAssertEqual(smallestJDNForMayanCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in longCountFromJulianDayNumber
+		let largestJDNForMayanCalendar = Int.max
+		(b, k, t, u, d) = MayanCalendar.longCountFromJulianDayNumber(largestJDNForMayanCalendar)
+		jdn = MayanCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
+		XCTAssertEqual(largestJDNForMayanCalendar, jdn)
+	}
 }
