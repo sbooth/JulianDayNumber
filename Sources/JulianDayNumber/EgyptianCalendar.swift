@@ -43,7 +43,7 @@ public struct EgyptianCalendar {
 	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month.
-	public static func daysInMonth(month M: Int) -> Int {
+	public static func daysInMonth(month M: Month) -> Int {
 		guard M > 0, M <= 13 else {
 			return 0
 		}
