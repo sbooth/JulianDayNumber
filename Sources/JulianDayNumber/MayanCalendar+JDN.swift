@@ -109,11 +109,13 @@ extension MayanCalendar {
 	/// The Julian day number of the start of the Tzolk’in cycle of the Mayan calendar.
 	///
 	/// The Tzolk’in cycle began 159 days before the long count epoch.
+	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
 	static let tzolkinEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 159
 
-	/// The Julian day number of the start of the Haab cycle of the Mayan calendar.
+	/// The Julian day number of the start of the Haabʼ cycle of the Mayan calendar.
 	///
-	/// The Haab cycle began 348 days before the long count epoch.
+	/// The Haabʼ cycle began 348 days before the long count epoch.
+	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
 	static let haabEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 348
 
 	/// A Tzolk'in day name.
@@ -122,7 +124,7 @@ extension MayanCalendar {
 	public enum TzolkinDayName: Int {
 		/// Imix
 		case imix = 1
-		/// Ik'
+		/// Ikʼ
 		case ik
 		/// Akʼbʼal
 		case akbal
@@ -162,9 +164,9 @@ extension MayanCalendar {
 		case ahau
 	}
 
-	/// A Haab' month.
+	/// A Haabʼ month.
 	///
-	/// - seealso: [Haab'](https://en.wikipedia.org/wiki/Haabʼ)
+	/// - seealso: [Haabʼ](https://en.wikipedia.org/wiki/Haabʼ)
 	public enum HaabMonth: Int {
 		/// Pop
 		case pop = 1
@@ -208,13 +210,17 @@ extension MayanCalendar {
 
 	/// Converts a Julian day number to a Calendar Round in the Mayan calendar.
 	///
-	/// A Calendar Round consists of a two distinct dates:
-	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name
-	/// - A Haab' date comprised of a day in the interval `[0, 19]` and a month.
+	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
+	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
+	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	///
+	/// - note: A Calendar Round corresponding to a Julian day number
+	/// can also be represented by the same Julian day number with multiples
+	/// of 18,980 days added or subtracted.
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: A Calendar Round corresponding to the specified Julian day number.
+	/// - returns: The Calendar Round corresponding to the specified Julian day number.
 	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) {
 		let T = J - tzolkinEpochJulianDayNumber
 		let H = J - haabEpochJulianDayNumber
@@ -223,5 +229,72 @@ extension MayanCalendar {
 		let (month, day) = (H % 365).quotientAndRemainder(dividingBy: 20)
 
 		return (number, TzolkinDayName(rawValue: name + 1)!, day, HaabMonth(rawValue: month + 1)!)
+	}
+
+	/// Returns the most recent Julian day number for a Calendar Round in the Mayan calendar occurring before a Julian day number.
+	///
+	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
+	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
+	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	///
+	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
+	///
+	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter name: A Tzolkʼin name.
+	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter month: A Haabʼ month.
+	/// - parameter J0: A Julian day number to anchor the Calendar Round.
+	///
+	/// - returns: The most recent Julian day number corresponding to the specified Calendar Round occurring before the specified Julian day number or `nil` if none.
+	public static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth, before J0: JulianDayNumber) -> JulianDayNumber? {
+		guard let J = julianDayNumberFromCalendarRound(number: number, name: name, day: day, month: month) else {
+			return nil
+		}
+		return J0 + (J - J0) % 18980 - 18980
+	}
+
+	/// Returns the least recent Julian day number for a Calendar Round in the Mayan calendar occurring on or after a Julian day number.
+	///
+	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
+	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
+	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	///
+	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
+	///
+	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter name: A Tzolkʼin name.
+	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter month: A Haabʼ month.
+	/// - parameter J0: A Julian day number to anchor the Calendar Round.
+	///
+	/// - returns: The least recent Julian day number corresponding to the specified Calendar Round occurring on or after the specified Julian day number or `nil` if none.
+	public static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth, onOrAfter J0: JulianDayNumber = longCountEpochJulianDayNumber) -> JulianDayNumber? {
+		guard let J = julianDayNumberFromCalendarRound(number: number, name: name, day: day, month: month) else {
+			return nil
+		}
+		return J0 - (J0 - J) % 18980 //+ 18980
+	}
+
+	/// Returns a possible Julian day number for a Calendar Round in the Mayan calendar.
+	///
+	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter name: A Tzolkʼin name.
+	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter month: A Haabʼ month.
+	///
+	/// - returns: A possible Julian day number corresponding to the specified Calendar Round or `nil` if none.
+	static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) -> JulianDayNumber? {
+		// The number of days into the Tzolkʼin cycle
+		let T = (40 * number + 221 * name.rawValue - 1) % 260
+
+		// The number of days into the Haabʼ cycle
+		let H = 20 * (month.rawValue - 1) + day
+
+		// Not all combinations of H and T are valid
+		guard (H - T) % 5 == 4 else {
+			return nil
+		}
+
+		return (365 * T - 364 * H + 7600) % 18980
 	}
 }
