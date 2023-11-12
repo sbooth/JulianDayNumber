@@ -181,75 +181,75 @@ final class JewishCalendarTests: XCTestCase {
 	}
 
 	func testJulianDayNumber() {
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: -999999, month: 1, day: 1), -364898823)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: -99999, month: 1, day: 1), -36176711)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: -9999, month: 1, day: 1), -3304494)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: 9999, month: 12, day: 29), 4000075)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: 99999, month: 12, day: 29), 36872292)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: 999999, month: 12, day: 29), 365594434)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: 2000, month: 1, day: 1), 1078112)
-		XCTAssertEqual(JewishCalendar.dateToJulianDayNumber(year: -5000, month: 1, day: 1), -1478617)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: -999999, month: 1, day: 1), -364898823)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: -99999, month: 1, day: 1), -36176711)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: -9999, month: 1, day: 1), -3304494)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: 9999, month: 12, day: 29), 4000075)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: 99999, month: 12, day: 29), 36872292)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: 999999, month: 12, day: 29), 365594434)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: 2000, month: 1, day: 1), 1078112)
+		XCTAssertEqual(JewishCalendar.julianDayNumberFrom(year: -5000, month: 1, day: 1), -1478617)
 
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(-364898823) == (-999999, 1, 1))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(-36176711) == (-99999, 1, 1))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(-3304494) == (-9999, 1, 1))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(4000075) == (9999, 12, 29))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(36872292) == (99999, 12, 29))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(365594434) == (999999, 12, 29))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(0) == (-952, 4, 20))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(1078112) == (2000, 1, 1))
-		XCTAssertTrue(JewishCalendar.julianDayNumberToDate(-1478617) == (-5000, 1, 1))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(-364898823) == (-999999, 1, 1))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(-36176711) == (-99999, 1, 1))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(-3304494) == (-9999, 1, 1))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(4000075) == (9999, 12, 29))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(36872292) == (99999, 12, 29))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(365594434) == (999999, 12, 29))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(0) == (-952, 4, 20))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(1078112) == (2000, 1, 1))
+		XCTAssertTrue(JewishCalendar.dateFromJulianDayNumber(-1478617) == (-5000, 1, 1))
 	}
 
 	func testLimits() {
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -364898823.5)
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -36176711.5)
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -3304494.5)
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: 9999, month: 12, day: 29), 4000074.5)
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: 99999, month: 12, day: 29), 36872291.5)
-		XCTAssertEqual(JewishCalendar.dateToJulianDate(year: 999999, month: 12, day: 29), 365594433.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -364898823.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -36176711.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -3304494.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: 9999, month: 12, day: 29), 4000074.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: 99999, month: 12, day: 29), 36872291.5)
+		XCTAssertEqual(JewishCalendar.julianDateFrom(year: 999999, month: 12, day: 29), 365594433.5)
 
-		XCTAssertTrue(JewishCalendar.julianDateToDate(-364898823.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(JewishCalendar.julianDateToDate(-36176711.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(JewishCalendar.julianDateToDate(-3304494.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(JewishCalendar.julianDateToDate(4000074.5) == (9999, 12, 29, 0, 0, 0))
-		XCTAssertTrue(JewishCalendar.julianDateToDate(36872291.5) == (99999, 12, 29, 0, 0, 0))
-		XCTAssertTrue(JewishCalendar.julianDateToDate(365594433.5) == (999999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(-364898823.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(-36176711.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(-3304494.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(4000074.5) == (9999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(36872291.5) == (99999, 12, 29, 0, 0, 0))
+		XCTAssertTrue(JewishCalendar.dateAndTimeFromJulianDate(365594433.5) == (999999, 12, 29, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 //		let smallestJDNForJewishCalendar = -9223372036747815981
 		// JDN -9223372036747815627 equals date (-25252436095246078-01-01) which is the smallest round-trippable value
-		// Values smaller than this cause an arithmetic overflow in dateToJulianDayNumber
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
 		let smallestJDNForJewishCalendar = -9223372036747815627
-		(Y, M, D) = JewishCalendar.julianDayNumberToDate(smallestJDNForJewishCalendar)
-		var jdn = JewishCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = JewishCalendar.dateFromJulianDayNumber(smallestJDNForJewishCalendar)
+		var jdn = JewishCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForJewishCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		
 		let largestJDNForJewishCalendar = 355839970905570
-		(Y, M, D) = JewishCalendar.julianDayNumberToDate(largestJDNForJewishCalendar)
-		jdn = JewishCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = JewishCalendar.dateFromJulianDayNumber(largestJDNForJewishCalendar)
+		jdn = JewishCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForJewishCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 //		let smallestJDForJewishCalendar = -0x1.ffffffffe67fbp+62
 		// JD -0x1.ffffffffe67fap+62 equals date (-25252436095246077-13-07 00:00:00) which is the smallest round-trippable value
-		// Values smaller than this cause an arithmetic overflow in dateToJulianDate
+		// Values smaller than this cause an arithmetic overflow in julianDateFrom
 		let smallestJDForJewishCalendar = -0x1.ffffffffe67fap+62
-		(Y, M, D, h, m, s) = JewishCalendar.julianDateToDate(smallestJDForJewishCalendar)
-		var jd = JewishCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = JewishCalendar.dateAndTimeFromJulianDate(smallestJDForJewishCalendar)
+		var jd = JewishCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForJewishCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in julianDateToDate
+		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let largestJDForJewishCalendar = 0x1.43a273100de27p+48
-		(Y, M, D, h, m, s) = JewishCalendar.julianDateToDate(largestJDForJewishCalendar)
-		jd = JewishCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = JewishCalendar.dateAndTimeFromJulianDate(largestJDForJewishCalendar)
+		jd = JewishCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDForJewishCalendar, jd)
 	}
 }
