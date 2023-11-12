@@ -32,8 +32,13 @@ final class MayanCalendarTests: XCTestCase {
 		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: -1, kin: 19), MayanCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: -1, uinal: 17, kin: 19))
 	}
 
-	func testRoundDate() {
+	func testCalendarRound() {
 		XCTAssertTrue(MayanCalendar.calendarRoundFromJulianDayNumber(MayanCalendar.longCountEpochJulianDayNumber) == (4, .ahau, 8, .cumku))
 		XCTAssertTrue(MayanCalendar.calendarRoundFromJulianDayNumber(2460260) == (3, .caban, 5, .ceh))
+
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromCalendarRound(number: 4, name: .ahau, day: 8, month: .cumku, onOrAfter: MayanCalendar.longCountEpochJulianDayNumber), MayanCalendar.longCountEpochJulianDayNumber)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromCalendarRound(number: 4, name: .ahau, day: 8, month: .cumku, before: MayanCalendar.longCountEpochJulianDayNumber), MayanCalendar.longCountEpochJulianDayNumber - 18980)
+
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromCalendarRound(number: 1, name: .akbal, day: 10, month: .uayeb), nil)
 	}
 }
