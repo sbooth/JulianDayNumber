@@ -37,6 +37,8 @@ public struct JulianCalendar {
 	public static let epochJulianDate: JulianDate = 1721423.5
 
 	/// A year in the Julian calendar.
+	///
+	/// - important: The year preceding AD 1, commonly referred to as 1 BC, is year `0`.
 	public typealias Year = Int
 
 	/// A month in the Julian calendar numbered from `1` (January) to `12` (December).
