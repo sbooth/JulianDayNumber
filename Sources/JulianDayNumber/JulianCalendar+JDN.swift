@@ -28,7 +28,7 @@ extension JulianCalendar: JulianDayNumberConverting {
 	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func dateToJulianDayNumber(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
+	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
 		var Y = Y
 		var ΔcalendarCycles = 0
 
@@ -60,7 +60,7 @@ extension JulianCalendar: JulianDayNumberConverting {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func julianDayNumberToDate(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
 		var J = J
 		var ΔcalendarCycles = 0
 

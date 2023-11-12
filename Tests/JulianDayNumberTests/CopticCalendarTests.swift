@@ -24,8 +24,8 @@ final class CopticCalendarTests: XCTestCase {
 
 		for y in -500...500 {
 			let isLeap = CopticCalendar.isLeapYear(y)
-			let j = CopticCalendar.dateToJulianDayNumber(year: y, month: 13, day: isLeap ? 6 : 5)
-			let d = CopticCalendar.julianDayNumberToDate(j)
+			let j = CopticCalendar.julianDayNumberFrom(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = CopticCalendar.dateFromJulianDayNumber(j)
 			XCTAssertEqual(d.month, 13)
 			XCTAssertEqual(d.day, isLeap ? 6 : 5)
 		}
@@ -53,52 +53,52 @@ final class CopticCalendarTests: XCTestCase {
 	}
 
 	func testJulianDayNumber() {
-		XCTAssertEqual(CopticCalendar.dateToJulianDayNumber(year: 1, month: 1, day: 1), 1825030)
-		XCTAssertTrue(CopticCalendar.julianDayNumberToDate(1825030) == (1, 1, 1))
+		XCTAssertEqual(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1825030)
+		XCTAssertTrue(CopticCalendar.dateFromJulianDayNumber(1825030) == (1, 1, 1))
 	}
 
 	func testLimits() {
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -999999, month: 1, day: 1), -363424970.5)
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -99999, month: 1, day: 1), -34699970.5)
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: -9999, month: 1, day: 1), -1827470.5)
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 9999, month: 13, day: 5), 5477162.5)
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 99999, month: 13, day: 5), 38349662.5)
-		XCTAssertEqual(CopticCalendar.dateToJulianDate(year: 999999, month: 13, day: 5), 367074662.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -363424970.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -34699970.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -1827470.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: 9999, month: 13, day: 5), 5477162.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: 99999, month: 13, day: 5), 38349662.5)
+		XCTAssertEqual(CopticCalendar.julianDateFrom(year: 999999, month: 13, day: 5), 367074662.5)
 
-		XCTAssertTrue(CopticCalendar.julianDateToDate(-363424970.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(CopticCalendar.julianDateToDate(-34699970.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(CopticCalendar.julianDateToDate(-1827470.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(CopticCalendar.julianDateToDate(5477162.5) == (9999, 13, 5, 0, 0, 0))
-		XCTAssertTrue(CopticCalendar.julianDateToDate(38349662.5) == (99999, 13, 5, 0, 0, 0))
-		XCTAssertTrue(CopticCalendar.julianDateToDate(367074662.5) == (999999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(-363424970.5) == (-999999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(-34699970.5) == (-99999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(-1827470.5) == (-9999, 1, 1, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(5477162.5) == (9999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(38349662.5) == (99999, 13, 5, 0, 0, 0))
+		XCTAssertTrue(CopticCalendar.dateAndTimeFromJulianDate(367074662.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
 	func testArithmeticLimits() {
 		var Y, M, D, h, m: Int
 		var s: Double
 
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let smallestJDNForCopticCalendar = -9223372036854775664
-		(Y, M, D) = CopticCalendar.julianDayNumberToDate(smallestJDNForCopticCalendar)
-		var jdn = CopticCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(smallestJDNForCopticCalendar)
+		var jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForCopticCalendar, jdn)
 
-		// Values larger than this cause an arithmetic overflow in julianDayNumberToDate
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForCopticCalendar = 2305843009213693827
-		(Y, M, D) = CopticCalendar.julianDayNumberToDate(largestJDNForCopticCalendar)
-		jdn = CopticCalendar.dateToJulianDayNumber(year: Y, month: M, day: D)
+		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(largestJDNForCopticCalendar)
+		jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForCopticCalendar, jdn)
 
-		// Values smaller than this cause an arithmetic overflow in julianDateToDate
+		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let smallestJDForCopticCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = CopticCalendar.julianDateToDate(smallestJDForCopticCalendar)
-		var jd = CopticCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = CopticCalendar.dateAndTimeFromJulianDate(smallestJDForCopticCalendar)
+		var jd = CopticCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(smallestJDForCopticCalendar, jd)
 
-		// Values larger than this cause an arithmetic overflow in julianDateToDate
+		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
 		let largestJDForCopticCalendar = 0x1.fffffffffffffp+60
-		(Y, M, D, h, m, s) = CopticCalendar.julianDateToDate(largestJDForCopticCalendar)
-		jd = CopticCalendar.dateToJulianDate(year: Y, month: M, day: D, hour: h, minute: m, second: s)
+		(Y, M, D, h, m, s) = CopticCalendar.dateAndTimeFromJulianDate(largestJDForCopticCalendar)
+		jd = CopticCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
 		XCTAssertEqual(largestJDForCopticCalendar, jd)
 	}
 }

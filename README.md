@@ -37,7 +37,7 @@ Add a package dependency to https://github.com/sbooth/JulianDayNumber in Xcode.
 1. Calculate the Julian date for the total solar eclipse on 1919-05-29.
 
 ```swift
-let jd = AstronomicalCalendar.dateToJulianDate(year: 1919, month: 5, day: 29)
+let jd = AstronomicalCalendar.julianDateFrom(year: 1919, month: 5, day: 29)
 // 2422107.5
 ```
 
@@ -54,8 +54,8 @@ let d = Date(julianDate: 2422107.5)
 3. Convert the Gregorian calendar date 2013-10-31 to a date in the Julian calendar.
 
 ```swift
-let j = GregorianCalendar.dateToJulianDayNumber(year: 2013, month: 10, day: 31)
-let julianYMD = JulianCalendar.julianDayNumberToDate(j)
+let j = GregorianCalendar.julianDayNumberFrom(year: 2013, month: 10, day: 31)
+let julianYMD = JulianCalendar.dateFromJulianDayNumber(j)
 // (year: 2013, month: 10, day: 18)
 ```
 

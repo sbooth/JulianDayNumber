@@ -27,8 +27,8 @@ extension JulianDayNumberConverting {
 	/// - parameter s: A second number between `0` and `59`.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, day, hour, minute, and second.
-	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> JulianDate {
-		dateToJulianDate(year: Y, month: M, day: Double(D) + timeToFractionalDay(hour: h, minute: m, second: s))
+	public static func julianDateFrom(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> JulianDate {
+		julianDateFrom(year: Y, month: M, day: Double(D) + fractionalDayFrom(hour: h, minute: m, second: s))
 	}
 
 	/// Converts the specified year, month, and decimal day to a Julian date and returns the result.
@@ -40,9 +40,9 @@ extension JulianDayNumberConverting {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, and decimal day.
-	public static func dateToJulianDate(year Y: Int, month M: Int, day D: Double) -> JulianDate {
+	public static func julianDateFrom(year Y: Int, month M: Int, day D: Double) -> JulianDate {
 		let (day, dayFraction) = modf(D)
-		return Double(dateToJulianDayNumber(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
+		return Double(julianDayNumberFrom(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 	}
 
 	/// Converts the specified Julian date to a year, month, day, hour, minute, and second and returns the result.
@@ -50,15 +50,15 @@ extension JulianDayNumberConverting {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
-	public static func julianDateToDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
+	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
 		let julianDatePlus12Hours = julianDate + 0.5
 		let J = Int(julianDatePlus12Hours.rounded(.down))
-		let (Y, M, D) = julianDayNumberToDate(J)
+		let (Y, M, D) = dateFromJulianDayNumber(J)
 		var (_, dayFraction) = modf(julianDatePlus12Hours)
 		if dayFraction < 0 {
 			dayFraction += 1
 		}
-		let (h, m, s) = fractionalDayToTime(dayFraction)
+		let (h, m, s) = timeFromFractionalDay(dayFraction)
 		return (Y, M, D, h, m, s)
 	}
 }
@@ -74,7 +74,7 @@ extension JulianDayNumberConverting {
 /// - parameter s: A second number between `0` and `59`.
 ///
 /// - returns: The decimal fractional day for the specified hour, minute, and second.
-func timeToFractionalDay(hour h: Int, minute m: Int, second s: Double) -> Double {
+func fractionalDayFrom(hour h: Int, minute m: Int, second s: Double) -> Double {
 	(Double(h) / 24) + (Double(m) / 1440) + (s / 86400)
 }
 
@@ -85,7 +85,7 @@ func timeToFractionalDay(hour h: Int, minute m: Int, second s: Double) -> Double
 /// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
 ///
 /// - returns: The hour, minute, and second for the specified decimal fractional day.
-func fractionalDayToTime(_ fractionalDay: Double) -> (hour: Int, minute: Int, second: Double) {
+func timeFromFractionalDay(_ fractionalDay: Double) -> (hour: Int, minute: Int, second: Double) {
 	let (hour, hourFraction) = modf(fractionalDay * 24)
 	let (minute, minuteFraction) = modf(hourFraction * 60)
 	let second = minuteFraction * 60
