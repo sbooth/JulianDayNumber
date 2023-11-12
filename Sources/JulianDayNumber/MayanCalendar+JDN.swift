@@ -34,16 +34,21 @@ extension MayanCalendar {
 	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Int, kinchiltun: Int, calabtun: Int, pictun: Int, */baktun: Int, katun: Int, tun: Int, uinal: Int, kin: Int) {
 		let L = J - longCountEpochJulianDayNumber
 
-		var alautun, kinchiltun, calabtun, pictun, baktun, katun, tun, uinal, kin: Int
+#if false
+		var alautun, kinchiltun, calabtun, pictun: Int
+#endif
+		var baktun, katun, tun, uinal, kin: Int
 
 		(uinal, kin) = L.quotientAndRemainder(dividingBy: kinPerUinal)
 		(tun, uinal) = uinal.quotientAndRemainder(dividingBy: uinalPerTun)
 		(katun, tun) = tun.quotientAndRemainder(dividingBy: tunPerKatun)
 		(baktun, katun) = katun.quotientAndRemainder(dividingBy: katunPerBaktun)
+#if false
 		(pictun, baktun) = baktun.quotientAndRemainder(dividingBy: baktunPerPictun)
 		(calabtun, pictun) = pictun.quotientAndRemainder(dividingBy: pictunPerCalabtun)
 		(kinchiltun, calabtun) = calabtun.quotientAndRemainder(dividingBy: calabtunPerKinchiltun)
 		(alautun, kinchiltun) = kinchiltun.quotientAndRemainder(dividingBy: kinchiltunPerAlautun)
+#endif
 
 		if L < 0 {
 			if kin < 0 {
