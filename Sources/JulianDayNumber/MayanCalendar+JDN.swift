@@ -298,3 +298,15 @@ extension MayanCalendar {
 		return (365 * T - 364 * H + 7600) % 18980
 	}
 }
+
+extension MayanCalendar {
+	/// Returns the Lord of the Night for the given uinal and kin.
+	///
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
+	///
+	/// - returns: The Lord of the Night corresponding to the specified uinal and kin.
+	public static func lordOfTheNightFrom(uinal: Int, kin: Int) -> Int {
+		(20 * uinal + kin + 8) % 9 + 1
+	}
+}

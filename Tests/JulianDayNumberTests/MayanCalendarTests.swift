@@ -41,4 +41,9 @@ final class MayanCalendarTests: XCTestCase {
 
 		XCTAssertEqual(MayanCalendar.julianDayNumberFromCalendarRound(number: 1, name: .akbal, day: 10, month: .uayeb), nil)
 	}
+
+	func testLordOfTheNight() {
+		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 0, kin: 7), 7)
+		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 17, kin: 19), 8)
+	}
 }
