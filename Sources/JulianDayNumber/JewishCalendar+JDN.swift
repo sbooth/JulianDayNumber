@@ -66,17 +66,11 @@ extension JewishCalendar {
 }
 
 extension JewishCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the Jewish calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the date values.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Tishri) and `12` (Elul) for common years and `1` (Tishri) and `13` (Elul) for leap years.
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		var Y = Y
+	/// A date in the Jewish calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
@@ -87,7 +81,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		let a = firstDayOfTishri(year: Y)
 		let b = firstDayOfTishri(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
-		var J = a + A[K - 1][M - 1] + D - 1
+		var J = a + A[K - 1][date.month - 1] + date.day - 1
 
 		if ΔcalendarCycles > 0 {
 			J -= ΔcalendarCycles * jewishCalendarCycleDays
@@ -96,12 +90,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		return J
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the Jewish calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		var J = J
 		var ΔcalendarCycles = 0
 

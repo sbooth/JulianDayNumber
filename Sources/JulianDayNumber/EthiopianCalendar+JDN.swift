@@ -19,33 +19,23 @@ let ethiopianCalendarCycleYears = 4
 let ethiopianCalendarCycleDays = 1461
 
 extension EthiopianCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the Ethiopian calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the date values.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Mäskäräm) and `13` (Ṗagumen).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		var Y = Y
+	/// A date in the Ethiopian calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// Richards' algorithm is only valid for positive JDNs.
 		// JDN 0 is -4720-05-05 in the Ethiopian calendar.
-		// Adjust the year of earlier dates forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
-		if Y < -4720 || (Y == -4720 && (M < 5 || (M == 5 && D < 5))) {
+		if date < (-4720, 5, 5) {
 			ΔcalendarCycles = (-4721 - Y) / ethiopianCalendarCycleYears + 1
 			Y += ΔcalendarCycles * ethiopianCalendarCycleYears
 		}
 
-		let h = M - m
+		let h = date.month - m
 		let g = Y + y - (n - h) / n
 		let f = (h - 1 + n) % n
-		let e = (p * g + q) / r + D - 1 - j
+		let e = (p * g + q) / r + date.day - 1 - j
 		var J = e + (s * f + t) / u
 
 		if ΔcalendarCycles > 0 {
@@ -55,19 +45,11 @@ extension EthiopianCalendar: JulianDayNumberConverting {
 		return J
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the Ethiopian calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		var J = J
 		var ΔcalendarCycles = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
-		// Adjust negative JDNs forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
 		if J < 0 {
 			ΔcalendarCycles = -J / ethiopianCalendarCycleDays + 1
 			J += ΔcalendarCycles * ethiopianCalendarCycleDays

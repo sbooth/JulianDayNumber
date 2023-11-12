@@ -9,24 +9,29 @@ import Foundation
 /// A hybrid calendar that uses the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
 public struct AstronomicalCalendar {
 	/// The year, month, and day when the Gregorian calendar took effect.
-	static let gregorianCalendarEffectiveDate = (year: 1582, month: 10, day: 15)
+	static let gregorianCalendarEffectiveDate: DateType = (year: 1582, month: 10, day: 15)
+
+	/// A year in the astromical calendar.
+	public typealias Year = JulianCalendar.Year
+
+	/// A month in the astromical calendar numbered from `1` (January) to `12` (December).
+	public typealias Month = JulianCalendar.Month
+
+	/// A day in the astromical calendar numbered starting from `1`.
+	public typealias Day = JulianCalendar.Day
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the astromical calendar.
 	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter date: A date to convert.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
-	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		(Y, M, D) < gregorianCalendarEffectiveDate ? JulianCalendar.isDateValid(year: Y, month: M, day: D) : GregorianCalendar.isDateValid(year: Y, month: M, day: D)
 	}
 
 	/// Returns `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
 	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter date: A date to convert consisting of a year number, a month number between `1` (January) and `12` (December), and a day number between `1` and the maximum number of days in the specified month and year.
 	///
 	/// - returns: `true` if the specified year, month, and day occurred before the Gregorian calendar took effect.
 	public static func isJulian(year Y: Int, month M: Int, day D: Int) -> Bool {
@@ -56,7 +61,7 @@ public struct AstronomicalCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the astromical calendar.
-	public static func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Year) -> Bool {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
@@ -66,10 +71,10 @@ public struct AstronomicalCalendar {
 	/// Returns the number of days in the specified month and year in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
+	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
 	}
 
@@ -78,7 +83,7 @@ public struct AstronomicalCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The month and day of Easter in the specified year.
-	public static func easter(year Y: Int) -> (month: Int, day: Int) {
+	public static func easter(year Y: Year) -> (month: Int, day: Int) {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.easter(year: Y) : GregorianCalendar.easter(year: Y)
 	}
 }

@@ -41,14 +41,23 @@ public struct GregorianCalendar {
 	/// This JD corresponds to midnight on January 1, 1 AD in the Julian calendar.
 	public static let epochJulianDate = JulianCalendar.epochJulianDate
 
+	/// A year in the Gregorian calendar.
+	public typealias Year = JulianCalendar.Year
+
+	/// A month in the Gregorian calendar numbered from `1` (January) to `12` (December).
+	public typealias Month = JulianCalendar.Month
+
+	/// A day in the Gregorian calendar numbered starting from `1`.
+	public typealias Day = JulianCalendar.Day
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
-	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -82,7 +91,7 @@ public struct GregorianCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Gregorian calendar.
-	public static func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Year) -> Bool {
 		Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
 	}
 
@@ -95,10 +104,10 @@ public struct GregorianCalendar {
 	/// Returns the number of days in the specified month and year in the Gregorian calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
+	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
 		guard M > 0, M <= 12 else {
 			return 0
 		}
@@ -115,7 +124,7 @@ public struct GregorianCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The month and day of Easter in the specified year.
-	public static func easter(year Y: Int) -> (month: Int, day: Int) {
+	public static func easter(year Y: Year) -> (month: Month, day: Day) {
 		// Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 		let a = Y / 100
 		let b = a - a / 4

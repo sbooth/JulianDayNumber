@@ -24,14 +24,23 @@ public struct JewishCalendar {
 	/// This JD corresponds to midnight on October 7, 3761 BC in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 347997.5
 
+	/// A year in the Jewish calendar.
+	public typealias Year = Int
+
+	/// A month in the Jewish calendar numbered from `1` (Tishri) to `12` (Elul) for common years and from `1` (Tishri) to `13` (Elul) for leap years.
+	public typealias Month = Int
+
+	/// A day in the Jewish calendar numbered starting from `1`.
+	public typealias Day = Int
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the Jewish calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Tishri) and `12` (Elul) for common years and `1` (Tishri) and `13` (Elul) for leap years.
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Jewish calendar.
-	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= monthsInYear(Y) && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -44,7 +53,7 @@ public struct JewishCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is an embolismic (leap) year in the Jewish calendar.
-	public static func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Year) -> Bool {
 		if Y > 0 {
 			return (7 * Y + 1) % 19 < 7
 		}
@@ -75,7 +84,7 @@ public struct JewishCalendar {
 	///
 	/// - returns: The category of the specified year.
 	public static func categoryOfYear(_ Y: Int) -> YearCategory {
-		var Y = Y
+		var Y = date.year
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
@@ -104,7 +113,7 @@ public struct JewishCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The number of months in the specified year.
-	public static func monthsInYear(_ Y: Int) -> Int {
+	public static func monthsInYear(_ Y: Year) -> Int {
 		isLeapYear(Y) ? 13 : 12
 	}
 
@@ -129,10 +138,10 @@ public struct JewishCalendar {
 	/// Returns the number of days in the specified month and year in the Jewish calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Tishri) and `12` (Elul) for common years and `1` (Tishri) and `13` (Elul) for leap years.
+	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
 		guard M > 0 else {
 			return 0
 		}

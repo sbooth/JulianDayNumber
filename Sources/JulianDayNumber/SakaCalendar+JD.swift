@@ -19,33 +19,23 @@ let sakaCalendarCycleYears = 400
 let sakaCalendarCycleDays = 146097
 
 extension SakaCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the Śaka calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the date values.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Chaitra) and `12` (Phālguna).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		var Y = Y
+	/// A date in the Śaka calendar consists of a year, month, and day.
+	public typealias DateType = (year: Int, month: Int, day: Int)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// Richards' algorithm is only valid for positive JDNs.
 		// JDN 0 is -4791-09-03 in the proleptic Śaka calendar.
-		// Adjust the year of earlier dates forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
-		if Y < -4791 || (Y == -4791 && (M < 9 || (M == 9 && D < 3))) {
+		if date < (-4791, 9, 3) {
 			ΔcalendarCycles = (-4792 - Y) / sakaCalendarCycleYears + 1
 			Y += ΔcalendarCycles * sakaCalendarCycleYears
 		}
 
-		let h = M - m
+		let h = date.month - m
 		let g = Y + y - (n - h) / n
 		let f = (h - 1 + n) % n
-		let e = (p * g + q) / r + D - 1 - j
+		let e = (p * g + q) / r + date.day - 1 - j
 		let Z = f / 6
 		var J = e + ((31 - Z) * f + 5 * Z) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
@@ -57,19 +47,11 @@ extension SakaCalendar: JulianDayNumberConverting {
 		return J
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the Śaka calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		var J = J
 		var ΔcalendarCycles = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
-		// Adjust negative JDNs forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
 		if J < 0 {
 			ΔcalendarCycles = -J / sakaCalendarCycleDays + 1
 			J += ΔcalendarCycles * sakaCalendarCycleDays
