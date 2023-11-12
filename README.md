@@ -14,7 +14,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Jewish](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/jewishcalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
-- Mayan
+- [Mayan](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayancalendar)
 - [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
 Most of the JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
