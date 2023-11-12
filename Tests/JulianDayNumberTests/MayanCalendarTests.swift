@@ -46,4 +46,20 @@ final class MayanCalendarTests: XCTestCase {
 		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 0, kin: 7), 7)
 		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 17, kin: 19), 8)
 	}
+
+	func testLimits() {
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: -2535, katun: 5, tun: 12, uinal: 2, kin: 5), -364415352)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: -254, katun: 10, tun: 12, uinal: 2, kin: 5), -35915352)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: -3649635), -3065352)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 3649635), 4233918)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 253, katun: 9, tun: 7, uinal: 15, kin: 15), 37083918)
+		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 2534, katun: 14, tun: 7, uinal: 15, kin: 15), 365583918)
+
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(-364415352) == (-2535, 5, 12, 2, 5))
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(-35915352) == (-254, 10, 12, 2, 5))
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(-3065352) == (-26, 13, 2, 2, 5))
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(4233918) == (25, 6, 17, 15, 15))
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(37083918) == (253, 9, 7, 15, 15))
+		XCTAssertTrue(MayanCalendar.longCountFromJulianDayNumber(365583918) == (2534, 14, 7, 15, 15))
+	}
 }
