@@ -14,10 +14,10 @@ import Foundation
 /// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
 public typealias JulianDate = Double
 
-extension JulianDayNumberConverting {
+extension JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
 	/// Converts the specified year, month, day, hour, minute, and second to a Julian date and returns the result.
 	///
-	/// - note: No validation checks are performed on the date values.
+	/// - important: No validation checks are performed on the date values.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
@@ -33,7 +33,7 @@ extension JulianDayNumberConverting {
 
 	/// Converts the specified year, month, and decimal day to a Julian date and returns the result.
 	///
-	/// - note: No validation checks are performed on the date values.
+	/// - important: No validation checks are performed on the date values.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.

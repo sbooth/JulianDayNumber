@@ -32,21 +32,30 @@ public struct FrenchRepublicanCalendar {
 	/// The Julian day number of the epoch of the French Republican calendar.
 	///
 	/// This JDN corresponds to noon on September 22, 1792 in the Gregorian calendar.
-	public static let epochJulianDayNumber = 2375840
+	public static let epochJulianDayNumber: JulianDayNumber = 2375840
 
 	/// The Julian date of the epoch of the French Republican calendar.
 	///
 	/// This JD corresponds to midnight on September 22, 1792 in the Gregorian calendar.
-	public static let epochJulianDate = 2375839.5
+	public static let epochJulianDate: JulianDate = 2375839.5
+
+	/// A year in the French Republican calendar.
+	public typealias Year = Int
+
+	/// A month in the French Republican calendar numbered from `1` (Vendémiaire) to `12` (Fructidor) with the epagomenal days (Sansculottides) treated as month `13`.
+	public typealias Month = Int
+
+	/// A day in the French Republican calendar numbered starting from `1`.
+	public typealias Day = Int
 
 	/// Returns `true` if the specified year, month, and day form a valid date in the French Republican calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Vendémiaire) and `12` (Fructidor). The epagomenal days (Sansculottides) are treated as month `13`.
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the French Republican calendar.
-	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -79,7 +88,7 @@ public struct FrenchRepublicanCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the French Republican calendar.
-	public static func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Year) -> Bool {
 		GregorianCalendar.isLeapYear(Y + 1)
 	}
 
@@ -92,10 +101,10 @@ public struct FrenchRepublicanCalendar {
 	/// Returns the number of days in the specified month and year in the French Republican calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Vendémiaire) and `12` (Fructidor). The epagomenal days (Sansculottides) are treated as month `13`.
+	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
 		guard M > 0, M <= 13 else {
 			return 0
 		}

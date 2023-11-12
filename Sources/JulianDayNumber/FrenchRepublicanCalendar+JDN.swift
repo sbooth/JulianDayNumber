@@ -19,33 +19,23 @@ let frenchRepublicanCalendarCycleYears = 400
 let frenchRepublicanCalendarCycleDays = 146097
 
 extension FrenchRepublicanCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the French Republican calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the date values.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Vendémiaire) and `12` (Fructidor). The epagomenal days (Sansculottides) are treated as month `13`.
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
-	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		var Y = Y
+	/// A date in the French Republican calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// Richards' algorithm is only valid for positive JDNs.
-		// JDN 0 is -6504-Frimaire(03)-03 in the proleptic French Republican calendar.
-		// Adjust the year of earlier dates forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
-		if Y < -6504 || (Y == -6504 && (M < 3 || (M == 3 && D < 3))) {
+		// JDN 0 is -6504-03-03 in the proleptic French Republican calendar.
+		if date < (-6504, 3, 3) {
 			ΔcalendarCycles = (-6505 - Y) / frenchRepublicanCalendarCycleYears + 1
 			Y += ΔcalendarCycles * frenchRepublicanCalendarCycleYears
 		}
 
-		let h = M - m
+		let h = date.month - m
 		let g = Y + y - (n - h) / n
 		let f = (h - 1 + n) % n
-		let e = (p * g + q) / r + D - 1 - j
+		let e = (p * g + q) / r + date.day - 1 - j
 		var J = e + (s * f + t) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
@@ -56,19 +46,11 @@ extension FrenchRepublicanCalendar: JulianDayNumberConverting {
 		return J
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the French Republican calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		var J = J
 		var ΔcalendarCycles = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
-		// Adjust negative JDNs forward in time by a multiple of
-		// the calendar's cycle before calculating the JDN, and then translate
-		// the result backward in time by the period of adjustment.
 		if J < 0 {
 			ΔcalendarCycles = -J / frenchRepublicanCalendarCycleDays + 1
 			J += ΔcalendarCycles * frenchRepublicanCalendarCycleDays

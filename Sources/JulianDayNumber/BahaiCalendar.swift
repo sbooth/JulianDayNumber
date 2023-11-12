@@ -35,14 +35,23 @@ public struct BahaiCalendar {
 	/// This JD corresponds to midnight on March 21, 1844 in the Gregorian calendar.
 	public static let epochJulianDate = 2394646.5
 
+	/// A year in the Baháʼí calendar.
+	public typealias Year = Int
+
+	/// A month in the Baháʼí calendar numbered from `1` (Bahá) to `20` (ʻAláʼ) with the epagomenal days (Ayyám-i-Há) treated as month `19`.
+	public typealias Month = Int
+
+	/// A day in the Baháʼí calendar numbered starting from `1`.
+	public typealias Day = Int
+
 	/// Returns `true` if the specified year, month, and day form a valid date in the Baháʼí calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Bahá) and `20` (ʻAláʼ). The epagomenal days (Ayyám-i-Há) are treated as month `19`.
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified year, month, and day form a valid date in the Baháʼí calendar.
-	public static func isDateValid(year Y: Int, month M: Int, day D: Int) -> Bool {
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= 20 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
@@ -75,7 +84,7 @@ public struct BahaiCalendar {
 	/// - parameter Y: A year number.
 	///
 	/// - returns: `true` if the specified year is a leap year in the Baháʼí calendar.
-	public static func isLeapYear(_ Y: Int) -> Bool {
+	public static func isLeapYear(_ Y: Year) -> Bool {
 		GregorianCalendar.isLeapYear(Y + 1844)
 	}
 
@@ -88,10 +97,10 @@ public struct BahaiCalendar {
 	/// Returns the number of days in the specified month and year in the Baháʼí calendar.
 	///
 	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (Bahá) and `20` (ʻAláʼ). The epagomenal days (Ayyám-i-Há) are treated as month `19`.
+	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Int, month M: Int) -> Int {
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
 		guard M > 0, M <= 20 else {
 			return 0
 		}

@@ -7,29 +7,30 @@
 import Foundation
 
 extension AstronomicalCalendar: JulianDayNumberConverting {
-	/// Converts a year, month, and day in the astromical calendar to a Julian day number.
+	/// A date in the astronomical calendar consists of a year, month, and day in either the Julian or Gregorian calendar.
+	public typealias DateType = JulianCalendar.DateType
+
+	/// Converts a date in the astromical calendar to a Julian day number.
 	///
 	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.
 	///
-	/// - note: No validation checks are performed on the date values.
+	/// - important: No validation checks are performed on the date values.
 	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number between `1` (January) and `12` (December).
-	/// - parameter D: A day number between `1` and the maximum number of days in month `M` for year `Y`.
+	/// - parameter date: A date to convert.
 	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
-		(Y, M, D) < gregorianCalendarEffectiveDate ? JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D) : GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+	/// - returns: The Julian day number corresponding to the specified date.
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		date < gregorianCalendarEffectiveDate ? JulianCalendar.julianDayNumberFromDate(date) : GregorianCalendar.julianDayNumberFromDate(date)
 	}
 
-	/// Converts a Julian day number to a year, month, and day in the astromical calendar.
+	/// Converts a Julian day number to a date in the astromical calendar.
 	///
 	/// Julian day numbers less than 2299161 treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The year, month, and day corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> (year: Int, month: Int, day: Int) {
+	/// - returns: The date corresponding to the specified Julian day number.
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		J < GregorianCalendar.effectiveJulianDayNumber ? JulianCalendar.dateFromJulianDayNumber(J): GregorianCalendar.dateFromJulianDayNumber(J)
 	}
 }

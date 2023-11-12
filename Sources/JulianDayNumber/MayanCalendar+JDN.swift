@@ -25,13 +25,57 @@ let calabtunPerKinchiltun = 20
 /// One alautun is composed of 20 kinchiltun.
 let kinchiltunPerAlautun = 20
 
+extension MayanCalendar: JulianDayNumberConverting {
+	/// A kin is one day and is numbered from `0` to `19`.
+	public typealias Kin = Int
+	/// A uinal is 20 kin and is numbered from `0` to `19`.
+	public typealias Uinal = Int
+	/// A tun is 18 uinal and is numbered from `0` to `17`.
+	public typealias Tun = Int
+	/// A katun is 20 tun and is numbered from `0` to `19`.
+	public typealias Katun = Int
+	/// A baktun is 20 katun and is numbered from `0` to `19`.
+	public typealias Baktun = Int
+	/// A pictun is 20 baktun and is numbered from `0` to `19`.
+	public typealias Pictun = Int
+	/// A calabtun is 20 pictun and is numbered from `0` to `19`.
+	public typealias Calabtun = Int
+	/// A kinchiltun is 20 calabtun and is numbered from `0` to `19`.
+	public typealias Kinchiltun = Int
+	/// An alautun is 20 kinchiltun and is numbered from `0` to `19`.
+	public typealias Alautun = Int
+
+	/// A long count in the Mayan calendar.
+	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+
+	/// Converts a long count in the Mayan calendar to a Julian day number.
+	///
+	/// - note: No validation checks are performed on the cycle values.
+	///
+	/// - parameter longCount: A long count to convert.
+	///
+	/// - returns: The Julian day number corresponding to the specified long count.
+	public static func julianDayNumberFromDate(_ longCount: DateType) -> JulianDayNumber {
+		julianDayNumberFromLongCount(baktun: longCount.baktun, katun: longCount.katun, tun: longCount.tun, uinal: longCount.uinal, kin: longCount.kin)
+	}
+
+	/// Converts a Julian day number to a long count in the Mayan calendar.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The long count corresponding to the specified Julian day number.
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		longCountFromJulianDayNumber(J)
+	}
+}
+
 extension MayanCalendar {
 	/// Converts a Julian day number to a long count in the Mayan calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The long count corresponding to the specified Julian day number.
-	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Int, kinchiltun: Int, calabtun: Int, pictun: Int, */baktun: Int, katun: Int, tun: Int, uinal: Int, kin: Int) {
+	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Alautun, kinchiltun: Kinchiltun, calabtun: Calabtun, pictun: Pictun, */baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) {
 		let L = J - longCountEpochJulianDayNumber
 
 #if false
@@ -94,18 +138,18 @@ extension MayanCalendar {
 	///
 	/// - note: No validation checks are performed on the cycle values.
 	///
-	/// - parameter alautun: An alautun number in the interval `[0, 19]`.
-	/// - parameter kinchiltun: A kinchiltun number in the interval `[0, 19]`.
-	/// - parameter calabtun: A calabtun number in the interval `[0, 19]`.
-	/// - parameter pictun: A pictun number in the interval `[0, 19]`.
-	/// - parameter baktun: A baktun number in the interval `[0, 19]`.
-	/// - parameter katun: A katun number in the interval `[0, 19]`.
-	/// - parameter tun: A tun number in the interval `[0, 19]`.
-	/// - parameter uinal: A uinal number in the interval `[0, 17]`.
-	/// - parameter kin: A kin number in the interval `[0, 19]`.
+	/// - parameter alautun: An alautun number.
+	/// - parameter kinchiltun: A kinchiltun number.
+	/// - parameter calabtun: A calabtun number.
+	/// - parameter pictun: A pictun number.
+	/// - parameter baktun: A baktun number.
+	/// - parameter katun: A katun number.
+	/// - parameter tun: A tun number.
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
-	public static func julianDayNumberFromLongCount(alautun: Int = 0, kinchiltun: Int = 0, calabtun: Int = 0, pictun: Int = 0, baktun: Int, katun: Int, tun: Int, uinal: Int, kin: Int) -> JulianDayNumber {
+	public static func julianDayNumberFromLongCount(alautun: Alautun = 0, kinchiltun: Kinchiltun = 0, calabtun: Calabtun = 0, pictun: Pictun = 0, baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
 		longCountEpochJulianDayNumber + (((((((alautun * kinchiltunPerAlautun + kinchiltun) * calabtunPerKinchiltun + calabtun) * pictunPerCalabtun + pictun) * baktunPerPictun + baktun) * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
 	}
 }
@@ -123,7 +167,10 @@ extension MayanCalendar {
 	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
 	static let haabEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 348
 
-	/// A Tzolk'in day name.
+	/// A Tzolk’in number from `1` to `13`.
+	public typealias TzolkinNumber = Int
+
+	/// A Tzolk’in day name.
 	///
 	/// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
 	public enum TzolkinDayName: Int {
@@ -168,6 +215,9 @@ extension MayanCalendar {
 		/// Ajaw
 		case ahau
 	}
+
+	/// A Haabʼ day from `0` to `19`.
+	public typealias HaabDay = Int
 
 	/// A Haabʼ month.
 	///
@@ -216,8 +266,8 @@ extension MayanCalendar {
 	/// Converts a Julian day number to a Calendar Round in the Mayan calendar.
 	///
 	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
-	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	/// - A Tzolkʼin date comprised of a number and a name.
+	/// - A Haabʼ date comprised of a day and a month.
 	///
 	/// - note: A Calendar Round corresponding to a Julian day number
 	/// can also be represented by the same Julian day number with multiples
@@ -226,7 +276,7 @@ extension MayanCalendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The Calendar Round corresponding to the specified Julian day number.
-	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) {
+	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) {
 		let T = J - tzolkinEpochJulianDayNumber
 		let H = J - haabEpochJulianDayNumber
 
@@ -239,19 +289,19 @@ extension MayanCalendar {
 	/// Returns the most recent Julian day number for a Calendar Round in the Mayan calendar occurring before a Julian day number.
 	///
 	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
-	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	/// - A Tzolkʼin date comprised of a number and a name.
+	/// - A Haabʼ date comprised of a day and a month.
 	///
 	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
-	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter number: A Tzolkʼin number.
 	/// - parameter name: A Tzolkʼin name.
-	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	/// - parameter J0: A Julian day number to anchor the Calendar Round.
 	///
 	/// - returns: The most recent Julian day number corresponding to the specified Calendar Round occurring before the specified Julian day number or `nil` if none.
-	public static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth, before J0: JulianDayNumber) -> JulianDayNumber? {
+	public static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth, before J0: JulianDayNumber) -> JulianDayNumber? {
 		guard let J = julianDayNumberFromCalendarRound(number: number, name: name, day: day, month: month) else {
 			return nil
 		}
@@ -261,19 +311,19 @@ extension MayanCalendar {
 	/// Returns the least recent Julian day number for a Calendar Round in the Mayan calendar occurring on or after a Julian day number.
 	///
 	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number in the interval `[1, 13]` and a name.
-	/// - A Haabʼ date comprised of a day in the interval `[0, 19]` and a month.
+	/// - A Tzolkʼin date comprised of a number and a name.
+	/// - A Haabʼ date comprised of a day and a month.
 	///
 	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
-	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter number: A Tzolkʼin number.
 	/// - parameter name: A Tzolkʼin name.
-	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	/// - parameter J0: A Julian day number to anchor the Calendar Round.
 	///
 	/// - returns: The least recent Julian day number corresponding to the specified Calendar Round occurring on or after the specified Julian day number or `nil` if none.
-	public static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth, onOrAfter J0: JulianDayNumber = longCountEpochJulianDayNumber) -> JulianDayNumber? {
+	public static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth, onOrAfter J0: JulianDayNumber = longCountEpochJulianDayNumber) -> JulianDayNumber? {
 		guard let J = julianDayNumberFromCalendarRound(number: number, name: name, day: day, month: month) else {
 			return nil
 		}
@@ -282,13 +332,13 @@ extension MayanCalendar {
 
 	/// Returns a possible Julian day number for a Calendar Round in the Mayan calendar.
 	///
-	/// - parameter number: A Tzolkʼin number in the interval `[1, 13]`.
+	/// - parameter number: A Tzolkʼin number.
 	/// - parameter name: A Tzolkʼin name.
-	/// - parameter day: A Haabʼ day in the interval `[0, 19]`.
+	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	///
 	/// - returns: A possible Julian day number corresponding to the specified Calendar Round or `nil` if none.
-	static func julianDayNumberFromCalendarRound(number: Int, name: TzolkinDayName, day: Int, month: HaabMonth) -> JulianDayNumber? {
+	static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) -> JulianDayNumber? {
 		// The number of days into the Tzolkʼin cycle
 		let T = (40 * number + 221 * name.rawValue - 1) % 260
 
@@ -311,11 +361,11 @@ extension MayanCalendar {
 	///
 	/// The Lord of the Night at the long count epoch was G9.
 	///
-	/// - parameter uinal: A uinal number in the interval `[0, 17]`.
-	/// - parameter kin: A kin number in the interval `[0, 19]`.
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
 	///
 	/// - returns: The Lord of the Night corresponding to the specified uinal and kin.
-	public static func lordOfTheNightFrom(uinal: Int, kin: Int) -> Int {
+	public static func lordOfTheNightFrom(uinal: Uinal, kin: Kin) -> Int {
 		(20 * uinal + kin + 8) % 9 + 1
 	}
 }
