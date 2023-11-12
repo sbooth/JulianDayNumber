@@ -96,10 +96,7 @@ public struct GregorianCalendar {
 	}
 
 	/// The number of months in one year.
-	public static let monthsInYear = 12
-
-	/// The number of days in each month indexed from `0` (January) to `11` (December).
-	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+	public static let monthsInYear = JulianCalendar.monthsInYear
 
 	/// Returns the number of days in the specified month and year in the Gregorian calendar.
 	///
@@ -115,7 +112,7 @@ public struct GregorianCalendar {
 		if M == 2 {
 			return isLeapYear(Y) ? 29 : 28
 		} else {
-			return monthLengths[M - 1]
+			return JulianCalendar.monthLengths[M - 1]
 		}
 	}
 
