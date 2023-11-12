@@ -94,15 +94,15 @@ extension MayanCalendar {
 	///
 	/// - note: No validation checks are performed on the cycle values.
 	///
-	/// - parameter alautun: An alautun number.
-	/// - parameter kinchiltun: A kinchiltun number.
-	/// - parameter calabtun: A calabtun number.
-	/// - parameter pictun: A pictun number.
-	/// - parameter baktun: A baktun number.
-	/// - parameter katun: A katun number.
-	/// - parameter tun: A tun number.
-	/// - parameter uinal: A uinal number.
-	/// - parameter kin: A kin number.
+	/// - parameter alautun: An alautun number in the interval `[0, 19]`.
+	/// - parameter kinchiltun: A kinchiltun number in the interval `[0, 19]`.
+	/// - parameter calabtun: A calabtun number in the interval `[0, 19]`.
+	/// - parameter pictun: A pictun number in the interval `[0, 19]`.
+	/// - parameter baktun: A baktun number in the interval `[0, 19]`.
+	/// - parameter katun: A katun number in the interval `[0, 19]`.
+	/// - parameter tun: A tun number in the interval `[0, 19]`.
+	/// - parameter uinal: A uinal number in the interval `[0, 17]`.
+	/// - parameter kin: A kin number in the interval `[0, 19]`.
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
 	public static func julianDayNumberFromLongCount(alautun: Int = 0, kinchiltun: Int = 0, calabtun: Int = 0, pictun: Int = 0, baktun: Int, katun: Int, tun: Int, uinal: Int, kin: Int) -> JulianDayNumber {
@@ -305,10 +305,14 @@ extension MayanCalendar {
 }
 
 extension MayanCalendar {
-	/// Returns the Lord of the Night for the given uinal and kin.
+	/// Returns the Lord of the Night for a given uinal and kin.
 	///
-	/// - parameter uinal: A uinal number.
-	/// - parameter kin: A kin number.
+	/// The Lord of the Night is a nine-day cycle conventionally labeled G1 through G9.
+	///
+	/// The Lord of the Night at the long count epoch was G9.
+	///
+	/// - parameter uinal: A uinal number in the interval `[0, 17]`.
+	/// - parameter kin: A kin number in the interval `[0, 19]`.
 	///
 	/// - returns: The Lord of the Night corresponding to the specified uinal and kin.
 	public static func lordOfTheNightFrom(uinal: Int, kin: Int) -> Int {
