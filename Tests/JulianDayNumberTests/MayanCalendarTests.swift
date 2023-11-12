@@ -43,6 +43,7 @@ final class MayanCalendarTests: XCTestCase {
 	}
 
 	func testLordOfTheNight() {
+		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 0, kin: 0), 9)
 		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 0, kin: 7), 7)
 		XCTAssertEqual(MayanCalendar.lordOfTheNightFrom(uinal: 17, kin: 19), 8)
 	}
