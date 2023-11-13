@@ -25,18 +25,18 @@ import Foundation
 /// | 11 | Ḏū al-Qaʿdah | ذُو ٱلْقَعْدَة | 30 |
 /// | 12 | Ḏū al-Ḥijjah | ذُو ٱلْحِجَّة | 29 (30 in leap years) |
 ///
-/// The Islamic calendar epoch in the Julian calendar is July 16, 622.
+/// The Islamic calendar epoch in the Julian calendar is July 16, 622 AD.
 ///
 /// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
 public struct IslamicCalendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
 	///
-	/// This JDN corresponds to noon on July 16, 622 in the Julian calendar.
+	/// This JDN corresponds to noon on July 16, 622 AD in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1948440
 
 	/// The Julian date of the epoch of the Islamic calendar.
 	///
-	/// This JD corresponds to midnight on July 16, 622 in the Julian calendar.
+	/// This JD corresponds to midnight on July 16, 622 AD in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1948439.5
 
 	/// A year in the Islamic calendar.
