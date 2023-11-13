@@ -6,9 +6,23 @@
 
 import Foundation
 
-/// The Coptic calendar.
-///
 /// The Coptic calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+///
+/// | Month | Name | | Days |
+/// | --- | --- | --- | --- |
+/// | 1 | Thout | Ⲑⲟⲟⲩⲧ | 30 |
+/// | 2 | Paopi | Ⲡⲁⲱⲡⲉ | 30 |
+/// | 3 | Hathor | Ϩⲁⲑⲱⲣ | 30 |
+/// | 4 | Koiak | Ⲕⲟⲓⲁϩⲕ | 30 |
+/// | 5 | Tobi | Ⲧⲱⲃⲉ | 30 |
+/// | 6 | Meshir | Ⲙϣⲓⲣ | 30 |
+/// | 7 | Paremhat | Ⲡⲁⲣⲙϩⲟⲧⲡ | 30 |
+/// | 8 | Parmouti | Ⲡⲁⲣⲙⲟⲩⲧⲉ | 30 |
+/// | 9 | Pashons | Ⲡⲁϣⲟⲛⲥ | 30 |
+/// | 10 | Paoni | Ⲡⲁⲱⲛⲉ | 30 |
+/// | 11 | Epip | Ⲉⲡⲏⲡ | 30 |
+/// | 12 | Mesori | Ⲙⲉⲥⲱⲣⲏ | 30 |
+/// | 13 | Pi Kogi Enavot | Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ | 5 (common year) / 6 (leap year) |
 ///
 /// The Coptic calendar epoch in the Julian calendar is August 29, 284.
 ///
@@ -78,26 +92,4 @@ public struct CopticCalendar {
 			return monthLengths[M - 1]
 		}
 	}
-}
-
-extension CopticCalendar {
-	/// The names of the months in the Coptic calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"Thout", 			// Ⲑⲟⲟⲩⲧ
-		"Paopi", 			// Ⲡⲁⲱⲡⲉ
-		"Hathor", 			// Ϩⲁⲑⲱⲣ
-		"Koiak", 			// Ⲕⲟⲓⲁϩⲕ
-		"Tobi", 			// Ⲧⲱⲃⲉ
-		"Meshir", 			// Ⲙϣⲓⲣ
-		"Paremhat", 		// Ⲡⲁⲣⲙϩⲟⲧⲡ
-		"Parmouti", 		// Ⲡⲁⲣⲙⲟⲩⲧⲉ
-		"Pashons", 			// Ⲡⲁϣⲟⲛⲥ
-		"Paoni", 			// Ⲡⲁⲱⲛⲉ
-		"Epip", 			// Ⲉⲡⲏⲡ
-		"Mesori", 			// Ⲙⲉⲥⲱⲣⲏ
-		"Pi Kogi Enavot", 	// Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ
-	]
 }
