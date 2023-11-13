@@ -6,9 +6,52 @@
 
 import Foundation
 
-/// The Jewish calendar.
+/// The Jewish calendar is a lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year.
 ///
-/// The Jewish calendar is a lunisolar calendar.
+/// A common year has 353, 354, or 355 days. A leap year is always 30 days longer.
+///
+/// The number of days in a year depends on whether year is a common or leap year and whether it is deficient, regular, or abundant.
+///
+/// | | Common Year | Leap Year |
+/// | --- | --- | --- |
+/// | Deficient | 353 | 383 |
+/// | Regular | 354 | 384 |
+/// | Abundant | 355 | 385 |
+///
+/// Common years consist of twelve months.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Tishrei | 30 |
+/// | 2 | Cheshvan | 29 (30 in abundant years) |
+/// | 3 | Kislev | 30 (29 in deficient years) |
+/// | 4 | Tevet | 29 |
+/// | 5 | Shevat | 30 |
+/// | 6 | Adar | 29 |
+/// | 7 | Nisan | 30 |
+/// | 8 | Iyar | 29 |
+/// | 9 | Sivan | 30 |
+/// | 10 | Tammuz | 29 |
+/// | 11 | Av | 30 |
+/// | 12 | Elul | 29 |
+///
+/// Leap years consist of thirteen months.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Tishrei | 30 |
+/// | 2 | Cheshvan | 29 (30 in abundant years) |
+/// | 3 | Kislev | 30 (29 in deficient years) |
+/// | 4 | Tevet | 29 |
+/// | 5 | Shevat | 30 |
+/// | 6 | Adar | 30 |
+/// | 7 | Adar II | 29 |
+/// | 8 | Nisan | 30 |
+/// | 9 | Iyar | 29 |
+/// | 10 | Sivan | 30 |
+/// | 11 | Tammuz | 29 |
+/// | 12 | Av | 30 |
+/// | 13 | Elul | 29 |
 ///
 /// The Jewish calendar epoch in the Julian calendar is October 7, 3761 BC.
 ///
@@ -27,7 +70,7 @@ public struct JewishCalendar {
 	/// A year in the Jewish calendar.
 	public typealias Year = Int
 
-	/// A month in the Jewish calendar numbered from `1` (Tishri) to `12` (Elul) for common years and from `1` (Tishri) to `13` (Elul) for leap years.
+	/// A month in the Jewish calendar numbered from `1` (Tishrei) to `12` (Elul) for common years and from `1` (Tishrei) to `13` (Elul) for leap years.
 	public typealias Month = Int
 
 	/// A day in the Jewish calendar numbered starting from `1`.
@@ -92,8 +135,8 @@ public struct JewishCalendar {
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 
 		switch K {
@@ -154,8 +197,8 @@ public struct JewishCalendar {
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 
 		if (K > 3 && M > 13) || (K < 4 && M > 12) {

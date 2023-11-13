@@ -6,9 +6,24 @@
 
 import Foundation
 
-/// The Julian calendar.
+/// The Julian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The Julian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The year consists of twelve months.  The second month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | January | 31 |
+/// | 2 | February | 28 (29 in leap years) |
+/// | 3 | March | 31 |
+/// | 4 | April | 30 |
+/// | 5 | May | 31 |
+/// | 6 | June | 30 |
+/// | 7 | July | 31 |
+/// | 8 | August | 31 |
+/// | 9 | September | 30 |
+/// | 19 | October | 31 |
+/// | 11 | November | 30 |
+/// | 12 | December | 31 |
 ///
 /// The Julian calendar took effect on January 1, 45 BC.
 ///
@@ -113,6 +128,15 @@ public struct JulianCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+
+	/// Returns the day of the week for the specified Julian day number.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+		1 + (J + 1) % 7
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.

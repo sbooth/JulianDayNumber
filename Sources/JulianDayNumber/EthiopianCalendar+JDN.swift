@@ -26,7 +26,7 @@ extension EthiopianCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4720-05-05 in the Ethiopian calendar.
+		// JDN 0 is -4720-05-05 in the proleptic Ethiopian calendar.
 		if date < (-4720, 5, 5) {
 			ΔcalendarCycles = (-4721 - Y) / ethiopianCalendarCycleYears + 1
 			Y += ΔcalendarCycles * ethiopianCalendarCycleYears

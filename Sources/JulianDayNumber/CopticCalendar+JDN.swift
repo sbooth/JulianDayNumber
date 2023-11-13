@@ -26,7 +26,7 @@ extension CopticCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4996-05-05 in the Coptic calendar.
+		// JDN 0 is -4996-05-05 in the proleptic Coptic calendar.
 		if date < (-4996, 5, 5) {
 			ΔcalendarCycles = (-4997 - Y) / copticCalendarCycleYears + 1
 			Y += ΔcalendarCycles * copticCalendarCycleYears

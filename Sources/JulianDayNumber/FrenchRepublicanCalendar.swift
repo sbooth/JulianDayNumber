@@ -6,11 +6,27 @@
 
 import Foundation
 
-/// The modified French Republican calendar.
+/// The modified French Republican calendar is an astronomical calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The French Republican calendar is an astronomical calendar. There were 12 months in the year, each having 30 days and a meteorological name.
-/// These were followed by five epagomenal days (Sansculottides) with a sixth in leap years.
 /// The year began on the day of the autumnal equinox as observed in Paris.
+///
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days (Sansculottides) with a sixth in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Vendémiaire | 30 |
+/// | 2 | Brumaire | 30 |
+/// | 3 | Frimaire | 30 |
+/// | 4 | Nivôse  | 30 |
+/// | 5 | Pluviôse  | 30 |
+/// | 6 | Ventôse | 30 |
+/// | 7 | Germinal  | 30 |
+/// | 8 | Floréal | 30 |
+/// | 9 | Prairial  | 30 |
+/// | 10 | Messidor | 30 |
+/// | 11 | Thermidor | 30 |
+/// | 12 | Fructidor | 30 |
+/// | 13 | Sansculottides | 5 (6 in leap years) |
 ///
 /// The French Republican calendar took effect on September 22, 1792 in the Gregorian calendar.
 /// It was abolished by Napoleon in 1806.

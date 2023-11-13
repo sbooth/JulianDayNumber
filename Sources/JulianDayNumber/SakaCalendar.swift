@@ -6,9 +6,26 @@
 
 import Foundation
 
-/// The Śaka calendar.
+/// The Śaka calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The Śaka calendar is a solar calendar of 365 days in every year with an additional leap day in certain years.
+/// The year consists of twelve months.  The first month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Chaitra | 30 (31 in leap years) |
+/// | 2 | Vaiśākha | 31 |
+/// | 3 | Jyēṣṭha | 31 |
+/// | 4 | Āshādha | 31 |
+/// | 5 | Śrāvana | 31 |
+/// | 6 | Bhādra | 31 |
+/// | 7 | Āśvin | 30 |
+/// | 8 | Kārtika | 31 |
+/// | 9 | Mārgaśīrṣa | 30 |
+/// | 10 | Pauṣa | 30 |
+/// | 11 | Māgha | 30 |
+/// | 1 2| Phālguna | 30 |
+///
+/// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///
 /// The Śaka calendar epoch in the Julian calendar is March 24, 79.
 ///
@@ -16,13 +33,13 @@ import Foundation
 public struct SakaCalendar {
 	/// The Julian day number when the Śaka calendar took effect.
 	///
-	/// This JDN corresponds to noon on March 24, 79 in the Julian calendar.
-	public static let effectiveJulianDayNumber = epochJulianDayNumber
+	/// This JDN corresponds to noon on March 22, 1957 in the Gregorian calendar.
+	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
 
 	/// The Julian date when the Śaka calendar took effect.
 	///
-	/// This JD corresponds to midnight on March 24, 79 in the Julian calendar.
-	public static let effectiveJulianDate = epochJulianDate
+	/// This JD corresponds to midnight on March 22, 1957 in the Gregorian calendar.
+	public static let effectiveJulianDate: JulianDate = 2435919.5
 
 	/// The Julian day number of the epoch of the Śaka calendar.
 	///
@@ -56,7 +73,7 @@ public struct SakaCalendar {
 
 	/// Returns `true` if the specified Julian day number occurred before the Śaka calendar took effect.
 	///
-	/// The Śaka calendar took effect on JDN 2394647.
+	/// The Śaka calendar took effect on JDN 2435920.
 	///
 	/// - parameter julianDayNumber: A Julian day number.
 	///
@@ -67,7 +84,7 @@ public struct SakaCalendar {
 
 	/// Returns `true` if the specified Julian date occurred before the Śaka calendar took effect.
 	///
-	/// The Śaka calendar took effect on JD 2394646.5.
+	/// The Śaka calendar took effect on JD 2435919.5.
 	///
 	/// - parameter julianDate: A Julian date.
 	///
