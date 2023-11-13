@@ -6,9 +6,24 @@
 
 import Foundation
 
-/// The Śaka calendar.
+/// The Śaka calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The Śaka calendar is a solar calendar of 365 days in every year with an additional leap day in certain years.
+/// The year consists of twelve months.  The first month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Chaitra | 30 (31 in leap years) |
+/// | 2 | Vaiśākha | 31 |
+/// | 3 | Jyēṣṭha | 31 |
+/// | 4 | Āshādha | 31 |
+/// | 5 | Śrāvana | 31 |
+/// | 6 | Bhādra | 31 |
+/// | 7 | Āśvin | 30 |
+/// | 8 | Kārtika | 31 |
+/// | 9 | Mārgaśīrṣa | 30 |
+/// | 10 | Pauṣa | 30 |
+/// | 11 | Māgha | 30 |
+/// | 1 2| Phālguna | 30 |
 ///
 /// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///

@@ -6,9 +6,25 @@
 
 import Foundation
 
-/// The Egyptian calendar.
+/// The Egyptian calendar is a solar calendar with 365 days in every year.
 ///
-/// The Egyptian calendar is a solar calendar of 365 days in every year.
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Thoth | 30 |
+/// | 2 | Phaophi | 30 |
+/// | 3 | Athyr | 30 |
+/// | 4 | Choiak | 30 |
+/// | 5 | Tybi | 30 |
+/// | 6 | Mechir | 30 |
+/// | 7 | Phamenoth | 30 |
+/// | 8 | Pharmuthi | 30 |
+/// | 9 | Pachons | 30 |
+/// | 10 | Payni | 30 |
+/// | 11 | Epiphi | 30 |
+/// | 12 | Mesore | 30 |
+/// | 13 |  | 5 |
 ///
 /// The Egyptian calendar epoch in the Julian calendar is February 26, 747 BC.
 ///
@@ -27,7 +43,7 @@ public struct EgyptianCalendar {
 	/// A year in the Egyptian calendar.
 	public typealias Year = Int
 
-	/// A month in the Egyptian calendar numbered from `1` (Thoth) to `12` (Mesori) with the five epagomenal days treated as month `13`.
+	/// A month in the Egyptian calendar numbered from `1` (Thoth) to `12` (Mesore) with the five epagomenal days treated as month `13`.
 	public typealias Month = Int
 
 	/// A day in the Egyptian calendar numbered starting from `1`.
@@ -47,7 +63,7 @@ public struct EgyptianCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 13
 
-	/// The number of days in each month indexed from `0` (Thoth) to `11` (Mesori), with the 5 epagomenal days treated as month `12`.
+	/// The number of days in each month indexed from `0` (Thoth) to `11` (Mesore), with the 5 epagomenal days treated as month `12`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
 	/// Returns the number of days in the specified month in the Egyptian calendar.

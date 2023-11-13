@@ -6,12 +6,27 @@
 
 import Foundation
 
-/// The Gregorian calendar.
+/// The Gregorian calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The Gregorian calendar, like the Julian calendar, is a solar calendar with 12 months of 28–31 days each.
-/// The year in both calendars consists of 365 days, with a leap day being added to February in the leap years.
+/// The year consists of twelve months.  The second month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | January | 31 |
+/// | 2 | February | 28 (29 in leap years) |
+/// | 3 | March | 31 |
+/// | 4 | April | 30 |
+/// | 5 | May | 31 |
+/// | 6 | June | 30 |
+/// | 7 | July | 31 |
+/// | 8 | August | 31 |
+/// | 9 | September | 30 |
+/// | 19 | October | 31 |
+/// | 11 | November | 30 |
+/// | 12 | December | 31 |
+///
 /// The months and length of months in the Gregorian calendar are the same as for the Julian calendar.
-/// The only difference is that the Gregorian reform omitted a leap day in three centurial years every 400 years and left the leap day unchanged.
+/// The only difference is that the Gregorian reform omitted a leap day in three centurial years every 400 years.
 ///
 /// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
 ///
@@ -114,6 +129,30 @@ public struct GregorianCalendar {
 		} else {
 			return JulianCalendar.monthLengths[M - 1]
 		}
+	}
+
+	/// Returns the day of the week for the specified Julian day number.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+		1 + (J + 1) % 7
+	}
+
+	/// Returns the day of the week for the specified year, month, and day.
+	///
+	/// - important: No validation checks are performed on the date values.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified year, month, and day.
+	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> Int {
+		let a = (9 + M) % 12
+		let b = Y - a / 10
+		return 1 + (2 + D + (13 * a + 2) / 5 + b + b / 4 - b / 100 + b / 400) % 7
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Gregorian calendar.
