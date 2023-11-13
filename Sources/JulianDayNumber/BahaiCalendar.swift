@@ -6,10 +6,32 @@
 
 import Foundation
 
-/// The Baháʼí calendar.
+/// The Baháʼí calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The Baháʼí calendar is a solar calendar of 365 days in every year with an additional leap day in certain years.
-/// The year consists of 19 months having 19 days each.  The 18th month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
+/// The year consists of nineteen months having 19 days each.  The eighteenth month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
+///
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Bahá | بهاء | 19 |
+/// | 2 | Jalál | جلال | 19 |
+/// | 3 | Jamál | جمال | 19 |
+/// | 4 | ʻAẓamat | عظمة | 19 |
+/// | 5 | Núr | نور | 19 |
+/// | 6 | Raḥmat | رحمة | 19 |
+/// | 7 | Kalimát | كلمات | 19 |
+/// | 8 | Kamál | كمال | 19 |
+/// | 9 | Asmáʼ | اسماء | 19 |
+/// | 10 | ʻIzzat | عزة | 19 |
+/// | 11 | Mas͟híyyat | مشية | 19 |
+/// | 12 | ʻIlm | علم | 19 |
+/// | 13 | Qudrat | قدرة | 19 |
+/// | 14 | Qawl | قول | 19 |
+/// | 15 | Masáʼil | مسائل | 19 |
+/// | 16 | S͟haraf | شرف | 19 |
+/// | 17 | Sulṭán | سلطان | 19 |
+/// | 18 | Mulk | ملك | 19 |
+/// | 19 | Ayyám-i-Há | ايام الهاء | 4 (5 in leap years) |
+/// | 20 | ʻAláʼ | علاء | 19 |
 ///
 /// The Baháʼí calendar epoch in the Gregorian calendar is March 21, 1844.
 ///
@@ -111,33 +133,4 @@ public struct BahaiCalendar {
 			return monthLengths[M - 1]
 		}
 	}
-}
-
-extension BahaiCalendar {
-	/// The names of the months in the Baháʼí calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"Bahá", 		// بهاء
-		"Jalál", 		// جلال
-		"Jamál", 		// جمال
-		"ʻAẓamat", 		// عظمة
-		"Núr", 			// نور
-		"Raḥmat", 		// رحمة
-		"Kalimát", 		// كلمات
-		"Kamál", 		// كمال
-		"Asmáʼ", 		// اسماء
-		"ʻIzzat", 		// عزة
-		"Mas͟híyyat", 	// مشية
-		"ʻIlm", 			// علم
-		"Qudrat", 		// قدرة
-		"Qawl", 		// قول
-		"Masáʼil", 		// مسائل
-		"S͟haraf", 		// شرف
-		"Sulṭán", 		// سلطان
-		"Mulk", 		// ملك
-		"Ayyám-i-Há", 	// ايام الهاء
-		"ʻAláʼ", 		// علاء
-	]
 }

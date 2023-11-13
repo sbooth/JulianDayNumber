@@ -6,9 +6,24 @@
 
 import Foundation
 
-/// The Islamic calendar.
+/// The Islamic calendar is a lunar calendar with 354 days in the year plus an additional leap day in certain years.
 ///
-/// The Islamic calendar is a lunar calendar consisting of 12 lunar months in a year of 354 or 355 days.
+/// The year consists of twelve months having 29 or 30 days each. The twelfth month contains an additional day in leap years.
+///
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | al-Muḥarram | ٱلْمُحَرَّم | 30 |
+/// | 2 | Ṣafar | صَفَر | 29 |
+/// | 3 | Rabīʿ al-ʾAwwal | رَبِيع ٱلْأَوَّل | 30 |
+/// | 4 | Rabīʿ ath-Thānī | رَبِيع ٱلثَّانِي | 29 |
+/// | 5 | Jumādā al-ʾŪlā | جُمَادَىٰ ٱلْأُولَىٰ | 30 |
+/// | 6 | Jumādā ath-Thāniyah | جُمَادَىٰ ٱلثَّانِيَة | 29 |
+/// | 7 | Rajab | رَجَب | 30 |
+/// | 8 | Shaʿbān | شَعْبَان | 29 |
+/// | 9 | Ramaḍān | رَمَضَان | 30 |
+/// | 10 | Shawwāl | شَوَّال | 29 |
+/// | 11 | Ḏū al-Qaʿdah | ذُو ٱلْقَعْدَة | 30 |
+/// | 12 | Ḏū al-Ḥijjah | ذُو ٱلْحِجَّة | 29 (30 in leap years) |
 ///
 /// The Islamic calendar epoch in the Julian calendar is July 16, 622.
 ///
@@ -81,25 +96,4 @@ public struct IslamicCalendar {
 			return monthLengths[M - 1]
 		}
 	}
-}
-
-extension IslamicCalendar {
-	/// The names of the months in the Islamic calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"al-Muḥarram", 			// ٱلْمُحَرَّم
-		"Ṣafar", 				// صَفَر
-		"Rabīʿ al-ʾAwwal", 		// رَبِيع ٱلْأَوَّل
-		"Rabīʿ ath-Thānī", 		// رَبِيع ٱلثَّانِي
-		"Jumādā al-ʾŪlā", 		// جُمَادَىٰ ٱلْأُولَىٰ
-		"Jumādā ath-Thāniyah", 	// جُمَادَىٰ ٱلثَّانِيَة
-		"Rajab", 				// رَجَب
-		"Shaʿbān", 				// شَعْبَان
-		"Ramaḍān", 				// رَمَضَان
-		"Shawwāl", 				// شَوَّال
-		"Ḏū al-Qaʿdah", 			// ذُو ٱلْقَعْدَة
-		"Ḏū al-Ḥijjah", 		// ذُو ٱلْحِجَّة
-	]
 }
