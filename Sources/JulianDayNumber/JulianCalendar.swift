@@ -115,6 +115,15 @@ public struct JulianCalendar {
 		}
 	}
 
+	/// Returns the day of the week for the specified Julian day number.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+		1 + (J + 1) % 7
+	}
+
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.
 	///
 	/// - parameter Y: A year number.
@@ -127,5 +136,35 @@ public struct JulianCalendar {
 		let M = 3 + g / 32
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
+	}
+}
+
+extension JulianCalendar {
+	/// The months in the Julian calendar.
+	public enum MonthName: Int {
+		/// January, 31 days
+		case january = 1
+		/// February, 28 days (common year) or 29 days (leap year)
+		case february
+		/// March, 31 days
+		case march
+		/// April, 30 days
+		case april
+		/// May, 31 days
+		case may
+		/// June, 30 days
+		case june
+		/// July, 31 days
+		case july
+		/// August, 31 days
+		case august
+		/// September, 30 days
+		case september
+		/// October, 31 days
+		case october
+		/// November, 30 days
+		case november
+		/// December, 31 days
+		case december
 	}
 }
