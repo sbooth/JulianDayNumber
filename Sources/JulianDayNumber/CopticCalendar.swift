@@ -27,7 +27,7 @@ public struct CopticCalendar {
 	/// A year in the Coptic calendar.
 	public typealias Year = Int
 
-	/// A month in the Coptic calendar numbered from `1` (Tut) to `13` (Nissieh).
+	/// A month in the Coptic calendar numbered from `1` (Thout) to `13` (Pi Kogi Enavot).
 	public typealias Month = Int
 
 	/// A day in the Coptic calendar numbered starting from `1`.
@@ -58,7 +58,7 @@ public struct CopticCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 13
 
-	/// The number of days in each month indexed from `0` (Tut) to `12` (Nissieh).
+	/// The number of days in each month indexed from `0` (Thout) to `12` (Pi Kogi Enavot).
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
 	/// Returns the number of days in the specified month and year in the Coptic calendar.
@@ -77,5 +77,37 @@ public struct CopticCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension CopticCalendar {
+	/// The months in the Coptic calendar.
+	public enum MonthName: Int {
+		/// Thout (Ⲑⲟⲟⲩⲧ), 30 days
+		case thout = 1
+		/// Paopi (Ⲡⲁⲱⲡⲉ), 30 days
+		case paopi
+		/// Hathor (Ϩⲁⲑⲱⲣ), 30 days
+		case hathor
+		/// Koiak (Ⲕⲟⲓⲁϩⲕ), 30 days
+		case koiak
+		/// Tobi (Ⲧⲱⲃⲉ), 30 days
+		case tobi
+		/// Meshir (Ⲙϣⲓⲣ), 30 days
+		case meshir
+		/// Paremhat (Ⲡⲁⲣⲙϩⲟⲧⲡ), 30 days
+		case paremhat
+		/// Parmouti (Ⲡⲁⲣⲙⲟⲩⲧⲉ), 30 days
+		case parmouti
+		/// Pashons (Ⲡⲁϣⲟⲛⲥ), 30 days
+		case pashons
+		/// Paoni (Ⲡⲁⲱⲛⲉ), 30 days
+		case paoni
+		/// Epip (Ⲉⲡⲏⲡ), 30 days
+		case epip
+		/// Mesori (Ⲙⲉⲥⲱⲣⲏ), 30 days
+		case mesori
+		/// Pi Kogi Enavot (Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ), 5 days (common year) or 6 days (leap year)
+		case piKogiEnavot
 	}
 }

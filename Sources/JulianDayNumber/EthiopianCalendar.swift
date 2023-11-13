@@ -27,7 +27,7 @@ public struct EthiopianCalendar {
 	/// A year in the Ethiopian calendar.
 	public typealias Year = Int
 
-	/// A month in the Ethiopian calendar numbered from `1` (Mäskäräm) to `13` (Ṗagumen).
+	/// A month in the Ethiopian calendar numbered from `1` (Mäskäräm) to `13` (Ṗagume).
 	public typealias Month = Int
 
 	/// A day in the Ethiopian calendar numbered starting from `1`.
@@ -58,7 +58,7 @@ public struct EthiopianCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 13
 
-	/// The number of days in each month indexed from `0` (Mäskäräm) to `12` (Ṗagumen).
+	/// The number of days in each month indexed from `0` (Mäskäräm) to `12` (Ṗagume).
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
 	/// Returns the number of days in the specified month and year in the Ethiopian calendar.
@@ -77,5 +77,37 @@ public struct EthiopianCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension EthiopianCalendar {
+	/// The months in the Ethiopian calendar.
+	enum MonthName: Int {
+		/// Mäskäräm (መስከረም), 30 days
+		case mäskäräm = 1
+		/// Ṭəqəmt (ጥቅምት), 30 days
+		case təqəmt
+		/// Ḫədar (ኅዳር), 30 days
+		case hədar
+		/// Taḫśaś (ታኅሣሥ), 30 days
+		case taḫśaś
+		/// Ṭərr (ጥር), 30 days
+		case tərr
+		/// Yäkatit (የካቲት), 30 days
+		case yäkatit
+		/// Mägabit (መጋቢት), 30 days
+		case mägabit
+		/// Miyazya (ሚያዝያ), 30 days
+		case miyazya
+		/// Gənbo (ግንቦት), 30 days
+		case gənbo
+		/// Säne (ሰኔ), 30 days
+		case säne
+		/// Ḥamle (ሐምሌ), 30 days
+		case hamle
+		/// Nähase (ነሐሴ), 30 days
+		case nähase
+		/// Ṗagume (ጳጉሜ), 5 days (common year) or 6 days (leap year)
+		case pagume
 	}
 }
