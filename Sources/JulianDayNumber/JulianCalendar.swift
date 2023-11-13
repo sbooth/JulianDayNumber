@@ -142,29 +142,29 @@ public struct JulianCalendar {
 extension JulianCalendar {
 	/// The months in the Julian calendar.
 	public enum MonthName: Int {
-		/// January, 31 days
+		/// January, 31 days.
 		case january = 1
-		/// February, 28 days (common year) or 29 days (leap year)
+		/// February, 28 days (common year) or 29 days (leap year).
 		case february
-		/// March, 31 days
+		/// March, 31 days.
 		case march
-		/// April, 30 days
+		/// April, 30 days.
 		case april
-		/// May, 31 days
+		/// May, 31 days.
 		case may
-		/// June, 30 days
+		/// June, 30 days.
 		case june
-		/// July, 31 days
+		/// July, 31 days.
 		case july
-		/// August, 31 days
+		/// August, 31 days.
 		case august
-		/// September, 30 days
+		/// September, 30 days.
 		case september
-		/// October, 31 days
+		/// October, 31 days.
 		case october
-		/// November, 30 days
+		/// November, 30 days.
 		case november
-		/// December, 31 days
+		/// December, 31 days.
 		case december
 	}
 }

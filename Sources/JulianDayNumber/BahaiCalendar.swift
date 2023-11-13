@@ -116,45 +116,45 @@ public struct BahaiCalendar {
 extension BahaiCalendar {
 	/// The months in the Baháʼí calendar.
 	public enum MonthName: Int {
-		/// Bahá (بهاء), 19 days
+		/// Bahá (بهاء), 19 days.
 		 case bahá = 1
-		/// Jalál (جلال), 19 days
+		/// Jalál (جلال), 19 days.
 		case jalál
-		/// Jamál (جمال), 19 days
+		/// Jamál (جمال), 19 days.
 		case jamál
-		/// ʻAẓamat (عظمة), 19 days
+		/// ʻAẓamat (عظمة), 19 days.
 		case aẓamat
-		/// Núr (نور), 19 days
+		/// Núr (نور), 19 days.
 		case núr
-		/// Raḥmat (رحمة), 19 days
+		/// Raḥmat (رحمة), 19 days.
 		case raḥmat
-		/// Kalimát (كلمات), 19 days
+		/// Kalimát (كلمات), 19 days.
 		case kalimát
-		/// Kamál (كمال), 19 days
+		/// Kamál (كمال), 19 days.
 		case kamál
-		/// Asmáʼ (اسماء), 19 days
+		/// Asmáʼ (اسماء), 19 days.
 		case asmáʼ
-		/// ʻIzzat (عزة), 19 days
+		/// ʻIzzat (عزة), 19 days.
 		case izzat
-		/// Mas͟híyyat (مشية), 19 days
+		/// Mas͟híyyat (مشية), 19 days.
 		case mas͟híyyat
-		/// ʻIlm (علم), 19 days
+		/// ʻIlm (علم), 19 days.
 		case ilm
-		/// Qudrat (قدرة), 19 days
+		/// Qudrat (قدرة), 19 days.
 		case qudrat
-		/// Qawl (قول), 19 days
+		/// Qawl (قول), 19 days.
 		case qawl
-		/// Masáʼil (مسائل), 19 days
+		/// Masáʼil (مسائل), 19 days.
 		case masáʼil
-		/// S͟haraf (شرف), 19 days
+		/// S͟haraf (شرف), 19 days.
 		case sharaf
-		/// Sulṭán (سلطان), 19 days
+		/// Sulṭán (سلطان), 19 days.
 		case sulṭán
-		/// Mulk (ملك), 19 days
+		/// Mulk (ملك), 19 days.
 		case mulk
-		/// Ayyám-i-Há (ايام الهاء), 4 days (common year) or 5 days (leap year)
+		/// Ayyám-i-Há (ايام الهاء), 4 days (common year) or 5 days (leap year).
 		case ayyámiHá
-		/// ʻAláʼ (علاء), 19 days
+		/// ʻAláʼ (علاء), 19 days.
 		case aláʼ
 	}
 }

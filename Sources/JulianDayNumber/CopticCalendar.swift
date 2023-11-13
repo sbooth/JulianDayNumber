@@ -83,31 +83,31 @@ public struct CopticCalendar {
 extension CopticCalendar {
 	/// The months in the Coptic calendar.
 	public enum MonthName: Int {
-		/// Thout (Ⲑⲟⲟⲩⲧ), 30 days
+		/// Thout (Ⲑⲟⲟⲩⲧ), 30 days.
 		case thout = 1
-		/// Paopi (Ⲡⲁⲱⲡⲉ), 30 days
+		/// Paopi (Ⲡⲁⲱⲡⲉ), 30 days.
 		case paopi
-		/// Hathor (Ϩⲁⲑⲱⲣ), 30 days
+		/// Hathor (Ϩⲁⲑⲱⲣ), 30 days.
 		case hathor
-		/// Koiak (Ⲕⲟⲓⲁϩⲕ), 30 days
+		/// Koiak (Ⲕⲟⲓⲁϩⲕ), 30 days.
 		case koiak
-		/// Tobi (Ⲧⲱⲃⲉ), 30 days
+		/// Tobi (Ⲧⲱⲃⲉ), 30 days.
 		case tobi
-		/// Meshir (Ⲙϣⲓⲣ), 30 days
+		/// Meshir (Ⲙϣⲓⲣ), 30 days.
 		case meshir
-		/// Paremhat (Ⲡⲁⲣⲙϩⲟⲧⲡ), 30 days
+		/// Paremhat (Ⲡⲁⲣⲙϩⲟⲧⲡ), 30 days.
 		case paremhat
-		/// Parmouti (Ⲡⲁⲣⲙⲟⲩⲧⲉ), 30 days
+		/// Parmouti (Ⲡⲁⲣⲙⲟⲩⲧⲉ), 30 days.
 		case parmouti
-		/// Pashons (Ⲡⲁϣⲟⲛⲥ), 30 days
+		/// Pashons (Ⲡⲁϣⲟⲛⲥ), 30 days.
 		case pashons
-		/// Paoni (Ⲡⲁⲱⲛⲉ), 30 days
+		/// Paoni (Ⲡⲁⲱⲛⲉ), 30 days.
 		case paoni
-		/// Epip (Ⲉⲡⲏⲡ), 30 days
+		/// Epip (Ⲉⲡⲏⲡ), 30 days.
 		case epip
-		/// Mesori (Ⲙⲉⲥⲱⲣⲏ), 30 days
+		/// Mesori (Ⲙⲉⲥⲱⲣⲏ), 30 days.
 		case mesori
-		/// Pi Kogi Enavot (Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ), 5 days (common year) or 6 days (leap year)
+		/// Pi Kogi Enavot (Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ), 5 days (common year) or 6 days (leap year).
 		case piKogiEnavot
 	}
 }

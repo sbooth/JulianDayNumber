@@ -83,31 +83,31 @@ public struct EthiopianCalendar {
 extension EthiopianCalendar {
 	/// The months in the Ethiopian calendar.
 	enum MonthName: Int {
-		/// Mäskäräm (መስከረም), 30 days
+		/// Mäskäräm (መስከረም), 30 days.
 		case mäskäräm = 1
-		/// Ṭəqəmt (ጥቅምት), 30 days
+		/// Ṭəqəmt (ጥቅምት), 30 days.
 		case təqəmt
-		/// Ḫədar (ኅዳር), 30 days
+		/// Ḫədar (ኅዳር), 30 days.
 		case hədar
-		/// Taḫśaś (ታኅሣሥ), 30 days
+		/// Taḫśaś (ታኅሣሥ), 30 days.
 		case taḫśaś
-		/// Ṭərr (ጥር), 30 days
+		/// Ṭərr (ጥር), 30 days.
 		case tərr
-		/// Yäkatit (የካቲት), 30 days
+		/// Yäkatit (የካቲት), 30 days.
 		case yäkatit
-		/// Mägabit (መጋቢት), 30 days
+		/// Mägabit (መጋቢት), 30 days.
 		case mägabit
-		/// Miyazya (ሚያዝያ), 30 days
+		/// Miyazya (ሚያዝያ), 30 days.
 		case miyazya
-		/// Gənbo (ግንቦት), 30 days
+		/// Gənbo (ግንቦት), 30 days.
 		case gənbo
-		/// Säne (ሰኔ), 30 days
+		/// Säne (ሰኔ), 30 days.
 		case säne
-		/// Ḥamle (ሐምሌ), 30 days
+		/// Ḥamle (ሐምሌ), 30 days.
 		case hamle
-		/// Nähase (ነሐሴ), 30 days
+		/// Nähase (ነሐሴ), 30 days.
 		case nähase
-		/// Ṗagume (ጳጉሜ), 5 days (common year) or 6 days (leap year)
+		/// Ṗagume (ጳጉሜ), 5 days (common year) or 6 days (leap year).
 		case pagume
 	}
 }
