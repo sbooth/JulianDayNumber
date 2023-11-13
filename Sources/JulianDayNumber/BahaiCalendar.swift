@@ -28,12 +28,12 @@ public struct BahaiCalendar {
 	/// The Julian day number of the epoch of the Baháʼí calendar.
 	///
 	/// This JDN corresponds to noon on March 21, 1844 in the Gregorian calendar.
-	public static let epochJulianDayNumber = 2394647
+	public static let epochJulianDayNumber: JulianDayNumber = 2394647
 
 	/// The Julian date of the epoch of the Baháʼí calendar.
 	///
 	/// This JD corresponds to midnight on March 21, 1844 in the Gregorian calendar.
-	public static let epochJulianDate = 2394646.5
+	public static let epochJulianDate: JulianDate = 2394646.5
 
 	/// A year in the Baháʼí calendar.
 	public typealias Year = Int
