@@ -19,19 +19,19 @@ let jewishCalendarCycleYears = 689472
 let jewishCalendarCycleDays = 251827457
 
 extension JewishCalendar {
-	/// Returns the Julian day number of the first day of Tishri in the specified year.
+	/// Returns the Julian day number of the first day of Tishrei in the specified year.
 	///
 	/// - note: No validation check is performed on the year value.
 	///
 	/// - parameter Y: A year A.M.
 	///
-	/// - returns: The Julian day number of the first day of Tishri in the specified year.
-	static func firstDayOfTishri(year Y: Int) -> JulianDayNumber {
-//		precondition(Y > 0, "First day of Tishri calculations only valid for year numbers > 0")
+	/// - returns: The Julian day number of the first day of Tishrei in the specified year.
+	static func firstDayOfTishrei(year Y: Int) -> JulianDayNumber {
+//		precondition(Y > 0, "First day of Tishrei calculations only valid for year numbers > 0")
 //		precondition(Y < 974245219737, "Year values above 974245219736 cause numerical overflow using 64-bit integers")
 
 		// It is possible to adjust the year by a multiple of the cycle to have this function
-		// calculate correct values for the first day of Tishri in proleptic years. However,
+		// calculate correct values for the first day of Tishrei in proleptic years. However,
 		// this isn't a public function and the callers perform the translation before calling.
 
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
@@ -57,7 +57,7 @@ extension JewishCalendar {
 
 		let M = (25920 * (J - 347996)) / 765433 + 1
 		var Y = 19 * (M / 235) + (19 * (M % 235) - 2) / 235 + 1
-		let K = firstDayOfTishri(year: Y)
+		let K = firstDayOfTishrei(year: Y)
 		if K > J {
 			Y = Y - 1
 		}
@@ -78,8 +78,8 @@ extension JewishCalendar: JulianDayNumberConverting {
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 		var J = a + A[K - 1][date.month - 1] + date.day - 1
 
@@ -100,8 +100,8 @@ extension JewishCalendar: JulianDayNumberConverting {
 		}
 
 		var Y = yearContaining(julianDayNumber: J)
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 		let c = J - a + 1
 //		precondition(c >= 0)

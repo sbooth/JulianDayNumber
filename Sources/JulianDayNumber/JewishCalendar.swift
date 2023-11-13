@@ -27,7 +27,7 @@ public struct JewishCalendar {
 	/// A year in the Jewish calendar.
 	public typealias Year = Int
 
-	/// A month in the Jewish calendar numbered from `1` (Tishri) to `12` (Elul) for common years and from `1` (Tishri) to `13` (Elul) for leap years.
+	/// A month in the Jewish calendar numbered from `1` (Tishrei) to `12` (Elul) for common years and from `1` (Tishrei) to `13` (Elul) for leap years.
 	public typealias Month = Int
 
 	/// A day in the Jewish calendar numbered starting from `1`.
@@ -92,8 +92,8 @@ public struct JewishCalendar {
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 
 		switch K {
@@ -154,8 +154,8 @@ public struct JewishCalendar {
 			Y += ΔcalendarCycles * jewishCalendarCycleYears
 		}
 
-		let a = firstDayOfTishri(year: Y)
-		let b = firstDayOfTishri(year: Y + 1)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 
 		if (K > 3 && M > 13) || (K < 4 && M > 12) {
@@ -164,4 +164,45 @@ public struct JewishCalendar {
 
 		return monthLengths[K - 1][M - 1]
 	}
+}
+
+extension JewishCalendar {
+	/// The names of the months in a common year in the Jewish calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"Tishrei",
+		"Cheshvan ",
+		"Kislev",
+		"Tevet",
+		"Shevat",
+		"Adar",
+		"Nisan",
+		"Iyar",
+		"Sivan",
+		"Tammuz",
+		"Av",
+		"Elul",
+	]
+
+	/// The names of the months in a leap year in the Jewish calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let leapYearMonthNames = [
+		"",
+		"Tishrei",
+		"Cheshvan ",
+		"Kislev",
+		"Tevet",
+		"Shevat",
+		"Adar I",
+		"Adar II",
+		"Nisan",
+		"Iyar",
+		"Sivan",
+		"Tammuz",
+		"Av",
+		"Elul",
+	]
 }
