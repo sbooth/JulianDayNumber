@@ -39,25 +39,6 @@ extension MayanCalendar: JulianDayNumberConverting {
 }
 
 extension MayanCalendar {
-	/// A kin is one day and is numbered from `0` to `19`.
-	public typealias Kin = Int
-	/// A uinal is 20 kin and is numbered from `0` to `19`.
-	public typealias Uinal = Int
-	/// A tun is 18 uinal and is numbered from `0` to `17`.
-	public typealias Tun = Int
-	/// A katun is 20 tun and is numbered from `0` to `19`.
-	public typealias Katun = Int
-	/// A baktun is 20 katun and is numbered from `0` to `19`.
-	public typealias Baktun = Int
-	/// A pictun is 20 baktun and is numbered from `0` to `19`.
-	public typealias Pictun = Int
-	/// A calabtun is 20 pictun and is numbered from `0` to `19`.
-	public typealias Calabtun = Int
-	/// A kinchiltun is 20 calabtun and is numbered from `0` to `19`.
-	public typealias Kinchiltun = Int
-	/// An alautun is 20 kinchiltun and is numbered from `0` to `19`.
-	public typealias Alautun = Int
-
 	/// Converts a Julian day number to a long count in the Mayan calendar.
 	///
 	/// - parameter J: A Julian day number.
@@ -143,119 +124,7 @@ extension MayanCalendar {
 }
 
 extension MayanCalendar {
-	/// The Julian day number of the start of the Tzolk’in cycle of the Mayan calendar.
-	///
-	/// The Tzolk’in cycle began 159 days before the long count epoch.
-	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
-	static let tzolkinEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 159
-
-	/// The Julian day number of the start of the Haabʼ cycle of the Mayan calendar.
-	///
-	/// The Haabʼ cycle began 348 days before the long count epoch.
-	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
-	static let haabEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 348
-
-	/// A Tzolk’in number from `1` to `13`.
-	public typealias TzolkinNumber = Int
-
-	/// A Tzolk’in day name.
-	///
-	/// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
-	public enum TzolkinDayName: Int {
-		/// Imix
-		case imix = 1
-		/// Ikʼ
-		case ik
-		/// Akʼbʼal
-		case akbal
-		/// Kʼan
-		case kan
-		/// Chikchan
-		case chicchan
-		/// Kimi
-		case cimi
-		/// Manikʼ
-		case manik
-		/// Lamat
-		case lamat
-		/// Muluk
-		case muluc
-		/// Ok
-		case oc
-		/// Chuwen
-		case chuen
-		/// Ebʼ
-		case eb
-		/// Bʼen
-		case ben
-		/// Ix
-		case ix
-		/// Men
-		case men
-		/// Kibʼ
-		case cib
-		/// Kabʼan
-		case caban
-		/// Etzʼnabʼ
-		case etznab
-		/// Kawak
-		case cauac
-		/// Ajaw
-		case ahau
-	}
-
-	/// A Haabʼ day from `0` to `19`.
-	public typealias HaabDay = Int
-
-	/// A Haabʼ month.
-	///
-	/// - seealso: [Haabʼ](https://en.wikipedia.org/wiki/Haabʼ)
-	public enum HaabMonth: Int {
-		/// Pop
-		case pop = 1
-		/// Woʼ
-		case uo
-		/// Sip
-		case zip
-		/// Sotzʼ
-		case zotz
-		/// Sek
-		case tzec
-		/// Xul
-		case xul
-		/// Yaxkʼin
-		case yaxkin
-		/// Mol
-		case mol
-		/// Chʼen
-		case chen
-		/// Yax
-		case yax
-		/// Sakʼ
-		case zac
-		/// Keh
-		case ceh
-		/// Mak
-		case mac
-		/// Kʼankʼin
-		case kankin
-		/// Muwan
-		case muan
-		/// Pax
-		case pax
-		/// Kʼayabʼ
-		case kayab
-		/// Kumkʼu
-		case cumku
-		/// Five unlucky days called Wayebʼ
-		case uayeb
-	}
-
 	/// Converts a Julian day number to a Calendar Round in the Mayan calendar.
-	///
-	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number and a name.
-	/// - A Haabʼ date comprised of a day and a month.
 	///
 	/// - note: A Calendar Round corresponding to a Julian day number
 	/// can also be represented by the same Julian day number with multiples
@@ -271,19 +140,15 @@ extension MayanCalendar {
 		let (number, name) = (T % 13 + 1, T % 20)
 		let (month, day) = (H % 365).quotientAndRemainder(dividingBy: 20)
 
-		return (number, TzolkinDayName(rawValue: name + 1)!, day, HaabMonth(rawValue: month + 1)!)
+		return (number, name + 1, day, month + 1)
 	}
 
 	/// Returns the most recent Julian day number for a Calendar Round in the Mayan calendar occurring before a Julian day number.
 	///
-	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number and a name.
-	/// - A Haabʼ date comprised of a day and a month.
-	///
-	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
+	/// - important: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
 	/// - parameter number: A Tzolkʼin number.
-	/// - parameter name: A Tzolkʼin name.
+	/// - parameter name: A Tzolkʼin day name.
 	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	/// - parameter J0: A Julian day number to anchor the Calendar Round.
@@ -298,14 +163,10 @@ extension MayanCalendar {
 
 	/// Returns the least recent Julian day number for a Calendar Round in the Mayan calendar occurring on or after a Julian day number.
 	///
-	/// A Calendar Round is a repeating cycle of 18,980 days and consists of two distinct dates:
-	/// - A Tzolkʼin date comprised of a number and a name.
-	/// - A Haabʼ date comprised of a day and a month.
-	///
-	/// - note: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
+	/// - important: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
 	/// - parameter number: A Tzolkʼin number.
-	/// - parameter name: A Tzolkʼin name.
+	/// - parameter name: A Tzolkʼin day name.
 	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	/// - parameter J0: A Julian day number to anchor the Calendar Round.
@@ -321,17 +182,17 @@ extension MayanCalendar {
 	/// Returns a possible Julian day number for a Calendar Round in the Mayan calendar.
 	///
 	/// - parameter number: A Tzolkʼin number.
-	/// - parameter name: A Tzolkʼin name.
+	/// - parameter name: A Tzolkʼin day name.
 	/// - parameter day: A Haabʼ day.
 	/// - parameter month: A Haabʼ month.
 	///
 	/// - returns: A possible Julian day number corresponding to the specified Calendar Round or `nil` if none.
 	static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) -> JulianDayNumber? {
 		// The number of days into the Tzolkʼin cycle
-		let T = (40 * number + 221 * name.rawValue - 1) % 260
+		let T = (40 * number + 221 * name - 1) % 260
 
 		// The number of days into the Haabʼ cycle
-		let H = 20 * (month.rawValue - 1) + day
+		let H = 20 * (month - 1) + day
 
 		// Not all combinations of H and T are valid
 		guard (H - T) % 5 == 4 else {
