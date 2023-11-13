@@ -9,6 +9,7 @@ import XCTest
 
 final class CongruenceTests: XCTestCase {
 	func testEpoch() {
+		XCTAssertEqual(ArmenianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 552, month: 7, day: 11))
 		XCTAssertEqual(BahaiCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), GregorianCalendar.julianDayNumberFrom(year: 1844, month: 3, day: 21))
 		XCTAssertEqual(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 284, month: 8, day: 29))
 		XCTAssertEqual(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: -746, month: 2, day: 26))
