@@ -6,9 +6,24 @@
 
 import Foundation
 
-/// The Julian calendar.
+/// The Julian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The Julian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The year consists of twelve months.  The second month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | January | 31 |
+/// | 2 | February | 28 (29 in leap years) |
+/// | 3 | March | 31 |
+/// | 4 | April | 30 |
+/// | 5 | May | 31 |
+/// | 6 | June | 30 |
+/// | 7 | July | 31 |
+/// | 8 | August | 31 |
+/// | 9 | September | 30 |
+/// | 19 | October | 31 |
+/// | 11 | November | 30 |
+/// | 12 | December | 31 |
 ///
 /// The Julian calendar took effect on January 1, 45 BC.
 ///
@@ -137,25 +152,4 @@ public struct JulianCalendar {
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
 	}
-}
-
-extension JulianCalendar {
-	/// The names of the months in the Julian calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	]
 }

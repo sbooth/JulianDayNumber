@@ -6,12 +6,27 @@
 
 import Foundation
 
-/// The Gregorian calendar.
+/// The Gregorian calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The Gregorian calendar, like the Julian calendar, is a solar calendar with 12 months of 28–31 days each.
-/// The year in both calendars consists of 365 days, with a leap day being added to February in the leap years.
+/// The year consists of twelve months.  The second month contains an additional day in leap years.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | January | 31 |
+/// | 2 | February | 28 (29 in leap years) |
+/// | 3 | March | 31 |
+/// | 4 | April | 30 |
+/// | 5 | May | 31 |
+/// | 6 | June | 30 |
+/// | 7 | July | 31 |
+/// | 8 | August | 31 |
+/// | 9 | September | 30 |
+/// | 19 | October | 31 |
+/// | 11 | November | 30 |
+/// | 12 | December | 31 |
+///
 /// The months and length of months in the Gregorian calendar are the same as for the Julian calendar.
-/// The only difference is that the Gregorian reform omitted a leap day in three centurial years every 400 years and left the leap day unchanged.
+/// The only difference is that the Gregorian reform omitted a leap day in three centurial years every 400 years.
 ///
 /// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
 ///
@@ -157,11 +172,4 @@ public struct GregorianCalendar {
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
 	}
-}
-
-extension GregorianCalendar {
-	/// The names of the months in the Gregorian calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = JulianCalendar.monthNames
 }

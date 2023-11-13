@@ -6,22 +6,38 @@
 
 import Foundation
 
-/// The Ethiopian calendar.
+/// The Ethiopian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The Ethiopian calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Ṗagume) with a sixth in leap years.
 ///
-/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8.
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Mäskäräm | መስከረም | 30 |
+/// | 2 | Ṭəqəmt | ጥቅምት | 30 |
+/// | 3 | Ḫədar | ኅዳር | 30 |
+/// | 4  | Taḫśaś | ታኅሣሥ | 30 |
+/// | 5 | Ṭərr | ጥር | 30 |
+/// | 6 | Yäkatit | የካቲት | 30 |
+/// | 7 | Mägabit | መጋቢት | 30 |
+/// | 8 | Miyazya | ሚያዝያ | 30 |
+/// | 9 | Gənbo | ግንቦት | 30 |
+/// | 10 | Säne | ሰኔ | 30 |
+/// | 11 | Ḥamle | ሐምሌ | 30 |
+/// | 12 | Nähase | ነሐሴ | 30 |
+/// | 13 | Ṗagume | ጳጉሜ | 5 (6 in leap years) |
+///
+/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8 AD.
 ///
 /// - seealso: [Ethiopian calendar](https://en.wikipedia.org/wiki/Ethiopian_calendar)
 public struct EthiopianCalendar {
 	/// The Julian day number of the epoch of the Ethiopian calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 8 in the Julian calendar.
+	/// This JDN corresponds to noon on August 29, 8 AD in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1724221
 
 	/// The Julian date of the epoch of the Ethiopian calendar.
 	///
-	/// This JD corresponds to midnight on August 29, 8 in the Julian calendar.
+	/// This JD corresponds to midnight on August 29, 8 AD in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1724220.5
 
 	/// A year in the Ethiopian calendar.
@@ -78,26 +94,4 @@ public struct EthiopianCalendar {
 			return monthLengths[M - 1]
 		}
 	}
-}
-
-extension EthiopianCalendar {
-	/// The names of the months in the Ethiopian calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"Mäskäräm", 	// መስከረም
-		"Ṭəqəmt", 		// ጥቅምት
-		"Ḫədar", 		// ኅዳር
-		"Taḫśaś", 		// ታኅሣሥ
-		"Ṭərr", 			// ጥር
-		"Yäkatit", 		// የካቲት
-		"Mägabit", 		// መጋቢት
-		"Miyazya", 		// ሚያዝያ
-		"Gənbo", 		// ግንቦት
-		"Säne", 		// ሰኔ
-		"Ḥamle", 		// ሐምሌ
-		"Nähase", 		// ነሐሴ
-		"Ṗagume", 		// ጳጉሜ
-	]
 }

@@ -6,10 +6,12 @@
 
 import Foundation
 
-/// The Coptic calendar is a solar calendar of 365 days in every year with an additional leap day every fourth year.
+/// The Coptic calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
+///
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Pi Kogi Enavot) with a sixth in leap years.
 ///
 /// | Month | Name | | Days |
-/// | --- | --- | --- | --- |
+/// | ---: | --- | --- | --- |
 /// | 1 | Thout | Ⲑⲟⲟⲩⲧ | 30 |
 /// | 2 | Paopi | Ⲡⲁⲱⲡⲉ | 30 |
 /// | 3 | Hathor | Ϩⲁⲑⲱⲣ | 30 |
@@ -22,20 +24,20 @@ import Foundation
 /// | 10 | Paoni | Ⲡⲁⲱⲛⲉ | 30 |
 /// | 11 | Epip | Ⲉⲡⲏⲡ | 30 |
 /// | 12 | Mesori | Ⲙⲉⲥⲱⲣⲏ | 30 |
-/// | 13 | Pi Kogi Enavot | Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ | 5 (common year) / 6 (leap year) |
+/// | 13 | Pi Kogi Enavot | Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ | 5 (6 in leap years) |
 ///
-/// The Coptic calendar epoch in the Julian calendar is August 29, 284.
+/// The Coptic calendar epoch in the Julian calendar is August 29, 284 AD.
 ///
 /// - seealso: [Coptic calendar](https://en.wikipedia.org/wiki/Coptic_calendar)
 public struct CopticCalendar {
 	/// The Julian day number of the epoch of the Coptic calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 284 in the Julian calendar.
+	/// This JDN corresponds to noon on August 29, 284 AD in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1825030
 
 	/// The Julian date of the epoch of the Coptic calendar.
 	///
-	/// This JD corresponds to midnight on August 29, 284 in the Julian calendar.
+	/// This JD corresponds to midnight on August 29, 284 AD in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1825029.5
 
 	/// A year in the Coptic calendar.

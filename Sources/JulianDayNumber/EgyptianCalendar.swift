@@ -6,9 +6,25 @@
 
 import Foundation
 
-/// The Egyptian calendar.
+/// The Egyptian calendar is a solar calendar with 365 days in every year.
 ///
-/// The Egyptian calendar is a solar calendar of 365 days in every year.
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Thoth | 30 |
+/// | 2 | Phaophi | 30 |
+/// | 3 | Athyr | 30 |
+/// | 4 | Choiak | 30 |
+/// | 5 | Tybi | 30 |
+/// | 6 | Mechir | 30 |
+/// | 7 | Phamenoth | 30 |
+/// | 8 | Pharmuthi | 30 |
+/// | 9 | Pachons | 30 |
+/// | 10 | Payni | 30 |
+/// | 11 | Epiphi | 30 |
+/// | 12 | Mesore | 30 |
+/// | 13 |  | 5 |
 ///
 /// The Egyptian calendar epoch in the Julian calendar is February 26, 747 BC.
 ///
@@ -62,26 +78,4 @@ public struct EgyptianCalendar {
 
 		return monthLengths[M - 1]
 	}
-}
-
-extension EgyptianCalendar {
-	/// The names of the months in the Egyptian calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"Thoth",
-		"Phaophi",
-		"Athyr",
-		"Choiak",
-		"Tybi",
-		"Mechir",
-		"Phamenoth",
-		"Pharmuthi",
-		"Pachons",
-		"Payni",
-		"Epiphi",
-		"Mesore",
-		"Five Days",
-	]
 }
