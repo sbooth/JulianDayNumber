@@ -74,6 +74,7 @@ extension IslamicCalendar: JulianDayNumberConverting {
 // Constants for Islamic calendar conversions
 private let y = 5519
 private let j = 7664
+// Islamic A is identical except j = 7665
 private let m = 0
 private let n = 12
 private let r = 30

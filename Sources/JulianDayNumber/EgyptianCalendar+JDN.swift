@@ -26,7 +26,7 @@ extension EgyptianCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -3968-02-18 in the Egyptian calendar.
+		// JDN 0 is -3968-02-18 in the proleptic Egyptian calendar.
 		if date < (-3968, 2, 18) {
 			ΔcalendarCycles = (-3969 - Y) / egyptianCalendarCycleYears + 1
 			Y += ΔcalendarCycles * egyptianCalendarCycleYears
