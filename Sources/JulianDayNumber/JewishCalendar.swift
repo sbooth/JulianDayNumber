@@ -6,9 +6,52 @@
 
 import Foundation
 
-/// The Jewish calendar.
+/// The Jewish calendar is a lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year.
 ///
-/// The Jewish calendar is a lunisolar calendar.
+/// A common year has 353, 354, or 355 days. A leap year is always 30 days longer.
+///
+/// The number of days in a year depends on whether year is a common or leap year and whether it is deficient, regular, or abundant.
+///
+/// | | Common Year | Leap Year |
+/// | --- | --- | --- |
+/// | Deficient | 353 | 383 |
+/// | Regular | 354 | 384 |
+/// | Abundant | 355 | 385 |
+///
+/// Common years consist of twelve months.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Tishrei | 30 |
+/// | 2 | Cheshvan | 29 (30 in abundant years) |
+/// | 3 | Kislev | 30 (29 in deficient years) |
+/// | 4 | Tevet | 29 |
+/// | 5 | Shevat | 30 |
+/// | 6 | Adar | 29 |
+/// | 7 | Nisan | 30 |
+/// | 8 | Iyar | 29 |
+/// | 9 | Sivan | 30 |
+/// | 10 | Tammuz | 29 |
+/// | 11 | Av | 30 |
+/// | 12 | Elul | 29 |
+///
+/// Leap years consist of thirteen months.
+///
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | Tishrei | 30 |
+/// | 2 | Cheshvan | 29 (30 in abundant years) |
+/// | 3 | Kislev | 30 (29 in deficient years) |
+/// | 4 | Tevet | 29 |
+/// | 5 | Shevat | 30 |
+/// | 6 | Adar | 30 |
+/// | 7 | Adar II | 29 |
+/// | 8 | Nisan | 30 |
+/// | 9 | Iyar | 29 |
+/// | 10 | Sivan | 30 |
+/// | 11 | Tammuz | 29 |
+/// | 12 | Av | 30 |
+/// | 13 | Elul | 29 |
 ///
 /// The Jewish calendar epoch in the Julian calendar is October 7, 3761 BC.
 ///
@@ -164,45 +207,4 @@ public struct JewishCalendar {
 
 		return monthLengths[K - 1][M - 1]
 	}
-}
-
-extension JewishCalendar {
-	/// The names of the months in a common year in the Jewish calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let monthNames = [
-		"",
-		"Tishrei",
-		"Cheshvan ",
-		"Kislev",
-		"Tevet",
-		"Shevat",
-		"Adar",
-		"Nisan",
-		"Iyar",
-		"Sivan",
-		"Tammuz",
-		"Av",
-		"Elul",
-	]
-
-	/// The names of the months in a leap year in the Jewish calendar.
-	///
-	/// - attention: The array uses 1-based indexing. The first month has index `1`.
-	public static let leapYearMonthNames = [
-		"",
-		"Tishrei",
-		"Cheshvan ",
-		"Kislev",
-		"Tevet",
-		"Shevat",
-		"Adar I",
-		"Adar II",
-		"Nisan",
-		"Iyar",
-		"Sivan",
-		"Tammuz",
-		"Av",
-		"Elul",
-	]
 }
