@@ -10,6 +10,8 @@ import Foundation
 ///
 /// The Śaka calendar is a solar calendar of 365 days in every year with an additional leap day in certain years.
 ///
+/// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
+///
 /// The Śaka calendar epoch in the Julian calendar is March 24, 79.
 ///
 /// - seealso: [Indian national calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
@@ -21,7 +23,7 @@ public struct SakaCalendar {
 
 	/// The Julian date when the Śaka calendar took effect.
 	///
-	/// This JD corresponds to midnight on March 22, 1957 in the Julian calendar.
+	/// This JD corresponds to midnight on March 22, 1957 in the Gregorian calendar.
 	public static let effectiveJulianDate: JulianDate = 2435919.5
 
 	/// The Julian day number of the epoch of the Śaka calendar.
