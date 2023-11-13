@@ -15,6 +15,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Jewish](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/jewishcalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
+- Khwarizmian
 - [Mayan](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayancalendar)
 - [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
