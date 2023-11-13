@@ -27,7 +27,7 @@ public struct ArmenianCalendar {
 	/// A year in the Armenian calendar.
 	public typealias Year = Int
 
-	/// A month in the Armenian calendar numbered from `1` (nawasard) to `12` (hroticʿ) with the five epagomenal days (aweleacʿ) treated as month `13`.
+	/// A month in the Armenian calendar numbered from `1` (Nawasardi) to `12` (Hrotich) with the five epagomenal days (Aweleach) treated as month `13`.
 	public typealias Month = Int
 
 	/// A day in the Armenian calendar numbered starting from `1`.
