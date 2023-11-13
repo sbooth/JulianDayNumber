@@ -118,33 +118,23 @@ public struct FrenchRepublicanCalendar {
 }
 
 extension FrenchRepublicanCalendar {
-	/// The months in the French Republican calendar.
-	public enum MonthName: Int {
-		/// Vendémiaire, 30 days.
-		case vendémiaire = 1
-		/// Brumaire, 30 days.
-		case brumaire
-		/// Frimaire, 30 days.
-		case frimaire
-		/// Nivôse , 30 days.
-		case nivôse
-		/// Pluviôse , 30 days.
-		case pluviôse
-		/// Ventôse, 30 days.
-		case ventôse
-		/// Germinal , 30 days.
-		case germinal
-		/// Floréal, 30 days.
-		case floréal
-		/// Prairial , 30 days.
-		case prairial
-		/// Messidor, 30 days.
-		case messidor
-		/// Thermidor, 30 days.
-		case thermidor
-		/// Fructidor, 30 days.
-		case fructidor
-		/// Sansculottides, 5 days (common year) or 6 days (leap year).
-		case sansculottides
-	}
+	/// The names of the months in the French Republican calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"Vendémiaire",
+		"Brumaire",
+		"Frimaire",
+		"Nivôse",
+		"Pluviôse",
+		"Ventôse",
+		"Germinal",
+		"Floréal",
+		"Prairial",
+		"Messidor",
+		"Thermido",
+		"Fructidor",
+		"Sansculottides",
+	]
 }

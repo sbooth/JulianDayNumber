@@ -81,33 +81,23 @@ public struct EthiopianCalendar {
 }
 
 extension EthiopianCalendar {
-	/// The months in the Ethiopian calendar.
-	enum MonthName: Int {
-		/// Mäskäräm (መስከረም), 30 days.
-		case mäskäräm = 1
-		/// Ṭəqəmt (ጥቅምት), 30 days.
-		case təqəmt
-		/// Ḫədar (ኅዳር), 30 days.
-		case hədar
-		/// Taḫśaś (ታኅሣሥ), 30 days.
-		case taḫśaś
-		/// Ṭərr (ጥር), 30 days.
-		case tərr
-		/// Yäkatit (የካቲት), 30 days.
-		case yäkatit
-		/// Mägabit (መጋቢት), 30 days.
-		case mägabit
-		/// Miyazya (ሚያዝያ), 30 days.
-		case miyazya
-		/// Gənbo (ግንቦት), 30 days.
-		case gənbo
-		/// Säne (ሰኔ), 30 days.
-		case säne
-		/// Ḥamle (ሐምሌ), 30 days.
-		case hamle
-		/// Nähase (ነሐሴ), 30 days.
-		case nähase
-		/// Ṗagume (ጳጉሜ), 5 days (common year) or 6 days (leap year).
-		case pagume
-	}
+	/// The names of the months in the Ethiopian calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"Mäskäräm", 	// መስከረም
+		"Ṭəqəmt", 		// ጥቅምት
+		"Ḫədar", 		// ኅዳር
+		"Taḫśaś", 		// ታኅሣሥ
+		"Ṭərr", 			// ጥር
+		"Yäkatit", 		// የካቲት
+		"Mägabit", 		// መጋቢት
+		"Miyazya", 		// ሚያዝያ
+		"Gənbo", 		// ግንቦት
+		"Säne", 		// ሰኔ
+		"Ḥamle", 		// ሐምሌ
+		"Nähase", 		// ነሐሴ
+		"Ṗagume", 		// ጳጉሜ
+	]
 }

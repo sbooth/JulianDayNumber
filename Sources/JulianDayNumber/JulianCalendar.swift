@@ -140,31 +140,22 @@ public struct JulianCalendar {
 }
 
 extension JulianCalendar {
-	/// The months in the Julian calendar.
-	public enum MonthName: Int {
-		/// January, 31 days.
-		case january = 1
-		/// February, 28 days (common year) or 29 days (leap year).
-		case february
-		/// March, 31 days.
-		case march
-		/// April, 30 days.
-		case april
-		/// May, 31 days.
-		case may
-		/// June, 30 days.
-		case june
-		/// July, 31 days.
-		case july
-		/// August, 31 days.
-		case august
-		/// September, 30 days.
-		case september
-		/// October, 31 days.
-		case october
-		/// November, 30 days.
-		case november
-		/// December, 31 days.
-		case december
-	}
+	/// The names of the months in the Julian calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	]
 }

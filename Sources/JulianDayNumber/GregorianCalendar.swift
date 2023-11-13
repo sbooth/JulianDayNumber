@@ -160,6 +160,8 @@ public struct GregorianCalendar {
 }
 
 extension GregorianCalendar {
-	/// The months in the Gregorian calendar.
-	public typealias MonthName = JulianCalendar.MonthName
+	/// The names of the months in the Gregorian calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = JulianCalendar.monthNames
 }

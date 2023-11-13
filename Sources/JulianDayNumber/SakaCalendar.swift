@@ -115,31 +115,22 @@ public struct SakaCalendar {
 }
 
 extension SakaCalendar {
-	/// The months in the Śaka calendar.
-	public enum MonthName: Int {
-		/// Chaitra, 30 days (common year) or 31 days (leap year).
-		case chaitra = 1
-		/// Vaiśākha, 31 days.
-		case vaiśākha
-		/// Jyēṣṭha, 31 days.
-		case jyēṣṭha
-		/// Āshādha, 31 days.
-		case āshādha
-		/// Śrāvana, 31 days.
-		case śrāvana
-		/// Bhādra, 31 days.
-		case bhādra
-		/// Āśvin, 30 days.
-		case āśvin
-		/// Kārtika, 31 days.
-		case kārtika
-		/// Mārgaśīrṣa, 30 days.
-		case mārgaśīrṣa
-		/// Pauṣa, 30 days.
-		case pauṣa
-		/// Māgha, 30 days.
-		case māgha
-		/// Phālguna, 30 days.
-		case phālguna
-	}
+	/// The names of the months in the Śaka calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"Chaitra",
+		"Vaiśākha",
+		"Jyēṣṭha",
+		"Āshādha",
+		"Śrāvana",
+		"Bhādra",
+		"Āśvin",
+		"Kārtika",
+		"Mārgaśīrṣa",
+		"Pauṣa",
+		"Māgha",
+		"Phālguna",
+	]
 }

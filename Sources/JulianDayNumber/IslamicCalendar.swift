@@ -84,31 +84,22 @@ public struct IslamicCalendar {
 }
 
 extension IslamicCalendar {
-	/// The months in the Islamic calendar.
-	public enum MonthName: Int {
-		/// al-Muḥarram (ٱلْمُحَرَّم), 30 days.
-		case alMuḥarram = 1
-		/// Ṣafar (صَفَر), 29 days.
-		case safar
-		/// Rabīʿ al-ʾAwwal (رَبِيع ٱلْأَوَّل), 30 days.
-		case rabīʿalʾAwwal
-		/// Rabīʿ ath-Thānī (رَبِيع ٱلثَّانِي), 29 days.
-		case rabīʿathThānī
-		/// Jumādā al-ʾŪlā (جُمَادَىٰ ٱلْأُولَىٰ), 30 days.
-		case jumādāalʾŪlā
-		/// Jumādā ath-Thāniyah (جُمَادَىٰ ٱلثَّانِيَة), 29 days.
-		case jumādāathThāniyah
-		/// Rajab (رَجَب), 30 days.
-		case rajab
-		/// Shaʿbān (شَعْبَان), 29 days.
-		case shaʿbān
-		/// Ramaḍān (رَمَضَان), 30 days.
-		case ramaḍān
-		/// Shawwāl (شَوَّال), 29 days.
-		case shawwāl
-		/// Ḏū al-Qaʿdah (ذُو ٱلْقَعْدَة), 30 days.
-		case dūalQaʿdah
-		/// Ḏū al-Ḥijjah (ذُو ٱلْحِجَّة), 29 days (common year) or 30 days (leap year).
-		case dūalḤijjah
-	}
+	/// The names of the months in the Islamic calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"al-Muḥarram", 			// ٱلْمُحَرَّم
+		"Ṣafar", 				// صَفَر
+		"Rabīʿ al-ʾAwwal", 		// رَبِيع ٱلْأَوَّل
+		"Rabīʿ ath-Thānī", 		// رَبِيع ٱلثَّانِي
+		"Jumādā al-ʾŪlā", 		// جُمَادَىٰ ٱلْأُولَىٰ
+		"Jumādā ath-Thāniyah", 	// جُمَادَىٰ ٱلثَّانِيَة
+		"Rajab", 				// رَجَب
+		"Shaʿbān", 				// شَعْبَان
+		"Ramaḍān", 				// رَمَضَان
+		"Shawwāl", 				// شَوَّال
+		"Ḏū al-Qaʿdah", 			// ذُو ٱلْقَعْدَة
+		"Ḏū al-Ḥijjah", 		// ذُو ٱلْحِجَّة
+	]
 }

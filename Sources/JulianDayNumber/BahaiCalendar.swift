@@ -114,47 +114,30 @@ public struct BahaiCalendar {
 }
 
 extension BahaiCalendar {
-	/// The months in the Baháʼí calendar.
-	public enum MonthName: Int {
-		/// Bahá (بهاء), 19 days.
-		 case bahá = 1
-		/// Jalál (جلال), 19 days.
-		case jalál
-		/// Jamál (جمال), 19 days.
-		case jamál
-		/// ʻAẓamat (عظمة), 19 days.
-		case aẓamat
-		/// Núr (نور), 19 days.
-		case núr
-		/// Raḥmat (رحمة), 19 days.
-		case raḥmat
-		/// Kalimát (كلمات), 19 days.
-		case kalimát
-		/// Kamál (كمال), 19 days.
-		case kamál
-		/// Asmáʼ (اسماء), 19 days.
-		case asmáʼ
-		/// ʻIzzat (عزة), 19 days.
-		case izzat
-		/// Mas͟híyyat (مشية), 19 days.
-		case mas͟híyyat
-		/// ʻIlm (علم), 19 days.
-		case ilm
-		/// Qudrat (قدرة), 19 days.
-		case qudrat
-		/// Qawl (قول), 19 days.
-		case qawl
-		/// Masáʼil (مسائل), 19 days.
-		case masáʼil
-		/// S͟haraf (شرف), 19 days.
-		case sharaf
-		/// Sulṭán (سلطان), 19 days.
-		case sulṭán
-		/// Mulk (ملك), 19 days.
-		case mulk
-		/// Ayyám-i-Há (ايام الهاء), 4 days (common year) or 5 days (leap year).
-		case ayyámiHá
-		/// ʻAláʼ (علاء), 19 days.
-		case aláʼ
-	}
+	/// The names of the months in the Baháʼí calendar.
+	///
+	/// - attention: The array uses 1-based indexing. The first month has index `1`.
+	public static let monthNames = [
+		"",
+		"Bahá", 		// بهاء
+		"Jalál", 		// جلال
+		"Jamál", 		// جمال
+		"ʻAẓamat", 		// عظمة
+		"Núr", 			// نور
+		"Raḥmat", 		// رحمة
+		"Kalimát", 		// كلمات
+		"Kamál", 		// كمال
+		"Asmáʼ", 		// اسماء
+		"ʻIzzat", 		// عزة
+		"Mas͟híyyat", 	// مشية
+		"ʻIlm", 			// علم
+		"Qudrat", 		// قدرة
+		"Qawl", 		// قول
+		"Masáʼil", 		// مسائل
+		"S͟haraf", 		// شرف
+		"Sulṭán", 		// سلطان
+		"Mulk", 		// ملك
+		"Ayyám-i-Há", 	// ايام الهاء
+		"ʻAláʼ", 		// علاء
+	]
 }
