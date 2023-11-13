@@ -47,6 +47,7 @@ extension ArmenianCalendar: JulianDayNumberConverting {
 		var J = J
 		var ΔcalendarCycles = 0
 
+		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
 			ΔcalendarCycles = -J / armenianCalendarCycleDays + 1
 			J += ΔcalendarCycles * armenianCalendarCycleDays
