@@ -24,7 +24,7 @@ extension MacedonianCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4401-05-01 in the Macedonian calendar.
+		// JDN 0 is -4401-05-01 in the proleptic Macedonian calendar.
 		if date < (-4401, 5, 1) {
 			ΔcalendarCycles = (-4402 - Y) / macedonianCalendarCycleYears + 1
 			Y += ΔcalendarCycles * macedonianCalendarCycleYears

@@ -24,9 +24,9 @@ extension SyrianCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4720-05-05 in the Syrian calendar.
-		if date < (-4720, 5, 5) {
-			ΔcalendarCycles = (-4721 - Y) / syrianCalendarCycleYears + 1
+		// JDN 0 is -4401-04-01 in the proleptic Syrian calendar.
+		if date < (-4401, 4, 1) {
+			ΔcalendarCycles = (-4402 - Y) / syrianCalendarCycleYears + 1
 			Y += ΔcalendarCycles * syrianCalendarCycleYears
 		}
 
