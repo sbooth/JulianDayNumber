@@ -6,9 +6,9 @@
 
 import Foundation
 
-/// The Khwarizmian calendar.
+/// The Khwarizmian calendar is a solar calendar with 365 days in the year.
 ///
-/// The Khwarizmian calendar is a solar calendar of 365 days in every year.
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days.
 ///
 /// The Khwarizmian calendar epoch in the Julian calendar is June 21, 632.
 public struct KhwarizmianCalendar {

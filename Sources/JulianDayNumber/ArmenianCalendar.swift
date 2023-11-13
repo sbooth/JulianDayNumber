@@ -6,9 +6,25 @@
 
 import Foundation
 
-/// The Armenian calendar.
+/// The Armenian calendar is a solar calendar with 365 days in the year.
 ///
-/// The Armenian calendar is a solar calendar of 365 days in every year.
+/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Aweleach).
+///
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Nawasardi | նաւասարդ | 30 |
+/// | 2 | Hoṙi | հոռի | 30 |
+/// | 3 | Sahmi | սահմի | 30 |
+/// | 4 | Trē | տրէ | 30 |
+/// | 5 | Kʿałoch | քաղոց | 30 |
+/// | 6 | Arach | արաց | 30 |
+/// | 7 | Mehekani | մեհեկան | 30 |
+/// | 8 | Areg | արեգ | 30 |
+/// | 9 | Ahekani | ահեկան | 30 |
+/// | 10 | Mareri | մարերի | 30 |
+/// | 11 | Margach | մարգաց | 30 |
+/// | 12 | Hrotich | հրոտից | 30 |
+/// | 13 | Aweleach | աւելեաց | 5 |
 ///
 /// The Armenian calendar epoch in the Julian calendar is July 11, 552.
 ///
