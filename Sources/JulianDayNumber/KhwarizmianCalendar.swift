@@ -1,4 +1,5 @@
 //
+//
 // Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
@@ -8,7 +9,23 @@ import Foundation
 
 /// The Khwarizmian calendar is a solar calendar with 365 days in the year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days.
+///
+/// | Month | Days |
+/// | ---: | --- |
+/// | 1 | 30 |
+/// | 2 | 30 |
+/// | 3 | 30 |
+/// | 4 | 30 |
+/// | 5 | 30 |
+/// | 6 | 30 |
+/// | 7 | 30 |
+/// | 8 | 30 |
+/// | 9 | 30 |
+/// | 10 | 30 |
+/// | 11 | 30 |
+/// | 12 | 30 |
+/// | 13 | 5 |
 ///
 /// The Khwarizmian calendar epoch in the Julian calendar is June 21, 632 CE.
 public struct KhwarizmianCalendar {
