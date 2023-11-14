@@ -8,7 +8,7 @@ import Foundation
 
 /// The Egyptian calendar is a solar calendar with 365 days in every year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days.
 ///
 /// | Month | Name | Days |
 /// | ---: | --- | --- |
@@ -24,7 +24,7 @@ import Foundation
 /// | 10 | Payni | 30 |
 /// | 11 | Epiphi | 30 |
 /// | 12 | Mesore | 30 |
-/// | 13 |  | 5 |
+/// | 13 | | 5 |
 ///
 /// The Egyptian calendar epoch in the Julian calendar is February 26, 747 BCE.
 ///

@@ -8,7 +8,7 @@ import Foundation
 
 /// The Baháʼí calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The year consists of nineteen months having 19 days each.  The eighteenth month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
+/// The year consists of nineteen months having 19 days each. The eighteenth month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |
