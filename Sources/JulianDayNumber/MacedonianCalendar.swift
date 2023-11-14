@@ -6,9 +6,7 @@
 
 import Foundation
 
-/// The Macedonian calendar.
-///
-/// The Macedonian calendar is a lunisolar calendar.
+/// The Macedonian calendar is a lunisolar calendar with 354 days in the year, with seven intercalary months added in each 19-year cycle.
 ///
 /// The Macedonian calendar epoch in the Julian calendar is September 1, 312 BC.
 ///
