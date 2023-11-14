@@ -12,10 +12,10 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar)
 - [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar)
 - [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar)
+- [Indian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/indiancalendar)
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
 - [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar)
-- [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
 Most of the JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
@@ -81,7 +81,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 | Islamic | -9223372036854775352 | 307445734561818195 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
 | Maya Long Count | -9223372036854191525 ² | Int.max |
-| Śaka | -9223372036854719351 | 2305795661307959298 |
+| Indian | -9223372036854719351 | 2305795661307959298 |
 
 ¹ The smallest round-trippable JDN for the Hebrew calendar is -9223372036747815627.
 ² The smallest round-trippable JDN for the Maya Long Count is -9223372036854191517.
@@ -101,7 +101,7 @@ The following table summarizes the limits for Julian dates. Julian dates outside
 | Hebrew | -0x1.ffffffffe67fbp+62 ¹ | 0x1.43a273100de27p+48 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
-| Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
+| Indian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
 
 ¹ The smallest round-trippable JD for the Hebrew calendar is -0x1.ffffffffe67fap+62.
 

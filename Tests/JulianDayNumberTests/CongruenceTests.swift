@@ -18,7 +18,7 @@ final class CongruenceTests: XCTestCase {
 		XCTAssertEqual(GregorianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 3))
 		XCTAssertEqual(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 622, month: 7, day: 16))
 		XCTAssertEqual(MayaCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 0), JulianCalendar.julianDayNumberFrom(year: -3113, month: 9, day: 6))
-		XCTAssertEqual(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 79, month: 3, day: 24))
+		XCTAssertEqual(IndianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 79, month: 3, day: 24))
 	}
 
 	func testGregorianToJulianConversion() {

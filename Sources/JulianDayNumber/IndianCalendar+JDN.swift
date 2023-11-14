@@ -8,28 +8,28 @@ import Foundation
 
 // Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-/// The number of years in a cycle of the Śaka calendar.
+/// The number of years in a cycle of the Indian calendar.
 ///
-/// A cycle in the Śaka calendar consists of 303 common years and 97 leap years.
-let sakaCalendarCycleYears = 400
+/// A cycle in the Indian calendar consists of 303 common years and 97 leap years.
+let indianCalendarCycleYears = 400
 
-/// The number of days in a cycle of the Śaka calendar.
+/// The number of days in a cycle of the Indian calendar.
 ///
 /// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
-let sakaCalendarCycleDays = 146097
+let indianCalendarCycleDays = 146097
 
-extension SakaCalendar: JulianDayNumberConverting {
-	/// A date in the Śaka calendar consists of a year, month, and day.
+extension IndianCalendar: JulianDayNumberConverting {
+	/// A date in the Indian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Int, month: Int, day: Int)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4791-09-03 in the proleptic Śaka calendar.
+		// JDN 0 is -4791-09-03 in the proleptic Indian calendar.
 		if date < (-4791, 9, 3) {
-			ΔcalendarCycles = (-4792 - Y) / sakaCalendarCycleYears + 1
-			Y += ΔcalendarCycles * sakaCalendarCycleYears
+			ΔcalendarCycles = (-4792 - Y) / indianCalendarCycleYears + 1
+			Y += ΔcalendarCycles * indianCalendarCycleYears
 		}
 
 		let h = date.month - m
@@ -41,7 +41,7 @@ extension SakaCalendar: JulianDayNumberConverting {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * sakaCalendarCycleDays
+			J -= ΔcalendarCycles * indianCalendarCycleDays
 		}
 
 		return J
@@ -53,8 +53,8 @@ extension SakaCalendar: JulianDayNumberConverting {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			ΔcalendarCycles = -J / sakaCalendarCycleDays + 1
-			J += ΔcalendarCycles * sakaCalendarCycleDays
+			ΔcalendarCycles = -J / indianCalendarCycleDays + 1
+			J += ΔcalendarCycles * indianCalendarCycleDays
 		}
 
 		var f = J + j
@@ -72,14 +72,14 @@ extension SakaCalendar: JulianDayNumberConverting {
 		var Y = e / p - y + (n + m - M) / n
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * sakaCalendarCycleYears
+			Y -= ΔcalendarCycles * indianCalendarCycleYears
 		}
 
 		return (Y, M, D)
 	}
 }
 
-// Constants for Śaka calendar conversions
+// Constants for Indian calendar conversions
 private let y = 4794
 private let j = 1348
 private let m = 1

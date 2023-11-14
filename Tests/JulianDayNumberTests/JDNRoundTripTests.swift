@@ -135,6 +135,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testIndian() {
+		for year in minYear...maxYear {
+			for month in 1...IndianCalendar.monthsInYear {
+				for day in 1...IndianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = IndianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = IndianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testIslamic() {
 		for year in minYear...maxYear {
 			for month in 1...IslamicCalendar.monthsInYear {
@@ -170,20 +184,6 @@ final class JDNRoundTripTests: XCTestCase {
 			let (b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(J)
 			let jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 			XCTAssertEqual(J, jdn)
-		}
-	}
-
-	func testSaka() {
-		for year in minYear...maxYear {
-			for month in 1...SakaCalendar.monthsInYear {
-				for day in 1...SakaCalendar.daysInMonth(year: year, month: month) {
-					let jdn = SakaCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(jdn)
-					XCTAssertEqual(year, Y)
-					XCTAssertEqual(month, M)
-					XCTAssertEqual(day, D)
-				}
-			}
 		}
 	}
 }
