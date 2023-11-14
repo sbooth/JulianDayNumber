@@ -6,9 +6,9 @@
 
 import Foundation
 
-/// The Mayan calendar.
+/// The Maya calendar.
 ///
-/// The Mayan calendar is a system of calendars consisting of several cycles of different lengths.
+/// The Maya calendar is a system of calendars consisting of several cycles of different lengths.
 ///
 /// The Long Count is the principal calendar for historical purposes.
 ///
@@ -83,25 +83,25 @@ import Foundation
 ///
 /// A Calendar Round is a repeating cycle of 18,980 days and consists of the combination of a Tzolkʼin date and a Haabʼ date.
 ///
-/// The Mayan long count calendar epoch in the Julian calendar is September 6, 3114 BCE.
+/// The Maya long count calendar epoch in the Julian calendar is September 6, 3114 BCE.
 ///
 /// - seealso: [Maya calendar](https://en.wikipedia.org/wiki/Maya_calendar)
 /// - seealso: [Mesoamerican Long Count calendar](https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar)
 /// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
 /// - seealso: [Haabʼ](https://en.wikipedia.org/wiki/Haabʼ)
-public struct MayanCalendar {
-	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Mayan calendar.
+public struct MayaCalendar {
+	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
 	///
 	/// This JDN corresponds to noon on September 6, 3114 BCE in the Julian calendar.
 	public static let longCountEpochJulianDayNumber: JulianDayNumber = 584283
 
-	/// The Julian day number of the start of the Tzolk’in cycle of the Mayan calendar.
+	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
 	///
 	/// The Tzolk’in cycle began 159 days before the long count epoch.
 	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
 	public static let tzolkinEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 159
 
-	/// The Julian day number of the start of the Haabʼ cycle of the Mayan calendar.
+	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
 	///
 	/// The Haabʼ cycle began 348 days before the long count epoch.
 	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
