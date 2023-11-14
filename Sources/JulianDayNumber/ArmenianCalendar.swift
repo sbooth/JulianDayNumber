@@ -26,18 +26,18 @@ import Foundation
 /// | 12 | Hrotich | հրոտից | 30 |
 /// | 13 | Aweleach | աւելեաց | 5 |
 ///
-/// The Armenian calendar epoch in the Julian calendar is July 11, 552 AD.
+/// The Armenian calendar epoch in the Julian calendar is July 11, 552 CE.
 ///
 /// - seealso: [Armenian calendar](https://en.wikipedia.org/wiki/Armenian_calendar)
 public struct ArmenianCalendar {
 	/// The Julian day number of the epoch of the Armenian calendar.
 	///
-	/// This JDN corresponds to noon on July 11, 552 AD in the Julian calendar.
+	/// This JDN corresponds to noon on July 11, 552 CE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1922868
 
 	/// The Julian date of the epoch of the Armenian calendar.
 	///
-	/// This JD corresponds to midnight on July 11, 552 AD in the Julian calendar.
+	/// This JD corresponds to midnight on July 11, 552 CE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1922867.5
 
 	/// A year in the Armenian calendar.
