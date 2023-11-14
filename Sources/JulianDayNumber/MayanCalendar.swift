@@ -83,6 +83,8 @@ import Foundation
 ///
 /// A Calendar Round is a repeating cycle of 18,980 days and consists of the combination of a Tzolkʼin date and a Haabʼ date.
 ///
+/// The Mayan long count calendar epoch in the Julian calendar is September 6, 3114 BC.
+///
 /// - seealso: [Maya calendar](https://en.wikipedia.org/wiki/Maya_calendar)
 /// - seealso: [Mesoamerican Long Count calendar](https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar)
 /// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
