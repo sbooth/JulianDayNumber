@@ -17,12 +17,12 @@ import Foundation
 /// | 1 | Vendémiaire | 30 |
 /// | 2 | Brumaire | 30 |
 /// | 3 | Frimaire | 30 |
-/// | 4 | Nivôse  | 30 |
-/// | 5 | Pluviôse  | 30 |
+/// | 4 | Nivôse | 30 |
+/// | 5 | Pluviôse | 30 |
 /// | 6 | Ventôse | 30 |
-/// | 7 | Germinal  | 30 |
+/// | 7 | Germinal | 30 |
 /// | 8 | Floréal | 30 |
-/// | 9 | Prairial  | 30 |
+/// | 9 | Prairial | 30 |
 /// | 10 | Messidor | 30 |
 /// | 11 | Thermidor | 30 |
 /// | 12 | Fructidor | 30 |

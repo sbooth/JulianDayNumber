@@ -8,7 +8,7 @@ import Foundation
 
 /// The Julian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months.  The second month contains an additional day in leap years.
+/// The year consists of twelve months. The second month contains an additional day in leap years.
 ///
 /// | Month | Name | Days |
 /// | ---: | --- | --- |

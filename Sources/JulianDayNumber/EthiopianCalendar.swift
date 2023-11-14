@@ -8,14 +8,14 @@ import Foundation
 
 /// The Ethiopian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Ṗagume) with a sixth in leap years.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days (Ṗagume) with a sixth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |
 /// | 1 | Mäskäräm | መስከረም | 30 |
 /// | 2 | Ṭəqəmt | ጥቅምት | 30 |
 /// | 3 | Ḫədar | ኅዳር | 30 |
-/// | 4  | Taḫśaś | ታኅሣሥ | 30 |
+/// | 4 | Taḫśaś | ታኅሣሥ | 30 |
 /// | 5 | Ṭərr | ጥር | 30 |
 /// | 6 | Yäkatit | የካቲት | 30 |
 /// | 7 | Mägabit | መጋቢት | 30 |

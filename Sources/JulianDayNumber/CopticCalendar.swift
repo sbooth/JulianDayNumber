@@ -8,7 +8,7 @@ import Foundation
 
 /// The Coptic calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Pi Kogi Enavot) with a sixth in leap years.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days (Pi Kogi Enavot) with a sixth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |

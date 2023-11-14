@@ -8,7 +8,7 @@ import Foundation
 
 /// The Śaka calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The year consists of twelve months.  The first month contains an additional day in leap years.
+/// The year consists of twelve months. The first month contains an additional day in leap years.
 ///
 /// | Month | Name | Days |
 /// | ---: | --- | --- |
