@@ -163,12 +163,12 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testMayan() {
-		let minJ = MayanCalendar.longCountEpochJulianDayNumber + minYear * 365
-		let maxJ = MayanCalendar.longCountEpochJulianDayNumber + maxYear * 365
+	func testMaya() {
+		let minJ = MayaCalendar.longCountEpochJulianDayNumber + minYear * 365
+		let maxJ = MayaCalendar.longCountEpochJulianDayNumber + maxYear * 365
 		for J in minJ...maxJ {
-			let (b, k, t, u, d) = MayanCalendar.longCountFromJulianDayNumber(J)
-			let jdn = MayanCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
+			let (b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(J)
+			let jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 			XCTAssertEqual(J, jdn)
 		}
 	}
