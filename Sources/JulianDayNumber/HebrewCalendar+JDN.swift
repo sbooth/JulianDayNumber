@@ -8,17 +8,17 @@ import Foundation
 
 // Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-/// The number of years in a cycle of the Jewish calendar.
+/// The number of years in a cycle of the Hebrew calendar.
 ///
-/// A cycle in the Jewish calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-let jewishCalendarCycleYears = 689472
+/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+let hebrewCalendarCycleYears = 689472
 
-/// The number of days in a cycle of the Jewish calendar.
+/// The number of days in a cycle of the Hebrew calendar.
 ///
-/// A cycle in the Jewish calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-let jewishCalendarCycleDays = 251827457
+/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+let hebrewCalendarCycleDays = 251827457
 
-extension JewishCalendar {
+extension HebrewCalendar {
 	/// Returns the Julian day number of the first day of Tishrei in the specified year.
 	///
 	/// - note: No validation check is performed on the year value.
@@ -65,8 +65,8 @@ extension JewishCalendar {
 	}
 }
 
-extension JewishCalendar: JulianDayNumberConverting {
-	/// A date in the Jewish calendar consists of a year, month, and day.
+extension HebrewCalendar: JulianDayNumberConverting {
+	/// A date in the Hebrew calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
@@ -74,8 +74,8 @@ extension JewishCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
-			Y += ΔcalendarCycles * jewishCalendarCycleYears
+			ΔcalendarCycles = (1 - Y) / hebrewCalendarCycleYears + 1
+			Y += ΔcalendarCycles * hebrewCalendarCycleYears
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -84,7 +84,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		var J = a + A[K - 1][date.month - 1] + date.day - 1
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * jewishCalendarCycleDays
+			J -= ΔcalendarCycles * hebrewCalendarCycleDays
 		}
 
 		return J
@@ -95,8 +95,8 @@ extension JewishCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		if J < epochJulianDayNumber {
-			ΔcalendarCycles = (epochJulianDayNumber - J) / jewishCalendarCycleDays + 1
-			J += ΔcalendarCycles * jewishCalendarCycleDays
+			ΔcalendarCycles = (epochJulianDayNumber - J) / hebrewCalendarCycleDays + 1
+			J += ΔcalendarCycles * hebrewCalendarCycleDays
 		}
 
 		var Y = yearContaining(julianDayNumber: J)
@@ -110,7 +110,7 @@ extension JewishCalendar: JulianDayNumberConverting {
 		let D = c - AK[M - 1]
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * jewishCalendarCycleYears
+			Y -= ΔcalendarCycles * hebrewCalendarCycleYears
 		}
 
 		return (Y, M, D)

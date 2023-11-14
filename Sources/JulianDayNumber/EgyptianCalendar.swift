@@ -26,18 +26,18 @@ import Foundation
 /// | 12 | Mesore | 30 |
 /// | 13 |  | 5 |
 ///
-/// The Egyptian calendar epoch in the Julian calendar is February 26, 747 BC.
+/// The Egyptian calendar epoch in the Julian calendar is February 26, 747 BCE.
 ///
 /// - seealso: [Egyptian calendar](https://en.wikipedia.org/wiki/Egyptian_calendar)
 public struct EgyptianCalendar {
 	/// The Julian day number of the epoch of the Egyptian calendar.
 	///
-	/// This JDN corresponds to noon on February 26, 747 BC in the Julian calendar.
+	/// This JDN corresponds to noon on February 26, 747 BCE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1448638
 
 	/// The Julian date of the epoch of the Egyptian calendar.
 	///
-	/// This JD corresponds to midnight on February 26, 747 BC in the Julian calendar.
+	/// This JD corresponds to midnight on February 26, 747 BCE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1448637.5
 
 	/// A year in the Egyptian calendar.
