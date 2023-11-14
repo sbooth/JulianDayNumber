@@ -121,12 +121,12 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testIslamic() {
+	func testHebrew() {
 		for year in minYear...maxYear {
-			for month in 1...IslamicCalendar.monthsInYear {
-				for day in 1...IslamicCalendar.daysInMonth(year: year, month: month) {
-					let jdn = IslamicCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(jdn)
+			for month in 1...HebrewCalendar.monthsInYear(year) {
+				for day in 1...HebrewCalendar.daysInMonth(year: year, month: month) {
+					let jdn = HebrewCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
@@ -135,12 +135,12 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
-	func testJewish() {
+	func testIslamic() {
 		for year in minYear...maxYear {
-			for month in 1...JewishCalendar.monthsInYear(year) {
-				for day in 1...JewishCalendar.daysInMonth(year: year, month: month) {
-					let jdn = JewishCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = JewishCalendar.dateFromJulianDayNumber(jdn)
+			for month in 1...IslamicCalendar.monthsInYear {
+				for day in 1...IslamicCalendar.daysInMonth(year: year, month: month) {
+					let jdn = IslamicCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
