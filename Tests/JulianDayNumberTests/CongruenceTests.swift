@@ -15,11 +15,11 @@ final class CongruenceTests: XCTestCase {
 		XCTAssertEqual(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: -746, month: 2, day: 26))
 		XCTAssertEqual(EthiopianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 8, month: 8, day: 29))
 		XCTAssertEqual(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), GregorianCalendar.julianDayNumberFrom(year: 1792, month: 9, day: 22))
-		// Strictly speaking the Gregorian calendar epoch is January 1, 1 AD in the Julian calendar
+		// Strictly speaking the Gregorian calendar epoch is January 1, 1 CE in the Julian calendar
 		XCTAssertEqual(GregorianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 3))
 		XCTAssertEqual(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 622, month: 7, day: 16))
 		XCTAssertEqual(KhwarizmianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 632, month: 6, day: 21))
-		XCTAssertEqual(MayanCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 0), JulianCalendar.julianDayNumberFrom(year: -3113, month: 9, day: 6))
+		XCTAssertEqual(MayaCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 0), JulianCalendar.julianDayNumberFrom(year: -3113, month: 9, day: 6))
 		XCTAssertEqual(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: 79, month: 3, day: 24))
 	}
 

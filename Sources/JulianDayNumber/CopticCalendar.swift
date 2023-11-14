@@ -26,18 +26,18 @@ import Foundation
 /// | 12 | Mesori | Ⲙⲉⲥⲱⲣⲏ | 30 |
 /// | 13 | Pi Kogi Enavot | Ⲉⲡⲁⲅⲟⲙⲉⲛⲁⲓ | 5 (6 in leap years) |
 ///
-/// The Coptic calendar epoch in the Julian calendar is August 29, 284 AD.
+/// The Coptic calendar epoch in the Julian calendar is August 29, 284 CE.
 ///
 /// - seealso: [Coptic calendar](https://en.wikipedia.org/wiki/Coptic_calendar)
 public struct CopticCalendar {
 	/// The Julian day number of the epoch of the Coptic calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 284 AD in the Julian calendar.
+	/// This JDN corresponds to noon on August 29, 284 CE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1825030
 
 	/// The Julian date of the epoch of the Coptic calendar.
 	///
-	/// This JD corresponds to midnight on August 29, 284 AD in the Julian calendar.
+	/// This JD corresponds to midnight on August 29, 284 CE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1825029.5
 
 	/// A year in the Coptic calendar.

@@ -26,18 +26,18 @@ import Foundation
 /// | 12 | Nähase | ነሐሴ | 30 |
 /// | 13 | Ṗagume | ጳጉሜ | 5 (6 in leap years) |
 ///
-/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8 AD.
+/// The Ethiopian calendar epoch in the Julian calendar is August 29, 8 CE.
 ///
 /// - seealso: [Ethiopian calendar](https://en.wikipedia.org/wiki/Ethiopian_calendar)
 public struct EthiopianCalendar {
 	/// The Julian day number of the epoch of the Ethiopian calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 8 AD in the Julian calendar.
+	/// This JDN corresponds to noon on August 29, 8 CE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1724221
 
 	/// The Julian date of the epoch of the Ethiopian calendar.
 	///
-	/// This JD corresponds to midnight on August 29, 8 AD in the Julian calendar.
+	/// This JD corresponds to midnight on August 29, 8 CE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1724220.5
 
 	/// A year in the Ethiopian calendar.

@@ -6,7 +6,7 @@
 
 import Foundation
 
-// Mayan long count cycle lengths
+// Maya long count cycle lengths
 
 /// One uinal is composed of 20 kin.
 let kinPerUinal = 20
@@ -25,8 +25,8 @@ let calabtunPerKinchiltun = 20
 /// One alautun is composed of 20 kinchiltun.
 let kinchiltunPerAlautun = 20
 
-extension MayanCalendar: JulianDayNumberConverting {
-	/// A long count in the Mayan calendar.
+extension MayaCalendar: JulianDayNumberConverting {
+	/// A long count in the Maya calendar.
 	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
@@ -38,8 +38,8 @@ extension MayanCalendar: JulianDayNumberConverting {
 	}
 }
 
-extension MayanCalendar {
-	/// Converts a Julian day number to a long count in the Mayan calendar.
+extension MayaCalendar {
+	/// Converts a Julian day number to a long count in the Maya calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
@@ -103,7 +103,7 @@ extension MayanCalendar {
 		return (/*alautun, kinchiltun, calabtun, pictun, */baktun, katun, tun, uinal, kin)
 	}
 
-	/// Converts a long count in the Mayan calendar to a Julian day number.
+	/// Converts a long count in the Maya calendar to a Julian day number.
 	///
 	/// - note: No validation checks are performed on the cycle values.
 	///
@@ -123,8 +123,8 @@ extension MayanCalendar {
 	}
 }
 
-extension MayanCalendar {
-	/// Converts a Julian day number to a Calendar Round in the Mayan calendar.
+extension MayaCalendar {
+	/// Converts a Julian day number to a Calendar Round in the Maya calendar.
 	///
 	/// - note: A Calendar Round corresponding to a Julian day number
 	/// can also be represented by the same Julian day number with multiples
@@ -143,7 +143,7 @@ extension MayanCalendar {
 		return (number, name + 1, day, month + 1)
 	}
 
-	/// Returns the most recent Julian day number for a Calendar Round in the Mayan calendar occurring before a Julian day number.
+	/// Returns the most recent Julian day number for a Calendar Round in the Maya calendar occurring before a Julian day number.
 	///
 	/// - important: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
@@ -161,7 +161,7 @@ extension MayanCalendar {
 		return J0 + (J - J0) % 18980 - 18980
 	}
 
-	/// Returns the least recent Julian day number for a Calendar Round in the Mayan calendar occurring on or after a Julian day number.
+	/// Returns the least recent Julian day number for a Calendar Round in the Maya calendar occurring on or after a Julian day number.
 	///
 	/// - important: Not all combinations of Tzolkʼin and Haabʼ dates are valid.
 	///
@@ -179,7 +179,7 @@ extension MayanCalendar {
 		return J0 - (J0 - J) % 18980 //+ 18980
 	}
 
-	/// Returns a possible Julian day number for a Calendar Round in the Mayan calendar.
+	/// Returns a possible Julian day number for a Calendar Round in the Maya calendar.
 	///
 	/// - parameter number: A Tzolkʼin number.
 	/// - parameter name: A Tzolkʼin day name.
@@ -203,7 +203,7 @@ extension MayanCalendar {
 	}
 }
 
-extension MayanCalendar {
+extension MayaCalendar {
 	/// Returns the Lord of the Night for a given uinal and kin.
 	///
 	/// The Lord of the Night is a nine-day cycle conventionally labeled G1 through G9.
