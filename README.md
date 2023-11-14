@@ -73,6 +73,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
+| Armenian | -9223372036854775514 | 9223372036854775490 |
 | Baháʼí | -9223372036854719351 | 2305795661307959248 |
 | Coptic | -9223372036854775664 | 2305843009213693827 |
 | Egyptian | -9223372036854775514 | 9223372036854775760 |
@@ -94,6 +95,7 @@ The following table summarizes the limits for Julian dates. Julian dates outside
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
+| Armenian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Baháʼí | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
