@@ -83,7 +83,7 @@ import Foundation
 ///
 /// A Calendar Round is a repeating cycle of 18,980 days and consists of the combination of a Tzolkʼin date and a Haabʼ date.
 ///
-/// The Mayan long count calendar epoch in the Julian calendar is September 6, 3114 BC.
+/// The Mayan long count calendar epoch in the Julian calendar is September 6, 3114 BCE.
 ///
 /// - seealso: [Maya calendar](https://en.wikipedia.org/wiki/Maya_calendar)
 /// - seealso: [Mesoamerican Long Count calendar](https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar)
@@ -92,7 +92,7 @@ import Foundation
 public struct MayanCalendar {
 	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Mayan calendar.
 	///
-	/// This JDN corresponds to noon on September 6, 3114 BC in the Julian calendar.
+	/// This JDN corresponds to noon on September 6, 3114 BCE in the Julian calendar.
 	public static let longCountEpochJulianDayNumber: JulianDayNumber = 584283
 
 	/// The Julian day number of the start of the Tzolk’in cycle of the Mayan calendar.

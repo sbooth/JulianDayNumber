@@ -27,7 +27,7 @@ import Foundation
 ///
 /// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///
-/// The Śaka calendar epoch in the Julian calendar is March 24, 79 AD.
+/// The Śaka calendar epoch in the Julian calendar is March 24, 79 CE.
 ///
 /// - seealso: [Indian national calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
 public struct SakaCalendar {
@@ -43,12 +43,12 @@ public struct SakaCalendar {
 
 	/// The Julian day number of the epoch of the Śaka calendar.
 	///
-	/// This JDN corresponds to noon on March 24, 79 AD in the Julian calendar.
+	/// This JDN corresponds to noon on March 24, 79 CE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1749995
 
 	/// The Julian date of the epoch of the Śaka calendar.
 	///
-	/// This JD corresponds to midnight on March 24, 79 AD in the Julian calendar.
+	/// This JD corresponds to midnight on March 24, 79 CE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1749994.5
 
 	/// A year in the Śaka calendar.
