@@ -4,6 +4,7 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsbooth%2FJulianDayNumber%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/sbooth/JulianDayNumber)
 
 Julian day number (JDN) and Julian date (JD) calculations supporting the following calendars:
+- Armenian
 - [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar)
 - [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar)
 - [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar)
@@ -14,6 +15,7 @@ Julian day number (JDN) and Julian date (JD) calculations supporting the followi
 - [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar)
 - [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
 - [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
+- Khwarizmian
 - [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar)
 - [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
 
@@ -71,6 +73,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
+| Armenian | -9223372036854775514 | 9223372036854775490 |
 | Baháʼí | -9223372036854719351 | 2305795661307959248 |
 | Coptic | -9223372036854775664 | 2305843009213693827 |
 | Egyptian | -9223372036854775514 | 9223372036854775760 |
@@ -80,6 +83,7 @@ The following table summarizes the limits for Julian day numbers. Julian day num
 | Hebrew | -9223372036747815981 ¹ | 355839970905570 |
 | Islamic | -9223372036854775352 | 307445734561818195 |
 | Julian | -9223372036854775664 | 2305843009213692550 |
+| Khwarizmian | -9223372036854775514 | 9223372036854775490 |
 | Maya Long Count | -9223372036854191525 ² | Int.max |
 | Śaka | -9223372036854719351 | 2305795661307959298 |
 
@@ -92,6 +96,7 @@ The following table summarizes the limits for Julian dates. Julian dates outside
 
 | Calendar | Minimum JD | Maximum JD |
 | --- | --- | --- |
+| Armenian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Baháʼí | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
 | Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
 | Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
@@ -101,6 +106,7 @@ The following table summarizes the limits for Julian dates. Julian dates outside
 | Hebrew | -0x1.ffffffffe67fbp+62 ¹ | 0x1.43a273100de27p+48 |
 | Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
 | Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
+| Khwarizmian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
 | Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
 
 ¹ The smallest round-trippable JD for the Hebrew calendar is -0x1.ffffffffe67fap+62.
