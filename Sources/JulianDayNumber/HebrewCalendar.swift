@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// The Jewish calendar is a lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year.
+/// The Hebrew calendar is a lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year.
 ///
 /// A common year has 353, 354, or 355 days. A leap year is always 30 days longer.
 ///
@@ -53,41 +53,41 @@ import Foundation
 /// | 12 | Av | 30 |
 /// | 13 | Elul | 29 |
 ///
-/// The Jewish calendar epoch in the Julian calendar is October 7, 3761 BC.
+/// The Hebrew calendar epoch in the Julian calendar is October 7, 3761 BC.
 ///
 /// - seealso: [Hebrew calendar](https://en.wikipedia.org/wiki/Hebrew_calendar)
-public struct JewishCalendar {
-	/// The Julian day number of the epoch of the Jewish calendar.
+public struct HebrewCalendar {
+	/// The Julian day number of the epoch of the Hebrew calendar.
 	///
 	/// This JDN corresponds to noon on October 7, 3761 BC in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 347998
 
-	/// The Julian date of the epoch of the Jewish calendar.
+	/// The Julian date of the epoch of the Hebrew calendar.
 	///
 	/// This JD corresponds to midnight on October 7, 3761 BC in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 347997.5
 
-	/// A year in the Jewish calendar.
+	/// A year in the Hebrew calendar.
 	public typealias Year = Int
 
-	/// A month in the Jewish calendar numbered from `1` (Tishrei) to `12` (Elul) for common years and from `1` (Tishrei) to `13` (Elul) for leap years.
+	/// A month in the Hebrew calendar numbered from `1` (Tishrei) to `12` (Elul) for common years and from `1` (Tishrei) to `13` (Elul) for leap years.
 	public typealias Month = Int
 
-	/// A day in the Jewish calendar numbered starting from `1`.
+	/// A day in the Hebrew calendar numbered starting from `1`.
 	public typealias Day = Int
 
-	/// Returns `true` if the specified year, month, and day form a valid date in the Jewish calendar.
+	/// Returns `true` if the specified year, month, and day form a valid date in the Hebrew calendar.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Jewish calendar.
+	/// - returns: `true` if the specified year, month, and day form a valid date in the Hebrew calendar.
 	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= monthsInYear(Y) && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
-	/// Returns `true` if the specified year is an embolismic (leap) year in the Jewish calendar.
+	/// Returns `true` if the specified year is an embolismic (leap) year in the Hebrew calendar.
 	///
 	/// There are seven embolismic years in a cycle of nineteen years.
 	/// These are years 3, 6, 8, 11, 14, 17, and 19 of the cycle.
@@ -95,7 +95,7 @@ public struct JewishCalendar {
 	///
 	/// - parameter Y: A year number.
 	///
-	/// - returns: `true` if the specified year is an embolismic (leap) year in the Jewish calendar.
+	/// - returns: `true` if the specified year is an embolismic (leap) year in the Hebrew calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
 		if Y > 0 {
 			return (7 * Y + 1) % 19 < 7
@@ -105,7 +105,7 @@ public struct JewishCalendar {
 	}
 
 #if false
-	/// A category of year in the Jewish calendar.
+	/// A category of year in the Hebrew calendar.
 	public enum YearCategory {
 		/// A deficient common year consisting of 12 months and 353 days.
 		case deficientCommon
@@ -131,8 +131,8 @@ public struct JewishCalendar {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
-			Y += ΔcalendarCycles * jewishCalendarCycleYears
+			ΔcalendarCycles = (1 - Y) / hebrewCalendarCycleYears + 1
+			Y += ΔcalendarCycles * hebrewCalendarCycleYears
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -178,7 +178,7 @@ public struct JewishCalendar {
 		[ 30, 30, 30, 29, 30, 30, 29, 30, 29, 30, 29, 30, 29 ],
 	]
 
-	/// Returns the number of days in the specified month and year in the Jewish calendar.
+	/// Returns the number of days in the specified month and year in the Hebrew calendar.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
@@ -193,8 +193,8 @@ public struct JewishCalendar {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / jewishCalendarCycleYears + 1
-			Y += ΔcalendarCycles * jewishCalendarCycleYears
+			ΔcalendarCycles = (1 - Y) / hebrewCalendarCycleYears + 1
+			Y += ΔcalendarCycles * hebrewCalendarCycleYears
 		}
 
 		let a = firstDayOfTishrei(year: Y)
