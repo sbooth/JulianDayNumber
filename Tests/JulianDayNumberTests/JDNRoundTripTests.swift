@@ -19,6 +19,20 @@ final class JDNRoundTripTests: XCTestCase {
 	let maxYear = 9999
 #endif
 
+	func testArmenian() {
+		for year in minYear...maxYear {
+			for month in 1...ArmenianCalendar.monthsInYear {
+				for day in 1...ArmenianCalendar.daysInMonth(month) {
+					let jdn = ArmenianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testAstronomical() {
 		for year in minYear...maxYear {
 			for month in 1...AstronomicalCalendar.monthsInYear {
@@ -155,6 +169,20 @@ final class JDNRoundTripTests: XCTestCase {
 				for day in 1...JulianCalendar.daysInMonth(year: year, month: month) {
 					let jdn = JulianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
 					let (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testKhwarizmian() {
+		for year in minYear...maxYear {
+			for month in 1...KhwarizmianCalendar.monthsInYear {
+				for day in 1...KhwarizmianCalendar.daysInMonth(month) {
+					let jdn = KhwarizmianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
