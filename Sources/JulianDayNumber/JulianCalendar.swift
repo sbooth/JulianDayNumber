@@ -25,35 +25,35 @@ import Foundation
 /// | 11 | November | 30 |
 /// | 12 | December | 31 |
 ///
-/// The Julian calendar took effect on January 1, 45 BC.
+/// The Julian calendar took effect on January 1, 45 BCE.
 ///
-/// The Julian calendar epoch in the Julian calendar is January 1, 1 AD.
+/// The Julian calendar epoch in the Julian calendar is January 1, 1 CE.
 ///
 /// - seealso: [Julian calendar](https://en.wikipedia.org/wiki/Julian_calendar)
 public struct JulianCalendar {
 	/// The Julian day number when the Julian calendar took effect.
 	///
-	/// This JDN corresponds to noon on January 1, 45 BC in the Julian calendar.
+	/// This JDN corresponds to noon on January 1, 45 BCE in the Julian calendar.
 	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
 
 	/// The Julian date when the Julian calendar took effect.
 	///
-	/// This JD corresponds to midnight on January 1, 45 BC in the Julian calendar.
+	/// This JD corresponds to midnight on January 1, 45 BCE in the Julian calendar.
 	public static let effectiveJulianDate: JulianDate = 1704986.5
 
 	/// The Julian day number of the epoch of the Julian calendar.
 	///
-	/// This JDN corresponds to noon on January 1, 1 AD in the Julian calendar.
+	/// This JDN corresponds to noon on January 1, 1 CE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 1721424
 
 	/// The Julian date of the epoch of the Julian calendar.
 	///
-	/// This JD corresponds to midnight on January 1, 1 AD in the Julian calendar.
+	/// This JD corresponds to midnight on January 1, 1 CE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 1721423.5
 
 	/// A year in the Julian calendar.
 	///
-	/// - important: The year preceding AD 1, commonly referred to as 1 BC, is year `0`.
+	/// - important: The year preceding CE 1, commonly referred to as 1 BCE, is year `0`.
 	public typealias Year = Int
 
 	/// A month in the Julian calendar numbered from `1` (January) to `12` (December).

@@ -53,18 +53,18 @@ import Foundation
 /// | 12 | Av | 30 |
 /// | 13 | Elul | 29 |
 ///
-/// The Hebrew calendar epoch in the Julian calendar is October 7, 3761 BC.
+/// The Hebrew calendar epoch in the Julian calendar is October 7, 3761 BCE.
 ///
 /// - seealso: [Hebrew calendar](https://en.wikipedia.org/wiki/Hebrew_calendar)
 public struct HebrewCalendar {
 	/// The Julian day number of the epoch of the Hebrew calendar.
 	///
-	/// This JDN corresponds to noon on October 7, 3761 BC in the Julian calendar.
+	/// This JDN corresponds to noon on October 7, 3761 BCE in the Julian calendar.
 	public static let epochJulianDayNumber: JulianDayNumber = 347998
 
 	/// The Julian date of the epoch of the Hebrew calendar.
 	///
-	/// This JD corresponds to midnight on October 7, 3761 BC in the Julian calendar.
+	/// This JD corresponds to midnight on October 7, 3761 BCE in the Julian calendar.
 	public static let epochJulianDate: JulianDate = 347997.5
 
 	/// A year in the Hebrew calendar.
