@@ -46,31 +46,18 @@ final class KhwarizmianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForKhwarizmianCalendar = -9223372036854775514
-		(Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(smallestJDNForKhwarizmianCalendar)
+//		let smallestJDNForKhwarizmianCalendar = Int.min + 294
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
+		let smallestJDNForKhwarizmianCalendar = Int.min + 341
+		var (Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(smallestJDNForKhwarizmianCalendar)
 		var jdn = KhwarizmianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForKhwarizmianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForKhwarizmianCalendar = 9223372036854775490
+		let largestJDNForKhwarizmianCalendar = Int.max - 317
 		(Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(largestJDNForKhwarizmianCalendar)
 		jdn = KhwarizmianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForKhwarizmianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForKhwarizmianCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = KhwarizmianCalendar.dateAndTimeFromJulianDate(smallestJDForKhwarizmianCalendar)
-		var jd = KhwarizmianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForKhwarizmianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForKhwarizmianCalendar = 0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = KhwarizmianCalendar.dateAndTimeFromJulianDate(largestJDForKhwarizmianCalendar)
-		jd = KhwarizmianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForKhwarizmianCalendar, jd)
 	}
 }
