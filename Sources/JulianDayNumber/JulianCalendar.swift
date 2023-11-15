@@ -158,14 +158,11 @@ extension JulianCalendar: JulianDayNumberConverting {
 	/// A date in the Julian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The date for Julian day number zero in the proleptic Julian calendar.
-	static let julianDayNumberZero = (year: -4712, month: 1, day: 1)
-
 	/// Algorithm parameters for Julian calendar conversions.
 	static let conversionParameters = JDNConversionParameters(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		jdnFromDate(date, conversionParameters: conversionParameters, jdnZero: julianDayNumberZero)
+		jdnFromDate(date, conversionParameters: conversionParameters)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {

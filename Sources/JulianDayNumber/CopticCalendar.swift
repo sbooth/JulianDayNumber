@@ -100,14 +100,11 @@ extension CopticCalendar: JulianDayNumberConverting {
 	/// A date in the Coptic calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The date for Julian day number zero in the proleptic Coptic calendar.
-	static let julianDayNumberZero = (year: -4996, month: 5, day: 5)
-
 	/// Algorithm parameters for Coptic calendar conversions.
 	static let conversionParameters = JDNConversionParameters(y: 4996, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		jdnFromDate(date, conversionParameters: conversionParameters, jdnZero: julianDayNumberZero)
+		jdnFromDate(date, conversionParameters: conversionParameters)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {

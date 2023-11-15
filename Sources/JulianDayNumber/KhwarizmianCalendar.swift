@@ -83,14 +83,11 @@ extension KhwarizmianCalendar: JulianDayNumberConverting {
 	/// A date in the Khwarizmian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The date for Julian day number zero in the proleptic Khwarizmian calendar.
-	static let julianDayNumberZero = (year: -5348, month: 11, day: 18)
-
 	/// Algorithm parameters for Khwarizmian calendar conversions.
 	static let conversionParameters = JDNConversionParameters(y: 5348, j: 317, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		jdnFromDate(date, conversionParameters: conversionParameters, jdnZero: julianDayNumberZero)
+		jdnFromDate(date, conversionParameters: conversionParameters)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {

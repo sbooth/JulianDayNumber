@@ -59,11 +59,13 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 
 /// Algorithm parameters for converting a Julian day number to a year, month, and day.
 struct JDNConversionParameters {
+	/// The number of years in the computational calendar which precede the epoch.
 	let y: Int
+	/// The number of days the epoch of the computational calendar (0/0/0) precedes day zero.
 	let j: Int
 	/// The month number which corresponds to month zero in the computational calendar.
 	let m: Int
-	/// The number of months in a year (counting any epagonomai as an extra month).
+	/// The number of months in a year, counting any epagonomai as an extra month.
 	let n: Int
 	/// The number of years in an intercalation cycle.
 	let r: Int
@@ -96,15 +98,14 @@ typealias YearMonthDay = (year: Int, month: Int, day: Int)
 ///
 /// - parameter date: A date to convert.
 /// - parameter parameters: Parameters for the conversion algorithm.
-/// - parameter jdnZero: The date for which the Julian day number is zero.
 ///
 /// - returns: The Julian day number corresponding to the specified date.
-func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConversionParameters, jdnZero: YearMonthDay) -> JulianDayNumber {
+func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConversionParameters) -> JulianDayNumber {
 	var Y = date.year
 	var ΔcalendarCycles = 0
 
-	if date < jdnZero {
-		ΔcalendarCycles = (jdnZero.year - Y - 1) / parameters.r + 1
+	if Y <= -parameters.y {
+		ΔcalendarCycles = (-parameters.y - Y) / parameters.r + 1
 		Y += ΔcalendarCycles * parameters.r
 	}
 
