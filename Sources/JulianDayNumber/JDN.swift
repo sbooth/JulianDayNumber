@@ -154,7 +154,17 @@ func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConve
 	return (Y, M, D)
 }
 
-
+/// Converts a date to a Julian day number using the specified conversion parameters and returns the result.
+///
+/// - important: No validation checks are performed on the date values.
+///
+/// - parameter date: A date to convert.
+/// - parameter parameters: Parameters for the conversion algorithm.
+/// - parameter gregorianIntercalatingParameters: Parameters for Gregorian-type intercalating.
+/// - parameter jdnZero: The date for which the Julian day number is zero.
+/// - parameter intercalatingCycle: The calendar's intercalating cycle.
+///
+/// - returns: The Julian day number corresponding to the specified date.
 func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConversionParameters, gregorianIntercalatingParameters: JDNGregorianIntercalatingParameters, jdnZero: YearMonthDay, intercalatingCycle: IntercalatingCycle) -> JulianDayNumber {
 	var Y = date.year
 	var ΔcalendarCycles = 0
@@ -178,6 +188,14 @@ func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConve
 	return J
 }
 
+/// Converts a Julian day number to a date and returns the result.
+///
+/// - parameter J: A Julian day number.
+/// - parameter parameters: Parameters for the conversion algorithm.
+/// - parameter gregorianIntercalatingParameters: Parameters for Gregorian-type intercalating.
+/// - parameter intercalatingCycle: The calendar's intercalating cycle.
+///
+/// - returns: The date corresponding to the specified Julian day number.
 func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConversionParameters, gregorianIntercalatingParameters: JDNGregorianIntercalatingParameters, intercalatingCycle: IntercalatingCycle) -> YearMonthDay {
 	var J = J
 	var ΔcalendarCycles = 0
