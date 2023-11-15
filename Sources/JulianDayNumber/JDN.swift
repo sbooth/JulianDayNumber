@@ -128,3 +128,81 @@ extension YearMonthDayJulianDayNumberConverting {
 		return (Y, M, D)
 	}
 }
+
+// MARK: Gregorian-type Intercalation
+
+protocol GregorianIntercalatingJulianDayNumberConverting: JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
+	static var calendarCycleDays: Int { get }
+	static var calendarCycleYears: Int { get }
+	static var julianDayNumberZero: DateType { get }
+
+	static var y: Int { get }
+	static var j: Int { get }
+	static var m: Int { get }
+	static var n: Int { get }
+	static var r: Int { get }
+	static var p: Int { get }
+	static var q: Int { get }
+	static var v: Int { get }
+	static var u: Int { get }
+	static var s: Int { get }
+	static var t: Int { get }
+	static var w: Int { get }
+	static var A: Int { get }
+	static var B: Int { get }
+	static var C: Int { get }
+}
+
+extension GregorianIntercalatingJulianDayNumberConverting {
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
+		var ΔcalendarCycles = 0
+
+		if date < julianDayNumberZero {
+			ΔcalendarCycles = (julianDayNumberZero.year - Y - 1) / calendarCycleYears + 1
+			Y += ΔcalendarCycles * calendarCycleYears
+		}
+
+		let h = date.month - m
+		let g = Y + y - (n - h) / n
+		let f = (h - 1 + n) % n
+		let e = (p * g + q) / r + date.day - 1 - j
+		var J = e + (s * f + t) / u
+		J = J - (3 * ((g + A) / 100)) / 4 - C
+
+		if ΔcalendarCycles > 0 {
+			J -= ΔcalendarCycles * calendarCycleDays
+		}
+
+		return J
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		var J = J
+		var ΔcalendarCycles = 0
+
+		// Richards' algorithm is only valid for positive JDNs.
+		if J < 0 {
+			ΔcalendarCycles = -J / calendarCycleDays + 1
+			J += ΔcalendarCycles * calendarCycleDays
+		}
+
+		precondition(J <= Int.max - j, "Julian day number too large")
+
+		var f = J + j
+		f = f + (((4 * J + B) / 146097) * 3) / 4 + C
+		let e = r * f + v
+		let g = (e % p) / r
+		let h = u * g + w
+		let D = (h % s) / u + 1
+		let M = ((h / s + m) % n) + 1
+		var Y = e / p - y + (n + m - M) / n
+
+		if ΔcalendarCycles > 0 {
+			Y -= ΔcalendarCycles * calendarCycleYears
+		}
+
+		return (Y, M, D)
+	}
+}
+
