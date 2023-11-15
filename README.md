@@ -67,49 +67,23 @@ The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/
 
 ## Limits
 
-### Julian Day Numbers
-
-The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow.
+The following table summarizes the arithmetic limits for Julian day number calculations.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Armenian | -9223372036854775514 | 9223372036854775490 |
-| Baháʼí | -9223372036854719351 | 2305795661307959248 |
-| Coptic | -9223372036854775664 | 2305843009213693827 |
-| Egyptian | -9223372036854775514 | 9223372036854775760 |
-| Ethiopian | -9223372036854775664 | 2305843009213693827 |
-| French Republican | -9223372036854719351 | 2305795661307960548 |
-| Gregorian | -9223372036854719351 | 2305795661307959247 |
-| Hebrew | -9223372036747815981 ¹ | 355839970905570 |
-| Islamic | -9223372036854775352 | 307445734561818195 |
-| Julian | -9223372036854775664 | 2305843009213692550 |
-| Khwarizmian | -9223372036854775514 | 9223372036854775490 |
-| Maya Long Count | -9223372036854191525 ² | Int.max |
-| Śaka | -9223372036854719351 | 2305795661307959298 |
-
-¹ The smallest round-trippable JDN for the Hebrew calendar is -9223372036747815627.
-² The smallest round-trippable JDN for the Maya Long Count is -9223372036854191517.
-
-### Julian Dates
-
-The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow.
-
-| Calendar | Minimum JD | Maximum JD |
-| --- | --- | --- |
-| Armenian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
-| Baháʼí | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
-| Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
-| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
-| Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
-| French Republican | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5dcp+60 |
-| Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
-| Hebrew | -0x1.ffffffffe67fbp+62 ¹ | 0x1.43a273100de27p+48 |
-| Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
-| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
-| Khwarizmian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
-| Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
-
-¹ The smallest round-trippable JD for the Hebrew calendar is -0x1.ffffffffe67fap+62.
+| Armenian | Int.min + 341 | Int.max - 317 |
+| Baháʼí | Int.min + 56457 | 2305795661307959248 |
+| Coptic | Int.min + 384 | 2305843009213693827 |
+| Egyptian | Int.min + 611 | Int.max - 47 |
+| Ethiopian | Int.min + 384 | 2305843009213693827 |
+| French Republican | Int.min + 56759 | 2305795661307960548 |
+| Gregorian | Int.min + 56457 | 2305795661307959247 |
+| Hebrew | Int.min + 106960181 | 355839970905570 |
+| Islamic | Int.min + 325 | 307445734561818195 |
+| Julian | Int.min + 144 | 2305843009213692550 |
+| Khwarizmian | Int.min + 341 | Int.max - 317 |
+| Maya Long Count | Int.min + 584291 | Int.max |
+| Śaka | Int.min + 56457 | 2305795661307959298 |
 
 ## License
 
