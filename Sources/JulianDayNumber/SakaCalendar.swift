@@ -169,6 +169,8 @@ extension SakaCalendar: JulianDayNumberConverting {
 			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
 		}
 
+		precondition(J <= Int.max - conversionParameters.j, "Julian day number too large")
+
 		var f = J + conversionParameters.j
 		f = f + (((4 * J + gregorianIntercalatingParameters.B) / 146097) * 3) / 4 + gregorianIntercalatingParameters.C
 		let e = conversionParameters.r * f + conversionParameters.v
