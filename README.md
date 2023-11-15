@@ -71,19 +71,19 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Armenian | Int.min + 341 | Int.max - 317 |
-| Baháʼí | Int.min + 56457 | 2305795661307959248 |
-| Coptic | Int.min + 384 | 2305843009213693827 |
-| Egyptian | Int.min + 611 | Int.max - 47 |
-| Ethiopian | Int.min + 384 | 2305843009213693827 |
-| French Republican | Int.min + 56759 | 2305795661307960548 |
-| Gregorian | Int.min + 56457 | 2305795661307959247 |
-| Hebrew | Int.min + 106960181 | 355839970905570 |
-| Islamic | Int.min + 325 | 307445734561818195 |
-| Julian | Int.min + 144 | 2305843009213692550 |
-| Khwarizmian | Int.min + 341 | Int.max - 317 |
-| Maya Long Count | Int.min + 584291 | Int.max |
-| Śaka | Int.min + 56457 | 2305795661307959298 |
+| Armenian | `Int.min` + 341 | `Int.max` - 317 |
+| Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
+| Coptic | `Int.min` + 384 | 2305843009213693827 |
+| Egyptian | `Int.min` + 611 | `Int.max` - 47 |
+| Ethiopian | `Int.min` + 384 | 2305843009213693827 |
+| French Republican | `Int.min` + 56759 | 2305795661307960548 |
+| Gregorian | `Int.min` + 56457 | 2305795661307959247 |
+| Hebrew | `Int.min` + 106960181 | 355839970905570 |
+| Islamic | `Int.min` + 325 | 307445734561818195 |
+| Julian | `Int.min` + 144 | 2305843009213692550 |
+| Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
+| Maya Long Count | `Int.min` + 584291 | `Int.max` |
+| Śaka | `Int.min` + 56457 | 2305795661307959298 |
 
 ## License
 
