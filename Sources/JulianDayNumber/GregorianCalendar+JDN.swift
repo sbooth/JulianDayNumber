@@ -6,37 +6,27 @@
 
 import Foundation
 
-extension GregorianCalendar: GregorianIntercalatingJulianDayNumberConverting {
+extension GregorianCalendar: JulianDayNumberConverting {
 	/// A date in the Gregorian calendar consists of a year, month, and day.
 	public typealias DateType = JulianCalendar.DateType
 
-	/// The number of years in a cycle of the Gregorian calendar.
-	///
-	/// A cycle in the Gregorian calendar consists of 303 common years and 97 leap years.
-	static let calendarCycleYears = 400
-
-	/// The number of days in a cycle of the Gregorian calendar.
-	///
-	/// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
-	static let calendarCycleDays = 146097
+	/// The intercalating cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
+	static let intercalatingCycle = (years: 400, days: 146097)
 
 	/// The date for Julian day number zero in the proleptic Gregorian calendar.
 	static let julianDayNumberZero = (year: -4713, month: 11, day: 24)
 
-	// Constants for Gregorian calendar conversions
-	static let y = 4716
-	static let j = 1401
-	static let m = 2
-	static let n = 12
-	static let r = 4
-	static let p = 1461
-	static let q = 0
-	static let v = 3
-	static let u = 5
-	static let s = 153
-	static let t = 2
-	static let w = 2
-	static let A = 184
-	static let B = 274277
-	static let C = -38
+	/// Algorithm parameters for Gregorian calendar conversions.
+	static let conversionParameters = JDNConversionParameters(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
+
+	/// Gregorian intercalating parameters for Gregorian calendar conversions.
+	static let gregorianIntercalatingParameters = JDNGregorianIntercalatingParameters(A: 184, B: 274277, C: -38)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		jdnFromDate(date, conversionParameters: conversionParameters, gregorianIntercalatingParameters: gregorianIntercalatingParameters, jdnZero: julianDayNumberZero, intercalatingCycle: intercalatingCycle)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		dateFromJDN(J, conversionParameters: conversionParameters, gregorianIntercalatingParameters: gregorianIntercalatingParameters, intercalatingCycle: intercalatingCycle)
+	}
 }

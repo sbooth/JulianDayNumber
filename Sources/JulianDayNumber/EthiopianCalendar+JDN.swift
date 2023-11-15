@@ -6,34 +6,24 @@
 
 import Foundation
 
-extension EthiopianCalendar: YearMonthDayJulianDayNumberConverting {
+extension EthiopianCalendar: JulianDayNumberConverting {
 	/// A date in the Ethiopian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The number of years in a cycle of the Ethiopian calendar.
-	///
-	/// A cycle in the Ethiopian calendar consists of 3 common years and 1 leap year.
-	static let calendarCycleYears = 4
-
-	/// The number of days in a cycle of the Ethiopian calendar.
-	///
-	/// A cycle in the Ethiopian calendar consists of 3 years of 365 days and 1 leap year of 366 days.
-	static let calendarCycleDays = 1461
+	/// The intercalating cycle of the Ethiopian calendar is 3 common years of 365 days and 1 leap year of 366 days.
+	static let intercalatingCycle = (years: 4, days: 1461)
 
 	/// The date for Julian day number zero in the proleptic Ethiopian calendar.
 	static let julianDayNumberZero = (year: -4720, month: 5, day: 5)
 
-	// Constants for Ethiopian calendar conversions
-	static let y = 4720
-	static let j = 124
-	static let m = 0
-	static let n = 13
-	static let r = 4
-	static let p = 1461
-	static let q = 0
-	static let v = 3
-	static let u = 1
-	static let s = 30
-	static let t = 0
-	static let w = 0
+	/// Algorithm parameters for Ethiopian calendar conversions.
+	static let conversionParameters = JDNConversionParameters(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		jdnFromDate(date, conversionParameters: conversionParameters, jdnZero: julianDayNumberZero, intercalatingCycle: intercalatingCycle)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		dateFromJDN(J, conversionParameters: conversionParameters, intercalatingCycle: intercalatingCycle)
+	}
 }

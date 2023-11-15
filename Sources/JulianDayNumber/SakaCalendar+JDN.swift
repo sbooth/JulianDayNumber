@@ -12,15 +12,8 @@ extension SakaCalendar: JulianDayNumberConverting {
 	/// A date in the Śaka calendar consists of a year, month, and day.
 	public typealias DateType = (year: Int, month: Int, day: Int)
 
-	/// The number of years in a cycle of the Śaka calendar.
-	///
-	/// A cycle in the Śaka calendar consists of 303 common years and 97 leap years.
-	static let calendarCycleYears = 400
-
-	/// The number of days in a cycle of the Śaka calendar.
-	///
-	/// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
-	static let calendarCycleDays = 146097
+	/// The intercalating cycle of the Śaka calendar is 303 common years of 365 days and 97 leap years of 366 days.
+	static let intercalatingCycle = (years: 400, days: 146097)
 
 	/// The date for Julian day number zero in the proleptic Śaka calendar.
 	static let julianDayNumberZero = (year: -4791, month: 9, day: 3)
@@ -29,10 +22,9 @@ extension SakaCalendar: JulianDayNumberConverting {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
-		// JDN 0 is -4791-09-03 in the proleptic Śaka calendar.
 		if date < julianDayNumberZero {
-			ΔcalendarCycles = (julianDayNumberZero.year - Y - 1) / calendarCycleYears + 1
-			Y += ΔcalendarCycles * calendarCycleYears
+			ΔcalendarCycles = (julianDayNumberZero.year - Y - 1) / intercalatingCycle.years + 1
+			Y += ΔcalendarCycles * intercalatingCycle.years
 		}
 
 		let h = date.month - m
@@ -44,7 +36,7 @@ extension SakaCalendar: JulianDayNumberConverting {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * calendarCycleDays
+			J -= ΔcalendarCycles * intercalatingCycle.days
 		}
 
 		return J
@@ -56,8 +48,8 @@ extension SakaCalendar: JulianDayNumberConverting {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			ΔcalendarCycles = -J / calendarCycleDays + 1
-			J += ΔcalendarCycles * calendarCycleDays
+			ΔcalendarCycles = -J / intercalatingCycle.days + 1
+			J += ΔcalendarCycles * intercalatingCycle.days
 		}
 
 		var f = J + j
@@ -75,7 +67,7 @@ extension SakaCalendar: JulianDayNumberConverting {
 		var Y = e / p - y + (n + m - M) / n
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * calendarCycleYears
+			Y -= ΔcalendarCycles * intercalatingCycle.years
 		}
 
 		return (Y, M, D)
