@@ -68,9 +68,9 @@ final class MayaCalendarTests: XCTestCase {
 		var b, k, t, u, d: Int
 
 		// Values smaller than this cause an arithmetic overflow in longCountFromJulianDayNumber
-//		let smallestJDNForMayaCalendar = -9223372036854191525
+//		let smallestJDNForMayaCalendar = Int.min + 584283
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFromLongCount
-		let smallestJDNForMayaCalendar = -9223372036854191517
+		let smallestJDNForMayaCalendar = Int.min + 584291
 		(b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(smallestJDNForMayaCalendar)
 		var jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 		XCTAssertEqual(smallestJDNForMayaCalendar, jdn)
