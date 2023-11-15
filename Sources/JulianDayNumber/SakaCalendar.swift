@@ -135,6 +135,12 @@ extension SakaCalendar: JulianDayNumberConverting {
 	/// A date in the Śaka calendar consists of a year, month, and day.
 	public typealias DateType = (year: Int, month: Int, day: Int)
 
+	/// Algorithm parameters for Śaka calendar conversions.
+	static let conversionParameters = JDNConversionParameters(y: 4794, j: 1348, m: 1, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 31, t: 0, w: 0)
+
+	/// Gregorian intercalating parameters for Śaka calendar conversions.
+	static let gregorianIntercalatingParameters = JDNGregorianIntercalatingParameters(A: 184, B: 274073, C: -36)
+
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		var Y = date.year
 		var ΔcalendarCycles = 0
@@ -191,10 +197,4 @@ extension SakaCalendar: JulianDayNumberConverting {
 
 		return (Y, M, D)
 	}
-
-	/// Algorithm parameters for Śaka calendar conversions.
-	static let conversionParameters = JDNConversionParameters(y: 4794, j: 1348, m: 1, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 31, t: 0, w: 0)
-
-	/// Gregorian intercalating parameters for Śaka calendar conversions.
-	static let gregorianIntercalatingParameters = JDNGregorianIntercalatingParameters(A: 184, B: 274073, C: -36)
 }
