@@ -72,18 +72,18 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
 | Armenian | `Int.min` + 341 | `Int.max` - 317 |
-| Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
-| Coptic | `Int.min` + 384 | 2305843009213693827 |
+| Baháʼí | `Int.min` + 56,457 | 2,305,795,661,307,959,248 |
+| Coptic | `Int.min` + 384 | 2,305,843,009,213,693,827 |
 | Egyptian | `Int.min` + 611 | `Int.max` - 47 |
-| Ethiopian | `Int.min` + 384 | 2305843009213693827 |
-| French Republican | `Int.min` + 56759 | 2305795661307960548 |
-| Gregorian | `Int.min` + 56457 | 2305795661307959247 |
-| Hebrew | `Int.min` + 106960181 | 355839970905570 |
-| Islamic | `Int.min` + 325 | 307445734561818195 |
-| Julian | `Int.min` + 144 | 2305843009213692550 |
+| Ethiopian | `Int.min` + 384 | 2,305,843,009,213,693,827 |
+| French Republican | `Int.min` + 56759 | 2,305,795,661,307,960,548 |
+| Gregorian | `Int.min` + 56,457 | 2,305,795,661,307,959,247 |
+| Hebrew | `Int.min` + 106,960,181 | 355,839,970,905,570 |
+| Islamic | `Int.min` + 325 | 307,445,734,561,818,195 |
+| Julian | `Int.min` + 144 | 2,305,843,009,213,692,550 |
 | Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
-| Maya Long Count | `Int.min` + 584291 | `Int.max` |
-| Śaka | `Int.min` + 56457 | 2305795661307959298 |
+| Maya Long Count | `Int.min` + 584,291 | `Int.max` |
+| Śaka | `Int.min` + 56,457 | 2,305,795,661,307,959,298 |
 
 ## License
 
