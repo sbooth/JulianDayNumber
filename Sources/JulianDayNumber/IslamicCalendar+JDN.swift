@@ -20,7 +20,7 @@ extension IslamicCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Islamic calendar consists of 19 years of 354 days and 11 leap years of 355 days.
 	static let calendarCycleDays = 10631
 
-	/// The date for Julian day number zero in the proleptic Julian calendar
+	/// The date for Julian day number zero in the proleptic Julian calendar.
 	static let julianDayNumberZero = (year: -5498, month: 8, day: 16)
 
 	// Constants for Islamic calendar conversions

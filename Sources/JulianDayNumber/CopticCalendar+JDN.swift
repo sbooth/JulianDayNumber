@@ -20,7 +20,7 @@ extension CopticCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Coptic calendar consists of 3 years of 365 days and 1 leap year of 366 days.
 	static let calendarCycleDays = 1461
 
-	/// The date for Julian day number zero in the Coptic Julian calendar
+	/// The date for Julian day number zero in the proleptic Coptic calendar.
 	static let julianDayNumberZero = (year: -4996, month: 5, day: 5)
 
 	// Constants for Coptic calendar conversions

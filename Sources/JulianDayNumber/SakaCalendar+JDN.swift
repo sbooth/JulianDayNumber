@@ -22,7 +22,7 @@ extension SakaCalendar: JulianDayNumberConverting {
 	/// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
 	static let calendarCycleDays = 146097
 
-	/// The date for Julian day number zero in the proleptic Śaka calendar
+	/// The date for Julian day number zero in the proleptic Śaka calendar.
 	static let julianDayNumberZero = (year: -4791, month: 9, day: 3)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {

@@ -20,7 +20,7 @@ extension EthiopianCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Ethiopian calendar consists of 3 years of 365 days and 1 leap year of 366 days.
 	static let calendarCycleDays = 1461
 
-	/// The date for Julian day number zero in the proleptic Ethiopian calendar
+	/// The date for Julian day number zero in the proleptic Ethiopian calendar.
 	static let julianDayNumberZero = (year: -4720, month: 5, day: 5)
 
 	// Constants for Ethiopian calendar conversions

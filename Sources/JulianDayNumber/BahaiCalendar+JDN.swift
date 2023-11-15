@@ -20,7 +20,7 @@ extension BahaiCalendar: GregorianIntercalatingJulianDayNumberConverting {
 	/// A cycle in the Baháʼí calendar consists of 303 years of 365 days and 97 leap year of 366 days.
 	static let calendarCycleDays = 146097
 
-	/// The date for Julian day number zero in the Baháʼí Gregorian calendar
+	/// The date for Julian day number zero in the Baháʼí Gregorian calendar.
 	static let julianDayNumberZero = (year: -6556, month: 14, day: 2)
 
 	// Constants for Baháʼí calendar conversions

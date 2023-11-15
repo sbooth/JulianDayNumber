@@ -20,7 +20,7 @@ extension ArmenianCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Armenian calendar consists of 1 year of 365 days.
 	static let calendarCycleDays = 365
 
-	/// The date for Julian day number zero in the proleptic Armenian calendar
+	/// The date for Julian day number zero in the proleptic Armenian calendar.
 	static let julianDayNumberZero = (year: -5268, month: 11, day: 18)
 
 	// Constants for Armenian calendar conversions

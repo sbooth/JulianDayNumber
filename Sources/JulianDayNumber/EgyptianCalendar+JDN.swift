@@ -20,7 +20,7 @@ extension EgyptianCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Egyptian calendar consists of 1 year of 365 days.
 	static let calendarCycleDays = 365
 
-	/// The date for Julian day number zero in the proleptic Egyptian calendar
+	/// The date for Julian day number zero in the proleptic Egyptian calendar.
 	static let julianDayNumberZero = (year: -3968, month: 2, day: 2)
 
 	// Constants for Egyptian calendar conversions

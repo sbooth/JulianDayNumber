@@ -20,7 +20,7 @@ extension JulianCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Julian calendar consists of 3 years of 365 days and 1 leap year of 366 days.
 	static let calendarCycleDays = 1461
 
-	/// The date for Julian day number zero in the proleptic Julian calendar
+	/// The date for Julian day number zero in the proleptic Julian calendar.
 	static let julianDayNumberZero = (year: -4712, month: 1, day: 1)
 
 	// Constants for Julian calendar conversions

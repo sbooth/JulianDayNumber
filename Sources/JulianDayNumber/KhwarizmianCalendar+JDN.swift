@@ -20,7 +20,7 @@ extension KhwarizmianCalendar: YearMonthDayJulianDayNumberConverting {
 	/// A cycle in the Khwarizmian calendar consists of 1 year of 365 days.
 	static let calendarCycleDays = 365
 
-	/// The date for Julian day number zero in the proleptic Julian calendar
+	/// The date for Julian day number zero in the proleptic Julian calendar.
 	static let julianDayNumberZero = (year: -5348, month: 11, day: 18)
 
 	// Constants for Khwarizmian calendar conversions

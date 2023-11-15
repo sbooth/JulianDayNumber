@@ -20,7 +20,7 @@ extension FrenchRepublicanCalendar: GregorianIntercalatingJulianDayNumberConvert
 	/// A cycle in the modified French Republican calendar consists of 303 years of 365 days and 97 leap year of 366 days.
 	static let calendarCycleDays = 146097
 
-	/// The date for Julian day number zero in the proleptic French Republican calendar
+	/// The date for Julian day number zero in the proleptic French Republican calendar.
 	static let julianDayNumberZero = (year: -6504, month: 3, day: 3)
 
 	// Constants for French Republican calendar conversions

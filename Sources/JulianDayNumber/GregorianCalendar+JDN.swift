@@ -20,7 +20,7 @@ extension GregorianCalendar: GregorianIntercalatingJulianDayNumberConverting {
 	/// A cycle in the Gregorian calendar consists of 303 years of 365 days and 97 leap year of 366 days.
 	static let calendarCycleDays = 146097
 
-	/// The date for Julian day number zero in the proleptic Gregorian calendar
+	/// The date for Julian day number zero in the proleptic Gregorian calendar.
 	static let julianDayNumberZero = (year: -4713, month: 11, day: 24)
 
 	// Constants for Gregorian calendar conversions
