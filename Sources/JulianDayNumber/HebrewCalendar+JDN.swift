@@ -8,16 +8,6 @@ import Foundation
 
 // Algorithm from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
 
-/// The number of years in a cycle of the Hebrew calendar.
-///
-/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-let hebrewCalendarCycleYears = 689472
-
-/// The number of days in a cycle of the Hebrew calendar.
-///
-/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-let hebrewCalendarCycleDays = 251827457
-
 extension HebrewCalendar {
 	/// Returns the Julian day number of the first day of Tishrei in the specified year.
 	///
@@ -69,13 +59,23 @@ extension HebrewCalendar: JulianDayNumberConverting {
 	/// A date in the Hebrew calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
+	/// The number of years in a cycle of the Hebrew calendar.
+	///
+	/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+	static let calendarCycleYears = 689472
+
+	/// The number of days in a cycle of the Hebrew calendar.
+	///
+	/// A cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+	static let calendarCycleDays = 251827457
+
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / hebrewCalendarCycleYears + 1
-			Y += ΔcalendarCycles * hebrewCalendarCycleYears
+			ΔcalendarCycles = (1 - Y) / calendarCycleYears + 1
+			Y += ΔcalendarCycles * calendarCycleYears
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -84,7 +84,7 @@ extension HebrewCalendar: JulianDayNumberConverting {
 		var J = a + A[K - 1][date.month - 1] + date.day - 1
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * hebrewCalendarCycleDays
+			J -= ΔcalendarCycles * calendarCycleDays
 		}
 
 		return J
@@ -95,8 +95,8 @@ extension HebrewCalendar: JulianDayNumberConverting {
 		var ΔcalendarCycles = 0
 
 		if J < epochJulianDayNumber {
-			ΔcalendarCycles = (epochJulianDayNumber - J) / hebrewCalendarCycleDays + 1
-			J += ΔcalendarCycles * hebrewCalendarCycleDays
+			ΔcalendarCycles = (epochJulianDayNumber - J) / calendarCycleDays + 1
+			J += ΔcalendarCycles * calendarCycleDays
 		}
 
 		var Y = yearContaining(julianDayNumber: J)
@@ -110,27 +110,27 @@ extension HebrewCalendar: JulianDayNumberConverting {
 		let D = c - AK[M - 1]
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * hebrewCalendarCycleYears
+			Y -= ΔcalendarCycles * calendarCycleYears
 		}
 
 		return (Y, M, D)
 	}
-}
 
-/// The number of days preceding the first of the month in a year with characterization K.
-///
-/// The array is indexed first by `K - 1` and the resultant array by `M - 1`.
-private let A = [
-	// A deficient common year.
-	[0, 30, 59, 88, 117, 147, 176, 206, 235, 265, 294, 324],
-	// A regular common year.
-	[0, 30, 59, 89, 118, 148, 177, 207, 236, 266, 295, 325],
-	// An abundant common year.
-	[0, 30, 60, 90, 119, 149, 178, 208, 237, 267, 296, 326],
-	// A deficient leap year.
-	[0, 30, 59, 88, 117, 147, 177, 206, 236, 265, 295, 324, 354],
-	// A regular leap year.
-	[0, 30, 59, 89, 118, 148, 178, 207, 237, 266, 296, 325, 355],
-	// An abundant leap year.
-	[0, 30, 60, 90, 119, 149, 179, 208, 238, 267, 297, 326, 356],
-]
+	/// The number of days preceding the first of the month in a year with characterization K.
+	///
+	/// The array is indexed first by `K - 1` and the resultant array by `M - 1`.
+	static let A = [
+		// A deficient common year.
+		[0, 30, 59, 88, 117, 147, 176, 206, 235, 265, 294, 324],
+		// A regular common year.
+		[0, 30, 59, 89, 118, 148, 177, 207, 236, 266, 295, 325],
+		// An abundant common year.
+		[0, 30, 60, 90, 119, 149, 178, 208, 237, 267, 296, 326],
+		// A deficient leap year.
+		[0, 30, 59, 88, 117, 147, 177, 206, 236, 265, 295, 324, 354],
+		// A regular leap year.
+		[0, 30, 59, 89, 118, 148, 178, 207, 237, 266, 296, 325, 355],
+		// An abundant leap year.
+		[0, 30, 60, 90, 119, 149, 179, 208, 238, 267, 297, 326, 356],
+	]
+}

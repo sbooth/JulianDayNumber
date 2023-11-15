@@ -193,8 +193,8 @@ public struct HebrewCalendar {
 		var ΔcalendarCycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / hebrewCalendarCycleYears + 1
-			Y += ΔcalendarCycles * hebrewCalendarCycleYears
+			ΔcalendarCycles = (1 - Y) / calendarCycleYears + 1
+			Y += ΔcalendarCycles * calendarCycleYears
 		}
 
 		let a = firstDayOfTishrei(year: Y)
