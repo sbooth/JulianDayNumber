@@ -76,7 +76,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Coptic | `Int.min` + 384 | 2,305,843,009,213,693,827 |
 | Egyptian | `Int.min` + 611 | `Int.max` - 47 |
 | Ethiopian | `Int.min` + 384 | 2,305,843,009,213,693,827 |
-| French Republican | `Int.min` + 56,759 | 2,305,795,661,307,960,548 |
+| French Republican | `Int.min` + 56759 | 2,305,795,661,307,960,548 |
 | Gregorian | `Int.min` + 56,457 | 2,305,795,661,307,959,247 |
 | Hebrew | `Int.min` + 106,960,181 | 355,839,970,905,570 |
 | Islamic | `Int.min` + 325 | 307,445,734,561,818,195 |
