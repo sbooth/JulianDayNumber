@@ -61,9 +61,13 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 struct JDNConversionParameters {
 	let y: Int
 	let j: Int
+	/// The month number which corresponds to month zero in the computational calendar.
 	let m: Int
+	/// The number of months in a year (counting any epagonomai as an extra month).
 	let n: Int
+	/// The number of years in an intercalation cycle.
 	let r: Int
+	/// The number of days in an intercalation cycle.
 	let p: Int
 	let q: Int
 	let v: Int
@@ -93,16 +97,15 @@ typealias YearMonthDay = (year: Int, month: Int, day: Int)
 /// - parameter date: A date to convert.
 /// - parameter parameters: Parameters for the conversion algorithm.
 /// - parameter jdnZero: The date for which the Julian day number is zero.
-/// - parameter intercalatingCycle: The calendar's intercalating cycle.
 ///
 /// - returns: The Julian day number corresponding to the specified date.
-func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConversionParameters, jdnZero: YearMonthDay, intercalatingCycle: IntercalatingCycle) -> JulianDayNumber {
+func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConversionParameters, jdnZero: YearMonthDay) -> JulianDayNumber {
 	var Y = date.year
 	var ΔcalendarCycles = 0
 
 	if date < jdnZero {
-		ΔcalendarCycles = (jdnZero.year - Y - 1) / intercalatingCycle.years + 1
-		Y += ΔcalendarCycles * intercalatingCycle.years
+		ΔcalendarCycles = (jdnZero.year - Y - 1) / parameters.r + 1
+		Y += ΔcalendarCycles * parameters.r
 	}
 
 	let h = date.month - parameters.m
@@ -112,7 +115,7 @@ func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConve
 	var J = e + (parameters.s * f + parameters.t) / parameters.u
 
 	if ΔcalendarCycles > 0 {
-		J -= ΔcalendarCycles * intercalatingCycle.days
+		J -= ΔcalendarCycles * parameters.p
 	}
 
 	return J
@@ -122,10 +125,9 @@ func jdnFromDate(_ date: YearMonthDay, conversionParameters parameters: JDNConve
 ///
 /// - parameter J: A Julian day number.
 /// - parameter parameters: Parameters for the conversion algorithm.
-/// - parameter intercalatingCycle: The calendar's intercalating cycle.
 ///
 /// - returns: The date corresponding to the specified Julian day number.
-func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConversionParameters, intercalatingCycle: IntercalatingCycle) -> YearMonthDay {
+func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConversionParameters) -> YearMonthDay {
 //	precondition(J < Int.max - 1)
 
 	var J = J
@@ -133,8 +135,8 @@ func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConve
 
 	// Richards' algorithm is only valid for positive JDNs.
 	if J < 0 {
-		ΔcalendarCycles = -J / intercalatingCycle.days + 1
-		J += ΔcalendarCycles * intercalatingCycle.days
+		ΔcalendarCycles = -J / parameters.p + 1
+		J += ΔcalendarCycles * parameters.p
 	}
 
 	precondition(J <= Int.max - parameters.j, "Julian day number too large")
@@ -148,7 +150,7 @@ func dateFromJDN(_ J: JulianDayNumber, conversionParameters parameters: JDNConve
 	var Y = e / parameters.p - parameters.y + (parameters.n + parameters.m - M) / parameters.n
 
 	if ΔcalendarCycles > 0 {
-		Y -= ΔcalendarCycles * intercalatingCycle.years
+		Y -= ΔcalendarCycles * parameters.r
 	}
 
 	return (Y, M, D)
