@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day.
+/// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day for selected arithmetic calendars.
 ///
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
 /// from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books),
