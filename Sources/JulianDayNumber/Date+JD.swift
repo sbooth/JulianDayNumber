@@ -48,7 +48,5 @@ extension Date {
 	/// | -- | --- | --- |
 	/// | TT | 2000-01-01 12:00:00 | 2451545.0 |
 	/// | UTC | 2000-01-01 11:58:55.816 | 2451544.9992571296 |
-	public static var j2000: Date {
-		Date(julianDate: J2000JD_UTC)
-	}
+	public static var j2000 = Date(julianDate: J2000JD_UTC)
 }
