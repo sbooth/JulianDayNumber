@@ -27,4 +27,18 @@ final class MacedonianCalendarTests: XCTestCase {
 		XCTAssertTrue(MacedonianCalendar.dateAndTimeFromJulianDate(38132342.5) == (99999, 12, 31, 0, 0, 0))
 		XCTAssertTrue(MacedonianCalendar.dateAndTimeFromJulianDate(366857342.5) == (999999, 12, 31, 0, 0, 0))
 	}
+
+	func testArithmeticLimits() {
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let smallestJDNForMacedonianCalendar = Int.min + 144
+		var (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(smallestJDNForMacedonianCalendar)
+		var jdn = MacedonianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		XCTAssertEqual(smallestJDNForMacedonianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let largestJDNForMacedonianCalendar = (Int.max - 3) / 4 - 1401
+		(Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(largestJDNForMacedonianCalendar)
+		jdn = MacedonianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		XCTAssertEqual(largestJDNForMacedonianCalendar, jdn)
+	}
 }

@@ -27,4 +27,18 @@ final class SyrianCalendarTests: XCTestCase {
 		XCTAssertTrue(SyrianCalendar.dateAndTimeFromJulianDate(38132372.5) == (99999, 12, 30, 0, 0, 0))
 		XCTAssertTrue(SyrianCalendar.dateAndTimeFromJulianDate(366857372.5) == (999999, 12, 30, 0, 0, 0))
 	}
+
+	func testArithmeticLimits() {
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let smallestJDNForSyrianCalendar = Int.min + 144
+		var (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(smallestJDNForSyrianCalendar)
+		var jdn = SyrianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		XCTAssertEqual(smallestJDNForSyrianCalendar, jdn)
+
+		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let largestJDNForSyrianCalendar = (Int.max - 3) / 4 - 1401
+		(Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(largestJDNForSyrianCalendar)
+		jdn = SyrianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		XCTAssertEqual(largestJDNForSyrianCalendar, jdn)
+	}
 }
