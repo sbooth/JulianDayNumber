@@ -5,22 +5,22 @@
 
 Julian day number and Julian date calculations supporting the following calendars:
 
-| Calendar | Epoch ¹ | Description |
-| --- | --- | --- |
-| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE | A solar calendar with 365 days in the year. |
-| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE | A hybrid calendar that uses the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates. |
-| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 | A solar calendar with 365 days in the year plus an additional leap day in certain years. |
-| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | August 29, 284 CE | A solar calendar with 365 days in the year plus an additional leap day every fourth year. |
-| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE | A solar calendar with 365 days in the year. |
-| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | August 29, 8 CE | A solar calendar with 365 days in the year plus an additional leap day every fourth year. |
-| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | September 22, 1792 | An astronomical calendar with 365 days in the year plus an additional leap day in certain years. |
-| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | January 1, 1 CE | A solar calendar with 365 days in the year plus an additional leap day in certain years. |
-| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE | A lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year. |
-| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | July 16, 622 CE | A lunar calendar with 354 days in the year plus an additional leap day in certain years. |
-| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE | A solar calendar with 365 days in the year plus an additional leap day every fourth year. |
-| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE | A solar calendar with 365 days in the year. |
-| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | A system of calendars consisting of several cycles of different lengths. |
-| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE | A solar calendar with 365 days in the year plus an additional leap day in certain years. |
+| Calendar | Epoch ¹ |
+| --- | --- |
+| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE |
+| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE |
+| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 |
+| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | August 29, 284 CE | year. |
+| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE |
+| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | August 29, 8 CE |
+| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | September 22, 1792 |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | January 1, 1 CE |
+| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE |
+| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | July 16, 622 CE |
+| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE |
+| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE |
+| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | 
+| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE |
 
 ¹ Epochs given in Julian calendar
 
