@@ -6,8 +6,6 @@
 
 import Foundation
 
-//
-
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day.
 ///
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
