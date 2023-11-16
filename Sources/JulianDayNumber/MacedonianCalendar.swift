@@ -31,3 +31,19 @@ public struct MacedonianCalendar {
 	/// A day in the Macedonian calendar numbered starting from `1`.
 	public typealias Day = Int
 }
+
+extension MacedonianCalendar: JulianDayNumberConverting {
+	/// A date in the Macedonian calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Macedonian calendar.
+	static let converter = JDNConverter(y: 4405, j: 1401, m: 6, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+}
