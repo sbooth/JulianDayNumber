@@ -78,17 +78,19 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | --- | --- | --- |
 | Armenian | `Int.min` + 341 | `Int.max` - 317 |
 | Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
-| Coptic | `Int.min` + 384 | 2305843009213693827 |
+| Coptic | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
 | Egyptian | `Int.min` + 611 | `Int.max` - 47 |
-| Ethiopian | `Int.min` + 384 | 2305843009213693827 |
+| Ethiopian | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
 | French Republican | `Int.min` + 56759 | 2305795661307960548 |
 | Gregorian | `Int.min` + 56457 | 2305795661307959247 |
 | Hebrew | `Int.min` + 106960181 | 355839970905570 |
-| Islamic | `Int.min` + 325 | 307445734561818195 |
-| Julian | `Int.min` + 144 | 2305843009213692550 |
+| Islamic | `Int.min` + 325 | (`Int.max` - 15) / 30 - 7664 |
+| Julian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 | Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
+| Macedonian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 | Maya Long Count | `Int.min` + 584291 | `Int.max` |
 | Śaka | `Int.min` + 56457 | 2305795661307959298 |
+| Syrian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 
 ## License
 
