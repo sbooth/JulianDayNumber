@@ -86,7 +86,7 @@ final class EthiopianCalendarTests: XCTestCase {
 		XCTAssertEqual(smallestJDNForEthiopianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEthiopianCalendar = 2305843009213693827
+		let largestJDNForEthiopianCalendar = (Int.max - 3) / 4 - 124
 		(Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(largestJDNForEthiopianCalendar)
 		jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForEthiopianCalendar, jdn)

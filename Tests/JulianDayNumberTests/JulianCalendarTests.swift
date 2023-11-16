@@ -105,7 +105,7 @@ final class JulianCalendarTests: XCTestCase {
 		XCTAssertEqual(smallestJDNForJulianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForJulianCalendar = 2305843009213692550
+		let largestJDNForJulianCalendar = (Int.max - 3) / 4 - 1401
 		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
 		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForJulianCalendar, jdn)

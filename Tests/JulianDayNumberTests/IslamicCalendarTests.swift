@@ -108,7 +108,7 @@ final class IslamicCalendarTests: XCTestCase {
 		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForIslamicCalendar = 307445734561818195
+		let largestJDNForIslamicCalendar = (Int.max - 15) / 30 - 7664
 		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
