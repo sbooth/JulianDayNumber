@@ -137,17 +137,14 @@ extension FrenchRepublicanCalendar: JulianDayNumberConverting {
 	/// A date in the French Republican calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// Algorithm parameters for French Republican calendar conversions.
-	static let conversionParameters = JDNConversionParameters(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
-
-	/// Gregorian intercalating parameters for French Republican calendar conversions.
-	static let gregorianIntercalatingParameters = JDNGregorianIntercalatingParameters(A: 396, B: 578797, C: -51)
+	/// The converter for the French Republican calendar.
+	static let converter = JulianDayNumberGregorianTypeConverter(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0, A: 396, B: 578797, C: -51)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		jdnFromDate(date, conversionParameters: conversionParameters, gregorianIntercalatingParameters: gregorianIntercalatingParameters)
+		converter.julianDayNumberFromDate(date)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		dateFromJDN(J, conversionParameters: conversionParameters, gregorianIntercalatingParameters: gregorianIntercalatingParameters)
+		converter.dateFromJulianDayNumber(J)
 	}
 }

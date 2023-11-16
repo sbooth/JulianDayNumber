@@ -83,14 +83,14 @@ extension ArmenianCalendar: JulianDayNumberConverting {
 	/// A date in the Armenian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// Algorithm parameters for Armenian calendar conversions.
-	static let conversionParameters = JDNConversionParameters(y: 5268, j: 317, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
+	/// The converter for the Armenian calendar.
+	static let converter = JulianDayNumberConverter(y: 5268, j: 317, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		jdnFromDate(date, conversionParameters: conversionParameters)
+		converter.julianDayNumberFromDate(date)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		dateFromJDN(J, conversionParameters: conversionParameters)
+		converter.dateFromJulianDayNumber(J)
 	}
 }

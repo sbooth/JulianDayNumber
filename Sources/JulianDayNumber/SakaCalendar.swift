@@ -129,72 +129,18 @@ public struct SakaCalendar {
 	}
 }
 
-// Algorithm adapted from the Explanatory Supplement to the Astronomical Almanac, 3rd edition, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
-
 extension SakaCalendar: JulianDayNumberConverting {
 	/// A date in the Śaka calendar consists of a year, month, and day.
 	public typealias DateType = (year: Int, month: Int, day: Int)
 
-	/// Algorithm parameters for Śaka calendar conversions.
-	static let conversionParameters = JDNConversionParameters(y: 4794, j: 1348, m: 1, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 31, t: 0, w: 0)
-
-	/// Gregorian intercalating parameters for Śaka calendar conversions.
-	static let gregorianIntercalatingParameters = JDNGregorianIntercalatingParameters(A: 184, B: 274073, C: -36)
+	/// The converter for the Śaka calendar.
+	static let converter = JulianDayNumberSakaConverter()
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
-
-		if Y <= -conversionParameters.y {
-			ΔcalendarCycles = (-conversionParameters.y - Y) / gregorianIntercalatingCycle.years + 1
-			Y += ΔcalendarCycles * gregorianIntercalatingCycle.years
-		}
-
-		let h = date.month - conversionParameters.m
-		let g = Y + conversionParameters.y - (conversionParameters.n - h) / conversionParameters.n
-		let f = (h - 1 + conversionParameters.n) % conversionParameters.n
-		let e = (conversionParameters.p * g + conversionParameters.q) / conversionParameters.r + date.day - 1 - conversionParameters.j
-		let Z = f / 6
-		var J = e + ((31 - Z) * f + 5 * Z) / conversionParameters.u
-		J = J - (3 * ((g + gregorianIntercalatingParameters.A) / 100)) / 4 - gregorianIntercalatingParameters.C
-
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianIntercalatingCycle.days
-		}
-
-		return J
+		converter.julianDayNumberFromDate(date)
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		var J = J
-		var ΔcalendarCycles = 0
-
-		// Richards' algorithm is only valid for positive JDNs.
-		if J < 0 {
-			ΔcalendarCycles = -J / gregorianIntercalatingCycle.days + 1
-			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
-		}
-
-		precondition(J <= Int.max - conversionParameters.j, "Julian day number too large")
-
-		var f = J + conversionParameters.j
-		f = f + (((4 * J + gregorianIntercalatingParameters.B) / 146097) * 3) / 4 + gregorianIntercalatingParameters.C
-		let e = conversionParameters.r * f + conversionParameters.v
-		let g = (e % conversionParameters.p) / conversionParameters.r
-		let X = g / 365
-		let Z = g / 185 - X
-		let s = 31 - Z
-		let w = -5 * Z
-		let h = conversionParameters.u * g + w
-		let D = (6 * X + (h % s)) / conversionParameters.u + 1
-
-		let M = ((h / s + conversionParameters.m) % conversionParameters.n) + 1
-		var Y = e / conversionParameters.p - conversionParameters.y + (conversionParameters.n + conversionParameters.m - M) / conversionParameters.n
-
-		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * gregorianIntercalatingCycle.years
-		}
-
-		return (Y, M, D)
+		converter.dateFromJulianDayNumber(J)
 	}
 }
