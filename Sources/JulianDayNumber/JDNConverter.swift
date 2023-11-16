@@ -69,18 +69,17 @@ struct JDNConverter {
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
 	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> YearMonthDay {
-//	precondition(J < Int.max - 1)
-
 		var J = J
 		var ΔcalendarCycles = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
+			precondition(J >= Int.min + 1, "Julian day number too large")
 			ΔcalendarCycles = -J / p + 1
 			J += ΔcalendarCycles * p
 		}
 
-		precondition(J <= Int.max - j, "Julian day number too large")
+		precondition(J <= (Int.max - v) / r - j, "Julian day number too large")
 
 		let f = J + j
 		let e = r * f + v
