@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// The Egyptian calendar is a solar calendar with 365 days in every year.
+/// The Egyptian calendar is a solar calendar with 365 days in the year.
 ///
 /// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days.
 ///
