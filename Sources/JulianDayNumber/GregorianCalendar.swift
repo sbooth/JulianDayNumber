@@ -135,7 +135,7 @@ public struct GregorianCalendar {
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
 	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
 		1 + (J + 1) % 7
 	}
@@ -148,11 +148,27 @@ public struct GregorianCalendar {
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified year, month, and day.
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified year, month, and day.
 	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> Int {
 		let a = (9 + M) % 12
 		let b = Y - a / 10
 		return 1 + (2 + D + (13 * a + 2) / 5 + b + b / 4 - b / 100 + b / 400) % 7
+	}
+
+	/// Returns the day of the year for the specified year, month, and day.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The day of the year from `1` to `365` (`366` for leap years)  corresponding to the specified year, month, and day.
+	public static func dayOfYear(year Y: Year, month M: Month, day D: Day) -> Int {
+		guard M > 0, M <= 12 else {
+			return 0
+		}
+
+		let days = JulianCalendar.daysToFirstOfMonth[isLeapYear(Y) ? 1 : 0]
+		return days[M - 1] + D
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Gregorian calendar.
