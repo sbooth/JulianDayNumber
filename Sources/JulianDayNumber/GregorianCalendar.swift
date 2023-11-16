@@ -167,12 +167,7 @@ public struct GregorianCalendar {
 			return 0
 		}
 
-		let dayCounts = [
-			[0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
-			[0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335],
-		]
-
-		let days = dayCounts[isLeapYear(Y) ? 1 : 0]
+		let days = JulianCalendar.daysToFirstOfMonth[isLeapYear(Y) ? 1 : 0]
 		return days[M - 1] + D
 	}
 
