@@ -101,7 +101,7 @@ extension EthiopianCalendar: JulianDayNumberConverting {
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
 	/// The converter for the Ethiopian calendar.
-	static let converter = JulianDayNumberConverter(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
+	static let converter = JDNConverter(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		converter.julianDayNumberFromDate(date)

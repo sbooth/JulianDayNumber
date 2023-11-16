@@ -134,7 +134,7 @@ extension SakaCalendar: JulianDayNumberConverting {
 	public typealias DateType = (year: Int, month: Int, day: Int)
 
 	/// The converter for the Śaka calendar.
-	static let converter = JulianDayNumberSakaConverter()
+	static let converter = JDNSakaConverter()
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		converter.julianDayNumberFromDate(date)
