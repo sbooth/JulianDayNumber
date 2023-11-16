@@ -8,7 +8,7 @@ import Foundation
 
 /// The Baháʼí calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The year consists of nineteen months having 19 days each.  The eighteenth month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
+/// The year consists of nineteen months having 19 days each. The eighteenth month is followed by four epagomenal days (Ayyám-i-Há) with a fifth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |
@@ -132,5 +132,21 @@ public struct BahaiCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension BahaiCalendar: JulianDayNumberConverting {
+	/// A date in the Baháʼí calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Baháʼí calendar.
+	static let converter = JDNGregorianTypeConverter(y: 6560, j: 1412, m: 19, n: 20, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 19, t: 0, w: 0, A: 184, B: 274273, C: -50)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
 	}
 }

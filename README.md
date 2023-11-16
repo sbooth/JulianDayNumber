@@ -3,25 +3,30 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsbooth%2FJulianDayNumber%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/sbooth/JulianDayNumber)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsbooth%2FJulianDayNumber%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/sbooth/JulianDayNumber)
 
-Julian day number (JDN) and Julian date (JD) calculations supporting the following calendars:
-- [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar)
-- [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar)
-- [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar)
-- [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar)
-- [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar)
-- [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar)
-- [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar)
-- [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar)
-- [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar)
-- [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar)
-- Macedonian
-- [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar)
-- [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar)
-- Syrian
+Julian day number and Julian date calculations supporting the following calendars:
 
-Most of the JDN conversion algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf)," from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books), Chapter 15, pp. 585-624.
+| Calendar | Epoch ¹ |
+| --- | --- |
+| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE |
+| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE |
+| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 |
+| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | August 29, 284 CE | year. |
+| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE |
+| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | August 29, 8 CE |
+| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | September 22, 1792 |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | January 1, 1 CE |
+| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE |
+| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | July 16, 622 CE |
+| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE |
+| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE |
+| Macedonian | September 1, 312 BCE |
+| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | 
+| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE |
+| Syrian | October 1, 312 BCE |
 
-The JDN algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all valid Julian day numbers in the years -999,999 to +999,999.
+¹ Epochs given in Julian calendar
+
+The Julian day number interconverting algorithms use integer math to avoid rounding errors and the implementations have been round-trip tested for all valid Julian day numbers in the years -999,999 to +999,999.
 
 ## Installation
 
@@ -67,45 +72,23 @@ The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/
 
 ## Limits
 
-### Julian Day Numbers
-
-The following table summarizes the limits for Julian day numbers. Julian day numbers outside these values will cause an arithmetic overflow.
+The following table summarizes the arithmetic limits for Julian day number calculations.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Baháʼí | -9223372036854719351 | 2305795661307959248 |
-| Coptic | -9223372036854775664 | 2305843009213693827 |
-| Egyptian | -9223372036854775514 | 9223372036854775760 |
-| Ethiopian | -9223372036854775664 | 2305843009213693827 |
-| French Republican | -9223372036854719351 | 2305795661307960548 |
-| Gregorian | -9223372036854719351 | 2305795661307959247 |
-| Hebrew | -9223372036747815981 ¹ | 355839970905570 |
-| Islamic | -9223372036854775352 | 307445734561818195 |
-| Julian | -9223372036854775664 | 2305843009213692550 |
-| Maya Long Count | -9223372036854191525 ² | Int.max |
-| Śaka | -9223372036854719351 | 2305795661307959298 |
-
-¹ The smallest round-trippable JDN for the Hebrew calendar is -9223372036747815627.
-² The smallest round-trippable JDN for the Maya Long Count is -9223372036854191517.
-
-### Julian Dates
-
-The following table summarizes the limits for Julian dates. Julian dates outside these values will cause an arithmetic overflow.
-
-| Calendar | Minimum JD | Maximum JD |
-| --- | --- | --- |
-| Baháʼí | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
-| Coptic | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
-| Egyptian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+62 |
-| Ethiopian | -0x1.fffffffffffffp+62 | 0x1.fffffffffffffp+60 |
-| French Republican | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5dcp+60 |
-| Gregorian | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d7p+60 |
-| Hebrew | -0x1.ffffffffe67fbp+62 ¹ | 0x1.43a273100de27p+48 |
-| Islamic | -0x1.fffffffffffffp+62 | 0x1.1111111111099p+58 |
-| Julian | -0x1.fffffffffffffp+62 | 0x1.ffffffffffffap+60 |
-| Śaka | -0x1.fffffffffffc8p+62 | 0x1.fffd4eff4e5d8p+60 |
-
-¹ The smallest round-trippable JD for the Hebrew calendar is -0x1.ffffffffe67fap+62.
+| Armenian | `Int.min` + 341 | `Int.max` - 317 |
+| Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
+| Coptic | `Int.min` + 384 | 2305843009213693827 |
+| Egyptian | `Int.min` + 611 | `Int.max` - 47 |
+| Ethiopian | `Int.min` + 384 | 2305843009213693827 |
+| French Republican | `Int.min` + 56759 | 2305795661307960548 |
+| Gregorian | `Int.min` + 56457 | 2305795661307959247 |
+| Hebrew | `Int.min` + 106960181 | 355839970905570 |
+| Islamic | `Int.min` + 325 | 307445734561818195 |
+| Julian | `Int.min` + 144 | 2305843009213692550 |
+| Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
+| Maya Long Count | `Int.min` + 584291 | `Int.max` |
+| Śaka | `Int.min` + 56457 | 2305795661307959298 |
 
 ## License
 

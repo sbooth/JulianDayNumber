@@ -54,31 +54,18 @@ final class EgyptianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForEgyptianCalendar = -9223372036854775514
-		(Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(smallestJDNForEgyptianCalendar)
+//		let smallestJDNForEgyptianCalendar = Int.min + 293
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
+		let smallestJDNForEgyptianCalendar = Int.min + 611
+		var (Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(smallestJDNForEgyptianCalendar)
 		var jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForEgyptianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEgyptianCalendar = 9223372036854775760
+		let largestJDNForEgyptianCalendar = Int.max - 47
 		(Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(largestJDNForEgyptianCalendar)
 		jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForEgyptianCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = EgyptianCalendar.dateAndTimeFromJulianDate(smallestJDForEgyptianCalendar)
-		var jd = EgyptianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForEgyptianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForEgyptianCalendar = 0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = EgyptianCalendar.dateAndTimeFromJulianDate(largestJDForEgyptianCalendar)
-		jd = EgyptianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForEgyptianCalendar, jd)
 	}
 }

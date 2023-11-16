@@ -8,14 +8,14 @@ import Foundation
 
 /// The Ethiopian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Ṗagume) with a sixth in leap years.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days (Ṗagume) with a sixth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |
 /// | 1 | Mäskäräm | መስከረም | 30 |
 /// | 2 | Ṭəqəmt | ጥቅምት | 30 |
 /// | 3 | Ḫədar | ኅዳር | 30 |
-/// | 4  | Taḫśaś | ታኅሣሥ | 30 |
+/// | 4 | Taḫśaś | ታኅሣሥ | 30 |
 /// | 5 | Ṭərr | ጥር | 30 |
 /// | 6 | Yäkatit | የካቲት | 30 |
 /// | 7 | Mägabit | መጋቢት | 30 |
@@ -93,5 +93,21 @@ public struct EthiopianCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension EthiopianCalendar: JulianDayNumberConverting {
+	/// A date in the Ethiopian calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Ethiopian calendar.
+	static let converter = JDNConverter(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
 	}
 }

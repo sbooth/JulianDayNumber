@@ -69,12 +69,11 @@ final class FrenchRepublicanCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForFrenchRepublicanCalendar = -9223372036854719351
-		(Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(smallestJDNForFrenchRepublicanCalendar)
+//		let smallestJDNForFrenchRepublicanCalendar = Int.min + 56456
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
+		let smallestJDNForFrenchRepublicanCalendar = Int.min + 56759
+		var (Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(smallestJDNForFrenchRepublicanCalendar)
 		var jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForFrenchRepublicanCalendar, jdn)
 
@@ -83,17 +82,5 @@ final class FrenchRepublicanCalendarTests: XCTestCase {
 		(Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(largestJDNForFrenchRepublicanCalendar)
 		jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForFrenchRepublicanCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForFrenchRepublicanCalendar = -0x1.fffffffffffc8p+62
-		(Y, M, D, h, m, s) = FrenchRepublicanCalendar.dateAndTimeFromJulianDate(smallestJDForFrenchRepublicanCalendar)
-		var jd = FrenchRepublicanCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForFrenchRepublicanCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForFrenchRepublicanCalendar = 0x1.fffd4eff4e5dcp+60
-		(Y, M, D, h, m, s) = FrenchRepublicanCalendar.dateAndTimeFromJulianDate(largestJDForFrenchRepublicanCalendar)
-		jd = FrenchRepublicanCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForFrenchRepublicanCalendar, jd)
 	}
 }

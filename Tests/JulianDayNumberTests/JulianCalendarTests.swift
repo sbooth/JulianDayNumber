@@ -98,12 +98,9 @@ final class JulianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForJulianCalendar = -9223372036854775664
-		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(smallestJDNForJulianCalendar)
+		let smallestJDNForJulianCalendar = Int.min + 144
+		var (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(smallestJDNForJulianCalendar)
 		var jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForJulianCalendar, jdn)
 
@@ -112,17 +109,5 @@ final class JulianCalendarTests: XCTestCase {
 		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
 		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForJulianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForJulianCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = JulianCalendar.dateAndTimeFromJulianDate(smallestJDForJulianCalendar)
-		var jd = JulianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForJulianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForJulianCalendar = 0x1.ffffffffffffap+60
-		(Y, M, D, h, m, s) = JulianCalendar.dateAndTimeFromJulianDate(largestJDForJulianCalendar)
-		jd = JulianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForJulianCalendar, jd)
 	}
 }

@@ -8,7 +8,7 @@ import Foundation
 
 /// The Coptic calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months having 30 days each.  The twelfth month is followed by five epagomenal days (Pi Kogi Enavot) with a sixth in leap years.
+/// The year consists of twelve months having 30 days each. The twelfth month is followed by five epagomenal days (Pi Kogi Enavot) with a sixth in leap years.
 ///
 /// | Month | Name | | Days |
 /// | ---: | --- | --- | --- |
@@ -93,5 +93,21 @@ public struct CopticCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension CopticCalendar: JulianDayNumberConverting {
+	/// A date in the Coptic calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Coptic calendar.
+	static let converter = JDNConverter(y: 4996, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
 	}
 }

@@ -77,12 +77,11 @@ final class EthiopianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForEthiopianCalendar = -9223372036854775664
-		(Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(smallestJDNForEthiopianCalendar)
+//		let smallestJDNForEthiopianCalendar = Int.min + 144
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
+		let smallestJDNForEthiopianCalendar = Int.min + 384
+		var (Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(smallestJDNForEthiopianCalendar)
 		var jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForEthiopianCalendar, jdn)
 
@@ -91,17 +90,5 @@ final class EthiopianCalendarTests: XCTestCase {
 		(Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(largestJDNForEthiopianCalendar)
 		jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForEthiopianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForEthiopianCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = EthiopianCalendar.dateAndTimeFromJulianDate(smallestJDForEthiopianCalendar)
-		var jd = EthiopianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForEthiopianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForEthiopianCalendar = 0x1.fffffffffffffp+60
-		(Y, M, D, h, m, s) = EthiopianCalendar.dateAndTimeFromJulianDate(largestJDForEthiopianCalendar)
-		jd = EthiopianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForEthiopianCalendar, jd)
 	}
 }

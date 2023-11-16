@@ -8,7 +8,7 @@ import Foundation
 
 /// The Śaka calendar is a solar calendar with 365 days in the year plus an additional leap day in certain years.
 ///
-/// The year consists of twelve months.  The first month contains an additional day in leap years.
+/// The year consists of twelve months. The first month contains an additional day in leap years.
 ///
 /// | Month | Name | Days |
 /// | ---: | --- | --- |
@@ -126,5 +126,21 @@ public struct SakaCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
+	}
+}
+
+extension SakaCalendar: JulianDayNumberConverting {
+	/// A date in the Śaka calendar consists of a year, month, and day.
+	public typealias DateType = (year: Int, month: Int, day: Int)
+
+	/// The converter for the Śaka calendar.
+	static let converter = JDNSakaConverter()
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
 	}
 }

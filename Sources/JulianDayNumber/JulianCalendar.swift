@@ -8,7 +8,7 @@ import Foundation
 
 /// The Julian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months.  The second month contains an additional day in leap years.
+/// The year consists of twelve months. The second month contains an additional day in leap years.
 ///
 /// | Month | Name | Days |
 /// | ---: | --- | --- |
@@ -151,5 +151,21 @@ public struct JulianCalendar {
 		let M = 3 + g / 32
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
+	}
+}
+
+extension JulianCalendar: JulianDayNumberConverting {
+	/// A date in the Julian calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Julian calendar.
+	static let converter = JDNConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
 	}
 }

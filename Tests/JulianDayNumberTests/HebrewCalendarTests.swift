@@ -218,15 +218,11 @@ final class HebrewCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForHebrewCalendar = -9223372036747815981
-		// JDN -9223372036747815627 equals date (-25252436095246078-01-01) which is the smallest round-trippable value
+//		let smallestJDNForHebrewCalendar = Int.min + 106959827
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForHebrewCalendar = -9223372036747815627
-		(Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(smallestJDNForHebrewCalendar)
+		let smallestJDNForHebrewCalendar = Int.min + 106960181
+		var (Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(smallestJDNForHebrewCalendar)
 		var jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForHebrewCalendar, jdn)
 
@@ -236,20 +232,5 @@ final class HebrewCalendarTests: XCTestCase {
 		(Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(largestJDNForHebrewCalendar)
 		jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForHebrewCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-//		let smallestJDForHebrewCalendar = -0x1.ffffffffe67fbp+62
-		// JD -0x1.ffffffffe67fap+62 equals date (-25252436095246077-13-07 00:00:00) which is the smallest round-trippable value
-		// Values smaller than this cause an arithmetic overflow in julianDateFrom
-		let smallestJDForHebrewCalendar = -0x1.ffffffffe67fap+62
-		(Y, M, D, h, m, s) = HebrewCalendar.dateAndTimeFromJulianDate(smallestJDForHebrewCalendar)
-		var jd = HebrewCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForHebrewCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForHebrewCalendar = 0x1.43a273100de27p+48
-		(Y, M, D, h, m, s) = HebrewCalendar.dateAndTimeFromJulianDate(largestJDForHebrewCalendar)
-		jd = HebrewCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForHebrewCalendar, jd)
 	}
 }

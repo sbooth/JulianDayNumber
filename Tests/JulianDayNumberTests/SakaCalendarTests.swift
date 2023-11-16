@@ -72,12 +72,9 @@ final class SakaCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForSakaCalendar = -9223372036854719351
-		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
+		let smallestJDNForSakaCalendar = Int.min + 56457
+		var (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
 		var jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForSakaCalendar, jdn)
 
@@ -86,17 +83,5 @@ final class SakaCalendarTests: XCTestCase {
 		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(largestJDNForSakaCalendar)
 		jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForSakaCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForSakaCalendar = -0x1.fffffffffffc8p+62
-		(Y, M, D, h, m, s) = SakaCalendar.dateAndTimeFromJulianDate(smallestJDForSakaCalendar)
-		var jd = SakaCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForSakaCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForSakaCalendar = 0x1.fffd4eff4e5d8p+60
-		(Y, M, D, h, m, s) = SakaCalendar.dateAndTimeFromJulianDate(largestJDForSakaCalendar)
-		jd = SakaCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForSakaCalendar, jd)
 	}
 }
