@@ -4,8 +4,9 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsbooth%2FJulianDayNumber%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/sbooth/JulianDayNumber)
 
 Julian day number and Julian date calculations supporting the following calendars:
+
 | Calendar | Epoch ¹ | Description |
-| --- | --- |
+| --- | --- | --- |
 | [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE | A solar calendar with 365 days in the year. |
 | [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE | A hybrid calendar that uses the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates. |
 | [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 | A solar calendar with 365 days in the year plus an additional leap day in certain years. |
