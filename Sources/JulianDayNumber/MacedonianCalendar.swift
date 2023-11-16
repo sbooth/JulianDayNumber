@@ -6,7 +6,24 @@
 
 import Foundation
 
-/// The Macedonian calendar is a lunisolar calendar with 354 days in the year, with seven intercalary months added in each 19-year cycle.
+/// The Macedonian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
+///
+/// The year consists of twelve months. The sixth month contains an additional day in leap years.
+///
+/// | Month | Days |
+/// | ---: | --- |
+/// | 1 | 30 |
+/// | 2 | 31 |
+/// | 3 | 30 |
+/// | 4 | 31 |
+/// | 5 | 31 |
+/// | 6 | 28 (29 in leap years) |
+/// | 7 | 31 |
+/// | 8 | 30 |
+/// | 9 | 31 |
+/// | 10 | 30 |
+/// | 11 | 31 |
+/// | 12 | 31 |
 ///
 /// The Macedonian calendar epoch in the Julian calendar is September 1, 312 BCE.
 ///

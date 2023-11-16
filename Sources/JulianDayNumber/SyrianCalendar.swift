@@ -6,9 +6,24 @@
 
 import Foundation
 
-/// The Syrian calendar.
+/// The Syrian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The Syrian calendar is a lunisolar calendar.
+/// The year consists of twelve months. The sixth month contains an additional day in leap years.
+///
+/// | Month | Days |
+/// | ---: | --- |
+/// | 1 | 30 |
+/// | 2 | 31 |
+/// | 3 | 30 |
+/// | 4 | 31 |
+/// | 5 | 31 |
+/// | 6 | 28 (29 in leap years) |
+/// | 7 | 31 |
+/// | 8 | 30 |
+/// | 9 | 31 |
+/// | 10 | 30 |
+/// | 11 | 31 |
+/// | 12 | 31 |
 ///
 /// The Syrian calendar epoch in the Julian calendar is October 1, 312 BCE.
 ///
