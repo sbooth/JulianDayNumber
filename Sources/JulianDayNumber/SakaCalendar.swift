@@ -128,3 +128,19 @@ public struct SakaCalendar {
 		}
 	}
 }
+
+extension SakaCalendar: JulianDayNumberConverting {
+	/// A date in the Śaka calendar consists of a year, month, and day.
+	public typealias DateType = (year: Int, month: Int, day: Int)
+
+	/// The converter for the Śaka calendar.
+	static let converter = JDNSakaConverter()
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+}

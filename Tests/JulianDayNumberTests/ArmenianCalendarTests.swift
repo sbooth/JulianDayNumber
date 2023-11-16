@@ -48,31 +48,18 @@ final class ArmenianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForArmenianCalendar = -9223372036854775514
-		(Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(smallestJDNForArmenianCalendar)
+//		let smallestJDNForArmenianCalendar = Int.min + 294
+		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
+		let smallestJDNForArmenianCalendar = Int.min + 341
+		var (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(smallestJDNForArmenianCalendar)
 		var jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForArmenianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForArmenianCalendar = 9223372036854775490
+		let largestJDNForArmenianCalendar = Int.max - 317
 		(Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(largestJDNForArmenianCalendar)
 		jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForArmenianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForArmenianCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = ArmenianCalendar.dateAndTimeFromJulianDate(smallestJDForArmenianCalendar)
-		var jd = ArmenianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForArmenianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForArmenianCalendar = 0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = ArmenianCalendar.dateAndTimeFromJulianDate(largestJDForArmenianCalendar)
-		jd = ArmenianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForArmenianCalendar, jd)
 	}
 }

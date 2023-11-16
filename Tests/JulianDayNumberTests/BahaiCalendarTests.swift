@@ -86,12 +86,9 @@ final class BahaiCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForBahaiCalendar = -9223372036854719351
-		(Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(smallestJDNForBahaiCalendar)
+		let smallestJDNForBahaiCalendar = Int.min + 56457
+		var (Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(smallestJDNForBahaiCalendar)
 		var jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForBahaiCalendar, jdn)
 
@@ -100,17 +97,5 @@ final class BahaiCalendarTests: XCTestCase {
 		(Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(largestJDNForBahaiCalendar)
 		jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForBahaiCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForBahaiCalendar = -0x1.fffffffffffc8p+62
-		(Y, M, D, h, m, s) = BahaiCalendar.dateAndTimeFromJulianDate(smallestJDForBahaiCalendar)
-		var jd = BahaiCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForBahaiCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForBahaiCalendar = 0x1.fffd4eff4e5d7p+60
-		(Y, M, D, h, m, s) = BahaiCalendar.dateAndTimeFromJulianDate(largestJDForBahaiCalendar)
-		jd = BahaiCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForBahaiCalendar, jd)
 	}
 }

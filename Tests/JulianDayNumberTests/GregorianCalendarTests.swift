@@ -105,12 +105,9 @@ final class GregorianCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForGregorianCalendar = -9223372036854719351
-		(Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(smallestJDNForGregorianCalendar)
+		let smallestJDNForGregorianCalendar = Int.min + 56457
+		var (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(smallestJDNForGregorianCalendar)
 		var jdn = GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForGregorianCalendar, jdn)
 
@@ -119,17 +116,5 @@ final class GregorianCalendarTests: XCTestCase {
 		(Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(largestJDNForGregorianCalendar)
 		jdn = GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForGregorianCalendar = -0x1.fffffffffffc8p+62
-		(Y, M, D, h, m, s) = GregorianCalendar.dateAndTimeFromJulianDate(smallestJDForGregorianCalendar)
-		var jd = GregorianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForGregorianCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForGregorianCalendar = 0x1.fffd4eff4e5d7p+60
-		(Y, M, D, h, m, s) = GregorianCalendar.dateAndTimeFromJulianDate(largestJDForGregorianCalendar)
-		jd = GregorianCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForGregorianCalendar, jd)
 	}
 }

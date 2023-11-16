@@ -97,3 +97,19 @@ public struct IslamicCalendar {
 		}
 	}
 }
+
+extension IslamicCalendar: JulianDayNumberConverting {
+	/// A date in the Islamic calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the Islamic calendar.
+	static let converter = JDNConverter(y: 5519, j: 7664, m: 0, n: 12, r: 30, p: 10631, q: 14, v: 15, u: 100, s: 2951, t: 51, w: 10)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+}

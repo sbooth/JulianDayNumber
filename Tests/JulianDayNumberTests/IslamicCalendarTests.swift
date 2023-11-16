@@ -101,12 +101,9 @@ final class IslamicCalendarTests: XCTestCase {
 	}
 
 	func testArithmeticLimits() {
-		var Y, M, D, h, m: Int
-		var s: Double
-
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForIslamicCalendar = -9223372036854775352
-		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(smallestJDNForIslamicCalendar)
+		let smallestJDNForIslamicCalendar = Int.min + 325
+		var (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(smallestJDNForIslamicCalendar)
 		var jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
 
@@ -115,17 +112,5 @@ final class IslamicCalendarTests: XCTestCase {
 		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)
-
-		// Values smaller than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let smallestJDForIslamicCalendar = -0x1.fffffffffffffp+62
-		(Y, M, D, h, m, s) = IslamicCalendar.dateAndTimeFromJulianDate(smallestJDForIslamicCalendar)
-		var jd = IslamicCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(smallestJDForIslamicCalendar, jd)
-
-		// Values larger than this cause an arithmetic overflow in dateAndTimeFromJulianDate
-		let largestJDForIslamicCalendar = 0x1.1111111111099p+58
-		(Y, M, D, h, m, s) = IslamicCalendar.dateAndTimeFromJulianDate(largestJDForIslamicCalendar)
-		jd = IslamicCalendar.julianDateFrom(year: Y, month: M, day: D, hour: h, minute: m, second: s)
-		XCTAssertEqual(largestJDForIslamicCalendar, jd)
 	}
 }

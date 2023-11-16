@@ -132,3 +132,19 @@ public struct FrenchRepublicanCalendar {
 		}
 	}
 }
+
+extension FrenchRepublicanCalendar: JulianDayNumberConverting {
+	/// A date in the French Republican calendar consists of a year, month, and day.
+	public typealias DateType = (year: Year, month: Month, day: Day)
+
+	/// The converter for the French Republican calendar.
+	static let converter = JDNGregorianTypeConverter(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0, A: 396, B: 578797, C: -51)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+}
