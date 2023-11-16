@@ -134,7 +134,7 @@ public struct JulianCalendar {
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
 	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
 		1 + (J + 1) % 7
 	}
