@@ -227,7 +227,6 @@ final class HebrewCalendarTests: XCTestCase {
 		XCTAssertEqual(smallestJDNForHebrewCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		
 		let largestJDNForHebrewCalendar = 355839970905570
 		(Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(largestJDNForHebrewCalendar)
 		jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)

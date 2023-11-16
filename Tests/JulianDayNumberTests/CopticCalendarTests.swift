@@ -83,7 +83,7 @@ final class CopticCalendarTests: XCTestCase {
 		XCTAssertEqual(smallestJDNForCopticCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForCopticCalendar = 2305843009213693827
+		let largestJDNForCopticCalendar = (Int.max - 3) / 4 - 124
 		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(largestJDNForCopticCalendar)
 		jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForCopticCalendar, jdn)
