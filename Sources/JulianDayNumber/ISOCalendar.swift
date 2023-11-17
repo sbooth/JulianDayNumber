@@ -21,19 +21,23 @@ public struct ISOCalendar {
 
 	/// Returns the number of ISO full weeks in a year.
 	///
-	/// - parameter year: A Gregorian year number.
+	/// - parameter Y: A Gregorian year number.
 	///
 	/// - returns: The number of full weeks in the specified year.
-	static func isoWeeksInYear(_ year: Int) -> Int {
+	static func isoWeeksInYear(_ Y: Int) -> Int {
 		/// Returns the day of the week for December 31st in the specified year.
 		///
-		/// - parameter Y: A year number.
+		/// - parameter Y: A Gregorian year number.
 		///
-		/// - returns: The day of the week for December 31st.
+		/// - returns: The day of the week for December 31st in the specified year.
 		func p(_ Y: Int) -> Int {
 			(Y + Y / 4 - Y / 100 + Y / 400) % 7
 		}
-		return 52 + (p(year) == 4 || p(year - 1) == 3 ? 1 : 0)
+
+		if p(Y) == 4 || p(Y - 1) == 3 {
+			return 53
+		}
+		return 52
 	}
 
 	/// Returns the ISO weekday for the specified year, month, and day.
