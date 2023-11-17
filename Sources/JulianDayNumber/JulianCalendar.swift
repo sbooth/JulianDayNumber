@@ -139,30 +139,6 @@ public struct JulianCalendar {
 		1 + (J + 1) % 7
 	}
 
-	/// The number of days preceding the first of the month in a year.
-	///
-	/// The array at index `0` is used for common years and the array at index `1` for leap years, and the resultant array is indexed from `0` (January) to `11` (December).
-	static let daysToFirstOfMonth = [
-		[0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
-		[0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335],
-	]
-
-	/// Returns the day of the year for the specified year, month, and day.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: The day of the year from `1` to `365` (`366` for leap years)  corresponding to the specified year, month, and day.
-	public static func dayOfYear(year Y: Year, month M: Month, day D: Day) -> Int {
-		guard M > 0, M <= 12 else {
-			return 0
-		}
-
-		let days = daysToFirstOfMonth[isLeapYear(Y) ? 1 : 0]
-		return days[M - 1] + D
-	}
-
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.
 	///
 	/// - parameter Y: A year number.
