@@ -52,13 +52,13 @@ public struct ISOCalendar {
 		return weekday < 1 ? weekday + 7 : weekday
 	}
 
-	/// Returns the ISO date for the specified year, month, and day.
+	/// Returns the ISO week date for the specified year, month, and day.
 	///
 	/// - parameter Y: A Gregorian year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The ISO date corresponding to the specified year, month, and day.
+	/// - returns: The ISO week date corresponding to the specified year, month, and day.
 	public static func isoDateFrom(year Y: Int, month M: Int, day D: Int) -> (year: Year, week: WeekNumber, weekday: WeekdayNumber) {
 		let N = GregorianCalendar.ordinalDayFrom(year: Y, month: M, day: D)
 		let weekday = isoWeekdayFrom(year: Y, month: M, day: D)
