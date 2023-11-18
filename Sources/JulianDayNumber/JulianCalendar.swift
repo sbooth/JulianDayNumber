@@ -165,6 +165,8 @@ extension JulianCalendar: JulianDayNumberConverting {
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		precondition(J >= Int.min / 4 + 6884469, "Julian day number too small")
+		precondition(J <= Int.max / 4, "Julian day number too large")
 		let (a1, ε1) = quotientAndRemainder(4 * J - 6884469, dividedBy: 1461)
 		let (m1, ε2) = quotientAndRemainder(5 * divide(ε1, by: 4) + 2, dividedBy: 153)
 		let (α1, m0) = quotientAndRemainder(m1 + 2, dividedBy: 12)
