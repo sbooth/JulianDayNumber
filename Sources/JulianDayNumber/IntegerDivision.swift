@@ -12,8 +12,8 @@ import Foundation
 ///   1. **dividend = quotient × divisor + remainder**
 ///   2.  **0 ≤ remainder < |divisor|**.
 ///
-/// This differs from standard Swift division when the dividend is negative. Swift duplicates the C-like behavior of rounding the quotient toward zero (truncation),
-/// while this function rounds toward negative infinity (down).
+/// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior 
+/// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
 /// This emulates the behavior of division in Python and Ruby.
 ///
@@ -43,8 +43,8 @@ func quotientAndRemainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I)
 ///   1. **dividend = quotient × divisor + remainder**
 ///   2.  **0 ≤ remainder < |divisor|**.
 ///
-/// This differs from standard Swift division when the dividend is negative. Swift duplicates the C-like behavior of rounding the quotient toward zero (truncation),
-/// while this function rounds toward negative infinity (down).
+/// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
+/// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
 /// This emulates the behavior of division in Python and Ruby.
 ///
@@ -65,8 +65,8 @@ func quotient<I: SignedInteger>(_ dividend: I, dividedBy divisor: I) -> I {
 ///   1. **dividend = quotient × divisor + remainder**
 ///   2.  **0 ≤ remainder < |divisor|**.
 ///
-/// This differs from standard Swift division when the dividend is negative. Swift duplicates the C-like behavior of rounding the quotient toward zero (truncation),
-/// while this function rounds toward negative infinity (down).
+/// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
+/// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
 /// This emulates the behavior of division in Python and Ruby.
 ///
