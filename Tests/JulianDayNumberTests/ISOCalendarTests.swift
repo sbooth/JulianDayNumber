@@ -28,4 +28,9 @@ final class ISOCalendarTests: XCTestCase {
 		XCTAssertTrue(ISOCalendar.isoDateFrom(year: 2023, month: 11, day: 16) == (2023, 46, 4))
 		XCTAssertTrue(ISOCalendar.dateFromISO(year: 2023, week: 46, weekday: 4) == (2023, 11, 16))
 	}
+
+	func testJulianDayNumber() {
+		XCTAssertEqual(ISOCalendar.julianDayNumberFromDate((2023, 46, 4)), 2460265)
+		XCTAssertTrue(ISOCalendar.dateFromJulianDayNumber(2460265) == (2023, 46, 4))
+	}
 }
