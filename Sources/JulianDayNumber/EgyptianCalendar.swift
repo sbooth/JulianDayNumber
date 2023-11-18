@@ -90,8 +90,8 @@ extension EgyptianCalendar: JulianDayNumberConverting {
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		precondition(J >= Int.min + 1448273, "Julian day number too small")
-		let (a, d1) = (J - 1448273).quotientAndRemainder(dividingBy: 365)
-		let (m0, d0) = d1.quotientAndRemainder(dividingBy: 30)
+		let (a, d1) = quotientAndRemainder(J - 1448273, dividedBy: 365)
+		let (m0, d0) = quotientAndRemainder(d1, dividedBy: 30)
 		return (a, m0 + 1, d0 + 1)
 	}
 }
