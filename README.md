@@ -78,7 +78,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Armenian | `Int.min` + 341 | `Int.max` - 317 |
 | Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
 | Coptic | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
-| Egyptian | `Int.min` + 611 | `Int.max` - 47 |
+| Egyptian | `Int.min` + 1448273 | `Int.max` |
 | Ethiopian | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
 | French Republican | `Int.min` + 56759 | 2305795661307960548 |
 | Gregorian | `Int.min` + 56457 | 2305795661307959247 |

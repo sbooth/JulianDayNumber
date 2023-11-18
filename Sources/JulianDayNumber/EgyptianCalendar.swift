@@ -84,14 +84,14 @@ extension EgyptianCalendar: JulianDayNumberConverting {
 	/// A date in the Egyptian calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The converter for the Egyptian calendar.
-	static let converter = JDNConverter(y: 3968, j: 47, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
-
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+		365 * date.year + 30 * date.month + date.day + 1448242
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+		precondition(J <= Int.min + 1448273, "Julian day number too small")
+		let (a, d1) = (J - 1448273).quotientAndRemainder(dividingBy: 365)
+		let (m0, d0) = d1.quotientAndRemainder(dividingBy: 30)
+		return (a, m0 + 1, d0 + 1)
 	}
 }

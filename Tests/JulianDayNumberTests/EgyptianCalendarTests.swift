@@ -55,15 +55,13 @@ final class EgyptianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForEgyptianCalendar = Int.min + 293
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForEgyptianCalendar = Int.min + 611
+		let smallestJDNForEgyptianCalendar = Int.min + 1448273
 		var (Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(smallestJDNForEgyptianCalendar)
 		var jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForEgyptianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEgyptianCalendar = Int.max - 47
+		let largestJDNForEgyptianCalendar = Int.max
 		(Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(largestJDNForEgyptianCalendar)
 		jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
