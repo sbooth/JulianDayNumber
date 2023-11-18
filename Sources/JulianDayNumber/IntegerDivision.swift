@@ -15,7 +15,7 @@ import Foundation
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior 
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
-/// This emulates the behavior of division in Python and Ruby.
+/// This is the behavior of `//` in Python and `/` in Ruby.
 ///
 /// - parameter dividend: A dividend.
 /// - parameter divisor: A divisor.
@@ -46,7 +46,7 @@ func quotientAndRemainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I)
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
-/// This emulates the behavior of division in Python and Ruby.
+/// This is the behavior of `//` in Python and `/` in Ruby.
 ///
 /// - parameter dividend: A dividend.
 /// - parameter divisor: A divisor.
@@ -68,7 +68,7 @@ func quotient<I: SignedInteger>(_ dividend: I, dividedBy divisor: I) -> I {
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
 ///
-/// This emulates the behavior of division in Python and Ruby.
+/// This is the behavior of `//` in Python and `/` in Ruby.
 ///
 /// - parameter dividend: A dividend.
 /// - parameter divisor: A divisor.
