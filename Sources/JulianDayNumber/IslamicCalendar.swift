@@ -103,15 +103,15 @@ extension IslamicCalendar: JulianDayNumberConverting {
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		divide(10631 * date.year - 10617, by: 30) + divide(325 * date.month - 320, by: 11) + date.day + 1948439
+		quotient(10631 * date.year - 10617, dividedBy: 30) + quotient(325 * date.month - 320, dividedBy: 11) + date.day + 1948439
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		precondition(J >= Int.min / 30 + 58442554, "Julian day number too small")
 		precondition(J <= Int.max / 30, "Julian day number too large")
 		let (a, ε1) = quotientAndRemainder(30 * J - 58442554, dividedBy: 10631)
-		let (m, ε2) = quotientAndRemainder(11 * divide(ε1, by: 30) + 330, dividedBy: 325)
-		let d = divide(ε2, by: 11) + 1
+		let (m, ε2) = quotientAndRemainder(11 * quotient(ε1, dividedBy: 30) + 330, dividedBy: 325)
+		let d = quotient(ε2, dividedBy: 11) + 1
 		return (a, m, d)
 	}
 }

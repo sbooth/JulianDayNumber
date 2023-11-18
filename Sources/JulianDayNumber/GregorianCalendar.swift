@@ -181,7 +181,7 @@ extension GregorianCalendar: JulianDayNumberConverting {
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		let (a1, m1) = quotientAndRemainder(date.month - 3, dividedBy: 12)
 		let (c1, a2) = quotientAndRemainder(date.year + a1, dividedBy: 100)
-		let J = divide(146097 * c1, by: 4) + divide(36525 * a2, by: 100) + divide(153 * m1 + 2, by: 5) + date.day + 1721119
+		let J = quotient(146097 * c1, dividedBy: 4) + quotient(36525 * a2, dividedBy: 100) + quotient(153 * m1 + 2, dividedBy: 5) + date.day + 1721119
 		return J
 	}
 
@@ -189,12 +189,12 @@ extension GregorianCalendar: JulianDayNumberConverting {
 		precondition(J >= Int.min / 4 + 6884477, "Julian day number too small")
 		precondition(J <= Int.max / 4, "Julian day number too large")
 		let (c1, ε1) = quotientAndRemainder(4 * J - 6884477, dividedBy: 146097)
-		let (a1, ε2) = quotientAndRemainder(100 * divide(ε1, by: 4) + 99, dividedBy: 36525)
-		let (m1, ε3) = quotientAndRemainder(5 * divide(ε2, by: 100) + 2, dividedBy: 153)
+		let (a1, ε2) = quotientAndRemainder(100 * quotient(ε1, dividedBy: 4) + 99, dividedBy: 36525)
+		let (m1, ε3) = quotientAndRemainder(5 * quotient(ε2, dividedBy: 100) + 2, dividedBy: 153)
 		let (a2, m2) = quotientAndRemainder(m1 + 2, dividedBy: 12)
 		let a = 100 * c1 + a1 + a2
 		let m = m2 + 1
-		let d = divide(ε3, by: 5) + 1
+		let d = quotient(ε3, dividedBy: 5) + 1
 		return (a, m, d)
 	}
 }

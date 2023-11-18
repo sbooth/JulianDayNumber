@@ -160,7 +160,7 @@ extension JulianCalendar: JulianDayNumberConverting {
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		let (α1, m1) = quotientAndRemainder(date.month - 3, dividedBy: 12)
-		let J = divide(1461 * (date.year + α1), by: 4) + divide(153 * m1 + 2, by: 5) + date.day + 1721117
+		let J = quotient(1461 * (date.year + α1), dividedBy: 4) + quotient(153 * m1 + 2, dividedBy: 5) + date.day + 1721117
 		return J
 	}
 
@@ -168,11 +168,11 @@ extension JulianCalendar: JulianDayNumberConverting {
 		precondition(J >= Int.min / 4 + 6884469, "Julian day number too small")
 		precondition(J <= Int.max / 4, "Julian day number too large")
 		let (a1, ε1) = quotientAndRemainder(4 * J - 6884469, dividedBy: 1461)
-		let (m1, ε2) = quotientAndRemainder(5 * divide(ε1, by: 4) + 2, dividedBy: 153)
+		let (m1, ε2) = quotientAndRemainder(5 * quotient(ε1, dividedBy: 4) + 2, dividedBy: 153)
 		let (α1, m0) = quotientAndRemainder(m1 + 2, dividedBy: 12)
 		let a = a1 + α1
 		let m = m0 + 1
-		let d = divide(ε2, by: 5) + 1
+		let d = quotient(ε2, dividedBy: 5) + 1
 		return (a, m, d)
 	}
 }

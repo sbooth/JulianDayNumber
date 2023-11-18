@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// Divides a dividend by a divisor and returns the quotient and remainder such that the remainder is nonnegative and smaller in magnitude than the dividend.
+/// Divides a dividend by a divisor and returns the quotient and remainder.
 ///
 /// The quotient and remainder are defined by the following two relations:
 ///   1. **dividend = quotient × divisor + remainder**
@@ -20,7 +20,7 @@ import Foundation
 /// - parameter dividend: A dividend.
 /// - parameter divisor: A divisor.
 ///
-/// - returns: The quotient and remainder of the division such that the remainder is nonnegative and smaller in magnitude than `dividend`.
+/// - returns: The quotient and remainder of the division.
 ///
 /// - precondition: `divisor` cannot be zero.
 @inlinable @inline(__always)
@@ -37,7 +37,7 @@ func quotientAndRemainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I)
 	return (quotient, remainder)
 }
 
-/// Divides a dividend by a divisor and returns the quotient such that the remainder is nonnegative and smaller in magnitude than the dividend.
+/// Divides a dividend by a divisor and returns the quotient.
 ///
 /// The quotient and remainder are defined by the following two relations:
 ///   1. **dividend = quotient × divisor + remainder**
@@ -51,10 +51,32 @@ func quotientAndRemainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I)
 /// - parameter dividend: A dividend.
 /// - parameter divisor: A divisor.
 ///
-/// - returns: The quotient of the division such that the remainder is nonnegative and smaller in magnitude than `dividend`.
+/// - returns: The quotient of the division.
 ///
 /// - precondition: `divisor` cannot be zero.
 @inlinable @inline(__always)
-func divide<I: SignedInteger>(_ dividend: I, by divisor: I) -> I {
+func quotient<I: SignedInteger>(_ dividend: I, dividedBy divisor: I) -> I {
 	quotientAndRemainder(dividend, dividedBy: divisor).quotient
+}
+
+/// Divides a dividend by a divisor and returns the remainder.
+///
+/// The quotient and remainder are defined by the following two relations:
+///   1. **dividend = quotient × divisor + remainder**
+///   2.  **0 ≤ remainder < |divisor|**.
+///
+/// This differs from standard Swift division when the dividend is negative. Swift duplicates the C-like behavior of rounding the quotient toward zero (truncation),
+/// while this function rounds toward negative infinity (down).
+///
+/// This emulates the behavior of division in Python and Ruby.
+///
+/// - parameter dividend: A dividend.
+/// - parameter divisor: A divisor.
+///
+/// - returns: The remainder of the division.
+///
+/// - precondition: `divisor` cannot be zero.
+@inlinable @inline(__always)
+func remainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I) -> I {
+	quotientAndRemainder(dividend, dividedBy: divisor).remainder
 }
