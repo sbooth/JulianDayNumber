@@ -91,7 +91,7 @@ extension ISOCalendar: JulianDayNumberConverting {
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		GregorianCalendar.julianDayNumberFromDate(dateFromISO(year: date.year, week: date.week, weekday: date.weekday))
 	}
-	
+
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(J)
 		return isoDateFrom(year: Y, month: M, day: D)
