@@ -9,8 +9,8 @@ import Foundation
 /// Divides a dividend by a divisor and returns the quotient and remainder.
 ///
 /// The quotient and remainder are defined by the following two relations:
-///   1. **dividend = quotient × divisor + remainder**
-///   2.  **0 ≤ remainder < |divisor|**.
+/// 1. **dividend = quotient × divisor + remainder**
+/// 2. **0 ≤ remainder < |divisor|**.
 ///
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior 
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
@@ -40,8 +40,8 @@ func quotientAndRemainder<I: SignedInteger>(_ dividend: I, dividedBy divisor: I)
 /// Divides a dividend by a divisor and returns the quotient.
 ///
 /// The quotient and remainder are defined by the following two relations:
-///   1. **dividend = quotient × divisor + remainder**
-///   2.  **0 ≤ remainder < |divisor|**.
+/// 1. **dividend = quotient × divisor + remainder**
+/// 2. **0 ≤ remainder < |divisor|**.
 ///
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
@@ -62,8 +62,8 @@ func quotient<I: SignedInteger>(_ dividend: I, dividedBy divisor: I) -> I {
 /// Divides a dividend by a divisor and returns the remainder.
 ///
 /// The quotient and remainder are defined by the following two relations:
-///   1. **dividend = quotient × divisor + remainder**
-///   2.  **0 ≤ remainder < |divisor|**.
+/// 1. **dividend = quotient × divisor + remainder**
+/// 2. **0 ≤ remainder < |divisor|**.
 ///
 /// This differs from standard Swift division when the dividend or divisor is negative. Swift duplicates the C-like behavior
 /// of rounding the quotient toward zero (truncation), while this function rounds toward negative infinity (down).
