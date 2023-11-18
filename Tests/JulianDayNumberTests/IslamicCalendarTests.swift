@@ -102,13 +102,13 @@ final class IslamicCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForIslamicCalendar = Int.min + 325
+		let smallestJDNForIslamicCalendar = Int.min / 30 + 58442554
 		var (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(smallestJDNForIslamicCalendar)
 		var jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForIslamicCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForIslamicCalendar = (Int.max - 15) / 30 - 7664
+		let largestJDNForIslamicCalendar = Int.max / 30
 		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForIslamicCalendar, jdn)

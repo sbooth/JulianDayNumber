@@ -106,13 +106,13 @@ final class GregorianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForGregorianCalendar = Int.min + 56457
+		let smallestJDNForGregorianCalendar = Int.min / 4 + 6884477
 		var (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(smallestJDNForGregorianCalendar)
 		var jdn = GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForGregorianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForGregorianCalendar = 2305795661307959247
+		let largestJDNForGregorianCalendar = Int.max / 4
 		(Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(largestJDNForGregorianCalendar)
 		jdn = GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForGregorianCalendar, jdn)

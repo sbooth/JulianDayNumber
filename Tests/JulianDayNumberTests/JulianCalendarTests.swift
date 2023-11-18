@@ -201,13 +201,13 @@ final class JulianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForJulianCalendar = Int.min + 144
+		let smallestJDNForJulianCalendar = Int.min / 4 + 6884469 // Int.min + 144
 		var (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(smallestJDNForJulianCalendar)
 		var jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForJulianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForJulianCalendar = (Int.max - 3) / 4 - 1401
+		let largestJDNForJulianCalendar = Int.max / 4 //(Int.max - 3) / 4 - 1401
 		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
 		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForJulianCalendar, jdn)

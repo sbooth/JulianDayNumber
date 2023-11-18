@@ -178,14 +178,21 @@ extension GregorianCalendar: JulianDayNumberConverting {
 	/// A date in the Gregorian calendar consists of a year, month, and day.
 	public typealias DateType = JulianCalendar.DateType
 
-	/// The converter for the Gregorian calendar.
-	static let converter = JDNGregorianTypeConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
-
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+		let (a1, m1) = quotientAndRemainder(date.month - 3, dividedBy: 12)
+		let (c1, a2) = quotientAndRemainder(date.year + a1, dividedBy: 100)
+		let J = divide(146097 * c1, by: 4) + divide(36525 * a2, by: 100) + divide(153 * m1 + 2, by: 5) + date.day + 1721119
+		return J
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+		let (c1, ε1) = quotientAndRemainder(4 * J - 6884477, dividedBy: 146097)
+		let (a1, ε2) = quotientAndRemainder(100 * divide(ε1, by: 4) + 99, dividedBy: 36525)
+		let (m1, ε3) = quotientAndRemainder(5 * divide(ε2, by: 100) + 2, dividedBy: 153)
+		let (a2, m2) = quotientAndRemainder(m1 + 2, dividedBy: 12)
+		let a = 100 * c1 + a1 + a2
+		let m = m2 + 1
+		let d = divide(ε3, by: 5) + 1
+		return (a, m, d)
 	}
 }

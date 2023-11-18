@@ -102,14 +102,14 @@ extension IslamicCalendar: JulianDayNumberConverting {
 	/// A date in the Islamic calendar consists of a year, month, and day.
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
-	/// The converter for the Islamic calendar.
-	static let converter = JDNConverter(y: 5519, j: 7664, m: 0, n: 12, r: 30, p: 10631, q: 14, v: 15, u: 100, s: 2951, t: 51, w: 10)
-
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+		divide(10631 * date.year - 10617, by: 30) + divide(325 * date.month - 320, by: 11) + date.day + 1948439
 	}
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+		let (a, ε1) = quotientAndRemainder(30 * J - 58442554, dividedBy: 10631)
+		let (m, ε2) = quotientAndRemainder(11 * divide(ε1, by: 30) + 330, dividedBy: 325)
+		let d = divide(ε2, by: 11) + 1
+		return (a, m, d)
 	}
 }
