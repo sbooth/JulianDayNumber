@@ -20,38 +20,38 @@ import Foundation
 ///
 /// Common years consist of twelve months.
 ///
-/// | Month | Name | Days |
-/// | ---: | --- | --- |
-/// | 1 | Tishrei | 30 |
-/// | 2 | Cheshvan | 29 (30 in abundant years) |
-/// | 3 | Kislev | 30 (29 in deficient years) |
-/// | 4 | Tevet | 29 |
-/// | 5 | Shevat | 30 |
-/// | 6 | Adar | 29 |
-/// | 7 | Nisan | 30 |
-/// | 8 | Iyar | 29 |
-/// | 9 | Sivan | 30 |
-/// | 10 | Tammuz | 29 |
-/// | 11 | Av | 30 |
-/// | 12 | Elul | 29 |
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Tishrei | תִּשְׁרֵי‎ | 30 |
+/// | 2 | Cheshvan | חֶשְׁוָן‎ | 29 (30 in abundant years) |
+/// | 3 | Kislev | כִּסְלֵו‎ | 30 (29 in deficient years) |
+/// | 4 | Tevet | טֵבֵת‎ | 29 |
+/// | 5 | Shevat | שְׁבָט‎ | 30 |
+/// | 6 | Adar | אֲדָר‎ | 29 |
+/// | 7 | Nisan | נִיסָן‎ | 30 |
+/// | 8 | Iyar | אִייָר‎ | 29 |
+/// | 9 | Sivan | סִיוָן‎ | 30 |
+/// | 10 | Tammuz | תַּמּוּז‎ | 29 |
+/// | 11 | Av | אָב‎ | 30 |
+/// | 12 | Elul | אֱלוּל‎ | 29 |
 ///
 /// Leap years consist of thirteen months.
 ///
-/// | Month | Name | Days |
-/// | ---: | --- | --- |
-/// | 1 | Tishrei | 30 |
-/// | 2 | Cheshvan | 29 (30 in abundant years) |
-/// | 3 | Kislev | 30 (29 in deficient years) |
-/// | 4 | Tevet | 29 |
-/// | 5 | Shevat | 30 |
-/// | 6 | Adar | 30 |
-/// | 7 | Adar II | 29 |
-/// | 8 | Nisan | 30 |
-/// | 9 | Iyar | 29 |
-/// | 10 | Sivan | 30 |
-/// | 11 | Tammuz | 29 |
-/// | 12 | Av | 30 |
-/// | 13 | Elul | 29 |
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Tishrei | תִּשְׁרֵי‎ | 30 |
+/// | 2 | Cheshvan | חֶשְׁוָן‎ | 29 (30 in abundant years) |
+/// | 3 | Kislev | כִּסְלֵו‎ | 30 (29 in deficient years) |
+/// | 4 | Tevet | טֵבֵת‎ | 29 |
+/// | 5 | Shevat | שְׁבָט‎ | 30 |
+/// | 6 | Adar | אדר א׳‎ | 30 |
+/// | 7 | Adar II | אדר ב׳‎ | 29 |
+/// | 8 | Nisan | נִיסָן‎ | 30 |
+/// | 9 | Iyar | אִייָר‎ | 29 |
+/// | 10 | Sivan | סִיוָן‎ | 30 |
+/// | 11 | Tammuz | תַּמּוּז‎ | 29 |
+/// | 12 | Av | אָב‎ | 30 |
+/// | 13 | Elul | אֱלוּל‎ | 29 |
 ///
 /// The Hebrew calendar epoch in the Julian calendar is October 7, 3761 BCE.
 ///
