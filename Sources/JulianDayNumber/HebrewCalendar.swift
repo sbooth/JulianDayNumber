@@ -10,7 +10,7 @@ import Foundation
 ///
 /// A common year has 353, 354, or 355 days. A leap year is always 30 days longer.
 ///
-/// The number of days in a year depends on whether year is a common or leap year and whether it is deficient, regular, or abundant.
+/// The number of days in a year depends on whether the year is a common or leap year and whether it is deficient, regular, or abundant.
 ///
 /// | | Common Year | Leap Year |
 /// | --- | --- | --- |
