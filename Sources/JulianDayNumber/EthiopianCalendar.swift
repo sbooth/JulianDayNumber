@@ -32,13 +32,8 @@ import Foundation
 public struct EthiopianCalendar {
 	/// The Julian day number of the epoch of the Ethiopian calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 8 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1724221
-
-	/// The Julian date of the epoch of the Ethiopian calendar.
-	///
-	/// This JD corresponds to midnight on August 29, 8 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1724220.5
+	/// This JDN corresponds to August 29, 8 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1724221
 
 	/// A year in the Ethiopian calendar.
 	public typealias Year = Int

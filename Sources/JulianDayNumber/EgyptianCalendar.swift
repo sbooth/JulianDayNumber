@@ -32,13 +32,8 @@ import Foundation
 public struct EgyptianCalendar {
 	/// The Julian day number of the epoch of the Egyptian calendar.
 	///
-	/// This JDN corresponds to noon on February 26, 747 BCE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1448638
-
-	/// The Julian date of the epoch of the Egyptian calendar.
-	///
-	/// This JD corresponds to midnight on February 26, 747 BCE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1448637.5
+	/// This JDN corresponds to February 26, 747 BCE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1448638
 
 	/// A year in the Egyptian calendar.
 	public typealias Year = Int

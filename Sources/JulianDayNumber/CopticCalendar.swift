@@ -32,13 +32,8 @@ import Foundation
 public struct CopticCalendar {
 	/// The Julian day number of the epoch of the Coptic calendar.
 	///
-	/// This JDN corresponds to noon on August 29, 284 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1825030
-
-	/// The Julian date of the epoch of the Coptic calendar.
-	///
-	/// This JD corresponds to midnight on August 29, 284 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1825029.5
+	/// This JDN corresponds to August 29, 284 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1825030
 
 	/// A year in the Coptic calendar.
 	public typealias Year = Int
