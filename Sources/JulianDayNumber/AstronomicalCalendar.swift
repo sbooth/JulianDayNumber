@@ -47,15 +47,6 @@ public struct AstronomicalCalendar {
 		julianDayNumber < GregorianCalendar.effectiveJulianDayNumber
 	}
 
-	/// Returns `true` if the specified Julian date occurred before the Gregorian calendar took effect.
-	///
-	/// - parameter julianDate: A Julian date.
-	///
-	/// - returns: `true` if the specified specified Julian date occurred before the Gregorian calendar took effect.
-	public static func isJulian(julianDate: JulianDate) -> Bool {
-		julianDate < GregorianCalendar.effectiveJulianDate
-	}
-
 	/// Returns `true` if the specified year is a leap year in the astromical calendar.
 	///
 	/// - parameter Y: A year number.
