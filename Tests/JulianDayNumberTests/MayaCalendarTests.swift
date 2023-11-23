@@ -33,11 +33,11 @@ final class MayaCalendarTests: XCTestCase {
 	}
 
 	func testCalendarRound() {
-		XCTAssertTrue(MayaCalendar.calendarRoundFromJulianDayNumber(MayaCalendar.longCountEpochJulianDayNumber) == (4, 20, 8, 18))
+		XCTAssertTrue(MayaCalendar.calendarRoundFromJulianDayNumber(MayaCalendar.longCountEpoch) == (4, 20, 8, 18))
 		XCTAssertTrue(MayaCalendar.calendarRoundFromJulianDayNumber(2460260) == (3, 17, 5, 12))
 
-		XCTAssertEqual(MayaCalendar.julianDayNumberFromCalendarRound(number: 4, name: 20, day: 8, month: 18, onOrAfter: MayaCalendar.longCountEpochJulianDayNumber), MayaCalendar.longCountEpochJulianDayNumber)
-		XCTAssertEqual(MayaCalendar.julianDayNumberFromCalendarRound(number: 4, name: 20, day: 8, month: 18, before: MayaCalendar.longCountEpochJulianDayNumber), MayaCalendar.longCountEpochJulianDayNumber - 18980)
+		XCTAssertEqual(MayaCalendar.julianDayNumberFromCalendarRound(number: 4, name: 20, day: 8, month: 18, onOrAfter: MayaCalendar.longCountEpoch), MayaCalendar.longCountEpoch)
+		XCTAssertEqual(MayaCalendar.julianDayNumberFromCalendarRound(number: 4, name: 20, day: 8, month: 18, before: MayaCalendar.longCountEpoch), MayaCalendar.longCountEpoch - 18980)
 
 		XCTAssertEqual(MayaCalendar.julianDayNumberFromCalendarRound(number: 1, name: 11, day: 10, month: 11), nil)
 	}

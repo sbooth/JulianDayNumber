@@ -31,13 +31,8 @@ import Foundation
 public struct IslamicCalendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
 	///
-	/// This JDN corresponds to noon on July 16, 622 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1948440
-
-	/// The Julian date of the epoch of the Islamic calendar.
-	///
-	/// This JD corresponds to midnight on July 16, 622 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1948439.5
+	/// This JDN corresponds to July 16, 622 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1948440
 
 	/// A year in the Islamic calendar.
 	public typealias Year = Int

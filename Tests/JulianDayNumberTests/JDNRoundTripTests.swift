@@ -192,8 +192,8 @@ final class JDNRoundTripTests: XCTestCase {
 	}
 
 	func testMaya() {
-		let minJ = MayaCalendar.longCountEpochJulianDayNumber + minYear * 365
-		let maxJ = MayaCalendar.longCountEpochJulianDayNumber + maxYear * 365
+		let minJ = MayaCalendar.longCountEpoch + minYear * 365
+		let maxJ = MayaCalendar.longCountEpoch + maxYear * 365
 		for J in minJ...maxJ {
 			let (b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(J)
 			let jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)

@@ -59,13 +59,8 @@ import Foundation
 public struct HebrewCalendar {
 	/// The Julian day number of the epoch of the Hebrew calendar.
 	///
-	/// This JDN corresponds to noon on October 7, 3761 BCE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 347998
-
-	/// The Julian date of the epoch of the Hebrew calendar.
-	///
-	/// This JD corresponds to midnight on October 7, 3761 BCE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 347997.5
+	/// This JDN corresponds to October 7, 3761 BCE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 347998
 
 	/// A year in the Hebrew calendar.
 	public typealias Year = Int
@@ -245,7 +240,7 @@ extension HebrewCalendar {
 	///
 	/// - returns: The year containing the specified Julian day number.
 	static func yearContaining(julianDayNumber J: JulianDayNumber) -> Int {
-		precondition(J >= epochJulianDayNumber, "Julian day number must be >= epoch")
+		precondition(J >= epoch, "Julian day number must be >= epoch")
 		precondition(J < 355839970905665, "Julian day numbers above 355839970905664 cause numerical overflow using 64-bit integers")
 
 		let M = (25920 * (J - 347996)) / 765433 + 1
@@ -290,8 +285,8 @@ extension HebrewCalendar: JulianDayNumberConverting {
 		var J = J
 		var ΔcalendarCycles = 0
 
-		if J < epochJulianDayNumber {
-			ΔcalendarCycles = (epochJulianDayNumber - J) / intercalatingCycle.days + 1
+		if J < epoch {
+			ΔcalendarCycles = (epoch - J) / intercalatingCycle.days + 1
 			J += ΔcalendarCycles * intercalatingCycle.days
 		}
 

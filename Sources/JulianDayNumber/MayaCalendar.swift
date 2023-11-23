@@ -92,20 +92,20 @@ import Foundation
 public struct MayaCalendar {
 	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
 	///
-	/// This JDN corresponds to noon on September 6, 3114 BCE in the Julian calendar.
-	public static let longCountEpochJulianDayNumber: JulianDayNumber = 584283
+	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
+	public static let longCountEpoch: JulianDayNumber = 584283
 
 	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
 	///
 	/// The Tzolk’in cycle began 159 days before the long count epoch.
 	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
-	public static let tzolkinEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 159
+	public static let tzolkinEpoch: JulianDayNumber = longCountEpoch - 159
 
 	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
 	///
 	/// The Haabʼ cycle began 348 days before the long count epoch.
 	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
-	public static let haabEpochJulianDayNumber: JulianDayNumber = longCountEpochJulianDayNumber - 348
+	public static let haabEpoch: JulianDayNumber = longCountEpoch - 348
 
 	/// A kin is one day and is numbered from `0` to `19`.
 	public typealias Kin = Int
@@ -176,7 +176,7 @@ extension MayaCalendar {
 	///
 	/// - returns: The long count corresponding to the specified Julian day number.
 	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Alautun, kinchiltun: Kinchiltun, calabtun: Calabtun, pictun: Pictun, */baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) {
-		let L = J - longCountEpochJulianDayNumber
+		let L = J - longCountEpoch
 
 #if false
 		var alautun, kinchiltun, calabtun, pictun: Int
@@ -250,7 +250,7 @@ extension MayaCalendar {
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
 	public static func julianDayNumberFromLongCount(alautun: Alautun = 0, kinchiltun: Kinchiltun = 0, calabtun: Calabtun = 0, pictun: Pictun = 0, baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
-		longCountEpochJulianDayNumber + (((((((alautun * kinchiltunPerAlautun + kinchiltun) * calabtunPerKinchiltun + calabtun) * pictunPerCalabtun + pictun) * baktunPerPictun + baktun) * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
+		longCountEpoch + (((((((alautun * kinchiltunPerAlautun + kinchiltun) * calabtunPerKinchiltun + calabtun) * pictunPerCalabtun + pictun) * baktunPerPictun + baktun) * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
 	}
 }
 
@@ -265,8 +265,8 @@ extension MayaCalendar {
 	///
 	/// - returns: The Calendar Round corresponding to the specified Julian day number.
 	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) {
-		let T = J - tzolkinEpochJulianDayNumber
-		let H = J - haabEpochJulianDayNumber
+		let T = J - tzolkinEpoch
+		let H = J - haabEpoch
 
 		let (number, name) = (T % 13 + 1, T % 20)
 		let (month, day) = (H % 365).quotientAndRemainder(dividingBy: 20)
@@ -303,7 +303,7 @@ extension MayaCalendar {
 	/// - parameter J0: A Julian day number to anchor the Calendar Round.
 	///
 	/// - returns: The least recent Julian day number corresponding to the specified Calendar Round occurring on or after the specified Julian day number or `nil` if none.
-	public static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth, onOrAfter J0: JulianDayNumber = longCountEpochJulianDayNumber) -> JulianDayNumber? {
+	public static func julianDayNumberFromCalendarRound(number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth, onOrAfter J0: JulianDayNumber = longCountEpoch) -> JulianDayNumber? {
 		guard let J = julianDayNumberFromCalendarRound(number: number, name: name, day: day, month: month) else {
 			return nil
 		}
