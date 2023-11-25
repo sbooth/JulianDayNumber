@@ -31,13 +31,8 @@ import Foundation
 public struct SyrianCalendar {
 	/// The Julian day number of the epoch of the Syrian calendar.
 	///
-	/// This JDN corresponds to noon on October 1, 312 BCE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1607739
-
-	/// The Julian date of the epoch of the Syrian calendar.
-	///
-	/// This JD corresponds to midnight on October 1, 312 BCE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1607738.5
+	/// This JDN corresponds to October 1, 312 BCE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1607739
 
 	/// A year in the Syrian calendar.
 	public typealias Year = Int

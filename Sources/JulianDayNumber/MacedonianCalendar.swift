@@ -31,13 +31,8 @@ import Foundation
 public struct MacedonianCalendar {
 	/// The Julian day number of the epoch of the Macedonian calendar.
 	///
-	/// This JDN corresponds to noon on September 1, 312 BCE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1607709
-
-	/// The Julian date of the epoch of the Macedonian calendar.
-	///
-	/// This JD corresponds to midnight on September 1, 312 BCE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1607708.5
+	/// This JDN corresponds to September 1, 312 BCE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1607709
 
 	/// A year in the Macedonian calendar.
 	public typealias Year = Int
