@@ -8,9 +8,9 @@ Julian day number and Julian date calculations supporting the following calendar
 | Calendar | Epoch ¹ | Era |
 | --- | --- | --- |
 | [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE | |
-| --- | --- | --- |
+| | | |
 | [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | |
-| --- | --- | --- |
+| | | |
 | [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE | Nabonassar |
 | [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE | Armenian |
 | [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE | Yazdegerd |
