@@ -10,20 +10,20 @@ import Foundation
 ///
 /// The year consists of twelve months. The sixth month contains an additional day in leap years.
 ///
-/// | Month | Days |
-/// | ---: | --- |
-/// | 1 | 30 |
-/// | 2 | 31 |
-/// | 3 | 30 |
-/// | 4 | 31 |
-/// | 5 | 31 |
-/// | 6 | 28 (29 in leap years) |
-/// | 7 | 31 |
-/// | 8 | 30 |
-/// | 9 | 31 |
-/// | 10 | 30 |
-/// | 11 | 31 |
-/// | 12 | 31 |
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | September | 30 |
+/// | 2 | October | 31 |
+/// | 3 | November | 30 |
+/// | 4 | December | 31 |
+/// | 5 | January | 31 |
+/// | 6 | February | 28 (29 in leap years) |
+/// | 7 | March | 31 |
+/// | 8 | April | 30 |
+/// | 9 | May | 31 |
+/// | 10 | June | 30 |
+/// | 11 | July | 31 |
+/// | 12 | August | 31 |
 ///
 /// The Macedonian calendar epoch in the Julian calendar is September 1, 312 BCE.
 ///

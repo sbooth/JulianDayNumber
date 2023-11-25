@@ -8,22 +8,22 @@ import Foundation
 
 /// The Syrian calendar is a solar calendar with 365 days in the year plus an additional leap day every fourth year.
 ///
-/// The year consists of twelve months. The sixth month contains an additional day in leap years.
+/// The year consists of twelve months. The fifth month contains an additional day in leap years.
 ///
-/// | Month | Days |
-/// | ---: | --- |
-/// | 1 | 31 |
-/// | 2 | 30 |
-/// | 3 | 31 |
-/// | 4 | 31 |
-/// | 5 | 28 (29 in leap years) |
-/// | 6 | 31 |
-/// | 7 | 30 |
-/// | 8 | 31 |
-/// | 9 | 30 |
-/// | 10 | 31 |
-/// | 11 | 31 |
-/// | 12 | 30 |
+/// | Month | Name | Days |
+/// | ---: | --- | --- |
+/// | 1 | October | 31 |
+/// | 2 | November | 30 |
+/// | 3 | December | 31 |
+/// | 4 | January | 31 |
+/// | 5 | February | 28 (29 in leap years) |
+/// | 6 | March | 31 |
+/// | 7 | April | 30 |
+/// | 8 | May | 31 |
+/// | 9 | June | 30 |
+/// | 10 | July | 31 |
+/// | 11 | August | 31 |
+/// | 12 | September | 30 |
 ///
 /// The Syrian calendar epoch in the Julian calendar is October 1, 312 BCE.
 ///
