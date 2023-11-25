@@ -35,25 +35,10 @@ import Foundation
 ///
 /// - seealso: [French Republican calendar](https://en.wikipedia.org/wiki/French_Republican_calendar)
 public struct FrenchRepublicanCalendar {
-	/// The Julian day number when the French Republican calendar took effect.
-	///
-	/// This JDN corresponds to noon on September 22, 1792 in the Gregorian calendar.
-	public static let effectiveJulianDayNumber = epochJulianDayNumber
-
-	/// The Julian date when the French Republican calendar took effect.
-	///
-	/// This JD corresponds to midnight on September 22, 1792 in the Gregorian calendar.
-	public static let effectiveJulianDate = epochJulianDate
-
 	/// The Julian day number of the epoch of the French Republican calendar.
 	///
-	/// This JDN corresponds to noon on September 22, 1792 in the Gregorian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 2375840
-
-	/// The Julian date of the epoch of the French Republican calendar.
-	///
-	/// This JD corresponds to midnight on September 22, 1792 in the Gregorian calendar.
-	public static let epochJulianDate: JulianDate = 2375839.5
+	/// This JDN corresponds to September 22, 1792 in the Gregorian calendar.
+	public static let epoch: JulianDayNumber = 2375840
 
 	/// A year in the French Republican calendar.
 	public typealias Year = Int
@@ -73,28 +58,6 @@ public struct FrenchRepublicanCalendar {
 	/// - returns: `true` if the specified year, month, and day form a valid date in the French Republican calendar.
 	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
-
-	/// Returns `true` if the specified Julian day number occurred before the French Republican calendar took effect.
-	///
-	/// The French Republican calendar took effect on JDN 2375840.
-	///
-	/// - parameter julianDayNumber: A Julian day number.
-	///
-	/// - returns: `true` if the specified specified Julian day number occurred before the French Republican calendar took effect.
-	public static func isProleptic(julianDayNumber: JulianDayNumber) -> Bool {
-		julianDayNumber < effectiveJulianDayNumber
-	}
-
-	/// Returns `true` if the specified Julian date occurred before the French Republican calendar took effect.
-	///
-	/// The French Republican calendar took effect on JD 2375839.5.
-	///
-	/// - parameter julianDate: A Julian date.
-	///
-	/// - returns: `true` if the specified specified Julian date occurred before the French Republican calendar took effect.
-	public static func isProleptic(julianDate: JulianDate) -> Bool {
-		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the French Republican calendar.

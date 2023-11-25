@@ -47,9 +47,30 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The Julian day number corresponding to the specified date.
+	/// - returns: The Julian day number corresponding to the specified year, month, and day.
 	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
 		julianDayNumberFromDate((Y, M, D))
+	}
+
+	/// Converts a year, month, and day to an ordinal day and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The ordinal day corresponding to the specified year, month, and day.
+	public static func ordinalDayFrom(year Y: Int, month M: Int, day D: Int) -> Int {
+		julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1
+	}
+
+	/// Converts a year and ordinal day to a year, month, and day and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter N: An ordinal day number.
+	///
+	/// - returns: The year, month, and day corresponding to the specified year and ordinal day.
+	public static func dateFrom(year Y: Int, ordinalDay N: Int) -> DateType {
+		dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + N - 1)
 	}
 }
 

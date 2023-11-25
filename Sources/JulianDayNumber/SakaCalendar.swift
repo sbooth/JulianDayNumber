@@ -10,20 +10,20 @@ import Foundation
 ///
 /// The year consists of twelve months. The first month contains an additional day in leap years.
 ///
-/// | Month | Name | Days |
-/// | ---: | --- | --- |
-/// | 1 | Chaitra | 30 (31 in leap years) |
-/// | 2 | Vaiśākha | 31 |
-/// | 3 | Jyēṣṭha | 31 |
-/// | 4 | Āshādha | 31 |
-/// | 5 | Śrāvana | 31 |
-/// | 6 | Bhādra | 31 |
-/// | 7 | Āśvin | 30 |
-/// | 8 | Kārtika | 31 |
-/// | 9 | Mārgaśīrṣa | 30 |
-/// | 10 | Pauṣa | 30 |
-/// | 11 | Māgha | 30 |
-/// | 1 2| Phālguna | 30 |
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Chaitra | चैत्र | 30 (31 in leap years) |
+/// | 2 | Vaiśākha | वैशाख | 31 |
+/// | 3 | Jyēṣṭha | ज्येष्ठ | 31 |
+/// | 4 | Āshādha | आषाढ | 31 |
+/// | 5 | Śrāvana | श्रावण | 31 |
+/// | 6 | Bhādra | भाद्रपद | 31 |
+/// | 7 | Āśvin | अश्विन् | 30 |
+/// | 8 | Kārtika | कार्तिक | 31 |
+/// | 9 | Mārgaśīrṣa | अग्रहायण | 30 |
+/// | 10 | Pauṣa | पौष | 30 |
+/// | 11 | Māgha | माघ | 30 |
+/// | 1 2| Phālguna | फाल्गुन | 30 |
 ///
 /// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///
@@ -33,23 +33,13 @@ import Foundation
 public struct SakaCalendar {
 	/// The Julian day number when the Śaka calendar took effect.
 	///
-	/// This JDN corresponds to noon on March 22, 1957 in the Gregorian calendar.
+	/// This JDN corresponds to March 22, 1957 in the Gregorian calendar.
 	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
-
-	/// The Julian date when the Śaka calendar took effect.
-	///
-	/// This JD corresponds to midnight on March 22, 1957 in the Gregorian calendar.
-	public static let effectiveJulianDate: JulianDate = 2435919.5
 
 	/// The Julian day number of the epoch of the Śaka calendar.
 	///
-	/// This JDN corresponds to noon on March 24, 79 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1749995
-
-	/// The Julian date of the epoch of the Śaka calendar.
-	///
-	/// This JD corresponds to midnight on March 24, 79 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1749994.5
+	/// This JDN corresponds to March 24, 79 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1749995
 
 	/// A year in the Śaka calendar.
 	public typealias Year = Int
@@ -80,17 +70,6 @@ public struct SakaCalendar {
 	/// - returns: `true` if the specified specified Julian day number occurred before the Śaka calendar took effect.
 	public static func isProleptic(julianDayNumber: JulianDayNumber) -> Bool {
 		julianDayNumber < effectiveJulianDayNumber
-	}
-
-	/// Returns `true` if the specified Julian date occurred before the Śaka calendar took effect.
-	///
-	/// The Śaka calendar took effect on JD 2435919.5.
-	///
-	/// - parameter julianDate: A Julian date.
-	///
-	/// - returns: `true` if the specified specified Julian date occurred before the Śaka calendar took effect.
-	public static func isProleptic(julianDate: JulianDate) -> Bool {
-		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Śaka calendar.

@@ -33,23 +33,13 @@ import Foundation
 public struct JulianCalendar {
 	/// The Julian day number when the Julian calendar took effect.
 	///
-	/// This JDN corresponds to noon on January 1, 45 BCE in the Julian calendar.
+	/// This JDN corresponds to January 1, 45 BCE in the Julian calendar.
 	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
-
-	/// The Julian date when the Julian calendar took effect.
-	///
-	/// This JD corresponds to midnight on January 1, 45 BCE in the Julian calendar.
-	public static let effectiveJulianDate: JulianDate = 1704986.5
 
 	/// The Julian day number of the epoch of the Julian calendar.
 	///
-	/// This JDN corresponds to noon on January 1, 1 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1721424
-
-	/// The Julian date of the epoch of the Julian calendar.
-	///
-	/// This JD corresponds to midnight on January 1, 1 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1721423.5
+	/// This JDN corresponds to January 1, 1 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1721424
 
 	/// A year in the Julian calendar.
 	///
@@ -82,17 +72,6 @@ public struct JulianCalendar {
 	/// - returns: `true` if the specified specified Julian day number occurred before the Julian calendar took effect.
 	public static func isProleptic(julianDayNumber: JulianDayNumber) -> Bool {
 		julianDayNumber < effectiveJulianDayNumber
-	}
-
-	/// Returns `true` if the specified Julian date occurred before the Julian calendar took effect.
-	///
-	/// The Julian calendar took effect on JD 1704986.5.
-	///
-	/// - parameter julianDate: A Julian date.
-	///
-	/// - returns: `true` if the specified specified Julian date occurred before the Julian calendar took effect.
-	public static func isProleptic(julianDate: JulianDate) -> Bool {
-		julianDate < effectiveJulianDate
 	}
 
 	/// Returns `true` if the specified year is a leap year in the Julian calendar.
@@ -134,7 +113,7 @@ public struct JulianCalendar {
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) correponding to the specified Julian day number.
+	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
 	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
 		1 + (J + 1) % 7
 	}

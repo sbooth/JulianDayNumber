@@ -10,7 +10,7 @@ import Foundation
 ///
 /// A common year has 353, 354, or 355 days. A leap year is always 30 days longer.
 ///
-/// The number of days in a year depends on whether year is a common or leap year and whether it is deficient, regular, or abundant.
+/// The number of days in a year depends on whether the year is a common or leap year and whether it is deficient, regular, or abundant.
 ///
 /// | | Common Year | Leap Year |
 /// | --- | --- | --- |
@@ -20,38 +20,38 @@ import Foundation
 ///
 /// Common years consist of twelve months.
 ///
-/// | Month | Name | Days |
-/// | ---: | --- | --- |
-/// | 1 | Tishrei | 30 |
-/// | 2 | Cheshvan | 29 (30 in abundant years) |
-/// | 3 | Kislev | 30 (29 in deficient years) |
-/// | 4 | Tevet | 29 |
-/// | 5 | Shevat | 30 |
-/// | 6 | Adar | 29 |
-/// | 7 | Nisan | 30 |
-/// | 8 | Iyar | 29 |
-/// | 9 | Sivan | 30 |
-/// | 10 | Tammuz | 29 |
-/// | 11 | Av | 30 |
-/// | 12 | Elul | 29 |
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Tishrei | תִּשְׁרֵי‎ | 30 |
+/// | 2 | Cheshvan | חֶשְׁוָן‎ | 29 (30 in abundant years) |
+/// | 3 | Kislev | כִּסְלֵו‎ | 30 (29 in deficient years) |
+/// | 4 | Tevet | טֵבֵת‎ | 29 |
+/// | 5 | Shevat | שְׁבָט‎ | 30 |
+/// | 6 | Adar | אֲדָר‎ | 29 |
+/// | 7 | Nisan | נִיסָן‎ | 30 |
+/// | 8 | Iyar | אִייָר‎ | 29 |
+/// | 9 | Sivan | סִיוָן‎ | 30 |
+/// | 10 | Tammuz | תַּמּוּז‎ | 29 |
+/// | 11 | Av | אָב‎ | 30 |
+/// | 12 | Elul | אֱלוּל‎ | 29 |
 ///
 /// Leap years consist of thirteen months.
 ///
-/// | Month | Name | Days |
-/// | ---: | --- | --- |
-/// | 1 | Tishrei | 30 |
-/// | 2 | Cheshvan | 29 (30 in abundant years) |
-/// | 3 | Kislev | 30 (29 in deficient years) |
-/// | 4 | Tevet | 29 |
-/// | 5 | Shevat | 30 |
-/// | 6 | Adar | 30 |
-/// | 7 | Adar II | 29 |
-/// | 8 | Nisan | 30 |
-/// | 9 | Iyar | 29 |
-/// | 10 | Sivan | 30 |
-/// | 11 | Tammuz | 29 |
-/// | 12 | Av | 30 |
-/// | 13 | Elul | 29 |
+/// | Month | Name | | Days |
+/// | ---: | --- | --- | --- |
+/// | 1 | Tishrei | תִּשְׁרֵי‎ | 30 |
+/// | 2 | Cheshvan | חֶשְׁוָן‎ | 29 (30 in abundant years) |
+/// | 3 | Kislev | כִּסְלֵו‎ | 30 (29 in deficient years) |
+/// | 4 | Tevet | טֵבֵת‎ | 29 |
+/// | 5 | Shevat | שְׁבָט‎ | 30 |
+/// | 6 | Adar | אדר א׳‎ | 30 |
+/// | 7 | Adar II | אדר ב׳‎ | 29 |
+/// | 8 | Nisan | נִיסָן‎ | 30 |
+/// | 9 | Iyar | אִייָר‎ | 29 |
+/// | 10 | Sivan | סִיוָן‎ | 30 |
+/// | 11 | Tammuz | תַּמּוּז‎ | 29 |
+/// | 12 | Av | אָב‎ | 30 |
+/// | 13 | Elul | אֱלוּל‎ | 29 |
 ///
 /// The Hebrew calendar epoch in the Julian calendar is October 7, 3761 BCE.
 ///
@@ -59,13 +59,8 @@ import Foundation
 public struct HebrewCalendar {
 	/// The Julian day number of the epoch of the Hebrew calendar.
 	///
-	/// This JDN corresponds to noon on October 7, 3761 BCE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 347998
-
-	/// The Julian date of the epoch of the Hebrew calendar.
-	///
-	/// This JD corresponds to midnight on October 7, 3761 BCE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 347997.5
+	/// This JDN corresponds to October 7, 3761 BCE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 347998
 
 	/// A year in the Hebrew calendar.
 	public typealias Year = Int
@@ -245,7 +240,7 @@ extension HebrewCalendar {
 	///
 	/// - returns: The year containing the specified Julian day number.
 	static func yearContaining(julianDayNumber J: JulianDayNumber) -> Int {
-		precondition(J >= epochJulianDayNumber, "Julian day number must be >= epoch")
+		precondition(J >= epoch, "Julian day number must be >= epoch")
 		precondition(J < 355839970905665, "Julian day numbers above 355839970905664 cause numerical overflow using 64-bit integers")
 
 		let M = (25920 * (J - 347996)) / 765433 + 1
@@ -290,8 +285,8 @@ extension HebrewCalendar: JulianDayNumberConverting {
 		var J = J
 		var ΔcalendarCycles = 0
 
-		if J < epochJulianDayNumber {
-			ΔcalendarCycles = (epochJulianDayNumber - J) / intercalatingCycle.days + 1
+		if J < epoch {
+			ΔcalendarCycles = (epoch - J) / intercalatingCycle.days + 1
 			J += ΔcalendarCycles * intercalatingCycle.days
 		}
 

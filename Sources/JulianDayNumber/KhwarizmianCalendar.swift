@@ -31,13 +31,8 @@ import Foundation
 public struct KhwarizmianCalendar {
 	/// The Julian day number of the epoch of the Khwarizmian calendar.
 	///
-	/// This JDN corresponds to noon on June 21, 632 CE in the Julian calendar.
-	public static let epochJulianDayNumber: JulianDayNumber = 1952068
-
-	/// The Julian date of the epoch of the Khwarizmian calendar.
-	///
-	/// This JD corresponds to midnight on June 21, 632 CE in the Julian calendar.
-	public static let epochJulianDate: JulianDate = 1952067.5
+	/// This JDN corresponds to June 21, 632 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1952068
 
 	/// A year in the Khwarizmian calendar.
 	public typealias Year = Int
