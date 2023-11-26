@@ -42,6 +42,53 @@ public struct MacedonianCalendar {
 
 	/// A day in the Macedonian calendar numbered starting from `1`.
 	public typealias Day = Int
+
+	/// Returns `true` if the specified year, month, and day form a valid date in the Macedonian calendar.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: `true` if the specified year, month, and day form a valid date in the Macedonian calendar.
+	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
+		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	}
+
+
+	/// Returns `true` if the specified year is a leap year in the Macedonian calendar.
+	///
+	/// A Macedonian leap year occurs every four years and the first leap year was year 3.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: `true` if the specified year is a leap year in the Macedonian calendar.
+	public static func isLeapYear(_ Y: Year) -> Bool {
+		Y > 0 ? Y % 4 == 3 : Y % 4 == -1
+	}
+
+	/// The number of months in one year.
+	public static let monthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (September) to `11` (August).
+	static let monthLengths = [ 30, 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31 ]
+
+	/// Returns the number of days in the specified month and year in the Macedonian calendar.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	///
+	/// - returns: The number of days in the specified month and year.
+	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
+		guard M > 0, M <= 12 else {
+			return 0
+		}
+
+		if M == 6 {
+			return isLeapYear(Y) ? 29 : 28
+		} else {
+			return monthLengths[M - 1]
+		}
+	}
 }
 
 extension MacedonianCalendar: JulianDayNumberConverting {

@@ -191,6 +191,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testMacedonian() {
+		for year in minYear...maxYear {
+			for month in 1...MacedonianCalendar.monthsInYear {
+				for day in 1...MacedonianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = MacedonianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testMaya() {
 		let minJ = MayaCalendar.longCountEpoch + minYear * 365
 		let maxJ = MayaCalendar.longCountEpoch + maxYear * 365
