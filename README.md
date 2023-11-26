@@ -5,33 +5,25 @@
 
 Julian day number and Julian date calculations supporting the following calendars:
 
-| Calendar | Epoch ¹ | Era |
-| --- | --- | --- |
-| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE | AM |
-| | | |
-| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | |
-| | | |
-| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE | Nabonassar |
-| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE | Armenian |
-| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE | Yazdegerd |
-| | | |
-| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | August 29, 8 CE | Incarnation |
-| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | August 29, 284 CE | Diocletian |
-| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | September 22, 1792 | Republican |
-| | | |
-| Macedonian | September 1, 312 BCE | Alexander |
-| Syrian | October 1, 312 BCE | Alexander |
-| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE | Christian |
-| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | January 1, 1 CE | Christian |
-| | | |
-| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | July 16, 622 CE | Hijrah |
-| | | |
-| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 | Baháʼí |
-| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE | Śaka |
-| | | |
-| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE | Christian |
-| | | |
-| [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | | |
+| Calendar | Epoch ¹ |
+| --- | --- |
+| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | July 11, 552 CE |
+| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE |
+| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | March 21, 1844 |
+| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | August 29, 284 CE | year. |
+| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | February 26, 747 BCE |
+| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | August 29, 8 CE |
+| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | September 22, 1792 |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | January 1, 1 CE |
+| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | October 7, 3761 BCE |
+| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | July 16, 622 CE |
+| [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | |
+| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE |
+| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE |
+| Macedonian | September 1, 312 BCE |
+| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE |
+| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE |
+| Syrian | October 1, 312 BCE |
 
 ¹ Epochs given in Julian calendar
 
