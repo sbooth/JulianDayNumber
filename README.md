@@ -5,7 +5,7 @@
 
 Julian day number and Julian date calculations supporting the following calendars:
 
-| Calendar | Epoch ¹|
+| Calendar | Epoch ¹ |
 | --- | --- |
 | [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | 0552-07-11 CE |
 | [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | 0001-01-01 CE |
