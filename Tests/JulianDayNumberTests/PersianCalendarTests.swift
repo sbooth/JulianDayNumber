@@ -9,24 +9,6 @@ import XCTest
 
 final class PersianCalendarTests: XCTestCase {
 	func testJulianDayNumber() {
-		let j = PersianCalendar.julianDayNumberFrom(year: 1000, month: 1, day: 1)
-		var prev = (year:0,month:0,day:0)
-		var days = 0
-		for i in j...(j + Int(365.25 * 10)) {
-			let d = PersianCalendar.dateFromJulianDayNumber(i)
-			if prev.month != 0 && prev.month != d.month {
-				print(String(format: "  M %2d  %2d d", prev.month, prev.day))
-				days += prev.day
-			}
-			if prev.year != d.year {
-				if days != 0 {
-					print("-- \(days) days")
-				}
-				print("Y \(d.year)")
-				days = 0
-			}
-			prev = d
-		}
 		XCTAssertEqual(PersianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1952063)
 		XCTAssertTrue(PersianCalendar.dateFromJulianDayNumber(1952063) == (1, 1, 1))
 	}
