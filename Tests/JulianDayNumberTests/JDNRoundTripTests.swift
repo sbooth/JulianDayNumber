@@ -191,6 +191,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testMacedonian() {
+		for year in minYear...maxYear {
+			for month in 1...MacedonianCalendar.monthsInYear {
+				for day in 1...MacedonianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = MacedonianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testMaya() {
 		let minJ = MayaCalendar.longCountEpoch + minYear * 365
 		let maxJ = MayaCalendar.longCountEpoch + maxYear * 365
@@ -207,6 +221,20 @@ final class JDNRoundTripTests: XCTestCase {
 				for day in 1...SakaCalendar.daysInMonth(year: year, month: month) {
 					let jdn = SakaCalendar.julianDayNumberFrom(year: year, month: month, day: day)
 					let (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
+	func testSyrian() {
+		for year in minYear...maxYear {
+			for month in 1...SyrianCalendar.monthsInYear {
+				for day in 1...SyrianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = SyrianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(jdn)
 					XCTAssertEqual(year, Y)
 					XCTAssertEqual(month, M)
 					XCTAssertEqual(day, D)
