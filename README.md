@@ -5,26 +5,26 @@
 
 Julian day number and Julian date calculations supporting the following calendars:
 
-| Calendar | Epoch ¹ |
-| --- | --- |
-| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | 0552-07-11 CE |
-| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | 0001-01-01 CE |
-| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | 1844-03-21 CE |
-| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | 0284-08-29 CE |
-| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | 0747-02-26 BCE |
-| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | 0008-08-29 CE |
-| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | 1792-09-22 CE |
-| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-01 CE |
-| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | 3761-10-07 BCE |
-| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | 0622-07-16 CE |
+| Calendar | Epoch ¹ | Era |
+| --- | --- | --- |
+| [Armenian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/armeniancalendar) | 0552-07-11 CE | Armenian |
+| [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | 0001-01-01 CE | CE |
+| [Baháʼí](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/bahaicalendar) | 1844-03-21 CE | Baháʼí |
+| [Coptic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/copticcalendar) | 0284-08-29 CE | Diocletian |
+| [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | 0747-02-26 BCE | Nabonassar |
+| [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | 0008-08-29 CE | Incarnation |
+| [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | 1792-09-22 CE | Republican |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-01 CE | CE |
+| [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | 3761-10-07 BCE | AM |
+| [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | 0622-07-16 CE | AH |
 | [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | |
-| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | 0001-01-01 CE |
-| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | 0632-06-21 CE |
-| Macedonian | 0312-09-01 BCE |
-| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | 3114-09-06 BCE |
-| Persian | 0632-06-16 CE |
-| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | 0079-03-24 CE |
-| Syrian | 0312-10-01 BCE |
+| [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | 0001-01-01 CE | CE |
+| [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | 0632-06-21 CE | Yazdegerd |
+| [Macedonian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/macedoniancalendar) | 0312-09-01 BCE | Alexander |
+| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | 3114-09-06 BCE | |
+| [Persian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/persiancalendar) | 0632-06-16 CE | Yazdegerd |
+| [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | 0079-03-24 CE | Śaka |
+| [Syrian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/syriancalendar) | 0312-10-01 BCE | Alexander |
 
 ¹ Epoch in Julian calendar
 
