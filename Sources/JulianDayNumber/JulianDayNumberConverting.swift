@@ -40,6 +40,47 @@ public protocol JulianDayNumberConverting {
 	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType
 }
 
+extension JulianDayNumberConverting {
+	/// Converts a date to an equivalent date using the specified converter and returns the result.
+	///
+	/// - important: No validation checks are performed on the date values.
+	///
+	/// - parameter date: A date to convert.
+	/// - parameter converter: A Julian day number converter.
+	///
+	/// - returns: The date corresponding to the specified date.
+	public static func convertDate<C: JulianDayNumberConverting>(_ date: DateType, to converter: C.Type) -> C.DateType {
+		let J = julianDayNumberFromDate(date)
+		return C.dateFromJulianDayNumber(J)
+	}
+
+	/// Converts a date to an equivalent date using the specified converter and returns the result.
+	///
+	/// - important: No validation checks are performed on the date values.
+	///
+	/// - parameter date: A date to convert.
+	/// - parameter converter: A Julian day number converter.
+	///
+	/// - returns: The date corresponding to the specified date.
+	public static func convertDate<C: JulianDayNumberConverting>(_ date: C.DateType, from converter: C.Type) -> DateType {
+		let J = C.julianDayNumberFromDate(date)
+		return dateFromJulianDayNumber(J)
+	}
+}
+
+extension JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
+	/// Converts a year, month, and day to an equivalent date using the specified converter and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The date corresponding to the specified year, month, and day.
+	public static func convertDateFrom<C: JulianDayNumberConverting>(year Y: Int, month M: Int, day D: Int, to converter: C.Type) -> C.DateType {
+		convertDate((Y, M, D), to: converter)
+	}
+}
+
 extension JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
 	/// Converts a year, month, and day to a Julian day number and returns the result.
 	///
