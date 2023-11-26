@@ -20,7 +20,8 @@ Julian day number and Julian date calculations supporting the following calendar
 | [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | |
 | [Julian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/juliancalendar) | January 1, 1 CE |
 | [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | June 21, 632 CE |
-| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE | 
+| [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | September 6, 3114 BCE |
+| Persian | June 16, 632 CE |
 | [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | March 24, 79 CE |
 
 ¹ Epochs given in Julian calendar
@@ -87,6 +88,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Julian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 | Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
 | Maya Long Count | `Int.min` + 584291 | `Int.max` |
+| Persian | `Int.min` + 336 | `Int.max` - 77 |
 | Śaka | `Int.min` + 56457 | 2305795661307959298 |
 
 ## License
