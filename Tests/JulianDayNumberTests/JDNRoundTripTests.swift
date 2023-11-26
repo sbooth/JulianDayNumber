@@ -215,6 +215,20 @@ final class JDNRoundTripTests: XCTestCase {
 		}
 	}
 
+	func testPersian() {
+		for year in minYear...maxYear {
+			for month in 1...PersianCalendar.monthsInYear {
+				for day in 1...PersianCalendar.daysInMonth(month) {
+					let jdn = PersianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = PersianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
+
 	func testSaka() {
 		for year in minYear...maxYear {
 			for month in 1...SakaCalendar.monthsInYear {

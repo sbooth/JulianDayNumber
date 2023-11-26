@@ -22,6 +22,7 @@ Julian day number and Julian date calculations supporting the following calendar
 | [Khwarizmian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/khwarizmiancalendar) | 0632-06-21 CE |
 | Macedonian | 0312-09-01 BCE |
 | [Maya](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/mayacalendar) | 3114-09-06 BCE |
+| Persian | 0632-06-16 CE |
 | [Śaka](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/sakacalendar) | 0079-03-24 CE |
 | Syrian | 0312-10-01 BCE |
 
@@ -90,6 +91,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
 | Macedonian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 | Maya Long Count | `Int.min` + 584291 | `Int.max` |
+| Persian | `Int.min` + 336 | `Int.max` - 77 |
 | Śaka | `Int.min` + 56457 | 2305795661307959298 |
 | Syrian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 
