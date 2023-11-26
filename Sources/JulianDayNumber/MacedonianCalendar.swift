@@ -54,7 +54,6 @@ public struct MacedonianCalendar {
 		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
 	}
 
-
 	/// Returns `true` if the specified year is a leap year in the Macedonian calendar.
 	///
 	/// A Macedonian leap year occurs every four years and the first leap year was year 3.

@@ -228,4 +228,18 @@ final class JDNRoundTripTests: XCTestCase {
 			}
 		}
 	}
+
+	func testSyrian() {
+		for year in minYear...maxYear {
+			for month in 1...SyrianCalendar.monthsInYear {
+				for day in 1...SyrianCalendar.daysInMonth(year: year, month: month) {
+					let jdn = SyrianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(jdn)
+					XCTAssertEqual(year, Y)
+					XCTAssertEqual(month, M)
+					XCTAssertEqual(day, D)
+				}
+			}
+		}
+	}
 }
