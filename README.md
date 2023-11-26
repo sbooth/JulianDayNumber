@@ -32,7 +32,6 @@ Julian day number and Julian date calculations supporting the following calendar
 | [Astronomical](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/astronomicalcalendar) | January 1, 1 CE | Christian |
 | | | |
 | [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | | |
-| | | |
 
 ¹ Epochs given in Julian calendar
 
