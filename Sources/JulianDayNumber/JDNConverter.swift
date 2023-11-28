@@ -34,7 +34,7 @@ struct JDNConverter {
 	let t: Int
 	let w: Int
 
-	/// Converts a date to a Julian day numberand returns the result.
+	/// Converts a date to a Julian day number and returns the result.
 	///
 	/// - important: No validation checks are performed on the date values.
 	///
@@ -74,8 +74,8 @@ struct JDNConverter {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			precondition(J >= Int.min + 1, "Julian day number too large")
-			ΔcalendarCycles = -J / p + 1
+			ΔcalendarCycles = -(J / p) + 1
+			precondition(ΔcalendarCycles <= Int.max / p, "Julian day number too small")
 			J += ΔcalendarCycles * p
 		}
 

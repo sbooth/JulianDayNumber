@@ -80,8 +80,8 @@ struct JDNSakaConverter {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			precondition(J >= Int.min + 1, "Julian day number too large")
-			ΔcalendarCycles = -J / gregorianIntercalatingCycle.days + 1
+			ΔcalendarCycles = -(J / gregorianIntercalatingCycle.days) + 1
+			precondition(ΔcalendarCycles <= Int.max / gregorianIntercalatingCycle.days, "Julian day number too small")
 			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
 		}
 
