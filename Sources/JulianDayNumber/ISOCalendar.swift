@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -64,7 +64,7 @@ public struct ISOCalendar {
 		let weekday = isoWeekdayFrom(year: Y, month: M, day: D)
 		let w = (10 + N - weekday) / 7
 		if w == 0 {
-			return (Y - 1, isoWeeksInYear(Y), weekday)
+			return (Y - 1, isoWeeksInYear(Y - 1), weekday)
 		} else if w > isoWeeksInYear(Y) {
 			return (Y + 1, 1, weekday)
 		}
