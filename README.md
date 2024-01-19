@@ -72,6 +72,8 @@ let julianYMD = JulianCalendar.dateFromJulianDayNumber(j)
 
 The [latest documentation](https://swiftpackageindex.com/sbooth/JulianDayNumber/main/documentation/juliandaynumber) is hosted by [Swift Package Index](https://swiftpackageindex.com).
 
+All public classes, structs, and functions should be documented. If you notice a documentation shortcoming please [open a new issue](https://github.com/sbooth/JulianDayNumber/issues/new/choose).
+
 ## Limits
 
 The following table summarizes the arithmetic limits for Julian day number calculations.
