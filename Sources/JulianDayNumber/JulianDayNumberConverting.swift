@@ -1,10 +1,16 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
 
-import Foundation
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(GLibc)
+import Glibc
+#else
+#error("Unsupported Platform")
+#endif
 
 /// A Julian day number.
 ///
