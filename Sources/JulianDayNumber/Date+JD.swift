@@ -4,7 +4,6 @@
 // MIT license
 //
 
-#if canImport(Foundation)
 import Foundation
 
 /// The Julian date in UTC corresponding to the Unix epoch.
@@ -51,4 +50,3 @@ extension Date {
 	/// | UTC | 2000-01-01 11:58:55.816 | 2451544.9992571296 |
 	public static var j2000 = Date(julianDate: J2000JD_UTC)
 }
-#endif

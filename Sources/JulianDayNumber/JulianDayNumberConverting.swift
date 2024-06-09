@@ -4,13 +4,7 @@
 // MIT license
 //
 
-#if canImport(Darwin)
-import Darwin
-#elseif canImport(GLibc)
-import Glibc
-#else
-#error("Unsupported Platform")
-#endif
+import Foundation
 
 /// A Julian day number.
 ///
