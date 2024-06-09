@@ -4,8 +4,6 @@
 // MIT license
 //
 
-import Foundation
-
 /// The ISO week-numbering calendar.
 ///
 /// - seealso: [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date)
