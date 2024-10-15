@@ -42,7 +42,7 @@ import Testing
 		#expect(MayaCalendar.julianDayNumberFromCalendarRound(number: 1, name: 11, day: 10, month: 11) == nil)
 	}
 
-	@Test func lOfTheNight() {
+	@Test func lordOfTheNight() {
 		#expect(MayaCalendar.lordOfTheNightFrom(uinal: 0, kin: 0) == 9)
 		#expect(MayaCalendar.lordOfTheNightFrom(uinal: 0, kin: 7) == 7)
 		#expect(MayaCalendar.lordOfTheNightFrom(uinal: 17, kin: 19) == 8)
