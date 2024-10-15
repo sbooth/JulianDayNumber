@@ -13,7 +13,7 @@ import Testing
 		#expect(!EthiopianCalendar.isDateValid(year: 2016, month: 13, day: 6))
 	}
 
-	func testLeapYear() {
+	@Test func leapYear() {
 		#expect(!EthiopianCalendar.isLeapYear(1))
 		#expect(EthiopianCalendar.isLeapYear(3))
 		#expect(EthiopianCalendar.isLeapYear(7))
