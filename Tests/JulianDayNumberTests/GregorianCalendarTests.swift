@@ -13,7 +13,7 @@ import Testing
 		#expect(!GregorianCalendar.isDateValid(year: 1700, month: 2, day: 29))
 	}
 
-	func testLeapYear() {
+	@Test func leapYear() {
 		#expect(GregorianCalendar.isLeapYear(4))
 		#expect(!GregorianCalendar.isLeapYear(100))
 		#expect(GregorianCalendar.isLeapYear(1600))
