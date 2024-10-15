@@ -8,7 +8,7 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct CongruenceTests {
-	func epoch() {
+	@Test func epoch() {
 		#expect(ArmenianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: 552, month: 7, day: 11))
 		#expect(BahaiCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == GregorianCalendar.julianDayNumberFrom(year: 1844, month: 3, day: 21))
 		#expect(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: 284, month: 8, day: 29))
@@ -25,7 +25,7 @@ import Testing
 		#expect(SyrianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: -311, month: 10, day: 1))
 	}
 
-	func gregorianToJulianConversion() {
+	@Test func gregorianToJulianConversion() {
 		#expect(JulianCalendar.julianDayNumberFrom(year: -9999, month: 1, day: 1) == GregorianCalendar.julianDayNumberFrom(year: -10000, month: 10, day: 16))
 		#expect(GregorianCalendar.julianDayNumberFrom(year: 99999, month: 12, day: 31) == JulianCalendar.julianDayNumberFrom(year: 99997, month: 12, day: 13))
 		#expect(JulianCalendar.julianDayNumberFrom(year: -4712, month: 1, day: 1) == GregorianCalendar.julianDayNumberFrom(year: -4713, month: 11, day: 24))
