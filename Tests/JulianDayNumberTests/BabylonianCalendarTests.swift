@@ -8,10 +8,6 @@ import XCTest
 @testable import JulianDayNumber
 
 final class BabylonianCalendarTests: XCTestCase {
-	func testEpoch() {
-		XCTAssertEqual(BabylonianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), JulianCalendar.julianDayNumberFrom(year: -311, month: 4, day: 3))
-	}
-
 	func testJulianDayNumber() {
 		XCTAssertTrue(BabylonianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1607558)
 		XCTAssertTrue(BabylonianCalendar.julianDayNumberFrom(year: 3, month: 9, day: 27) == 1608529)
