@@ -14,7 +14,7 @@ let gregorianIntercalatingCycle = (years: 400, days: 146097)
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
 /// from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books),
 /// Chapter 15, pp. 585-624.
-struct JDNGregorianTypeConverter {
+struct JDNGregorianConverter {
 	/// A date consisting of a year, month, and day.
 	typealias YearMonthDay = (year: Int, month: Int, day: Int)
 
