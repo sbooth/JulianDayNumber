@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -101,7 +101,7 @@ extension BahaiCalendar: JulianDayNumberConverting {
 	public typealias DateType = (year: Year, month: Month, day: Day)
 
 	/// The converter for the Baháʼí calendar.
-	static let converter = JDNGregorianTypeConverter(y: 6560, j: 1412, m: 19, n: 20, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 19, t: 0, w: 0, A: 184, B: 274273, C: -50)
+	static let converter = JDNGregorianConverter(y: 6560, j: 1412, m: 19, n: 20, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 19, t: 0, w: 0, A: 184, B: 274273, C: -50)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		converter.julianDayNumberFromDate(date)
