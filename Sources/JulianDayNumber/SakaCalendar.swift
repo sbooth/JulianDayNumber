@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -21,7 +21,7 @@
 /// | 9 | Mārgaśīrṣa | अग्रहायण | 30 |
 /// | 10 | Pauṣa | पौष | 30 |
 /// | 11 | Māgha | माघ | 30 |
-/// | 1 2| Phālguna | फाल्गुन | 30 |
+/// | 12 | Phālguna | फाल्गुन | 30 |
 ///
 /// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///
