@@ -76,7 +76,7 @@ All public classes, structs, and functions should be documented. If you notice a
 
 ## Limits
 
-The following table summarizes the arithmetic limits for Julian day number calculations.
+The following table summarizes the arithmetic limits for Julian day number calculations on platforms where `Int` is 64 bits.
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
