@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -214,15 +214,29 @@ extension HebrewCalendar {
 	/// - returns: The Julian day number of the first day of Tishrei in the specified year.
 	static func firstDayOfTishrei(year Y: Int) -> JulianDayNumber {
 		precondition(Y > 0, "First day of Tishrei calculations only valid for year numbers > 0")
-		precondition(Y < 974245219737, "Year values above 974245219736 cause numerical overflow using 64-bit integers")
 
 		// It is possible to adjust the year by a multiple of the cycle to have this function
 		// calculate correct values for the first day of Tishrei in proleptic years. However,
 		// this isn't a public function and the callers perform the translation before calling.
 
+#if true
+		let maxY = ((((Int.max - 204) / 793) * 19) + 234) / 235
+		precondition(Y <= maxY, "Year values above \(maxY) cause numerical overflow")
+
+		let a = (235 * Y - 234) / 19
+		let b = 204 + 793 * a
+		let c = 5 + 12 * a + b / 1080
+		var d = 1 + 29 * a + c / 24
+		let e = (b % 1080) + 1080 * (c % 24)
+#else
+		let maxY = ((((Int.max - 31524) / 765433) * 19) + 234) / 235
+		precondition(Y <= maxY, "Year values above \(maxY) cause numerical overflow")
+
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
 		var d = b / 25920
 		let e = b % 25920
+#endif
+
 		let f = 1 + (d % 7)
 		let g = ((7 * Y + 13) % 19) / 12
 		let h = ((7 * Y + 6) % 19) / 12
@@ -239,9 +253,16 @@ extension HebrewCalendar {
 	/// - returns: The year containing the specified Julian day number.
 	static func yearContaining(julianDayNumber J: JulianDayNumber) -> Int {
 		precondition(J >= epoch, "Julian day number must be >= epoch")
-		precondition(J < 355839970905665, "Julian day numbers above 355839970905664 cause numerical overflow using 64-bit integers")
 
+#if true
+		let ratio: Double = 25920 / 765433
+		let M = Int(ratio * Double(J - 347996)) + 1
+#else
+		let maxJ = (((JulianDayNumber.max - 1) * 765433) / 25920) + 347996
+		precondition(J <= maxJ, "Julian day numbers above \(maxJ) cause numerical overflow")
 		let M = (25920 * (J - 347996)) / 765433 + 1
+#endif
+
 		var Y = 19 * (M / 235) + (19 * (M % 235) - 2) / 235 + 1
 		let K = firstDayOfTishrei(year: Y)
 		if K > J {
