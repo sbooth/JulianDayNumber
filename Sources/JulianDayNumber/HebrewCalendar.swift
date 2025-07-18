@@ -257,8 +257,7 @@ extension HebrewCalendar {
 		let ratio: Double = 25920 / 765433
 		let M = Int(ratio * Double(J - 347996)) + 1
 #else
-		let maxJ = (((JulianDayNumber.max - 1) * 765433) / 25920) + 347996
-		precondition(J <= maxJ, "Julian day numbers > \(maxJ) cause numerical overflow")
+		precondition(J < 355839970905665, "Julian day numbers > 355839970905664 cause numerical overflow using 64-bit integers")
 		let M = (25920 * (J - 347996)) / 765433 + 1
 #endif
 
