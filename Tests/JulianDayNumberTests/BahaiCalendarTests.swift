@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -87,13 +87,13 @@ final class BahaiCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForBahaiCalendar = Int.min + 56457
+		let smallestJDNForBahaiCalendar: JulianDayNumber = .min + 56457
 		var (Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(smallestJDNForBahaiCalendar)
 		var jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForBahaiCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForBahaiCalendar = 2305795661307959248
+		let largestJDNForBahaiCalendar: JulianDayNumber = 2305795661307959248
 		(Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(largestJDNForBahaiCalendar)
 		jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForBahaiCalendar, jdn)

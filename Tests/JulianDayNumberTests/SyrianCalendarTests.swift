@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -30,13 +30,13 @@ final class SyrianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForSyrianCalendar = Int.min + 144
+		let smallestJDNForSyrianCalendar: JulianDayNumber = .min + 144
 		var (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(smallestJDNForSyrianCalendar)
 		var jdn = SyrianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForSyrianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForSyrianCalendar = (Int.max - 3) / 4 - 1401
+		let largestJDNForSyrianCalendar: JulianDayNumber = (.max - 3) / 4 - 1401
 		(Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(largestJDNForSyrianCalendar)
 		jdn = SyrianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForSyrianCalendar, jdn)

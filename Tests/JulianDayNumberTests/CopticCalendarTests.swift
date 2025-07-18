@@ -75,15 +75,15 @@ final class CopticCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForCopticCalendar = Int.min + 144
+//		let smallestJDNForCopticCalendar: JulianDayNumber = .min + 144
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForCopticCalendar = Int.min + 384
+		let smallestJDNForCopticCalendar: JulianDayNumber = .min + 384
 		var (Y, M, D) = CopticCalendar.dateFromJulianDayNumber(smallestJDNForCopticCalendar)
 		var jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForCopticCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForCopticCalendar = (Int.max - 3) / 4 - 124
+		let largestJDNForCopticCalendar: JulianDayNumber = (.max - 3) / 4 - 124
 		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(largestJDNForCopticCalendar)
 		jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForCopticCalendar, jdn)

@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -70,15 +70,15 @@ final class FrenchRepublicanCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForFrenchRepublicanCalendar = Int.min + 56456
+//		let smallestJDNForFrenchRepublicanCalendar: JulianDayNumber = .min + 56456
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForFrenchRepublicanCalendar = Int.min + 56759
+		let smallestJDNForFrenchRepublicanCalendar: JulianDayNumber = .min + 56759
 		var (Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(smallestJDNForFrenchRepublicanCalendar)
 		var jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForFrenchRepublicanCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForFrenchRepublicanCalendar = 2305795661307960548
+		let largestJDNForFrenchRepublicanCalendar: JulianDayNumber = 2305795661307960548
 		(Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(largestJDNForFrenchRepublicanCalendar)
 		jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForFrenchRepublicanCalendar, jdn)

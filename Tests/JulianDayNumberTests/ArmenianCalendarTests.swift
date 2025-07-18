@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -49,15 +49,15 @@ final class ArmenianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForArmenianCalendar = Int.min + 294
+//		let smallestJDNForArmenianCalendar: JulianDayNumber = .min + 294
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForArmenianCalendar = Int.min + 341
+		let smallestJDNForArmenianCalendar: JulianDayNumber = .min + 341
 		var (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(smallestJDNForArmenianCalendar)
 		var jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForArmenianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForArmenianCalendar = Int.max - 317
+		let largestJDNForArmenianCalendar: JulianDayNumber = .max - 317
 		(Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(largestJDNForArmenianCalendar)
 		jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForArmenianCalendar, jdn)

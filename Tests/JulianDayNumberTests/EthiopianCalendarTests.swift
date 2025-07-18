@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -78,15 +78,15 @@ final class EthiopianCalendarTests: XCTestCase {
 
 	func testArithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForEthiopianCalendar = Int.min + 144
+//		let smallestJDNForEthiopianCalendar: JulianDayNumber = .min + 144
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForEthiopianCalendar = Int.min + 384
+		let smallestJDNForEthiopianCalendar: JulianDayNumber = .min + 384
 		var (Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(smallestJDNForEthiopianCalendar)
 		var jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(smallestJDNForEthiopianCalendar, jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEthiopianCalendar = (Int.max - 3) / 4 - 124
+		let largestJDNForEthiopianCalendar: JulianDayNumber = (.max - 3) / 4 - 124
 		(Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(largestJDNForEthiopianCalendar)
 		jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		XCTAssertEqual(largestJDNForEthiopianCalendar, jdn)
