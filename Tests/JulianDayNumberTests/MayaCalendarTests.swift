@@ -68,15 +68,15 @@ import Testing
 		var b, k, t, u, d: Int
 
 		// Values smaller than this cause an arithmetic overflow in longCountFromJulianDayNumber
-//		let smallestJDNForMayaCalendar = Int.min + 584283
+//		let smallestJDNForMayaCalendar: JulianDayNumber = .min + 584283
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFromLongCount
-		let smallestJDNForMayaCalendar = Int.min + 584291
+		let smallestJDNForMayaCalendar: JulianDayNumber = .min + 584291
 		(b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(smallestJDNForMayaCalendar)
 		var jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 		#expect(smallestJDNForMayaCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in longCountFromJulianDayNumber
-		let largestJDNForMayaCalendar = Int.max
+		let largestJDNForMayaCalendar: JulianDayNumber = .max
 		(b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(largestJDNForMayaCalendar)
 		jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 		#expect(largestJDNForMayaCalendar == jdn)

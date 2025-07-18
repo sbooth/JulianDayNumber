@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -122,7 +122,7 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
 	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
 		let julianDatePlus12Hours = julianDate + 0.5
-		let J = Int(julianDatePlus12Hours.rounded(.down))
+		let J = JulianDayNumber(julianDatePlus12Hours.rounded(.down))
 		let (Y, M, D) = dateFromJulianDayNumber(J)
 		var (_, dayFraction) = modf(julianDatePlus12Hours)
 		if dayFraction < 0 {
