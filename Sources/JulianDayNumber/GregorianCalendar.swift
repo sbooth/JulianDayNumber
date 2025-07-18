@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -156,7 +156,7 @@ extension GregorianCalendar: JulianDayNumberConverting {
 	public typealias DateType = JulianCalendar.DateType
 
 	/// The converter for the Gregorian calendar.
-	static let converter = JDNGregorianTypeConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
+	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		converter.julianDayNumberFromDate(date)
