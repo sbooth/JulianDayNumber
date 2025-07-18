@@ -229,8 +229,7 @@ extension HebrewCalendar {
 		var d = 1 + 29 * a + c / 24
 		let e = (b % 1080) + 1080 * (c % 24)
 #else
-		let maxY = ((((Int.max - 31524) / 765433) * 19) + 234) / 235
-		precondition(Y <= maxY, "Year numbers > \(maxY) cause numerical overflow")
+		precondition(Y < 974245219737, "Year numbers > 974245219736 cause numerical overflow using 64-bit integers")
 
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
 		var d = b / 25920
