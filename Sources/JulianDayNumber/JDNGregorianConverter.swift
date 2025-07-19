@@ -88,9 +88,13 @@ struct JDNGregorianConverter {
 		}
 
 		precondition(J <= Int.max - j, "Julian day number too large")
-
 		var f = J + j
+
+		precondition(J <= (Int.max - B) / 4, "Julian day number too large")
+		precondition((((4 * J + B) / 146097) * 3) / 4 + C < Int.max, "Julian day number too large")
 		f = f + (((4 * J + B) / 146097) * 3) / 4 + C
+
+		precondition(f <= (Int.max - v) / r, "Julian day number too large")
 		let e = r * f + v
 		let g = (e % p) / r
 		let h = u * g + w
