@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -68,6 +68,15 @@ public struct IslamicCalendar {
 
 	/// The number of months in one year.
 	public static let monthsInYear = 12
+
+	/// Returns the number of days in the specified year in the Islamic calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 355 : 354
+	}
 
 	/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhú’l-Hijjab).
 	static let monthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]

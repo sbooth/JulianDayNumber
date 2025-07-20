@@ -86,6 +86,15 @@ public struct JulianCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 12
 
+	/// Returns the number of days in the specified year in the Julian calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
+
 	/// The number of days in each month indexed from `0` (January) to `11` (December).
 	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
