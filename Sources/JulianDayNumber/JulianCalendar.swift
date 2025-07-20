@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -113,7 +113,7 @@ public struct JulianCalendar {
 	///
 	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
 	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
-		1 + (J + 1) % 7
+		Int(1 + (J + 1) % 7)
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.
