@@ -13,6 +13,53 @@ import Testing
 		#expect(MacedonianCalendar.dateFromJulianDayNumber(1607709) == (1, 1, 1))
 	}
 
+	@Test func leapYear() {
+		#expect(!MacedonianCalendar.isLeapYear(1))
+		#expect(MacedonianCalendar.isLeapYear(3))
+		#expect(MacedonianCalendar.isLeapYear(7))
+		#expect(MacedonianCalendar.isLeapYear(1739))
+		#expect(!MacedonianCalendar.isLeapYear(1740))
+		#expect(MacedonianCalendar.isLeapYear(-1))
+		#expect(!MacedonianCalendar.isLeapYear(-2))
+
+		for y in -500...500 {
+			let isLeap = MacedonianCalendar.isLeapYear(y)
+			let j = MacedonianCalendar.julianDayNumberFrom(year: y, month: 6, day: isLeap ? 29 : 28)
+			let d = MacedonianCalendar.dateFromJulianDayNumber(j)
+			#expect(d.month == 6)
+			#expect(d.day == (isLeap ? 29 : 28))
+		}
+	}
+
+	@Test func monthCount() {
+		#expect(MacedonianCalendar.monthsInYear == 12)
+	}
+
+	@Test func monthLength() {
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 1) == 30)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 2) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 3) == 30)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 4) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 5) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 7) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 8) == 30)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 9) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 10) == 30)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 11) == 31)
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 12) == 31)
+
+		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 6) == 28)
+		#expect(MacedonianCalendar.daysInMonth(year: 3, month: 6) == 29)
+	}
+
+	@Test func yearLength() {
+		#expect(MacedonianCalendar.daysInYear(1) == 365)
+		#expect(MacedonianCalendar.daysInYear(3) == 366)
+		#expect(MacedonianCalendar.daysInYear(7) == 366)
+		#expect(MacedonianCalendar.daysInYear(8) == 365)
+		#expect(MacedonianCalendar.daysInYear(1739) == 366)
+	}
+
 	@Test func limits() {
 		#expect(MacedonianCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363642291.5)
 		#expect(MacedonianCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34917291.5)

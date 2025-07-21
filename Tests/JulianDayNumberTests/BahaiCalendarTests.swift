@@ -41,28 +41,22 @@ import Testing
 	}
 
 	@Test func monthLength() {
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 1) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 2) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 3) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 4) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 5) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 6) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 7) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 8) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 9) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 10) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 11) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 12) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 13) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 14) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 15) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 16) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 17) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 18) == 19)
+		for month in 1...18 {
+			#expect(BahaiCalendar.daysInMonth(year: 1, month: month) == 19)
+		}
+		#expect(BahaiCalendar.daysInMonth(year: 1, month: 19) == 4)
 		#expect(BahaiCalendar.daysInMonth(year: 1, month: 20) == 19)
 		#expect(BahaiCalendar.daysInMonth(year: 2, month: 19) == 4)
 		#expect(BahaiCalendar.daysInMonth(year: 3, month: 19) == 4)
 		#expect(BahaiCalendar.daysInMonth(year: 4, month: 19) == 5)
+	}
+
+	@Test func yearLength() {
+		#expect(BahaiCalendar.daysInYear(1) == 365)
+		#expect(BahaiCalendar.daysInYear(4) == 366)
+		#expect(BahaiCalendar.daysInYear(750) == 365)
+		#expect(BahaiCalendar.daysInYear(1236) == 366)
+		#expect(BahaiCalendar.daysInYear(1600) == 366)
 	}
 
 	@Test func julianDayNumber() {

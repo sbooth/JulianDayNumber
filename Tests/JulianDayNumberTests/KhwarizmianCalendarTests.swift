@@ -15,6 +15,10 @@ import Testing
 		#expect(KhwarizmianCalendar.daysInMonth(13) == 5)
 	}
 
+	@Test func yearLength() {
+		#expect(KhwarizmianCalendar.daysInYear == 365)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(KhwarizmianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1952068)
 		#expect(KhwarizmianCalendar.dateFromJulianDayNumber(1952068) == (1, 1, 1))

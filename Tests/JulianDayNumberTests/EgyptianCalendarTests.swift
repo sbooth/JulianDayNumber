@@ -23,6 +23,10 @@ import Testing
 		#expect(EgyptianCalendar.daysInMonth(month: 13) == 5)
 	}
 
+	@Test func yearLength() {
+		#expect(EgyptianCalendar.daysInYear == 365)
+	}
+
 	@Test func julianDayNumber() {
 		// From Richards
 		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1448638)
