@@ -9,20 +9,20 @@ public struct AstronomicalCalendar {
 	/// The year, month, and day when the Gregorian calendar took effect.
 	static let gregorianCalendarEffectiveDate: DateType = (year: 1582, month: 10, day: 15)
 
-	/// A year in the astromical calendar.
+	/// A year in the astronomical calendar.
 	public typealias Year = JulianCalendar.Year
 
-	/// A month in the astromical calendar numbered from `1` (January) to `12` (December).
+	/// A month in the astronomical calendar numbered from `1` (January) to `12` (December).
 	public typealias Month = JulianCalendar.Month
 
-	/// A day in the astromical calendar numbered starting from `1`.
+	/// A day in the astronomical calendar numbered starting from `1`.
 	public typealias Day = JulianCalendar.Day
 
-	/// Returns `true` if the specified year, month, and day form a valid date in the astromical calendar.
+	/// Returns `true` if the specified year, month, and day form a valid date in the astronomical calendar.
 	///
 	/// - parameter date: A date to convert.
 	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the astromical calendar.
+	/// - returns: `true` if the specified year, month, and day form a valid date in the astronomical calendar.
 	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		(Y, M, D) < gregorianCalendarEffectiveDate ? JulianCalendar.isDateValid(year: Y, month: M, day: D) : GregorianCalendar.isDateValid(year: Y, month: M, day: D)
 	}
@@ -45,11 +45,11 @@ public struct AstronomicalCalendar {
 		julianDayNumber < GregorianCalendar.effectiveJulianDayNumber
 	}
 
-	/// Returns `true` if the specified year is a leap year in the astromical calendar.
+	/// Returns `true` if the specified year is a leap year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.
 	///
-	/// - returns: `true` if the specified year is a leap year in the astromical calendar.
+	/// - returns: `true` if the specified year is a leap year in the astronomical calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
 		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
@@ -57,26 +57,38 @@ public struct AstronomicalCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = JulianCalendar.monthsInYear
 
-	/// Returns the number of days in the specified year in the astromical calendar.
+	/// Returns the number of days in the specified year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.
 	///
+	/// - note: This function accounts for the Julian to Gregorian calendar changeover.
+	///
 	/// - returns: The number of days in the specified year.
 	public static func daysInYear(_ Y: Year) -> Int {
-		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInYear(Y) : GregorianCalendar.daysInYear(Y)
+		if Y == gregorianCalendarEffectiveDate.year {
+			return 355
+		} else {
+			return Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInYear(Y) : GregorianCalendar.daysInYear(Y)
+		}
 	}
 
-	/// Returns the number of days in the specified month and year in the astromical calendar.
+	/// Returns the number of days in the specified month and year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
 	///
+	/// - note: This function accounts for the Julian to Gregorian calendar changeover.
+	///
 	/// - returns: The number of days in the specified month and year.
 	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
+		if Y == gregorianCalendarEffectiveDate.year && M == gregorianCalendarEffectiveDate.month {
+			return 21
+		} else {
+			return Y < gregorianCalendarEffectiveDate.year ? JulianCalendar.daysInMonth(year: Y, month: M) : GregorianCalendar.daysInMonth(year: Y, month: M)
+		}
 	}
 
-	/// Returns the month and day of Easter in the specified year in the astromical calendar.
+	/// Returns the month and day of Easter in the specified year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.
 	///
@@ -90,7 +102,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 	/// A date in the astronomical calendar consists of a year, month, and day in either the Julian or Gregorian calendar.
 	public typealias DateType = JulianCalendar.DateType
 
-	/// Converts a date in the astromical calendar to a Julian day number.
+	/// Converts a date in the astronomical calendar to a Julian day number.
 	///
 	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.
 	///
@@ -103,7 +115,7 @@ extension AstronomicalCalendar: JulianDayNumberConverting {
 		date < gregorianCalendarEffectiveDate ? JulianCalendar.julianDayNumberFromDate(date) : GregorianCalendar.julianDayNumberFromDate(date)
 	}
 
-	/// Converts a Julian day number to a date in the astromical calendar.
+	/// Converts a Julian day number to a date in the astronomical calendar.
 	///
 	/// Julian day numbers less than 2299161 treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
 	///
