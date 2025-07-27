@@ -53,6 +53,9 @@ import Testing
 		let oct31 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 31)
 		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 10) == (oct31 - oct1 + 1))
 
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 9) == JulianCalendar.daysInMonth(year: 1582, month: 9))
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 11) == GregorianCalendar.daysInMonth(year: 1582, month: 11))
+
 		#expect(AstronomicalCalendar.daysInYear(1582) == 355)
 		let jan1 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 1, day: 1)
 		let dec31 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 12, day: 31)
