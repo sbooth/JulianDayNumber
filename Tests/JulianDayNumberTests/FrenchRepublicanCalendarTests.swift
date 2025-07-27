@@ -48,6 +48,15 @@ import Testing
 		#expect(FrenchRepublicanCalendar.daysInMonth(year: 4, month: 13) == 5)
 	}
 
+	@Test func yearLength() {
+		#expect(FrenchRepublicanCalendar.daysInYear(3) == 366)
+		#expect(FrenchRepublicanCalendar.daysInYear(4) == 365)
+		#expect(FrenchRepublicanCalendar.daysInYear(99) == 365)
+		#expect(FrenchRepublicanCalendar.daysInYear(103) == 366)
+		#expect(FrenchRepublicanCalendar.daysInYear(750) == 365)
+		#expect(FrenchRepublicanCalendar.daysInYear(1600) == 365)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 2375840)
 	}

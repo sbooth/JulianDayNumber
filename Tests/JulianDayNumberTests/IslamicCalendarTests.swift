@@ -60,21 +60,48 @@ import Testing
 	}
 
 	@Test func monthLength() {
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 1) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 2) == 29)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 3) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 4) == 29)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 5) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 6) == 29)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 7) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 8) == 29)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 9) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 10) == 29)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 11) == 30)
-		#expect(IslamicCalendar.daysInMonth(year: 1, month: 12) == 29)
+		for month in stride(from: 1, through: 12, by: 2) {
+			#expect(IslamicCalendar.daysInMonth(year: 1, month: month) == 30)
+		}
+		for month in stride(from: 2, through: 12, by: 2) {
+			#expect(IslamicCalendar.daysInMonth(year: 1, month: month) == 29)
+		}
 		#expect(IslamicCalendar.daysInMonth(year: 2, month: 12) == 30)
 		#expect(IslamicCalendar.daysInMonth(year: 4, month: 12) == 29)
 		#expect(IslamicCalendar.daysInMonth(year: 7, month: 12) == 30)
+	}
+
+	@Test func yearLength() {
+		#expect(IslamicCalendar.daysInYear(1) == 354)
+		#expect(IslamicCalendar.daysInYear(2) == 355)
+		#expect(IslamicCalendar.daysInYear(3) == 354)
+		#expect(IslamicCalendar.daysInYear(4) == 354)
+		#expect(IslamicCalendar.daysInYear(5) == 355)
+		#expect(IslamicCalendar.daysInYear(6) == 354)
+		#expect(IslamicCalendar.daysInYear(7) == 355)
+		#expect(IslamicCalendar.daysInYear(8) == 354)
+		#expect(IslamicCalendar.daysInYear(9) == 354)
+		#expect(IslamicCalendar.daysInYear(10) == 355)
+		#expect(IslamicCalendar.daysInYear(11) == 354)
+		#expect(IslamicCalendar.daysInYear(12) == 354)
+		#expect(IslamicCalendar.daysInYear(13) == 355)
+		#expect(IslamicCalendar.daysInYear(14) == 354)
+		#expect(IslamicCalendar.daysInYear(15) == 354)
+		#expect(IslamicCalendar.daysInYear(16) == 355)
+		#expect(IslamicCalendar.daysInYear(17) == 354)
+		#expect(IslamicCalendar.daysInYear(18) == 355)
+		#expect(IslamicCalendar.daysInYear(19) == 354)
+		#expect(IslamicCalendar.daysInYear(20) == 354)
+		#expect(IslamicCalendar.daysInYear(21) == 355)
+		#expect(IslamicCalendar.daysInYear(22) == 354)
+		#expect(IslamicCalendar.daysInYear(23) == 354)
+		#expect(IslamicCalendar.daysInYear(24) == 355)
+		#expect(IslamicCalendar.daysInYear(25) == 354)
+		#expect(IslamicCalendar.daysInYear(26) == 355)
+		#expect(IslamicCalendar.daysInYear(27) == 354)
+		#expect(IslamicCalendar.daysInYear(28) == 354)
+		#expect(IslamicCalendar.daysInYear(29) == 355)
+		#expect(IslamicCalendar.daysInYear(30) == 354)
 	}
 
 	@Test func julianDayNumber() {

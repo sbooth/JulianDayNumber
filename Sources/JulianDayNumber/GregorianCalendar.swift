@@ -90,6 +90,15 @@ public struct GregorianCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = JulianCalendar.monthsInYear
 
+	/// Returns the number of days in the specified year in the Gregorian calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
+
 	/// Returns the number of days in the specified month and year in the Gregorian calendar.
 	///
 	/// - parameter Y: A year number.

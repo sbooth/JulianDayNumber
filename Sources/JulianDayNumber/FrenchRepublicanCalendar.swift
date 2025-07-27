@@ -72,6 +72,15 @@ public struct FrenchRepublicanCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 13
 
+	/// Returns the number of days in the specified year in the French Republican calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
+
 	/// The number of days in each month indexed from `0` (Vendémiaire) to `11` (Fructidor), with the epagomenal days (Sansculottides) treated as month `12`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 

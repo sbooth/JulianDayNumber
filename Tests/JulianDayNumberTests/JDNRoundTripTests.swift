@@ -206,8 +206,8 @@ import Testing
 	}
 
 	@Test func maya() {
-		let minJ = MayaCalendar.longCountEpoch + minYear * 365
-		let maxJ = MayaCalendar.longCountEpoch + maxYear * 365
+		let minJ = MayaCalendar.longCountEpoch + JulianDayNumber(minYear) * 365
+		let maxJ = MayaCalendar.longCountEpoch + JulianDayNumber(maxYear) * 365
 		for J in minJ...maxJ {
 			let (b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(J)
 			let jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)

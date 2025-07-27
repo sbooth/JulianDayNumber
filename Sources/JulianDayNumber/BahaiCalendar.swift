@@ -74,6 +74,15 @@ public struct BahaiCalendar {
 	/// The number of months in one year.
 	public static let monthsInYear = 20
 
+	/// Returns the number of days in the specified year in the Baháʼí calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
+
 	/// The number of days in each month indexed from `0` (Bahá) to `19` (ʻAláʼ), with the epagomenal days (Ayyám-i-Há) treated as month `18`.
 	static let monthLengths = [ 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 4, 19 ]
 

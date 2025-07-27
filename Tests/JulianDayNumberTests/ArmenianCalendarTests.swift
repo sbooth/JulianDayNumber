@@ -15,6 +15,10 @@ import Testing
 		#expect(ArmenianCalendar.daysInMonth(13) == 5)
 	}
 
+	@Test func yearLength() {
+		#expect(ArmenianCalendar.daysInYear == 365)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(ArmenianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1922868)
 		#expect(ArmenianCalendar.julianDayNumberFrom(year: 1473, month: 4, day: 24) == 2460261)

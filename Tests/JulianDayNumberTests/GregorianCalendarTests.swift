@@ -46,6 +46,25 @@ import Testing
 		#expect(GregorianCalendar.daysInMonth(year: 1700, month: 2) == 28)
 	}
 
+	@Test func yearLength() {
+		#expect(GregorianCalendar.daysInYear(4) == 366)
+		#expect(GregorianCalendar.daysInYear(1581) == 365)
+		#expect(GregorianCalendar.daysInYear(1582) == 365)
+		#expect(GregorianCalendar.daysInYear(1583) == 365)
+		#expect(GregorianCalendar.daysInYear(1600) == 366)
+
+		var sum = 0
+		for m in 1 ... 12 {
+			sum += GregorianCalendar.daysInMonth(year: 1961, month: m)
+		}
+
+		let jan1 = GregorianCalendar.julianDayNumberFrom(year: 1961, month: 1, day: 1)
+		let dec31 = GregorianCalendar.julianDayNumberFrom(year: 1961, month: 12, day: 31)
+
+		#expect(GregorianCalendar.daysInYear(1961) == sum)
+		#expect(sum == (dec31 - jan1 + 1))
+	}
+
 	func testEaster() {
 		// Dates from Meeus (1998)
 		#expect(GregorianCalendar.easter(year: 1991) == (3, 31))

@@ -13,6 +13,53 @@ import Testing
 		#expect(SyrianCalendar.dateFromJulianDayNumber(1607739) == (1, 1, 1))
 	}
 
+	@Test func leapYear() {
+		#expect(!SyrianCalendar.isLeapYear(1))
+		#expect(SyrianCalendar.isLeapYear(3))
+		#expect(SyrianCalendar.isLeapYear(7))
+		#expect(SyrianCalendar.isLeapYear(1739))
+		#expect(!SyrianCalendar.isLeapYear(1740))
+		#expect(SyrianCalendar.isLeapYear(-1))
+		#expect(!SyrianCalendar.isLeapYear(-2))
+
+		for y in -500...500 {
+			let isLeap = SyrianCalendar.isLeapYear(y)
+			let j = SyrianCalendar.julianDayNumberFrom(year: y, month: 6, day: isLeap ? 29 : 28)
+			let d = SyrianCalendar.dateFromJulianDayNumber(j)
+			#expect(d.month == 6)
+			#expect(d.day == (isLeap ? 29 : 28))
+		}
+	}
+
+	@Test func monthCount() {
+		#expect(SyrianCalendar.monthsInYear == 12)
+	}
+
+	@Test func monthLength() {
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 1) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 2) == 30)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 3) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 4) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 6) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 7) == 30)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 8) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 9) == 30)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 10) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 11) == 31)
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 12) == 30)
+
+		#expect(SyrianCalendar.daysInMonth(year: 1, month: 5) == 28)
+		#expect(SyrianCalendar.daysInMonth(year: 3, month: 5) == 29)
+	}
+
+	@Test func yearLength() {
+		#expect(SyrianCalendar.daysInYear(1) == 365)
+		#expect(SyrianCalendar.daysInYear(3) == 366)
+		#expect(SyrianCalendar.daysInYear(7) == 366)
+		#expect(SyrianCalendar.daysInYear(8) == 365)
+		#expect(SyrianCalendar.daysInYear(1739) == 366)
+	}
+
 	@Test func limits() {
 		#expect(SyrianCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363642261.5)
 		#expect(SyrianCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34917261.5)

@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -55,6 +55,9 @@ public struct EgyptianCalendar {
 
 	/// The number of months in one year.
 	public static let monthsInYear = 13
+
+	/// The number of days in one year.
+	public static let daysInYear = 365
 
 	/// The number of days in each month indexed from `0` (Thoth) to `11` (Mesore), with the 5 epagomenal days treated as month `12`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]

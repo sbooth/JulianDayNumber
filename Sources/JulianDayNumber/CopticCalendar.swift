@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -66,6 +66,15 @@ public struct CopticCalendar {
 
 	/// The number of months in one year.
 	public static let monthsInYear = 13
+
+	/// Returns the number of days in the specified year in the Coptic calendar.
+	///
+	/// - parameter Y: A year number.
+	///
+	/// - returns: The number of days in the specified year.
+	public static func daysInYear(_ Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
 
 	/// The number of days in each month indexed from `0` (Thout) to `12` (Pi Kogi Enavot).
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]

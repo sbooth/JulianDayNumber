@@ -36,20 +36,19 @@ import Testing
 	}
 
 	@Test func monthLength() {
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 1) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 2) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 3) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 4) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 5) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 6) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 7) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 8) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 9) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 10) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 11) == 30)
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 12) == 30)
+		for month in 1...12 {
+			#expect(CopticCalendar.daysInMonth(year: 1, month: month) == 30)
+		}
 		#expect(CopticCalendar.daysInMonth(year: 1, month: 13) == 5)
 		#expect(CopticCalendar.daysInMonth(year: 3, month: 13) == 6)
+	}
+
+	@Test func yearLength() {
+		#expect(CopticCalendar.daysInYear(1) == 365)
+		#expect(CopticCalendar.daysInYear(3) == 366)
+		#expect(CopticCalendar.daysInYear(7) == 366)
+		#expect(CopticCalendar.daysInYear(8) == 365)
+		#expect(CopticCalendar.daysInYear(1739) == 366)
 	}
 
 	@Test func julianDayNumber() {
