@@ -180,6 +180,28 @@ import Testing
 		#expect(HebrewCalendar.daysInMonth(year: 4, month: 6) == 29)
 	}
 
+	@Test func yearLength() {
+		#expect(HebrewCalendar.daysInYear(1) == 355)
+		#expect(HebrewCalendar.daysInYear(2) == 355)
+		#expect(HebrewCalendar.daysInYear(3) == 383)
+		#expect(HebrewCalendar.daysInYear(4) == 354)
+		#expect(HebrewCalendar.daysInYear(5) == 355)
+		#expect(HebrewCalendar.daysInYear(6) == 385)
+		#expect(HebrewCalendar.daysInYear(7) == 354)
+		#expect(HebrewCalendar.daysInYear(8) == 383)
+		#expect(HebrewCalendar.daysInYear(9) == 355)
+		#expect(HebrewCalendar.daysInYear(10) == 354)
+		#expect(HebrewCalendar.daysInYear(11) == 383)
+		#expect(HebrewCalendar.daysInYear(12) == 355)
+		#expect(HebrewCalendar.daysInYear(13) == 354)
+		#expect(HebrewCalendar.daysInYear(14) == 385)
+		#expect(HebrewCalendar.daysInYear(15) == 353)
+		#expect(HebrewCalendar.daysInYear(16) == 354)
+		#expect(HebrewCalendar.daysInYear(17) == 385)
+		#expect(HebrewCalendar.daysInYear(18) == 355)
+		#expect(HebrewCalendar.daysInYear(19) == 383)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(HebrewCalendar.julianDayNumberFrom(year: -999999, month: 1, day: 1) == -364898823)
 		#expect(HebrewCalendar.julianDayNumberFrom(year: -99999, month: 1, day: 1) == -36176711)

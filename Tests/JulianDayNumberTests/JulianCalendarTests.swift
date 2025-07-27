@@ -21,6 +21,7 @@ import Testing
 		#expect(JulianCalendar.isLeapYear(900))
 		#expect(JulianCalendar.isLeapYear(1236))
 		#expect(!JulianCalendar.isLeapYear(1429))
+		#expect(JulianCalendar.isLeapYear(1700))
 		#expect(!JulianCalendar.isLeapYear(-3))
 		#expect(JulianCalendar.isLeapYear(-4))
 		#expect(JulianCalendar.isLeapYear(-8))
@@ -42,6 +43,14 @@ import Testing
 	@Test func monthLength() {
 		#expect(JulianCalendar.daysInMonth(year: 1600, month: 2) == 29)
 		#expect(JulianCalendar.daysInMonth(year: 1700, month: 2) == 29)
+	}
+
+	@Test func yearLength() {
+		#expect(JulianCalendar.daysInYear(1) == 365)
+		#expect(JulianCalendar.daysInYear(4) == 366)
+		#expect(JulianCalendar.daysInYear(100) == 366)
+		#expect(JulianCalendar.daysInYear(750) == 365)
+		#expect(JulianCalendar.daysInYear(900) == 366)
 	}
 
 	@Test func ordinalDay() {

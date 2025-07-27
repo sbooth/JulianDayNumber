@@ -45,6 +45,14 @@ import Testing
 		#expect(EthiopianCalendar.daysInMonth(year: 3, month: 13) == 6)
 	}
 
+	@Test func yearLength() {
+		#expect(EthiopianCalendar.daysInYear(1) == 365)
+		#expect(EthiopianCalendar.daysInYear(3) == 366)
+		#expect(EthiopianCalendar.daysInYear(7) == 366)
+		#expect(EthiopianCalendar.daysInYear(8) == 365)
+		#expect(EthiopianCalendar.daysInYear(1739) == 366)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(EthiopianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1724221)
 		#expect(EthiopianCalendar.dateFromJulianDayNumber(1724221) == (1, 1, 1))

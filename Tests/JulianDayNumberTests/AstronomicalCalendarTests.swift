@@ -16,6 +16,7 @@ import Testing
 
 	@Test func leapYear() {
 		#expect(AstronomicalCalendar.isLeapYear(900))
+		#expect(!AstronomicalCalendar.isLeapYear(1700))
 
 		for y in -1000...2000 {
 			let isLeap = AstronomicalCalendar.isLeapYear(y)
@@ -44,6 +45,43 @@ import Testing
 		#expect(AstronomicalCalendar.daysInMonth(year: 1900, month: 11) == 30)
 		#expect(AstronomicalCalendar.daysInMonth(year: 1900, month: 12) == 31)
 		#expect(AstronomicalCalendar.daysInMonth(year: 1600, month: 2) == 29)
+	}
+
+	@Test func changeover() {
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 10) == 21)
+		let oct1 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 1)
+		let oct31 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 31)
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 10) == (oct31 - oct1 + 1))
+
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 9) == JulianCalendar.daysInMonth(year: 1582, month: 9))
+		#expect(AstronomicalCalendar.daysInMonth(year: 1582, month: 11) == GregorianCalendar.daysInMonth(year: 1582, month: 11))
+
+		#expect(AstronomicalCalendar.isDateValid(year: 1582, month: 10, day: 3) == true)
+		#expect(AstronomicalCalendar.isDateValid(year: 1582, month: 10, day: 4) == true)
+		for day in 5...14 {
+			#expect(AstronomicalCalendar.isDateValid(year: 1582, month: 10, day: day) == false)
+		}
+		#expect(AstronomicalCalendar.isDateValid(year: 1582, month: 10, day: 15) == true)
+		#expect(AstronomicalCalendar.isDateValid(year: 1582, month: 10, day: 16) == true)
+
+		#expect(AstronomicalCalendar.dateFromJulianDayNumber(GregorianCalendar.effectiveJulianDayNumber) == (1582, 10, 15))
+		#expect(AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 15) == GregorianCalendar.effectiveJulianDayNumber)
+
+		#expect(AstronomicalCalendar.dateFromJulianDayNumber(GregorianCalendar.effectiveJulianDayNumber - 1) == (1582, 10, 4))
+		#expect(AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 4) == GregorianCalendar.effectiveJulianDayNumber - 1)
+
+		#expect(AstronomicalCalendar.daysInYear(1582) == 355)
+		let jan1 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 1, day: 1)
+		let dec31 = AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 12, day: 31)
+		#expect(AstronomicalCalendar.daysInYear(1582) == (dec31 - jan1 + 1))
+
+		var sum = 0
+		for m in 1...12 {
+			sum += AstronomicalCalendar.daysInMonth(year: 1582, month: m)
+		}
+
+		#expect(AstronomicalCalendar.daysInYear(1582) == sum)
+		#expect(sum == (dec31 - jan1 + 1))
 	}
 
 	@Test func easter() {

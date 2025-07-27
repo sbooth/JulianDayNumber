@@ -20,6 +20,7 @@ import Testing
 		#expect(!SakaCalendar.isLeapYear(100))
 		#expect(SakaCalendar.isLeapYear(750))
 		#expect(!SakaCalendar.isLeapYear(1429))
+		#expect(SakaCalendar.isLeapYear(1522))
 		#expect(!SakaCalendar.isLeapYear(-3))
 		#expect(SakaCalendar.isLeapYear(-78))
 
@@ -49,6 +50,14 @@ import Testing
 		#expect(SakaCalendar.daysInMonth(year: 1, month: 10) == 30)
 		#expect(SakaCalendar.daysInMonth(year: 1, month: 11) == 30)
 		#expect(SakaCalendar.daysInMonth(year: 1, month: 12) == 30)
+	}
+
+	@Test func yearLength() {
+		#expect(SakaCalendar.daysInYear(4) == 365)
+		#expect(SakaCalendar.daysInYear(78) == 366)
+		#expect(SakaCalendar.daysInYear(100) == 365)
+		#expect(SakaCalendar.daysInYear(750) == 366)
+		#expect(SakaCalendar.daysInYear(1522) == 366)
 	}
 
 	@Test func julianDayNumber() {

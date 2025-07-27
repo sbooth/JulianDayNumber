@@ -8,6 +8,20 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct PersianCalendarTests {
+	@Test func monthLength() {
+		for month in 1...8 {
+			#expect(PersianCalendar.daysInMonth(month) == 30)
+		}
+		#expect(PersianCalendar.daysInMonth(9) == 5)
+		for month in 10...13 {
+			#expect(PersianCalendar.daysInMonth(month) == 30)
+		}
+	}
+
+	@Test func yearLength() {
+		#expect(PersianCalendar.daysInYear == 365)
+	}
+
 	@Test func julianDayNumber() {
 		#expect(PersianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1952063)
 		#expect(PersianCalendar.dateFromJulianDayNumber(1952063) == (1, 1, 1))
