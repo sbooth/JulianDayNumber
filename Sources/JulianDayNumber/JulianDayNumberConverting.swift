@@ -40,7 +40,7 @@ public protocol JulianDayNumberConverting {
 	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType
 }
 
-extension JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
+extension JulianDayNumberConverting where Self: Calendar {
 	/// Converts a year, month, and day to a Julian day number and returns the result.
 	///
 	/// - parameter Y: A year number.
@@ -48,9 +48,12 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter D: A day number.
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Int, month M: Int, day D: Int) -> JulianDayNumber {
+	public static func julianDayNumberFrom(year Y: Year, month M: Month, day D: Day) -> JulianDayNumber {
 		julianDayNumberFromDate((Y, M, D))
 	}
+
+	/// An ordinal day.
+	public typealias OrdinalDay = Int
 
 	/// Converts a year, month, and day to an ordinal day and returns the result.
 	///
@@ -59,8 +62,8 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter D: A day number.
 	///
 	/// - returns: The ordinal day corresponding to the specified year, month, and day.
-	public static func ordinalDayFrom(year Y: Int, month M: Int, day D: Int) -> Int {
-		Int(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
+	public static func ordinalDayFrom(year Y: Year, month M: Month, day D: Day) -> OrdinalDay {
+		OrdinalDay(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
 	}
 
 	/// Converts a year and ordinal day to a year, month, and day and returns the result.
@@ -69,7 +72,7 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter N: An ordinal day number.
 	///
 	/// - returns: The year, month, and day corresponding to the specified year and ordinal day.
-	public static func dateFrom(year Y: Int, ordinalDay N: Int) -> DateType {
+	public static func dateFrom(year Y: Year, ordinalDay N: OrdinalDay) -> DateType {
 		dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + JulianDayNumber(N) - 1)
 	}
 }
@@ -84,7 +87,19 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 /// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
 public typealias JulianDate = Double
 
-extension JulianDayNumberConverting where DateType == (year: Int, month: Int, day: Int) {
+extension JulianDayNumberConverting where Self: Calendar {
+	/// An hour number on the half-open interval `[0, 24)`.
+	public typealias Hour = Int
+
+	/// A minute number on the half-open interval `[0, 60)`.
+	public typealias Minute = Int
+
+	/// A second number on the half-open interval `[0, 60)`.
+	public typealias Second = Double
+
+	/// A decimal fractional day number.
+	public typealias FractionalDay = Double
+
 	/// Converts the specified year, month, day, hour, minute, and second to a Julian date and returns the result.
 	///
 	/// - important: No validation checks are performed on the date values.
@@ -92,25 +107,25 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
-	/// - parameter h: An hour number between `0` and `23`.
-	/// - parameter m: A minute number between `0` and `59`.
-	/// - parameter s: A second number between `0` and `59`.
+	/// - parameter h: An hour number on the half-open interval `[0, 24)`.
+	/// - parameter m: A minute number on the half-open interval `[0, 60)`.
+	/// - parameter s: A second number on the half-open interval `[0, 60)`.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, day, hour, minute, and second.
-	public static func julianDateFrom(year Y: Int, month M: Int, day D: Int, hour h: Int = 0, minute m: Int = 0, second s: Double = 0) -> JulianDate {
+	public static func julianDateFrom(year Y: Year, month M: Month, day D: Day, hour h: Hour = 0, minute m: Minute = 0, second s: Second = 0) -> JulianDate {
 		julianDateFrom(year: Y, month: M, day: Double(D) + fractionalDayFrom(hour: h, minute: m, second: s))
 	}
 
-	/// Converts the specified year, month, and decimal day to a Julian date and returns the result.
+	/// Converts the specified year, month, and decimal fractional day to a Julian date and returns the result.
 	///
 	/// - important: No validation checks are performed on the date values.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
-	/// - parameter D: A day number.
+	/// - parameter D: A decimal fractional day number.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, and decimal day.
-	public static func julianDateFrom(year Y: Int, month M: Int, day D: Double) -> JulianDate {
+	public static func julianDateFrom(year Y: Year, month M: Month, day D: FractionalDay) -> JulianDate {
 		let (day, dayFraction) = modf(D)
 		return Double(julianDayNumberFrom(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 	}
@@ -120,7 +135,7 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
-	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
+	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Year, month: Month, day: Day, hour: Hour, minute: Minute, second: Second) {
 		let julianDatePlus12Hours = julianDate + 0.5
 		let J = Int(julianDatePlus12Hours.rounded(.down))
 		let (Y, M, D) = dateFromJulianDayNumber(J)
@@ -139,9 +154,9 @@ extension JulianDayNumberConverting where DateType == (year: Int, month: Int, da
 ///
 /// This function assumes a day is exactly 24 hours, an hour is exactly 60 minutes, and a minute is exactly 60 seconds.
 ///
-/// - parameter h: An hour number between `0` and `23`.
-/// - parameter m: A minute number between `0` and `59`.
-/// - parameter s: A second number between `0` and `59`.
+/// - parameter h: An hour number on the half-open interval `[0, 24)`.
+/// - parameter m: A minute number on the half-open interval `[0, 60)`.
+/// - parameter s: A second number on the half-open interval `[0, 60)`.
 ///
 /// - returns: The decimal fractional day for the specified hour, minute, and second.
 func fractionalDayFrom(hour h: Int, minute m: Int, second s: Double) -> Double {
