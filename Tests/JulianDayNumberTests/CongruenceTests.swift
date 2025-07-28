@@ -15,7 +15,6 @@ import Testing
 		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: -746, month: 2, day: 26))
 		#expect(EthiopianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: 8, month: 8, day: 29))
 		#expect(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == GregorianCalendar.julianDayNumberFrom(year: 1792, month: 9, day: 22))
-		// Strictly speaking the Gregorian calendar epoch is January 1, 1 CE in the Julian calendar
 		#expect(GregorianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 3))
 		#expect(HebrewCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: -3760, month: 10, day: 7))
 		#expect(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.julianDayNumberFrom(year: 622, month: 7, day: 16))
