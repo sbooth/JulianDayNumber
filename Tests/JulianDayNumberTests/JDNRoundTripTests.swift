@@ -54,17 +54,7 @@ import Testing
 	}
 
 	@Test func bahai() {
-		for year in minYear...maxYear {
-			for month in 1...BahaiCalendar.monthsInYear {
-				for day in 1...BahaiCalendar.daysInMonth(year: year, month: month) {
-					let jdn = BahaiCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(BahaiCalendar.self)
 	}
 
 	@Test func coptic() {

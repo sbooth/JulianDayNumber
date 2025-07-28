@@ -8,10 +8,15 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct BahaiCalendarTests {
+	@Test func epoch() {
+		#expect(BahaiCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == BahaiCalendar.epoch)
+		#expect(BahaiCalendar.dateFromJulianDayNumber(BahaiCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(BahaiCalendar.isDateValid(year: 1, month: 1, day: 1))
-		#expect(!BahaiCalendar.isDateValid(year: 3, month: 19, day: 5))
-		#expect(BahaiCalendar.isDateValid(year: 4, month: 19, day: 5))
+		#expect(BahaiCalendar.isValidDate(year: 1, month: 1, day: 1))
+		#expect(!BahaiCalendar.isValidDate(year: 3, month: 19, day: 5))
+		#expect(BahaiCalendar.isValidDate(year: 4, month: 19, day: 5))
 	}
 
 	@Test func leapYear() {
@@ -37,26 +42,26 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(BahaiCalendar.monthsInYear == 20)
+		#expect(BahaiCalendar.numberOfMonthsInYear == 20)
 	}
 
 	@Test func monthLength() {
 		for month in 1...18 {
-			#expect(BahaiCalendar.daysInMonth(year: 1, month: month) == 19)
+			#expect(BahaiCalendar.numberOfDaysIn(month: month, year: 1) == 19)
 		}
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 19) == 4)
-		#expect(BahaiCalendar.daysInMonth(year: 1, month: 20) == 19)
-		#expect(BahaiCalendar.daysInMonth(year: 2, month: 19) == 4)
-		#expect(BahaiCalendar.daysInMonth(year: 3, month: 19) == 4)
-		#expect(BahaiCalendar.daysInMonth(year: 4, month: 19) == 5)
+		#expect(BahaiCalendar.numberOfDaysIn(month: 19, year: 1) == 4)
+		#expect(BahaiCalendar.numberOfDaysIn(month: 20, year: 1) == 19)
+		#expect(BahaiCalendar.numberOfDaysIn(month: 19, year: 2) == 4)
+		#expect(BahaiCalendar.numberOfDaysIn(month: 19, year: 3) == 4)
+		#expect(BahaiCalendar.numberOfDaysIn(month: 19, year: 4) == 5)
 	}
 
 	@Test func yearLength() {
-		#expect(BahaiCalendar.daysInYear(1) == 365)
-		#expect(BahaiCalendar.daysInYear(4) == 366)
-		#expect(BahaiCalendar.daysInYear(750) == 365)
-		#expect(BahaiCalendar.daysInYear(1236) == 366)
-		#expect(BahaiCalendar.daysInYear(1600) == 366)
+		#expect(BahaiCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(BahaiCalendar.numberOfDays(inYear:4) == 366)
+		#expect(BahaiCalendar.numberOfDays(inYear:750) == 365)
+		#expect(BahaiCalendar.numberOfDays(inYear:1236) == 366)
+		#expect(BahaiCalendar.numberOfDays(inYear:1600) == 366)
 	}
 
 	@Test func julianDayNumber() {
