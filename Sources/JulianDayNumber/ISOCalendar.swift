@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -7,7 +7,12 @@
 /// The ISO week-numbering calendar.
 ///
 /// - seealso: [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date)
-public struct ISOCalendar {
+public struct ISOCalendar: CalendarProtocol {
+	/// The Julian day number of the epoch of the ISO calendar.
+	///
+	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
+	public static let epoch = GregorianCalendar.epoch
+
 	/// A year in the ISO calendar is equivalent to the Gregorian calendar year with the same value.
 	public typealias Year = GregorianCalendar.Year
 
@@ -48,6 +53,11 @@ public struct ISOCalendar {
 	static func isoWeekdayFrom(year Y: Int, month M: Int, day D: Int) -> WeekdayNumber {
 		let weekday = GregorianCalendar.dayOfWeekFrom(year: Y, month: M, day: D) - 1
 		return weekday < 1 ? weekday + 7 : weekday
+	}
+
+	public static func isValidDate(_ date: (year: Year, week: WeekNumber, weekday: WeekdayNumber)) -> Bool {
+		// TODO: Is this correct?
+		date.weekday > 0 && date.weekday <= 7 && date.week > 0 && date.week <= isoWeeksInYear(date.year)
 	}
 
 	/// Returns the ISO week date for the specified year, month, and day.
