@@ -62,17 +62,7 @@ import Testing
 	}
 
 	@Test func egyptian() {
-		for year in minYear...maxYear {
-			for month in 1...EgyptianCalendar.monthsInYear {
-				for day in 1...EgyptianCalendar.daysInMonth(month: month) {
-					let jdn = EgyptianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(EgyptianCalendar.self)
 	}
 
 	@Test func ethiopian() {
