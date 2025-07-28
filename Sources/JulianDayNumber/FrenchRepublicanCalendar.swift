@@ -32,31 +32,17 @@
 /// The French Republican calendar epoch in the Gregorian calendar is September 22, 1792.
 ///
 /// - seealso: [French Republican calendar](https://en.wikipedia.org/wiki/French_Republican_calendar)
-public struct FrenchRepublicanCalendar {
+public struct FrenchRepublicanCalendar: Calendar {
 	/// The Julian day number of the epoch of the French Republican calendar.
 	///
 	/// This JDN corresponds to September 22, 1792 in the Gregorian calendar.
 	public static let epoch: JulianDayNumber = 2375840
 
-	/// A year in the French Republican calendar.
-	public typealias Year = Int
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 13
 
-	/// A month in the French Republican calendar numbered from `1` (Vendémiaire) to `12` (Fructidor) with the epagomenal days (Sansculottides) treated as month `13`.
-	public typealias Month = Int
-
-	/// A day in the French Republican calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the French Republican calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the French Republican calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
+	/// The number of days in each month indexed from `0` (Vendémiaire) to `11` (Fructidor), with the epagomenal days (Sansculottides) treated as month `12`.
+	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
 	/// Returns `true` if the specified year is a leap year in the French Republican calendar.
 	///
@@ -69,29 +55,16 @@ public struct FrenchRepublicanCalendar {
 		GregorianCalendar.isLeapYear(Y + 1)
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 13
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// Returns the number of days in the specified year in the French Republican calendar.
-	///
-	/// - parameter Y: A year number.
-	///
-	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		isLeapYear(Y) ? 366 : 365
 	}
 
-	/// The number of days in each month indexed from `0` (Vendémiaire) to `11` (Fructidor), with the epagomenal days (Sansculottides) treated as month `12`.
-	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
-
-	/// Returns the number of days in the specified month and year in the French Republican calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 13 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -104,9 +77,6 @@ public struct FrenchRepublicanCalendar {
 }
 
 extension FrenchRepublicanCalendar: JulianDayNumberConverting {
-	/// A date in the French Republican calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
 	/// The converter for the French Republican calendar.
 	static let converter = JDNGregorianConverter(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0, A: 396, B: 578797, C: -51)
 

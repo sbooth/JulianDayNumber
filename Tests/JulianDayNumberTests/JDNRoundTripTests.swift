@@ -70,17 +70,7 @@ import Testing
 	}
 
 	@Test func frenchRepublican() {
-		for year in minYear...maxYear {
-			for month in 1...FrenchRepublicanCalendar.monthsInYear {
-				for day in 1...FrenchRepublicanCalendar.daysInMonth(year: year, month: month) {
-					let jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(FrenchRepublicanCalendar.self)
 	}
 
 	@Test func gregorian() {
