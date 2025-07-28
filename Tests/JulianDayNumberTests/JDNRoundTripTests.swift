@@ -37,8 +37,8 @@ import Testing
 
 	@Test func astronomical() {
 		for year in minYear...maxYear {
-			for month in 1...AstronomicalCalendar.monthsInYear {
-				for day in 1...AstronomicalCalendar.daysInMonth(year: year, month: month) {
+			for month in 1...AstronomicalCalendar.numberOfMonths(inYear: year) {
+				for day in 1...AstronomicalCalendar.numberOfDaysIn(month: month, year: year) {
 					let jdn = AstronomicalCalendar.julianDayNumberFrom(year: year, month: month, day: day)
 					let (Y, M, D) = AstronomicalCalendar.dateFromJulianDayNumber(jdn)
 					#expect(year == Y)
@@ -74,17 +74,7 @@ import Testing
 	}
 
 	@Test func gregorian() {
-		for year in minYear...maxYear {
-			for month in 1...GregorianCalendar.monthsInYear {
-				for day in 1...GregorianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = GregorianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(GregorianCalendar.self)
 	}
 
 	@Test func hebrew() {
@@ -96,17 +86,7 @@ import Testing
 	}
 
 	@Test func julian() {
-		for year in minYear...maxYear {
-			for month in 1...JulianCalendar.monthsInYear {
-				for day in 1...JulianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = JulianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(JulianCalendar.self)
 	}
 
 	@Test func khwarizmian() {

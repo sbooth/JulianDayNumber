@@ -5,38 +5,20 @@
 //
 
 /// A hybrid calendar that uses the Julian calendar for dates on or before October 4, 1582 and the Gregorian calendar for dates on or after October 15, 1582.
-public struct AstronomicalCalendar {
+public struct AstronomicalCalendar: Calendar {
+	/// The Julian day number of the epoch of the astronomical calendar.
+	///
+	/// This JDN corresponds to January 1, 1 CE in the Julian calendar.
+	public static let epoch = JulianCalendar.epoch
+
 	/// The year, month, and day of the last valid Julian calendar date in the astronomical calendar.
 	public static let lastJulianCalendarDate: DateType = (year: 1582, month: 10, day: 4)
 
 	/// The year, month, and day of the first valid Gregorian calendar date in the astronomical calendar.
 	public static let firstGregorianCalendarDate: DateType = (year: 1582, month: 10, day: 15)
 
-	/// A year in the astronomical calendar.
-	public typealias Year = JulianCalendar.Year
-
-	/// A month in the astronomical calendar numbered from `1` (January) to `12` (December).
-	public typealias Month = JulianCalendar.Month
-
-	/// A day in the astronomical calendar numbered starting from `1`.
-	public typealias Day = JulianCalendar.Day
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the astronomical calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the astronomical calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		if (Y, M, D) >= firstGregorianCalendarDate {
-			return GregorianCalendar.isDateValid(year: Y, month: M, day: D)
-		} else if (Y, M, D) <= lastJulianCalendarDate {
-			return JulianCalendar.isDateValid(year: Y, month: M, day: D)
-		} else {
-			return false
-		}
-	}
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = JulianCalendar.numberOfMonthsInYear
 
 	/// Returns `true` if the specified Julian day number occurred before the Gregorian calendar took effect.
 	///
@@ -57,8 +39,26 @@ public struct AstronomicalCalendar {
 		Y < firstGregorianCalendarDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = JulianCalendar.monthsInYear
+	/// Returns `true` if the specified year, month, and day form a valid date in the astronomical calendar.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: `true` if the specified year, month, and day form a valid date in the astronomical calendar.
+	public static func isValidDate(year Y: Year, month M: Month, day D: Day) -> Bool {
+		if (Y, M, D) >= firstGregorianCalendarDate {
+			return GregorianCalendar.isValidDate(year: Y, month: M, day: D)
+		} else if (Y, M, D) <= lastJulianCalendarDate {
+			return JulianCalendar.isValidDate(year: Y, month: M, day: D)
+		} else {
+			return false
+		}
+	}
+
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
 	/// Returns the number of days in the specified year in the astronomical calendar.
 	///
@@ -67,12 +67,12 @@ public struct AstronomicalCalendar {
 	/// - note: This function accounts for the Julian to Gregorian calendar changeover.
 	///
 	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		if Y > firstGregorianCalendarDate.year {
-			return GregorianCalendar.daysInYear(Y)
+			return GregorianCalendar.numberOfDays(inYear: Y)
 		}
 		else if Y < firstGregorianCalendarDate.year {
-			return JulianCalendar.daysInYear(Y)
+			return JulianCalendar.numberOfDays(inYear: Y)
 		} else {
 			return 355
 		}
@@ -80,18 +80,18 @@ public struct AstronomicalCalendar {
 
 	/// Returns the number of days in the specified month and year in the astronomical calendar.
 	///
-	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
+	/// - parameter Y: A year number.
 	///
 	/// - note: This function accounts for the Julian to Gregorian calendar changeover.
 	///
 	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
 		if (Y, M) > (firstGregorianCalendarDate.year, firstGregorianCalendarDate.month) {
-			return GregorianCalendar.daysInMonth(year: Y, month: M)
+			return GregorianCalendar.numberOfDaysIn(month: M, year: Y)
 		}
 		else if (Y, M) < (firstGregorianCalendarDate.year, firstGregorianCalendarDate.month) {
-			return JulianCalendar.daysInMonth(year: Y, month: M)
+			return JulianCalendar.numberOfDaysIn(month: M, year: Y)
 		}
 		else {
 			return 21
@@ -109,9 +109,6 @@ public struct AstronomicalCalendar {
 }
 
 extension AstronomicalCalendar: JulianDayNumberConverting {
-	/// A date in the astronomical calendar consists of a year, month, and day in either the Julian or Gregorian calendar.
-	public typealias DateType = JulianCalendar.DateType
-
 	/// Converts a date in the astronomical calendar to a Julian day number.
 	///
 	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.

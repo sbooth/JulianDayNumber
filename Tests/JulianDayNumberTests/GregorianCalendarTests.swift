@@ -8,9 +8,14 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct GregorianCalendarTests {
+	@Test func epoch() {
+		#expect(GregorianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == GregorianCalendar.epoch)
+		#expect(GregorianCalendar.dateFromJulianDayNumber(GregorianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(GregorianCalendar.isDateValid(year: 1600, month: 2, day: 29))
-		#expect(!GregorianCalendar.isDateValid(year: 1700, month: 2, day: 29))
+		#expect(GregorianCalendar.isValidDate(year: 1600, month: 2, day: 29))
+		#expect(!GregorianCalendar.isValidDate(year: 1700, month: 2, day: 29))
 	}
 
 	@Test func leapYear() {
@@ -38,30 +43,30 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(GregorianCalendar.monthsInYear == 12)
+		#expect(GregorianCalendar.numberOfMonthsInYear == 12)
 	}
 
 	@Test func monthLength() {
-		#expect(GregorianCalendar.daysInMonth(year: 1600, month: 2) == 29)
-		#expect(GregorianCalendar.daysInMonth(year: 1700, month: 2) == 28)
+		#expect(GregorianCalendar.numberOfDaysIn(month: 2, year: 1600) == 29)
+		#expect(GregorianCalendar.numberOfDaysIn(month: 2, year: 1700) == 28)
 	}
 
 	@Test func yearLength() {
-		#expect(GregorianCalendar.daysInYear(4) == 366)
-		#expect(GregorianCalendar.daysInYear(1581) == 365)
-		#expect(GregorianCalendar.daysInYear(1582) == 365)
-		#expect(GregorianCalendar.daysInYear(1583) == 365)
-		#expect(GregorianCalendar.daysInYear(1600) == 366)
+		#expect(GregorianCalendar.numberOfDays(inYear: 4) == 366)
+		#expect(GregorianCalendar.numberOfDays(inYear: 1581) == 365)
+		#expect(GregorianCalendar.numberOfDays(inYear: 1582) == 365)
+		#expect(GregorianCalendar.numberOfDays(inYear: 1583) == 365)
+		#expect(GregorianCalendar.numberOfDays(inYear: 1600) == 366)
 
 		var sum = 0
 		for m in 1 ... 12 {
-			sum += GregorianCalendar.daysInMonth(year: 1961, month: m)
+			sum += GregorianCalendar.numberOfDaysIn(month: m, year: 1961)
 		}
 
 		let jan1 = GregorianCalendar.julianDayNumberFrom(year: 1961, month: 1, day: 1)
 		let dec31 = GregorianCalendar.julianDayNumberFrom(year: 1961, month: 12, day: 31)
 
-		#expect(GregorianCalendar.daysInYear(1961) == sum)
+		#expect(GregorianCalendar.numberOfDays(inYear: 1961) == sum)
 		#expect(sum == (dec31 - jan1 + 1))
 	}
 
