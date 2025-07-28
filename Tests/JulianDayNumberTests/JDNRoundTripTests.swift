@@ -88,17 +88,7 @@ import Testing
 	}
 
 	@Test func hebrew() {
-		for year in minYear...maxYear {
-			for month in 1...HebrewCalendar.monthsInYear(year) {
-				for day in 1...HebrewCalendar.daysInMonth(year: year, month: month) {
-					let jdn = HebrewCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(HebrewCalendar.self)
 	}
 
 	@Test func islamic() {
