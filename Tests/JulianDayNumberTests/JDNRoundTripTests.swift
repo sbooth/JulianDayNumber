@@ -162,17 +162,7 @@ import Testing
 	}
 
 	@Test func saka() {
-		for year in minYear...maxYear {
-			for month in 1...SakaCalendar.monthsInYear {
-				for day in 1...SakaCalendar.daysInMonth(year: year, month: month) {
-					let jdn = SakaCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(SakaCalendar.self)
 	}
 
 	@Test func syrian() {
