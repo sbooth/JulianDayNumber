@@ -56,7 +56,7 @@ public struct ArmenianCalendar: Calendar {
 	}
 
 	public static func isValidDate(_ date: (year: Int, month: Int, day: Int)) -> Bool {
-		date.month > 0 && date.month <= 13 && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
+		date.month > 0 && date.month <= 13 && date.day > 0 && date.day <= numberOfDays(inMonth: date.month)
 	}
 
 	public static func numberOfMonths(inYear Y: Year) -> Int {
