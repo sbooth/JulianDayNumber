@@ -208,17 +208,7 @@ import Testing
 	}
 
 	@Test func persian() {
-		for year in minYear...maxYear {
-			for month in 1...PersianCalendar.monthsInYear {
-				for day in 1...PersianCalendar.daysInMonth(month) {
-					let jdn = PersianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = PersianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(PersianCalendar.self)
 	}
 
 	@Test func saka() {

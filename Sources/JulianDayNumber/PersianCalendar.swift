@@ -27,37 +27,17 @@
 /// The Persian calendar epoch in the Julian calendar is June 16, 632 CE.
 ///
 /// - seealso: [Persian calendar](https://en.wikipedia.org/wiki/Persian_calendar)
-public struct PersianCalendar {
+public struct PersianCalendar: Calendar {
 	/// The Julian day number of the epoch of the Persian calendar.
 	///
 	/// This JDN corresponds to June 16, 632 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1952063
 
-	/// A year in the Persian calendar.
-	public typealias Year = Int
-
-	/// A month in the Persian calendar numbered from `1`.
-	public typealias Month = Int
-
-	/// A day in the Persian calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Persian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Persian calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(M)
-	}
-
 	/// The number of months in one year.
-	public static let monthsInYear = 13
+	public static let numberOfMonthsInYear = 13
 
 	/// The number of days in one year.
-	public static let daysInYear = 365
+	public static let numberOfDaysInYear = 365
 
 	/// The number of days in each month indexed from `0` (?) to `12` (?), with the epagomenal days (?) treated as month `8`.
 	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 5, 30, 30, 30, 30 ]
@@ -67,18 +47,31 @@ public struct PersianCalendar {
 	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month.
-	public static func daysInMonth(_ M: Month) -> Int {
+	public static func numberOfDays(inMonth M: Month) -> Int {
 		guard M > 0, M <= 13 else {
 			return 0
 		}
 		return monthLengths[M - 1]
 	}
+
+	public static func isValidDate(_ date: (year: Int, month: Int, day: Int)) -> Bool {
+		date.month > 0 && date.month <= 13 && date.day > 0 && date.day <= numberOfDays(inMonth: date.month)
+	}
+
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
+
+	public static func numberOfDays(inYear Y: Year) -> Int {
+		numberOfDaysInYear
+	}
+
+	public static func numberOfDaysIn(month M: Month, year Y: Int) -> Int {
+		numberOfDays(inMonth: M)
+	}
 }
 
 extension PersianCalendar: JulianDayNumberConverting {
-	/// A date in the Persian calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
 	/// The converter for the Persian calendar.
 	static let converter = JDNConverter(y: 5348, j: 77, m: 9, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
 
