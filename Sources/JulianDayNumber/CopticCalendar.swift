@@ -27,31 +27,17 @@
 /// The Coptic calendar epoch in the Julian calendar is August 29, 284 CE.
 ///
 /// - seealso: [Coptic calendar](https://en.wikipedia.org/wiki/Coptic_calendar)
-public struct CopticCalendar {
+public struct CopticCalendar: Calendar {
 	/// The Julian day number of the epoch of the Coptic calendar.
 	///
 	/// This JDN corresponds to August 29, 284 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1825030
 
-	/// A year in the Coptic calendar.
-	public typealias Year = Int
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 13
 
-	/// A month in the Coptic calendar numbered from `1` (Thout) to `13` (Pi Kogi Enavot).
-	public typealias Month = Int
-
-	/// A day in the Coptic calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Coptic calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Coptic calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 13 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
+	/// The number of days in each month indexed from `0` (Thout) to `12` (Pi Kogi Enavot).
+	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
 
 	/// Returns `true` if the specified year is a leap year in the Coptic calendar.
 	///
@@ -64,29 +50,16 @@ public struct CopticCalendar {
 		Y > 0 ? Y % 4 == 3 : Y % 4 == -1
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 13
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// Returns the number of days in the specified year in the Coptic calendar.
-	///
-	/// - parameter Y: A year number.
-	///
-	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		isLeapYear(Y) ? 366 : 365
 	}
 
-	/// The number of days in each month indexed from `0` (Thout) to `12` (Pi Kogi Enavot).
-	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
-
-	/// Returns the number of days in the specified month and year in the Coptic calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 13 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Int) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -99,9 +72,6 @@ public struct CopticCalendar {
 }
 
 extension CopticCalendar: JulianDayNumberConverting {
-	/// A date in the Coptic calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
 	/// The converter for the Coptic calendar.
 	static let converter = JDNConverter(y: 4996, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
 

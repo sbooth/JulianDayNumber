@@ -58,17 +58,7 @@ import Testing
 	}
 
 	@Test func coptic() {
-		for year in minYear...maxYear {
-			for month in 1...CopticCalendar.monthsInYear {
-				for day in 1...CopticCalendar.daysInMonth(year: year, month: month) {
-					let jdn = CopticCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = CopticCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(CopticCalendar.self)
 	}
 
 	@Test func egyptian() {
