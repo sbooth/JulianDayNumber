@@ -186,16 +186,6 @@ import Testing
 	}
 
 	@Test func syrian() {
-		for year in minYear...maxYear {
-			for month in 1...SyrianCalendar.monthsInYear {
-				for day in 1...SyrianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = SyrianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(SyrianCalendar.self)
 	}
 }
