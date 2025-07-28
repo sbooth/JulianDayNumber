@@ -180,17 +180,7 @@ import Testing
 	}
 
 	@Test func khwarizmian() {
-		for year in minYear...maxYear {
-			for month in 1...KhwarizmianCalendar.monthsInYear {
-				for day in 1...KhwarizmianCalendar.daysInMonth(month) {
-					let jdn = KhwarizmianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(KhwarizmianCalendar.self)
 	}
 
 	@Test func macedonian() {
