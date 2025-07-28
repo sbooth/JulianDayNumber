@@ -60,7 +60,7 @@ public struct KhwarizmianCalendar: Calendar {
 		numberOfDaysInYear
 	}
 
-	public static func numberOfDaysIn(month M: Month, year Y: Int) -> Int {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
 		numberOfDays(inMonth: M)
 	}
 }

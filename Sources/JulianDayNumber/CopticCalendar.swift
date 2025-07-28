@@ -58,7 +58,7 @@ public struct CopticCalendar: Calendar {
 		isLeapYear(Y) ? 366 : 365
 	}
 
-	public static func numberOfDaysIn(month M: Month, year Y: Int) -> Int {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
 		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
