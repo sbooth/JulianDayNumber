@@ -19,18 +19,20 @@ import Testing
 	let maxYear = 9999
 #endif
 
-	@Test func armenian() {
+	func testCalendar<C>(_ calendar: C.Type) where C: Calendar & JulianDayNumberConverting {
 		for year in minYear...maxYear {
-			for month in 1...ArmenianCalendar.monthsInYear {
-				for day in 1...ArmenianCalendar.daysInMonth(month) {
-					let jdn = ArmenianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
+			for month in 1...calendar.numberOfMonths(inYear: year) {
+				for day in 1...calendar.numberOfDaysIn(month: month, year: year) {
+					let jdn = calendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = calendar.dateFromJulianDayNumber(jdn)
+					#expect((year, month, day) == (Y, M, D))
 				}
 			}
 		}
+	}
+
+	@Test func armenian() {
+		testCalendar(ArmenianCalendar.self)
 	}
 
 	@Test func astronomical() {
