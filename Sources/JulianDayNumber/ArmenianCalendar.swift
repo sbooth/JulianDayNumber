@@ -39,20 +39,19 @@ public struct ArmenianCalendar: Calendar {
 	/// The number of days in one year.
 	public static let numberOfDaysInYear = 365
 
+	/// The number of days in each month indexed from `0` (Nawasardi) to `11` (Hrotich), with the epagomenal days (Aweleach) treated as month `12`.
+	static let monthLengths = [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 5 ]
+
 	/// Returns the number of days in the specified month in the Armenian calendar.
 	///
 	/// - parameter M: A month number.
 	///
 	/// - returns: The number of days in the specified month.
 	public static func numberOfDays(inMonth M: Month) -> Int {
-		switch M {
-		case 1...12:
-			return 30
-		case 13:
-			return 5
-		default:
+		guard M > 0, M <= 13 else {
 			return 0
 		}
+		return monthLengths[M - 1]
 	}
 
 	public static func isValidDate(_ date: (year: Int, month: Int, day: Int)) -> Bool {
