@@ -144,17 +144,7 @@ import Testing
 	}
 
 	@Test func macedonian() {
-		for year in minYear...maxYear {
-			for month in 1...MacedonianCalendar.monthsInYear {
-				for day in 1...MacedonianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = MacedonianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(MacedonianCalendar.self)
 	}
 
 	@Test func maya() {
