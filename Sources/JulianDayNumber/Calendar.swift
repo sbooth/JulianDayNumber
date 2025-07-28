@@ -52,11 +52,15 @@ extension Calendar {
 	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified date is valid.
-	static func isValidDate(year Y: Year, month M: Month, day D: Day) -> Bool {
+	public static func isValidDate(year Y: Year, month M: Month, day D: Day) -> Bool {
 		isValidDate((Y, M, D))
 	}
 
-	static func numberOfDays(inYear Y: Year) -> Int {
+	public static func isValidDate(_ date: (year: Int, month: Int, day: Int)) -> Bool {
+		date.month > 0 && date.month <= numberOfMonths(inYear: date.year) && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
+	}
+
+	public static func numberOfDays(inYear Y: Year) -> Int {
 //		(1...numberOfMonths(inYear: Y)).reduce(0,  { $0 + numberOfDaysIn(month: $1, year: Y) })
 		var days = 0
 		for M in 1...numberOfMonths(inYear: Y) {

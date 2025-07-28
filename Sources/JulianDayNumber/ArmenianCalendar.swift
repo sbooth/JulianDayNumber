@@ -33,7 +33,7 @@ public struct ArmenianCalendar: Calendar {
 	/// This JDN corresponds to July 11, 552 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1922868
 
-	/// The number of months in one year.
+	/// The number of months in one year.b
 	public static let numberOfMonthsInYear = 13
 
 	/// The number of days in one year.
@@ -48,14 +48,10 @@ public struct ArmenianCalendar: Calendar {
 	///
 	/// - returns: The number of days in the specified month.
 	public static func numberOfDays(inMonth M: Month) -> Int {
-		guard M > 0, M <= 13 else {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 		return monthLengths[M - 1]
-	}
-
-	public static func isValidDate(_ date: (year: Int, month: Int, day: Int)) -> Bool {
-		date.month > 0 && date.month <= 13 && date.day > 0 && date.day <= numberOfDays(inMonth: date.month)
 	}
 
 	public static func numberOfMonths(inYear Y: Year) -> Int {
