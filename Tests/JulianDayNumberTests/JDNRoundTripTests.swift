@@ -112,17 +112,7 @@ import Testing
 	}
 
 	@Test func islamic() {
-		for year in minYear...maxYear {
-			for month in 1...IslamicCalendar.monthsInYear {
-				for day in 1...IslamicCalendar.daysInMonth(year: year, month: month) {
-					let jdn = IslamicCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(IslamicCalendar.self)
 	}
 
 	@Test func julian() {
