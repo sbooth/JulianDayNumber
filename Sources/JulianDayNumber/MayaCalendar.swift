@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -98,18 +98,6 @@ public struct MayaCalendar: CalendarProtocol {
 	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
 	public static let longCountEpoch: JulianDayNumber = 584283
 
-	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
-	///
-	/// The Tzolk’in cycle began 159 days before the long count epoch.
-	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
-	public static let tzolkinEpoch: JulianDayNumber = longCountEpoch - 159
-
-	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
-	///
-	/// The Haabʼ cycle began 348 days before the long count epoch.
-	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
-	public static let haabEpoch: JulianDayNumber = longCountEpoch - 348
-
 	/// A kin is one day and is numbered from `0` to `19`.
 	public typealias Kin = Int
 	/// A uinal is 20 kin and is numbered from `0` to `19`.
@@ -143,38 +131,28 @@ public struct MayaCalendar: CalendarProtocol {
 	public static func isValidDate(_ date: (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)) -> Bool {
 		true
 	}
-
-	/// A Tzolk’in number from `1` to `13`.
-	public typealias TzolkinNumber = Int
-	/// A Tzolk’in day name from `1` to `20`.
-	public typealias TzolkinDayName = Int
-
-	/// A Haabʼ day from `0` to `19`.
-	public typealias HaabDay = Int
-	/// A Haabʼ month from `1` to `19`.
-	public typealias HaabMonth = Int
 }
 
+// Maya long count cycle lengths
+
+/// One uinal is composed of 20 kin.
+let kinPerUinal = 20
+/// One tun is composed of 18 uinal.
+let uinalPerTun = 18
+/// One katun is composed of 20 tun.
+let tunPerKatun = 20
+/// One baktun is composed of 20 katun.
+let katunPerBaktun = 20
+/// One pictun is composed of 20 baktun.
+let baktunPerPictun = 20
+/// One calabtun is composed of 20 pictun.
+let pictunPerCalabtun = 20
+/// One kinchiltun is composed of 20 calabtun.
+let calabtunPerKinchiltun = 20
+/// One alautun is composed of 20 kinchiltun.
+let kinchiltunPerAlautun = 20
+
 extension MayaCalendar {
-	// Maya long count cycle lengths
-
-	/// One uinal is composed of 20 kin.
-	static let kinPerUinal = 20
-	/// One tun is composed of 18 uinal.
-	static let uinalPerTun = 18
-	/// One katun is composed of 20 tun.
-	static let tunPerKatun = 20
-	/// One baktun is composed of 20 katun.
-	static let katunPerBaktun = 20
-	/// One pictun is composed of 20 baktun.
-	static let baktunPerPictun = 20
-	/// One calabtun is composed of 20 pictun.
-	static let pictunPerCalabtun = 20
-	/// One kinchiltun is composed of 20 calabtun.
-	static let calabtunPerKinchiltun = 20
-	/// One alautun is composed of 20 kinchiltun.
-	static let kinchiltunPerAlautun = 20
-
 	/// Converts a Julian day number to a long count in the Maya calendar.
 	///
 	/// - parameter J: A Julian day number.
@@ -260,6 +238,31 @@ extension MayaCalendar {
 }
 
 extension MayaCalendar {
+	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
+	///
+	/// The Tzolk’in cycle began 159 days before the long count epoch.
+	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
+	public static let tzolkinEpoch: JulianDayNumber = longCountEpoch - 159
+
+	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
+	///
+	/// The Haabʼ cycle began 348 days before the long count epoch.
+	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
+	public static let haabEpoch: JulianDayNumber = longCountEpoch - 348
+
+	/// A Tzolk’in number from `1` to `13`.
+	public typealias TzolkinNumber = Int
+	/// A Tzolk’in day name from `1` to `20`.
+	public typealias TzolkinDayName = Int
+
+	/// A Haabʼ day from `0` to `19`.
+	public typealias HaabDay = Int
+	/// A Haabʼ month from `1` to `19`.
+	public typealias HaabMonth = Int
+
+	/// A Calendar Round in the Maya calendar.
+	public typealias CalendarRound = (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth)
+
 	/// Converts a Julian day number to a Calendar Round in the Maya calendar.
 	///
 	/// - note: A Calendar Round corresponding to a Julian day number
@@ -269,7 +272,7 @@ extension MayaCalendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The Calendar Round corresponding to the specified Julian day number.
-	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) {
+	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> CalendarRound {
 		let T = J - tzolkinEpoch
 		let H = J - haabEpoch
 
