@@ -14,9 +14,9 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(AstronomicalCalendar.isValidDate(year: 1969, month: 7, day: 20))
-		#expect(!AstronomicalCalendar.isValidDate(year: 1969, month: 7, day: 40))
-		#expect(AstronomicalCalendar.isValidDate(year: 1600, month: 2, day: 29))
+		#expect(AstronomicalCalendar.isValid(year: 1969, month: 7, day: 20))
+		#expect(!AstronomicalCalendar.isValid(year: 1969, month: 7, day: 40))
+		#expect(AstronomicalCalendar.isValid(year: 1600, month: 2, day: 29))
 		#expect(!AstronomicalCalendar.isValidDate((1582, 10, 10)))
 	}
 
@@ -62,13 +62,13 @@ import Testing
 		#expect(AstronomicalCalendar.numberOfDaysIn(month: 9, year: 1582) == JulianCalendar.numberOfDaysIn(month: 9, year: 1582))
 		#expect(AstronomicalCalendar.numberOfDaysIn(month: 11, year: 1582) == GregorianCalendar.numberOfDaysIn(month: 11, year: 1582))
 
-		#expect(AstronomicalCalendar.isValidDate(year: 1582, month: 10, day: 3) == true)
-		#expect(AstronomicalCalendar.isValidDate(year: 1582, month: 10, day: 4) == true)
+		#expect(AstronomicalCalendar.isValid(year: 1582, month: 10, day: 3) == true)
+		#expect(AstronomicalCalendar.isValid(year: 1582, month: 10, day: 4) == true)
 		for day in 5...14 {
-			#expect(AstronomicalCalendar.isValidDate(year: 1582, month: 10, day: day) == false)
+			#expect(AstronomicalCalendar.isValid(year: 1582, month: 10, day: day) == false)
 		}
-		#expect(AstronomicalCalendar.isValidDate(year: 1582, month: 10, day: 15) == true)
-		#expect(AstronomicalCalendar.isValidDate(year: 1582, month: 10, day: 16) == true)
+		#expect(AstronomicalCalendar.isValid(year: 1582, month: 10, day: 15) == true)
+		#expect(AstronomicalCalendar.isValid(year: 1582, month: 10, day: 16) == true)
 
 		#expect(AstronomicalCalendar.dateFromJulianDayNumber(GregorianCalendar.effectiveJulianDayNumber) == (1582, 10, 15))
 		#expect(AstronomicalCalendar.julianDayNumberFrom(year: 1582, month: 10, day: 15) == GregorianCalendar.effectiveJulianDayNumber)

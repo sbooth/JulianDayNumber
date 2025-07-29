@@ -90,8 +90,8 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(HebrewCalendar.isValidDate(year: 3, month: 6, day: 30))
-		#expect(!HebrewCalendar.isValidDate(year: 4, month: 6, day: 30))
+		#expect(HebrewCalendar.isValid(year: 3, month: 6, day: 30))
+		#expect(!HebrewCalendar.isValid(year: 4, month: 6, day: 30))
 	}
 
 	@Test func leapYear() {

@@ -14,7 +14,7 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(EgyptianCalendar.isValidDate(year: 1600, month: 2, day: 30))
+		#expect(EgyptianCalendar.isValid(year: 1600, month: 2, day: 30))
 	}
 
 	@Test func monthCount() {

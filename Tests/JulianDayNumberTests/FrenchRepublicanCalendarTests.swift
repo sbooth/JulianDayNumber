@@ -14,9 +14,9 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(FrenchRepublicanCalendar.isValidDate(year: 1, month: 1, day: 1))
-		#expect(FrenchRepublicanCalendar.isValidDate(year: 3, month: 13, day: 6))
-		#expect(!FrenchRepublicanCalendar.isValidDate(year: 4, month: 13, day: 6))
+		#expect(FrenchRepublicanCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(FrenchRepublicanCalendar.isValid(year: 3, month: 13, day: 6))
+		#expect(!FrenchRepublicanCalendar.isValid(year: 4, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {

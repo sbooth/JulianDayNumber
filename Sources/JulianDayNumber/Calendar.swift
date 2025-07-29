@@ -45,14 +45,14 @@ public protocol Calendar: CalendarProtocol where DateType == (year: Year, month:
 }
 
 extension Calendar {
-	/// Returns `true` if the specified date is valid.
+	/// Returns `true` if the specified year, month, and day form a valid date.
 	///
 	/// - parameter Y: A year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
 	/// - returns: `true` if the specified date is valid.
-	public static func isValidDate(year Y: Year, month M: Month, day D: Day) -> Bool {
+	public static func isValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		isValidDate((Y, M, D))
 	}
 
@@ -107,7 +107,7 @@ extension Calendar {
 	/// - parameter calendar: The calendar to use for conversion.
 	///
 	/// - returns: The specified date converted to a date in the specified calendar.
-	public static func convertDate<C>(year Y: Year, month M: Month, day D: Day, to calendar: C.Type) -> C.DateType where C: CalendarProtocol {
+	public static func convert<C>(year Y: Year, month M: Month, day D: Day, to calendar: C.Type) -> C.DateType where C: CalendarProtocol {
 		convertDate((Y, M, D), using: calendar)
 	}
 }

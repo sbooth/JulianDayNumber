@@ -14,9 +14,9 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(BahaiCalendar.isValidDate(year: 1, month: 1, day: 1))
-		#expect(!BahaiCalendar.isValidDate(year: 3, month: 19, day: 5))
-		#expect(BahaiCalendar.isValidDate(year: 4, month: 19, day: 5))
+		#expect(BahaiCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(!BahaiCalendar.isValid(year: 3, month: 19, day: 5))
+		#expect(BahaiCalendar.isValid(year: 4, month: 19, day: 5))
 	}
 
 	@Test func leapYear() {

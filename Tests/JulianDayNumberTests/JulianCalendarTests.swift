@@ -14,8 +14,8 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(JulianCalendar.isValidDate(year: 1600, month: 2, day: 29))
-		#expect(JulianCalendar.isValidDate(year: 1700, month: 2, day: 29))
+		#expect(JulianCalendar.isValid(year: 1600, month: 2, day: 29))
+		#expect(JulianCalendar.isValid(year: 1700, month: 2, day: 29))
 	}
 
 	@Test func leapYear() {

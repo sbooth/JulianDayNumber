@@ -14,9 +14,9 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(SakaCalendar.isValidDate(year: 1, month: 1, day: 1))
-		#expect(!SakaCalendar.isValidDate(year: 3, month: 1, day: 31))
-		#expect(SakaCalendar.isValidDate(year: 2, month: 1, day: 31))
+		#expect(SakaCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(!SakaCalendar.isValid(year: 3, month: 1, day: 31))
+		#expect(SakaCalendar.isValid(year: 2, month: 1, day: 31))
 	}
 
 	@Test func leapYear() {

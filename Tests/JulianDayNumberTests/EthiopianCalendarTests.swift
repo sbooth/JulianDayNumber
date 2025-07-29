@@ -14,8 +14,8 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(EthiopianCalendar.isValidDate(year: 2015, month: 13, day: 6))
-		#expect(!EthiopianCalendar.isValidDate(year: 2016, month: 13, day: 6))
+		#expect(EthiopianCalendar.isValid(year: 2015, month: 13, day: 6))
+		#expect(!EthiopianCalendar.isValid(year: 2016, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {

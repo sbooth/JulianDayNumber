@@ -14,8 +14,8 @@ import Testing
 	}
 
 	@Test func dateValidation() {
-		#expect(CopticCalendar.isValidDate(year: 1739, month: 13, day: 6))
-		#expect(!CopticCalendar.isValidDate(year: 1740, month: 13, day: 6))
+		#expect(CopticCalendar.isValid(year: 1739, month: 13, day: 6))
+		#expect(!CopticCalendar.isValid(year: 1740, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {
