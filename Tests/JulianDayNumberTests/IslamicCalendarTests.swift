@@ -134,13 +134,13 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForIslamicCalendar = Int.min + 325
+		let smallestJDNForIslamicCalendar: JulianDayNumber = .min + 325
 		var (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(smallestJDNForIslamicCalendar)
 		var jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForIslamicCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForIslamicCalendar = (Int.max - 15) / 30 - 7664
+		let largestJDNForIslamicCalendar: JulianDayNumber = (.max - 15) / 30 - 7664
 		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForIslamicCalendar == jdn)
