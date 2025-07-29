@@ -63,18 +63,11 @@ public struct AstronomicalCalendar: Calendar {
 		Y < firstGregorianCalendarDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
-	/// Returns `true` if the specified year, month, and day form a valid date in the astronomical calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the astronomical calendar.
-	public static func isValidDate(year Y: Year, month M: Month, day D: Day) -> Bool {
-		if (Y, M, D) >= firstGregorianCalendarDate {
-			return GregorianCalendar.isValidDate(year: Y, month: M, day: D)
-		} else if (Y, M, D) <= lastJulianCalendarDate {
-			return JulianCalendar.isValidDate(year: Y, month: M, day: D)
+	public static func isValidDate(_ date: (year: Year, month: Month, day: Day)) -> Bool {
+		if date >= firstGregorianCalendarDate {
+			return GregorianCalendar.isValidDate(date)
+		} else if date <= lastJulianCalendarDate {
+			return JulianCalendar.isValidDate(date)
 		} else {
 			return false
 		}
