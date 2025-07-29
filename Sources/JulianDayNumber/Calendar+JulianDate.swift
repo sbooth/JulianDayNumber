@@ -64,7 +64,7 @@ extension Calendar {
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
 	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Year, month: Month, day: Day, hour: Hour, minute: Minute, second: Second) {
 		let julianDatePlus12Hours = julianDate + 0.5
-		let J = Int(julianDatePlus12Hours.rounded(.down))
+		let J = JulianDayNumber(julianDatePlus12Hours.rounded(.down))
 		let (Y, M, D) = dateFromJulianDayNumber(J)
 		var (_, dayFraction) = modf(julianDatePlus12Hours)
 		if dayFraction < 0 {
@@ -86,7 +86,7 @@ extension Calendar {
 /// - parameter s: A second number on the half-open interval `[0, 60)`.
 ///
 /// - returns: The decimal fractional day for the specified hour, minute, and second.
-func fractionalDayFrom(hour h: Int, minute m: Int, second s: Double) -> Double {
+func fractionalDayFrom(hour h: Calendar.Hour, minute m: Calendar.Minute, second s: Calendar.Second) -> Calendar.FractionalDay {
 	(Double(h) / 24) + (Double(m) / 1440) + (s / 86400)
 }
 
@@ -97,7 +97,7 @@ func fractionalDayFrom(hour h: Int, minute m: Int, second s: Double) -> Double {
 /// - parameter fractionalDay: A decimal fractional day in the half-open interval `[0,1)`.
 ///
 /// - returns: The hour, minute, and second for the specified decimal fractional day.
-func timeFromFractionalDay(_ fractionalDay: Double) -> (hour: Int, minute: Int, second: Double) {
+func timeFromFractionalDay(_ fractionalDay: Calendar.FractionalDay) -> (hour: Calendar.Hour, minute: Calendar.Minute, second: Calendar.Second) {
 	let (hour, hourFraction) = modf(fractionalDay * 24)
 	let (minute, minuteFraction) = modf(hourFraction * 60)
 	let second = minuteFraction * 60
