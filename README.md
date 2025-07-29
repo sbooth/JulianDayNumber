@@ -14,7 +14,7 @@ Julian day number and Julian date calculations supporting the following calendar
 | [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | 0747-02-26 BCE | Nabonassar |
 | [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | 0008-08-29 CE | Incarnation |
 | [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | 1792-09-22 CE | Republican |
-| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-01 CE | CE |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-03 CE | CE |
 | [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | 3761-10-07 BCE | AM |
 | [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | 0622-07-16 CE | AH |
 | [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | |
