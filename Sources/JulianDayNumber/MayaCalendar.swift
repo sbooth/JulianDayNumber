@@ -87,7 +87,12 @@
 /// - seealso: [Mesoamerican Long Count calendar](https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar)
 /// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
 /// - seealso: [Haabʼ](https://en.wikipedia.org/wiki/Haabʼ)
-public struct MayaCalendar {
+public struct MayaCalendar: CalendarProtocol {
+	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
+	///
+	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
+	public static let epoch = longCountEpoch
+
 	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
 	///
 	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
@@ -124,18 +129,6 @@ public struct MayaCalendar {
 	/// An alautun is 20 kinchiltun and is numbered from `0` to `19`.
 	public typealias Alautun = Int
 
-	/// A Tzolk’in number from `1` to `13`.
-	public typealias TzolkinNumber = Int
-	/// A Tzolk’in day name from `1` to `20`.
-	public typealias TzolkinDayName = Int
-
-	/// A Haabʼ day from `0` to `19`.
-	public typealias HaabDay = Int
-	/// A Haabʼ month from `1` to `19`.
-	public typealias HaabMonth = Int
-}
-
-extension MayaCalendar: JulianDayNumberConverting {
 	/// A long count in the Maya calendar.
 	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
 
@@ -146,6 +139,20 @@ extension MayaCalendar: JulianDayNumberConverting {
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
 		longCountFromJulianDayNumber(J)
 	}
+
+	public static func isValidDate(_ date: (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)) -> Bool {
+		true
+	}
+
+	/// A Tzolk’in number from `1` to `13`.
+	public typealias TzolkinNumber = Int
+	/// A Tzolk’in day name from `1` to `20`.
+	public typealias TzolkinDayName = Int
+
+	/// A Haabʼ day from `0` to `19`.
+	public typealias HaabDay = Int
+	/// A Haabʼ month from `1` to `19`.
+	public typealias HaabMonth = Int
 }
 
 extension MayaCalendar {

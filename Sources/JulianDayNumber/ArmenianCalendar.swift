@@ -33,6 +33,17 @@ public struct ArmenianCalendar: Calendar {
 	/// This JDN corresponds to July 11, 552 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1922868
 
+	/// The converter for the Armenian calendar.
+	static let converter = JDNConverter(y: 5268, j: 317, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.b
 	public static let numberOfMonthsInYear = 13
 
@@ -64,18 +75,5 @@ public struct ArmenianCalendar: Calendar {
 
 	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
 		numberOfDays(inMonth: M)
-	}
-}
-
-extension ArmenianCalendar: JulianDayNumberConverting {
-	/// The converter for the Armenian calendar.
-	static let converter = JDNConverter(y: 5268, j: 317, m: 0, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

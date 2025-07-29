@@ -38,6 +38,17 @@ public struct FrenchRepublicanCalendar: Calendar {
 	/// This JDN corresponds to September 22, 1792 in the Gregorian calendar.
 	public static let epoch: JulianDayNumber = 2375840
 
+	/// The converter for the French Republican calendar.
+	static let converter = JDNGregorianConverter(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0, A: 396, B: 578797, C: -51)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 13
 
@@ -73,18 +84,5 @@ public struct FrenchRepublicanCalendar: Calendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension FrenchRepublicanCalendar: JulianDayNumberConverting {
-	/// The converter for the French Republican calendar.
-	static let converter = JDNGregorianConverter(y: 6504, j: 111, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0, A: 396, B: 578797, C: -51)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

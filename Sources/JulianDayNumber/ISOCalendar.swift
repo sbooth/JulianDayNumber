@@ -8,11 +8,6 @@
 ///
 /// - seealso: [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date)
 public struct ISOCalendar: CalendarProtocol {
-	/// The Julian day number of the epoch of the ISO calendar.
-	///
-	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
-	public static let epoch = GregorianCalendar.epoch
-
 	/// A year in the ISO calendar is equivalent to the Gregorian calendar year with the same value.
 	public typealias Year = GregorianCalendar.Year
 
@@ -21,6 +16,23 @@ public struct ISOCalendar: CalendarProtocol {
 
 	/// A weekday number in the ISO calendar numbered from `1` (Monday) to `7` (Sunday).
 	public typealias WeekdayNumber = Int
+
+	/// An ISO week date consists of a year, week number, and weekday number.
+	public typealias DateType = (year: Year, week: WeekNumber, weekday: WeekdayNumber)
+
+	/// The Julian day number of the epoch of the ISO calendar.
+	///
+	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
+	public static let epoch = GregorianCalendar.epoch
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		GregorianCalendar.julianDayNumberFromDate(dateFromISO(year: date.year, week: date.week, weekday: date.weekday))
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(J)
+		return isoDateFrom(year: Y, month: M, day: D)
+	}
 
 	/// Returns the number of ISO full weeks in a year.
 	///
@@ -89,19 +101,5 @@ public struct ISOCalendar: CalendarProtocol {
 	public static func dateFromISO(year Y: Year, week: WeekNumber, weekday: WeekdayNumber) -> (year: Int, month: Int, day: Int) {
 		let N = week * 7 + weekday - isoWeekdayFrom(year: Y, month: 1, day: 4) - 3
 		return GregorianCalendar.dateFrom(year: Y, ordinalDay: N)
-	}
-}
-
-extension ISOCalendar: JulianDayNumberConverting {
-	/// An ISO week date consists of a year, week number, and weekday number.
-	public typealias DateType = (year: Year, week: WeekNumber, weekday: WeekdayNumber)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		GregorianCalendar.julianDayNumberFromDate(dateFromISO(year: date.year, week: date.week, weekday: date.weekday))
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(J)
-		return isoDateFrom(year: Y, month: M, day: D)
 	}
 }

@@ -60,6 +60,74 @@ public struct HebrewCalendar: Calendar {
 	/// This JDN corresponds to October 7, 3761 BCE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 347998
 
+	/// An intercalating cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+	static let intercalatingCycle = (years: 689472, days: 251827457)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		var Y = date.year
+		var ΔcalendarCycles = 0
+
+		if Y < 1 {
+			ΔcalendarCycles = (1 - Y) / intercalatingCycle.years + 1
+			Y += ΔcalendarCycles * intercalatingCycle.years
+		}
+
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
+		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
+		var J = a + A[K - 1][date.month - 1] + date.day - 1
+
+		if ΔcalendarCycles > 0 {
+			J -= ΔcalendarCycles * intercalatingCycle.days
+		}
+
+		return J
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		var J = J
+		var ΔcalendarCycles = 0
+
+		if J < epoch {
+			ΔcalendarCycles = (epoch - J) / intercalatingCycle.days + 1
+			J += ΔcalendarCycles * intercalatingCycle.days
+		}
+
+		var Y = yearContaining(julianDayNumber: J)
+		let a = firstDayOfTishrei(year: Y)
+		let b = firstDayOfTishrei(year: Y + 1)
+		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
+		let c = J - a + 1
+		precondition(c >= 0)
+		let AK = A[K - 1]
+		let M = AK.lastIndex(where: {$0 < c})! + 1
+		let D = c - AK[M - 1]
+
+		if ΔcalendarCycles > 0 {
+			Y -= ΔcalendarCycles * intercalatingCycle.years
+		}
+
+		return (Y, M, D)
+	}
+
+	/// The number of days preceding the first of the month in a year with characterization K.
+	///
+	/// The array is indexed first by `K - 1` and the resultant array by `M - 1`.
+	static let A = [
+		// A deficient common year.
+		[0, 30, 59, 88, 117, 147, 176, 206, 235, 265, 294, 324],
+		// A regular common year.
+		[0, 30, 59, 89, 118, 148, 177, 207, 236, 266, 295, 325],
+		// An abundant common year.
+		[0, 30, 60, 90, 119, 149, 178, 208, 237, 267, 296, 326],
+		// A deficient leap year.
+		[0, 30, 59, 88, 117, 147, 177, 206, 236, 265, 295, 324, 354],
+		// A regular leap year.
+		[0, 30, 59, 89, 118, 148, 178, 207, 237, 266, 296, 325, 355],
+		// An abundant leap year.
+		[0, 30, 60, 90, 119, 149, 179, 208, 238, 267, 297, 326, 356],
+	]
+
 	/// The number of days in each month for a year with characterization K.
 	///
 	/// The array is indexed first by `K - 1` and the resultant array by `M - 1`.
@@ -195,74 +263,4 @@ extension HebrewCalendar {
 		}
 		return Y
 	}
-}
-
-extension HebrewCalendar: JulianDayNumberConverting {
-	/// An intercalating cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-	static let intercalatingCycle = (years: 689472, days: 251827457)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
-
-		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / intercalatingCycle.years + 1
-			Y += ΔcalendarCycles * intercalatingCycle.years
-		}
-
-		let a = firstDayOfTishrei(year: Y)
-		let b = firstDayOfTishrei(year: Y + 1)
-		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
-		var J = a + A[K - 1][date.month - 1] + date.day - 1
-
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * intercalatingCycle.days
-		}
-
-		return J
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		var J = J
-		var ΔcalendarCycles = 0
-
-		if J < epoch {
-			ΔcalendarCycles = (epoch - J) / intercalatingCycle.days + 1
-			J += ΔcalendarCycles * intercalatingCycle.days
-		}
-
-		var Y = yearContaining(julianDayNumber: J)
-		let a = firstDayOfTishrei(year: Y)
-		let b = firstDayOfTishrei(year: Y + 1)
-		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
-		let c = J - a + 1
-		precondition(c >= 0)
-		let AK = A[K - 1]
-		let M = AK.lastIndex(where: {$0 < c})! + 1
-		let D = c - AK[M - 1]
-
-		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * intercalatingCycle.years
-		}
-
-		return (Y, M, D)
-	}
-
-	/// The number of days preceding the first of the month in a year with characterization K.
-	///
-	/// The array is indexed first by `K - 1` and the resultant array by `M - 1`.
-	static let A = [
-		// A deficient common year.
-		[0, 30, 59, 88, 117, 147, 176, 206, 235, 265, 294, 324],
-		// A regular common year.
-		[0, 30, 59, 89, 118, 148, 177, 207, 236, 266, 295, 325],
-		// An abundant common year.
-		[0, 30, 60, 90, 119, 149, 178, 208, 237, 267, 296, 326],
-		// A deficient leap year.
-		[0, 30, 59, 88, 117, 147, 177, 206, 236, 265, 295, 324, 354],
-		// A regular leap year.
-		[0, 30, 59, 89, 118, 148, 178, 207, 237, 266, 296, 325, 355],
-		// An abundant leap year.
-		[0, 30, 60, 90, 119, 149, 179, 208, 238, 267, 297, 326, 356],
-	]
 }

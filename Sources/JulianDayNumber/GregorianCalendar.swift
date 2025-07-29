@@ -34,15 +34,26 @@
 ///
 /// - seealso: [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
 public struct GregorianCalendar: Calendar {
-	/// The Julian day number when the Gregorian calendar took effect.
-	///
-	/// This JDN corresponds to October 15, 1582 in the Gregorian calendar.
-	public static let effectiveJulianDayNumber: JulianDayNumber = 2299161
-
 	/// The Julian day number of the epoch of the Gregorian calendar.
 	///
 	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1721426
+
+	/// The converter for the Gregorian calendar.
+	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The Julian day number when the Gregorian calendar took effect.
+	///
+	/// This JDN corresponds to October 15, 1582 in the Gregorian calendar.
+	public static let effectiveJulianDayNumber: JulianDayNumber = 2299161
 
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = JulianCalendar.numberOfMonthsInYear
@@ -89,7 +100,9 @@ public struct GregorianCalendar: Calendar {
 			return JulianCalendar.monthLengths[M - 1]
 		}
 	}
+}
 
+extension GregorianCalendar {
 	/// Returns the day of the week for the specified Julian day number.
 	///
 	/// - parameter J: A Julian day number.
@@ -130,18 +143,5 @@ public struct GregorianCalendar: Calendar {
 		let M = 3 + g / 32
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
-	}
-}
-
-extension GregorianCalendar: JulianDayNumberConverting {
-	/// The converter for the Gregorian calendar.
-	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

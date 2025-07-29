@@ -6,79 +6,6 @@
 
 import Foundation
 
-/// A Julian day number.
-///
-/// The Julian day number (JDN) is the integer assigned to a whole solar day in the Julian day count starting from noon Universal Time,
-/// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BCE in the proleptic Julian calendar.
-///
-/// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
-public typealias JulianDayNumber = Int
-
-/// Julian day number to date conversion.
-public protocol JulianDayNumberConverting {
-	/// The type that a Julian day number is converted to and from.
-	associatedtype DateType
-
-	/// Converts a date to a Julian day number and returns the result.
-	///
-	/// - important: No validation checks are performed on the date values.
-	///
-	/// - parameter date: A date to convert.
-	///
-	/// - returns: The Julian day number corresponding to the specified date.
-	///
-	/// - seealso: ``dateFromJulianDayNumber(_:)``
-	static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber
-
-	/// Converts a Julian day number to a date and returns the result.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The date corresponding to the specified Julian day number.
-	///
-	/// - seealso: ``julianDayNumberFromDate(_:)``
-	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType
-}
-
-extension JulianDayNumberConverting where Self: Calendar {
-	/// Converts a year, month, and day to a Julian day number and returns the result.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Year, month M: Month, day D: Day) -> JulianDayNumber {
-		julianDayNumberFromDate((Y, M, D))
-	}
-
-	/// An ordinal day.
-	public typealias OrdinalDay = Int
-
-	/// Converts a year, month, and day to an ordinal day and returns the result.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: The ordinal day corresponding to the specified year, month, and day.
-	public static func ordinalDayFrom(year Y: Year, month M: Month, day D: Day) -> OrdinalDay {
-		OrdinalDay(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
-	}
-
-	/// Converts a year and ordinal day to a year, month, and day and returns the result.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter N: An ordinal day number.
-	///
-	/// - returns: The year, month, and day corresponding to the specified year and ordinal day.
-	public static func dateFrom(year Y: Year, ordinalDay N: OrdinalDay) -> DateType {
-		dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + JulianDayNumber(N) - 1)
-	}
-}
-
-// MARK: - Julian Date
-
 /// A Julian date.
 ///
 /// The Julian date (JD) is the Julian day number (JDN) plus the fraction of a day since the preceding noon in Universal Time.
@@ -87,7 +14,7 @@ extension JulianDayNumberConverting where Self: Calendar {
 /// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
 public typealias JulianDate = Double
 
-extension JulianDayNumberConverting where Self: Calendar {
+extension Calendar {
 	/// An hour number on the half-open interval `[0, 24)`.
 	public typealias Hour = Int
 
@@ -148,7 +75,7 @@ extension JulianDayNumberConverting where Self: Calendar {
 	}
 }
 
-// MARK: Internal Functions
+// MARK: - Internal Functions
 
 /// Converts an hour, minute, and second to a decimal fractional day and returns the result.
 ///

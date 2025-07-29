@@ -33,6 +33,17 @@ public struct EthiopianCalendar: Calendar {
 	/// This JDN corresponds to August 29, 8 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1724221
 
+	/// The converter for the Ethiopian calendar.
+	static let converter = JDNConverter(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 13
 
@@ -68,18 +79,5 @@ public struct EthiopianCalendar: Calendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension EthiopianCalendar: JulianDayNumberConverting {
-	/// The converter for the Ethiopian calendar.
-	static let converter = JDNConverter(y: 4720, j: 124, m: 0, n: 13, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 30, t: 0, w: 0)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

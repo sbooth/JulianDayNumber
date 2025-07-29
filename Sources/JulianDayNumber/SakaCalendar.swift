@@ -29,15 +29,26 @@
 ///
 /// - seealso: [Indian national calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
 public struct SakaCalendar: Calendar {
-	/// The Julian day number when the Śaka calendar took effect.
-	///
-	/// This JDN corresponds to March 22, 1957 in the Gregorian calendar.
-	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
-
 	/// The Julian day number of the epoch of the Śaka calendar.
 	///
 	/// This JDN corresponds to March 24, 79 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1749995
+
+	/// The converter for the Śaka calendar.
+	static let converter = JDNSakaConverter()
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The Julian day number when the Śaka calendar took effect.
+	///
+	/// This JDN corresponds to March 22, 1957 in the Gregorian calendar.
+	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
 
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 12
@@ -85,18 +96,5 @@ public struct SakaCalendar: Calendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension SakaCalendar: JulianDayNumberConverting {
-	/// The converter for the Śaka calendar.
-	static let converter = JDNSakaConverter()
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

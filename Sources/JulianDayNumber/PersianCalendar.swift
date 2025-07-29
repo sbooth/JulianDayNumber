@@ -33,6 +33,17 @@ public struct PersianCalendar: Calendar {
 	/// This JDN corresponds to June 16, 632 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1952063
 
+	/// The converter for the Persian calendar.
+	static let converter = JDNConverter(y: 5348, j: 77, m: 9, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 13
 
@@ -64,18 +75,5 @@ public struct PersianCalendar: Calendar {
 
 	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
 		numberOfDays(inMonth: M)
-	}
-}
-
-extension PersianCalendar: JulianDayNumberConverting {
-	/// The converter for the Persian calendar.
-	static let converter = JDNConverter(y: 5348, j: 77, m: 9, n: 13, r: 1, p: 365, q: 0, v: 0, u: 1, s: 30, t: 0, w: 0)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

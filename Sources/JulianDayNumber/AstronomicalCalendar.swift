@@ -17,6 +17,30 @@ public struct AstronomicalCalendar: Calendar {
 	/// The year, month, and day of the first valid Gregorian calendar date in the astronomical calendar.
 	public static let firstGregorianCalendarDate: DateType = (year: 1582, month: 10, day: 15)
 
+	/// Converts a date in the astronomical calendar to a Julian day number.
+	///
+	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.
+	///
+	/// - important: No validation checks are performed on the date values.
+	///
+	/// - parameter date: A date to convert.
+	///
+	/// - returns: The Julian day number corresponding to the specified date.
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		date < firstGregorianCalendarDate ? JulianCalendar.julianDayNumberFromDate(date) : GregorianCalendar.julianDayNumberFromDate(date)
+	}
+
+	/// Converts a Julian day number to a date in the astronomical calendar.
+	///
+	/// Julian day numbers less than 2299161 are treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The date corresponding to the specified Julian day number.
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		J < GregorianCalendar.effectiveJulianDayNumber ? JulianCalendar.dateFromJulianDayNumber(J): GregorianCalendar.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = JulianCalendar.numberOfMonthsInYear
 
@@ -97,7 +121,9 @@ public struct AstronomicalCalendar: Calendar {
 			return 21
 		}
 	}
+}
 
+extension AstronomicalCalendar {
 	/// Returns the month and day of Easter in the specified year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.
@@ -105,31 +131,5 @@ public struct AstronomicalCalendar: Calendar {
 	/// - returns: The month and day of Easter in the specified year.
 	public static func easter(year Y: Year) -> (month: Month, day: Day) {
 		Y > firstGregorianCalendarDate.year ? GregorianCalendar.easter(year: Y) : JulianCalendar.easter(year: Y)
-	}
-}
-
-extension AstronomicalCalendar: JulianDayNumberConverting {
-	/// Converts a date in the astronomical calendar to a Julian day number.
-	///
-	/// Dates before October 15, 1582 are treated as dates in the Julian calendar while later dates are treated as dates in the Gregorian calendar.
-	///
-	/// - important: No validation checks are performed on the date values.
-	///
-	/// - parameter date: A date to convert.
-	///
-	/// - returns: The Julian day number corresponding to the specified date.
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		date < firstGregorianCalendarDate ? JulianCalendar.julianDayNumberFromDate(date) : GregorianCalendar.julianDayNumberFromDate(date)
-	}
-
-	/// Converts a Julian day number to a date in the astronomical calendar.
-	///
-	/// Julian day numbers less than 2299161 are treated as dates in the Julian calendar while equal or larger Julian day numbers are treated as dates in the Gregorian calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The date corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		J < GregorianCalendar.effectiveJulianDayNumber ? JulianCalendar.dateFromJulianDayNumber(J): GregorianCalendar.dateFromJulianDayNumber(J)
 	}
 }

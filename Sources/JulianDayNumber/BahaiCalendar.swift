@@ -40,6 +40,17 @@ public struct BahaiCalendar: Calendar {
 	/// This JDN corresponds to March 21, 1844 in the Gregorian calendar.
 	public static let epoch: JulianDayNumber = 2394647
 
+	/// The converter for the Baháʼí calendar.
+	static let converter = JDNGregorianConverter(y: 6560, j: 1412, m: 19, n: 20, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 19, t: 0, w: 0, A: 184, B: 274273, C: -50)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 20
 
@@ -75,18 +86,5 @@ public struct BahaiCalendar: Calendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension BahaiCalendar: JulianDayNumberConverting {
-	/// The converter for the Baháʼí calendar.
-	static let converter = JDNGregorianConverter(y: 6560, j: 1412, m: 19, n: 20, r: 4, p: 1461, q: 0, v: 3, u: 1, s: 19, t: 0, w: 0, A: 184, B: 274273, C: -50)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

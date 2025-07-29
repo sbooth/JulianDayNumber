@@ -19,7 +19,7 @@ import Testing
 	let maxYear = 9999
 #endif
 
-	func testCalendar<C>(_ calendar: C.Type) where C: Calendar & JulianDayNumberConverting {
+	func testCalendar<C>(_ calendar: C.Type) where C: Calendar {
 		for year in minYear...maxYear {
 			for month in 1...calendar.numberOfMonths(inYear: year) {
 				for day in 1...calendar.numberOfDaysIn(month: month, year: year) {

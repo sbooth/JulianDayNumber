@@ -61,11 +61,61 @@ extension Calendar {
 	}
 
 	public static func numberOfDays(inYear Y: Year) -> Int {
-//		(1...numberOfMonths(inYear: Y)).reduce(0,  { $0 + numberOfDaysIn(month: $1, year: Y) })
 		var days = 0
 		for M in 1...numberOfMonths(inYear: Y) {
 			days += numberOfDaysIn(month: M, year: Y)
 		}
 		return days
+	}
+}
+
+extension Calendar {
+	/// Converts a year, month, and day to a Julian day number and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The Julian day number corresponding to the specified year, month, and day.
+	public static func julianDayNumberFrom(year Y: Year, month M: Month, day D: Day) -> JulianDayNumber {
+		julianDayNumberFromDate((Y, M, D))
+	}
+
+	/// An ordinal day.
+	public typealias OrdinalDay = Int
+
+	/// Converts a year, month, and day to an ordinal day and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	///
+	/// - returns: The ordinal day corresponding to the specified year, month, and day.
+	public static func ordinalDayFrom(year Y: Year, month M: Month, day D: Day) -> OrdinalDay {
+		OrdinalDay(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
+	}
+
+	/// Converts a year and ordinal day to a year, month, and day and returns the result.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter N: An ordinal day number.
+	///
+	/// - returns: The year, month, and day corresponding to the specified year and ordinal day.
+	public static func dateFrom(year Y: Year, ordinalDay N: OrdinalDay) -> DateType {
+		dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + JulianDayNumber(N) - 1)
+	}
+}
+
+extension Calendar {
+	/// Converts the specified date to a date in another calendar.
+	///
+	/// - parameter Y: A year number.
+	/// - parameter M: A month number.
+	/// - parameter D: A day number.
+	/// - parameter calendar: The calendar to use for conversion.
+	///
+	/// - returns: The specified date converted to a date in the specified calendar.
+	public func convertDate<C>(year Y: Year, month M: Month, day D: Day, toCalendar calendar: C.Type) -> C.DateType where C: Calendar {
+		C.dateFromJulianDayNumber(Self.julianDayNumberFromDate((Y, M, D)))
 	}
 }

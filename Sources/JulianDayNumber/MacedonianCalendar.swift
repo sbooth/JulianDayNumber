@@ -32,6 +32,17 @@ public struct MacedonianCalendar: Calendar {
 	/// This JDN corresponds to September 1, 312 BCE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1607709
 
+	/// The converter for the Macedonian calendar.
+	static let converter = JDNConverter(y: 4405, j: 1401, m: 6, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 12
 
@@ -67,18 +78,5 @@ public struct MacedonianCalendar: Calendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension MacedonianCalendar: JulianDayNumberConverting {
-	/// The converter for the Macedonian calendar.
-	static let converter = JDNConverter(y: 4405, j: 1401, m: 6, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }
