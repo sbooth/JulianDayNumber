@@ -215,13 +215,13 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForJulianCalendar = Int.min + 144
+		let smallestJDNForJulianCalendar: JulianDayNumber = .min + 144
 		var (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(smallestJDNForJulianCalendar)
 		var jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForJulianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForJulianCalendar = (Int.max - 3) / 4 - 1401
+		let largestJDNForJulianCalendar: JulianDayNumber = (.max - 3) / 4 - 1401
 		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
 		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForJulianCalendar == jdn)

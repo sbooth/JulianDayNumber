@@ -49,15 +49,15 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForArmenianCalendar = Int.min + 294
+//		let smallestJDNForArmenianCalendar: JulianDayNumber = .min + 294
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForArmenianCalendar = Int.min + 341
+		let smallestJDNForArmenianCalendar: JulianDayNumber = .min + 341
 		var (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(smallestJDNForArmenianCalendar)
 		var jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForArmenianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForArmenianCalendar = Int.max - 317
+		let largestJDNForArmenianCalendar: JulianDayNumber = .max - 317
 		(Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(largestJDNForArmenianCalendar)
 		jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForArmenianCalendar == jdn)

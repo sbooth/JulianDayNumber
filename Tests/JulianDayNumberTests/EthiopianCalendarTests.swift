@@ -82,15 +82,15 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForEthiopianCalendar = Int.min + 144
+//		let smallestJDNForEthiopianCalendar: JulianDayNumber = .min + 144
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForEthiopianCalendar = Int.min + 384
+		let smallestJDNForEthiopianCalendar: JulianDayNumber = .min + 384
 		var (Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(smallestJDNForEthiopianCalendar)
 		var jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForEthiopianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEthiopianCalendar = (Int.max - 3) / 4 - 124
+		let largestJDNForEthiopianCalendar: JulianDayNumber = (.max - 3) / 4 - 124
 		(Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(largestJDNForEthiopianCalendar)
 		jdn = EthiopianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForEthiopianCalendar == jdn)

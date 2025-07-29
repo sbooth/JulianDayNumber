@@ -50,15 +50,15 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForPersianCalendar = Int.min + 294
+//		let smallestJDNForPersianCalendar: JulianDayNumber = .min + 294
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForPersianCalendar = Int.min + 336
+		let smallestJDNForPersianCalendar: JulianDayNumber = .min + 336
 		var (Y, M, D) = PersianCalendar.dateFromJulianDayNumber(smallestJDNForPersianCalendar)
 		var jdn = PersianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForPersianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForPersianCalendar = Int.max - 77
+		let largestJDNForPersianCalendar: JulianDayNumber = .max - 77
 		(Y, M, D) = PersianCalendar.dateFromJulianDayNumber(largestJDNForPersianCalendar)
 		jdn = PersianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForPersianCalendar == jdn)
