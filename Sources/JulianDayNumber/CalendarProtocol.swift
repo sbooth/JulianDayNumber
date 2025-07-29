@@ -47,3 +47,15 @@ public protocol CalendarProtocol {
 	/// - seealso: ``julianDayNumberFromDate(_:)``
 	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType
 }
+
+extension CalendarProtocol {
+	/// Converts the specified date to a date in another calendar.
+	///
+	/// - parameter date: A date to convert.
+	/// - parameter calendar: The calendar to use for conversion.
+	///
+	/// - returns: The specified date converted to a date in the specified calendar.
+	public static func convertDate<C>(_ date: DateType, toCalendar calendar: C.Type) -> C.DateType where C: CalendarProtocol {
+		C.dateFromJulianDayNumber(Self.julianDayNumberFromDate(date))
+	}
+}
