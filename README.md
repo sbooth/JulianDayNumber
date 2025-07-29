@@ -63,7 +63,7 @@ let d = Date(julianDate: 2422107.5)
 3. Convert the Gregorian calendar date 2013-10-31 to a date in the Julian calendar.
 
 ```swift
-let julianYMD = GregorianCalendar.convertDate(year: 2013, month: 10, day:31, toCalendar: JulianCalendar.self)
+let julianYMD = GregorianCalendar.convertDate(year: 2013, month: 10, day:31, to: JulianCalendar.self)
 // (year: 2013, month: 10, day: 18)
 ```
 

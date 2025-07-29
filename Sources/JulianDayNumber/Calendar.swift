@@ -115,7 +115,7 @@ extension Calendar {
 	/// - parameter calendar: The calendar to use for conversion.
 	///
 	/// - returns: The specified date converted to a date in the specified calendar.
-	public static func convertDate<C>(year Y: Year, month M: Month, day D: Day, toCalendar calendar: C.Type) -> C.DateType where C: CalendarProtocol {
-		convertDate((Y, M, D), toCalendar: calendar)
+	public static func convertDate<C>(year Y: Year, month M: Month, day D: Day, to calendar: C.Type) -> C.DateType where C: CalendarProtocol {
+		convertDate((Y, M, D), using: calendar)
 	}
 }
