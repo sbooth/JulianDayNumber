@@ -8,9 +8,14 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct JulianCalendarTests {
+	@Test func epoch() {
+		#expect(JulianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == JulianCalendar.epoch)
+		#expect(JulianCalendar.dateFromJulianDayNumber(JulianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(JulianCalendar.isDateValid(year: 1600, month: 2, day: 29))
-		#expect(JulianCalendar.isDateValid(year: 1700, month: 2, day: 29))
+		#expect(JulianCalendar.isValid(year: 1600, month: 2, day: 29))
+		#expect(JulianCalendar.isValid(year: 1700, month: 2, day: 29))
 	}
 
 	@Test func leapYear() {
@@ -37,20 +42,20 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(JulianCalendar.monthsInYear == 12)
+		#expect(JulianCalendar.numberOfMonthsInYear == 12)
 	}
 
 	@Test func monthLength() {
-		#expect(JulianCalendar.daysInMonth(year: 1600, month: 2) == 29)
-		#expect(JulianCalendar.daysInMonth(year: 1700, month: 2) == 29)
+		#expect(JulianCalendar.numberOfDaysIn(month: 2, year: 1600) == 29)
+		#expect(JulianCalendar.numberOfDaysIn(month: 2, year: 1700) == 29)
 	}
 
 	@Test func yearLength() {
-		#expect(JulianCalendar.daysInYear(1) == 365)
-		#expect(JulianCalendar.daysInYear(4) == 366)
-		#expect(JulianCalendar.daysInYear(100) == 366)
-		#expect(JulianCalendar.daysInYear(750) == 365)
-		#expect(JulianCalendar.daysInYear(900) == 366)
+		#expect(JulianCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(JulianCalendar.numberOfDays(inYear: 4) == 366)
+		#expect(JulianCalendar.numberOfDays(inYear: 100) == 366)
+		#expect(JulianCalendar.numberOfDays(inYear: 750) == 365)
+		#expect(JulianCalendar.numberOfDays(inYear: 900) == 366)
 	}
 
 	@Test func ordinalDay() {

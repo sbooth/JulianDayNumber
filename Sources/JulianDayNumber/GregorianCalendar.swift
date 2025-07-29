@@ -28,41 +28,35 @@
 ///
 /// The Gregorian calendar took effect on October 15, 1582. Julian Thursday, October 4 was followed by Gregorian Friday, October 15.
 ///
-/// The Gregorian calendar epoch in the Julian calendar is January 1, 1 CE.
+/// The Gregorian calendar epoch in the Julian calendar is January 3, 1 CE.
 ///
 /// - note: The actual adoption date of the Gregorian calendar varies by country.
 ///
 /// - seealso: [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
-public struct GregorianCalendar {
+public struct GregorianCalendar: Calendar {
+	/// The Julian day number of the epoch of the Gregorian calendar.
+	///
+	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
+	public static let epoch: JulianDayNumber = 1721426
+
+	/// The converter for the Gregorian calendar.
+	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
 	/// The Julian day number when the Gregorian calendar took effect.
 	///
 	/// This JDN corresponds to October 15, 1582 in the Gregorian calendar.
 	public static let effectiveJulianDayNumber: JulianDayNumber = 2299161
 
-	/// The Julian day number of the epoch of the Gregorian calendar.
-	///
-	/// This JDN corresponds to January 1, 1 CE in the Julian calendar.
-	public static let epoch = JulianCalendar.epoch
-
-	/// A year in the Gregorian calendar.
-	public typealias Year = JulianCalendar.Year
-
-	/// A month in the Gregorian calendar numbered from `1` (January) to `12` (December).
-	public typealias Month = JulianCalendar.Month
-
-	/// A day in the Gregorian calendar numbered starting from `1`.
-	public typealias Day = JulianCalendar.Day
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Gregorian calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
-	}
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = JulianCalendar.numberOfMonthsInYear
 
 	/// Returns `true` if the specified Julian day number occurred before the Gregorian calendar took effect.
 	///
@@ -87,26 +81,16 @@ public struct GregorianCalendar {
 		Y % 100 == 0 ? Y % 400 == 0 : Y % 4 == 0
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = JulianCalendar.monthsInYear
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// Returns the number of days in the specified year in the Gregorian calendar.
-	///
-	/// - parameter Y: A year number.
-	///
-	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		isLeapYear(Y) ? 366 : 365
 	}
 
-	/// Returns the number of days in the specified month and year in the Gregorian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -116,7 +100,9 @@ public struct GregorianCalendar {
 			return JulianCalendar.monthLengths[M - 1]
 		}
 	}
+}
 
+extension GregorianCalendar {
 	/// Returns the day of the week for the specified Julian day number.
 	///
 	/// - parameter J: A Julian day number.
@@ -157,21 +143,5 @@ public struct GregorianCalendar {
 		let M = 3 + g / 32
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
-	}
-}
-
-extension GregorianCalendar: JulianDayNumberConverting {
-	/// A date in the Gregorian calendar consists of a year, month, and day.
-	public typealias DateType = JulianCalendar.DateType
-
-	/// The converter for the Gregorian calendar.
-	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

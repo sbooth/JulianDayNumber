@@ -8,15 +8,20 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct ArmenianCalendarTests {
+	@Test func epoch() {
+		#expect(ArmenianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == ArmenianCalendar.epoch)
+		#expect(ArmenianCalendar.dateFromJulianDayNumber(ArmenianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func monthLength() {
 		for month in 1...12 {
-			#expect(ArmenianCalendar.daysInMonth(month) == 30)
+			#expect(ArmenianCalendar.numberOfDays(inMonth: month) == 30)
 		}
-		#expect(ArmenianCalendar.daysInMonth(13) == 5)
+		#expect(ArmenianCalendar.numberOfDays(inMonth: 13) == 5)
 	}
 
 	@Test func yearLength() {
-		#expect(ArmenianCalendar.daysInYear == 365)
+		#expect(ArmenianCalendar.numberOfDaysInYear == 365)
 	}
 
 	@Test func julianDayNumber() {

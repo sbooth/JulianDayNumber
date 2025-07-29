@@ -8,23 +8,28 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct EgyptianCalendarTests {
+	@Test func epoch() {
+		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == EgyptianCalendar.epoch)
+		#expect(EgyptianCalendar.dateFromJulianDayNumber(EgyptianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(EgyptianCalendar.isDateValid(year: 1600, month: 2, day: 30))
+		#expect(EgyptianCalendar.isValid(year: 1600, month: 2, day: 30))
 	}
 
 	@Test func monthCount() {
-		#expect(EgyptianCalendar.monthsInYear == 13)
+		#expect(EgyptianCalendar.numberOfMonthsInYear == 13)
 	}
 
 	@Test func monthLength() {
 		for month in 1...12 {
-			#expect(EgyptianCalendar.daysInMonth(month: month) == 30)
+			#expect(EgyptianCalendar.numberOfDays(inMonth: month) == 30)
 		}
-		#expect(EgyptianCalendar.daysInMonth(month: 13) == 5)
+		#expect(EgyptianCalendar.numberOfDays(inMonth: 13) == 5)
 	}
 
 	@Test func yearLength() {
-		#expect(EgyptianCalendar.daysInYear == 365)
+		#expect(EgyptianCalendar.numberOfDaysInYear == 365)
 	}
 
 	@Test func julianDayNumber() {

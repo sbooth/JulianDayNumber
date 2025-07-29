@@ -26,31 +26,28 @@
 /// The Syrian calendar epoch in the Julian calendar is October 1, 312 BCE.
 ///
 /// - seealso: [Syrian calendar](https://en.wikipedia.org/wiki/Syrian_calendar)
-public struct SyrianCalendar {
+public struct SyrianCalendar: Calendar {
 	/// The Julian day number of the epoch of the Syrian calendar.
 	///
 	/// This JDN corresponds to October 1, 312 BCE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1607739
 
-	/// A year in the Syrian calendar.
-	public typealias Year = Int
+	/// The converter for the Syrian calendar.
+	static let converter = JDNConverter(y: 4405, j: 1401, m: 5, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
 
-	/// A month in the Syrian calendar numbered from `1`.
-	public typealias Month = Int
-
-	/// A day in the Syrian calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Syrian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Syrian calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
 	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (October) to `11` (September).
+	static let monthLengths = [ 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31, 30 ]
 
 	/// Returns `true` if the specified year is a leap year in the Syrian calendar.
 	///
@@ -63,29 +60,16 @@ public struct SyrianCalendar {
 		Y > 0 ? Y % 4 == 3 : Y % 4 == -1
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// Returns the number of days in the specified year in the Syrian calendar.
-	///
-	/// - parameter Y: A year number.
-	///
-	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		isLeapYear(Y) ? 366 : 365
 	}
 
-	/// The number of days in each month indexed from `0` (October) to `11` (September).
-	static let monthLengths = [ 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31, 30 ]
-
-	/// Returns the number of days in the specified month and year in the Syrian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -96,20 +80,3 @@ public struct SyrianCalendar {
 		}
 	}
 }
-
-extension SyrianCalendar: JulianDayNumberConverting {
-	/// A date in the Syrian calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
-	/// The converter for the Syrian calendar.
-	static let converter = JDNConverter(y: 4405, j: 1401, m: 5, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
-	}
-}
-

@@ -19,24 +19,26 @@ import Testing
 	let maxYear = 9999
 #endif
 
-	@Test func armenian() {
+	func testCalendar<C>(_ calendar: C.Type) where C: Calendar {
 		for year in minYear...maxYear {
-			for month in 1...ArmenianCalendar.monthsInYear {
-				for day in 1...ArmenianCalendar.daysInMonth(month) {
-					let jdn = ArmenianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
+			for month in 1...calendar.numberOfMonths(inYear: year) {
+				for day in 1...calendar.numberOfDaysIn(month: month, year: year) {
+					let jdn = calendar.julianDayNumberFrom(year: year, month: month, day: day)
+					let (Y, M, D) = calendar.dateFromJulianDayNumber(jdn)
+					#expect((year, month, day) == (Y, M, D))
 				}
 			}
 		}
 	}
 
+	@Test func armenian() {
+		testCalendar(ArmenianCalendar.self)
+	}
+
 	@Test func astronomical() {
 		for year in minYear...maxYear {
-			for month in 1...AstronomicalCalendar.monthsInYear {
-				for day in 1...AstronomicalCalendar.daysInMonth(year: year, month: month) {
+			for month in 1...AstronomicalCalendar.numberOfMonths(inYear: year) {
+				for day in 1...AstronomicalCalendar.numberOfDaysIn(month: month, year: year) {
 					let jdn = AstronomicalCalendar.julianDayNumberFrom(year: year, month: month, day: day)
 					let (Y, M, D) = AstronomicalCalendar.dateFromJulianDayNumber(jdn)
 					#expect(year == Y)
@@ -52,157 +54,47 @@ import Testing
 	}
 
 	@Test func bahai() {
-		for year in minYear...maxYear {
-			for month in 1...BahaiCalendar.monthsInYear {
-				for day in 1...BahaiCalendar.daysInMonth(year: year, month: month) {
-					let jdn = BahaiCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(BahaiCalendar.self)
 	}
 
 	@Test func coptic() {
-		for year in minYear...maxYear {
-			for month in 1...CopticCalendar.monthsInYear {
-				for day in 1...CopticCalendar.daysInMonth(year: year, month: month) {
-					let jdn = CopticCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = CopticCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(CopticCalendar.self)
 	}
 
 	@Test func egyptian() {
-		for year in minYear...maxYear {
-			for month in 1...EgyptianCalendar.monthsInYear {
-				for day in 1...EgyptianCalendar.daysInMonth(month: month) {
-					let jdn = EgyptianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(EgyptianCalendar.self)
 	}
 
 	@Test func ethiopian() {
-		for year in minYear...maxYear {
-			for month in 1...EthiopianCalendar.monthsInYear {
-				for day in 1...EthiopianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = EthiopianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = EthiopianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(EthiopianCalendar.self)
 	}
 
 	@Test func frenchRepublican() {
-		for year in minYear...maxYear {
-			for month in 1...FrenchRepublicanCalendar.monthsInYear {
-				for day in 1...FrenchRepublicanCalendar.daysInMonth(year: year, month: month) {
-					let jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(FrenchRepublicanCalendar.self)
 	}
 
 	@Test func gregorian() {
-		for year in minYear...maxYear {
-			for month in 1...GregorianCalendar.monthsInYear {
-				for day in 1...GregorianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = GregorianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(GregorianCalendar.self)
 	}
 
 	@Test func hebrew() {
-		for year in minYear...maxYear {
-			for month in 1...HebrewCalendar.monthsInYear(year) {
-				for day in 1...HebrewCalendar.daysInMonth(year: year, month: month) {
-					let jdn = HebrewCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(HebrewCalendar.self)
 	}
 
 	@Test func islamic() {
-		for year in minYear...maxYear {
-			for month in 1...IslamicCalendar.monthsInYear {
-				for day in 1...IslamicCalendar.daysInMonth(year: year, month: month) {
-					let jdn = IslamicCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(IslamicCalendar.self)
 	}
 
 	@Test func julian() {
-		for year in minYear...maxYear {
-			for month in 1...JulianCalendar.monthsInYear {
-				for day in 1...JulianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = JulianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(JulianCalendar.self)
 	}
 
 	@Test func khwarizmian() {
-		for year in minYear...maxYear {
-			for month in 1...KhwarizmianCalendar.monthsInYear {
-				for day in 1...KhwarizmianCalendar.daysInMonth(month) {
-					let jdn = KhwarizmianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(KhwarizmianCalendar.self)
 	}
 
 	@Test func macedonian() {
-		for year in minYear...maxYear {
-			for month in 1...MacedonianCalendar.monthsInYear {
-				for day in 1...MacedonianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = MacedonianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(MacedonianCalendar.self)
 	}
 
 	@Test func maya() {
@@ -216,44 +108,14 @@ import Testing
 	}
 
 	@Test func persian() {
-		for year in minYear...maxYear {
-			for month in 1...PersianCalendar.monthsInYear {
-				for day in 1...PersianCalendar.daysInMonth(month) {
-					let jdn = PersianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = PersianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(PersianCalendar.self)
 	}
 
 	@Test func saka() {
-		for year in minYear...maxYear {
-			for month in 1...SakaCalendar.monthsInYear {
-				for day in 1...SakaCalendar.daysInMonth(year: year, month: month) {
-					let jdn = SakaCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(SakaCalendar.self)
 	}
 
 	@Test func syrian() {
-		for year in minYear...maxYear {
-			for month in 1...SyrianCalendar.monthsInYear {
-				for day in 1...SyrianCalendar.daysInMonth(year: year, month: month) {
-					let jdn = SyrianCalendar.julianDayNumberFrom(year: year, month: month, day: day)
-					let (Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(jdn)
-					#expect(year == Y)
-					#expect(month == M)
-					#expect(day == D)
-				}
-			}
-		}
+		testCalendar(SyrianCalendar.self)
 	}
 }

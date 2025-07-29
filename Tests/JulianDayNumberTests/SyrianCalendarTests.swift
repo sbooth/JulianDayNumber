@@ -8,6 +8,11 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct SyrianCalendarTests {
+	@Test func epoch() {
+		#expect(SyrianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == SyrianCalendar.epoch)
+		#expect(SyrianCalendar.dateFromJulianDayNumber(SyrianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func julianDayNumber() {
 		#expect(SyrianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1607739)
 		#expect(SyrianCalendar.dateFromJulianDayNumber(1607739) == (1, 1, 1))
@@ -32,32 +37,32 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(SyrianCalendar.monthsInYear == 12)
+		#expect(SyrianCalendar.numberOfMonthsInYear == 12)
 	}
 
 	@Test func monthLength() {
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 1) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 2) == 30)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 3) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 4) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 6) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 7) == 30)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 8) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 9) == 30)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 10) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 11) == 31)
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 12) == 30)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 1, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 2, year: 1) == 30)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 3, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 4, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 6, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 7, year: 1) == 30)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 8, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 9, year: 1) == 30)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 10, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 11, year: 1) == 31)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 12, year: 1) == 30)
 
-		#expect(SyrianCalendar.daysInMonth(year: 1, month: 5) == 28)
-		#expect(SyrianCalendar.daysInMonth(year: 3, month: 5) == 29)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 5, year: 1) == 28)
+		#expect(SyrianCalendar.numberOfDaysIn(month: 5, year: 3) == 29)
 	}
 
 	@Test func yearLength() {
-		#expect(SyrianCalendar.daysInYear(1) == 365)
-		#expect(SyrianCalendar.daysInYear(3) == 366)
-		#expect(SyrianCalendar.daysInYear(7) == 366)
-		#expect(SyrianCalendar.daysInYear(8) == 365)
-		#expect(SyrianCalendar.daysInYear(1739) == 366)
+		#expect(SyrianCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(SyrianCalendar.numberOfDays(inYear: 3) == 366)
+		#expect(SyrianCalendar.numberOfDays(inYear: 7) == 366)
+		#expect(SyrianCalendar.numberOfDays(inYear: 8) == 365)
+		#expect(SyrianCalendar.numberOfDays(inYear: 1739) == 366)
 	}
 
 	@Test func limits() {
