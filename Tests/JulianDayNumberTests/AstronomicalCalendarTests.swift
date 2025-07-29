@@ -17,6 +17,7 @@ import Testing
 		#expect(AstronomicalCalendar.isValidDate(year: 1969, month: 7, day: 20))
 		#expect(!AstronomicalCalendar.isValidDate(year: 1969, month: 7, day: 40))
 		#expect(AstronomicalCalendar.isValidDate(year: 1600, month: 2, day: 29))
+		#expect(!AstronomicalCalendar.isValidDate((1582, 10, 10)))
 	}
 
 	@Test func leapYear() {
