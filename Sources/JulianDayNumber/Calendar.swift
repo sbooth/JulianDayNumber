@@ -59,14 +59,6 @@ extension Calendar {
 	public static func isValidDate(_ date: (year: Year, month: Month, day: Day)) -> Bool {
 		date.month > 0 && date.month <= numberOfMonths(inYear: date.year) && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
 	}
-
-	public static func numberOfDays(inYear Y: Year) -> Int {
-		var days = 0
-		for M in 1...numberOfMonths(inYear: Y) {
-			days += numberOfDaysIn(month: M, year: Y)
-		}
-		return days
-	}
 }
 
 extension Calendar {
