@@ -64,7 +64,7 @@ extension Calendar {
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
 	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Year, month: Month, day: Day, hour: Hour, minute: Minute, second: Second) {
 		let julianDatePlus12Hours = julianDate + 0.5
-		let J = Int(julianDatePlus12Hours.rounded(.down))
+		let J = JulianDayNumber(julianDatePlus12Hours.rounded(.down))
 		let (Y, M, D) = dateFromJulianDayNumber(J)
 		var (_, dayFraction) = modf(julianDatePlus12Hours)
 		if dayFraction < 0 {
