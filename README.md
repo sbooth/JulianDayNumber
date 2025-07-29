@@ -51,7 +51,7 @@ let jd = AstronomicalCalendar.julianDateFrom(year: 1919, month: 5, day: 29)
 ```
 
 > [!NOTE]
-> The astronomical calendar is a hybrid calendar using the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
+> The astronomical calendar is a hybrid calendar using the Julian calendar for dates on or before October 4, 1582 and the Gregorian calendar for dates on or after October 15, 1582.
 
 2. Convert the Julian date 2422107.5 to a `Date` instance.
 
