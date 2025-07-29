@@ -8,15 +8,20 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct KhwarizmianCalendarTests {
+	@Test func epoch() {
+		#expect(KhwarizmianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == KhwarizmianCalendar.epoch)
+		#expect(KhwarizmianCalendar.dateFromJulianDayNumber(KhwarizmianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func monthLength() {
 		for month in 1...12 {
-			#expect(KhwarizmianCalendar.daysInMonth(month) == 30)
+			#expect(KhwarizmianCalendar.numberOfDays(inMonth: month) == 30)
 		}
-		#expect(KhwarizmianCalendar.daysInMonth(13) == 5)
+		#expect(KhwarizmianCalendar.numberOfDays(inMonth: 13) == 5)
 	}
 
 	@Test func yearLength() {
-		#expect(KhwarizmianCalendar.daysInYear == 365)
+		#expect(KhwarizmianCalendar.numberOfDaysInYear == 365)
 	}
 
 	@Test func julianDayNumber() {

@@ -8,10 +8,15 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct SakaCalendarTests {
+	@Test func epoch() {
+		#expect(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == SakaCalendar.epoch)
+		#expect(SakaCalendar.dateFromJulianDayNumber(SakaCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(SakaCalendar.isDateValid(year: 1, month: 1, day: 1))
-		#expect(!SakaCalendar.isDateValid(year: 3, month: 1, day: 31))
-		#expect(SakaCalendar.isDateValid(year: 2, month: 1, day: 31))
+		#expect(SakaCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(!SakaCalendar.isValid(year: 3, month: 1, day: 31))
+		#expect(SakaCalendar.isValid(year: 2, month: 1, day: 31))
 	}
 
 	@Test func leapYear() {
@@ -34,30 +39,30 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(SakaCalendar.monthsInYear == 12)
+		#expect(SakaCalendar.numberOfMonthsInYear == 12)
 	}
 
 	@Test func monthLength() {
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 1) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 2) == 31)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 3) == 31)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 4) == 31)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 5) == 31)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 6) == 31)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 7) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 8) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 9) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 10) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 11) == 30)
-		#expect(SakaCalendar.daysInMonth(year: 1, month: 12) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 1, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 2, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 3, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 4, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 5, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 6, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 7, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 8, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 9, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 10, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 11, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 12, year: 1) == 30)
 	}
 
 	@Test func yearLength() {
-		#expect(SakaCalendar.daysInYear(4) == 365)
-		#expect(SakaCalendar.daysInYear(78) == 366)
-		#expect(SakaCalendar.daysInYear(100) == 365)
-		#expect(SakaCalendar.daysInYear(750) == 366)
-		#expect(SakaCalendar.daysInYear(1522) == 366)
+		#expect(SakaCalendar.numberOfDays(inYear: 4) == 365)
+		#expect(SakaCalendar.numberOfDays(inYear: 78) == 366)
+		#expect(SakaCalendar.numberOfDays(inYear: 100) == 365)
+		#expect(SakaCalendar.numberOfDays(inYear: 750) == 366)
+		#expect(SakaCalendar.numberOfDays(inYear: 1522) == 366)
 	}
 
 	@Test func julianDayNumber() {

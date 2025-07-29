@@ -8,10 +8,15 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct FrenchRepublicanCalendarTests {
+	@Test func epoch() {
+		#expect(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == FrenchRepublicanCalendar.epoch)
+		#expect(FrenchRepublicanCalendar.dateFromJulianDayNumber(FrenchRepublicanCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(FrenchRepublicanCalendar.isDateValid(year: 1, month: 1, day: 1))
-		#expect(FrenchRepublicanCalendar.isDateValid(year: 3, month: 13, day: 6))
-		#expect(!FrenchRepublicanCalendar.isDateValid(year: 4, month: 13, day: 6))
+		#expect(FrenchRepublicanCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(FrenchRepublicanCalendar.isValid(year: 3, month: 13, day: 6))
+		#expect(!FrenchRepublicanCalendar.isValid(year: 4, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {
@@ -37,24 +42,24 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(FrenchRepublicanCalendar.monthsInYear == 13)
+		#expect(FrenchRepublicanCalendar.numberOfMonthsInYear == 13)
 	}
 
 	@Test func monthLength() {
-		#expect(FrenchRepublicanCalendar.daysInMonth(year: 1, month: 1) == 30)
-		#expect(FrenchRepublicanCalendar.daysInMonth(year: 1, month: 2) == 30)
-		#expect(FrenchRepublicanCalendar.daysInMonth(year: 2, month: 13) == 5)
-		#expect(FrenchRepublicanCalendar.daysInMonth(year: 3, month: 13) == 6)
-		#expect(FrenchRepublicanCalendar.daysInMonth(year: 4, month: 13) == 5)
+		#expect(FrenchRepublicanCalendar.numberOfDaysIn(month: 1, year: 1) == 30)
+		#expect(FrenchRepublicanCalendar.numberOfDaysIn(month: 2, year: 1) == 30)
+		#expect(FrenchRepublicanCalendar.numberOfDaysIn(month: 13, year: 2) == 5)
+		#expect(FrenchRepublicanCalendar.numberOfDaysIn(month: 13, year: 3) == 6)
+		#expect(FrenchRepublicanCalendar.numberOfDaysIn(month: 13, year: 4) == 5)
 	}
 
 	@Test func yearLength() {
-		#expect(FrenchRepublicanCalendar.daysInYear(3) == 366)
-		#expect(FrenchRepublicanCalendar.daysInYear(4) == 365)
-		#expect(FrenchRepublicanCalendar.daysInYear(99) == 365)
-		#expect(FrenchRepublicanCalendar.daysInYear(103) == 366)
-		#expect(FrenchRepublicanCalendar.daysInYear(750) == 365)
-		#expect(FrenchRepublicanCalendar.daysInYear(1600) == 365)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 3) == 366)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 4) == 365)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 99) == 365)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 103) == 366)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 750) == 365)
+		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 1600) == 365)
 	}
 
 	@Test func julianDayNumber() {

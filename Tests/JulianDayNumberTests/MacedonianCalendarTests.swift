@@ -8,6 +8,11 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct MacedonianCalendarTests {
+	@Test func epoch() {
+		#expect(MacedonianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == MacedonianCalendar.epoch)
+		#expect(MacedonianCalendar.dateFromJulianDayNumber(MacedonianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func julianDayNumber() {
 		#expect(MacedonianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1607709)
 		#expect(MacedonianCalendar.dateFromJulianDayNumber(1607709) == (1, 1, 1))
@@ -32,32 +37,32 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(MacedonianCalendar.monthsInYear == 12)
+		#expect(MacedonianCalendar.numberOfMonthsInYear == 12)
 	}
 
 	@Test func monthLength() {
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 1) == 30)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 2) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 3) == 30)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 4) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 5) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 7) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 8) == 30)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 9) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 10) == 30)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 11) == 31)
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 12) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 1, year: 1) == 30)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 2, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 3, year: 1) == 30)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 4, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 5, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 7, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 8, year: 1) == 30)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 9, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 10, year: 1) == 30)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 11, year: 1) == 31)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 12, year: 1) == 31)
 
-		#expect(MacedonianCalendar.daysInMonth(year: 1, month: 6) == 28)
-		#expect(MacedonianCalendar.daysInMonth(year: 3, month: 6) == 29)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 6, year: 1) == 28)
+		#expect(MacedonianCalendar.numberOfDaysIn(month: 6, year: 3) == 29)
 	}
 
 	@Test func yearLength() {
-		#expect(MacedonianCalendar.daysInYear(1) == 365)
-		#expect(MacedonianCalendar.daysInYear(3) == 366)
-		#expect(MacedonianCalendar.daysInYear(7) == 366)
-		#expect(MacedonianCalendar.daysInYear(8) == 365)
-		#expect(MacedonianCalendar.daysInYear(1739) == 366)
+		#expect(MacedonianCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(MacedonianCalendar.numberOfDays(inYear: 3) == 366)
+		#expect(MacedonianCalendar.numberOfDays(inYear: 7) == 366)
+		#expect(MacedonianCalendar.numberOfDays(inYear: 8) == 365)
+		#expect(MacedonianCalendar.numberOfDays(inYear: 1739) == 366)
 	}
 
 	@Test func limits() {

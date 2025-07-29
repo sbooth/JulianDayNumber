@@ -26,31 +26,28 @@
 /// The Islamic calendar epoch in the Julian calendar is July 16, 622 CE.
 ///
 /// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
-public struct IslamicCalendar {
+public struct IslamicCalendar: Calendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
 	///
 	/// This JDN corresponds to July 16, 622 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1948440
 
-	/// A year in the Islamic calendar.
-	public typealias Year = Int
+	/// The converter for the Islamic calendar.
+	static let converter = JDNConverter(y: 5519, j: 7664, m: 0, n: 12, r: 30, p: 10631, q: 14, v: 15, u: 100, s: 2951, t: 51, w: 10)
 
-	/// A month in the Islamic calendar numbered from `1` (Muharram) to `12` (Dhú’l-Hijjab).
-	public typealias Month = Int
-
-	/// A day in the Islamic calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Islamic calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Islamic calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
 	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhú’l-Hijjab).
+	static let monthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
 
 	/// Returns `true` if the specified year is a leap year in the Islamic calendar.
 	///
@@ -66,29 +63,16 @@ public struct IslamicCalendar {
 		return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// Returns the number of days in the specified year in the Islamic calendar.
-	///
-	/// - parameter Y: A year number.
-	///
-	/// - returns: The number of days in the specified year.
-	public static func daysInYear(_ Y: Year) -> Int {
+	public static func numberOfDays(inYear Y: Year) -> Int {
 		isLeapYear(Y) ? 355 : 354
 	}
 
-	/// The number of days in each month indexed from `0` (Muharram) to `11` (Dhú’l-Hijjab).
-	static let monthLengths = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ]
-
-	/// Returns the number of days in the specified month and year in the Islamic calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -97,21 +81,5 @@ public struct IslamicCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension IslamicCalendar: JulianDayNumberConverting {
-	/// A date in the Islamic calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
-	/// The converter for the Islamic calendar.
-	static let converter = JDNConverter(y: 5519, j: 7664, m: 0, n: 12, r: 30, p: 10631, q: 14, v: 15, u: 100, s: 2951, t: 51, w: 10)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

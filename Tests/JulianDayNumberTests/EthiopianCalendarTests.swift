@@ -8,9 +8,14 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct EthiopianCalendarTests {
+	@Test func epoch() {
+		#expect(EthiopianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == EthiopianCalendar.epoch)
+		#expect(EthiopianCalendar.dateFromJulianDayNumber(EthiopianCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(EthiopianCalendar.isDateValid(year: 2015, month: 13, day: 6))
-		#expect(!EthiopianCalendar.isDateValid(year: 2016, month: 13, day: 6))
+		#expect(EthiopianCalendar.isValid(year: 2015, month: 13, day: 6))
+		#expect(!EthiopianCalendar.isValid(year: 2016, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {
@@ -34,23 +39,23 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(EthiopianCalendar.monthsInYear == 13)
+		#expect(EthiopianCalendar.numberOfMonthsInYear == 13)
 	}
 
 	@Test func monthLength() {
 		for month in 1...12 {
-			#expect(EthiopianCalendar.daysInMonth(year: 1, month: month) == 30)
+			#expect(EthiopianCalendar.numberOfDaysIn(month: month, year: 1) == 30)
 		}
-		#expect(EthiopianCalendar.daysInMonth(year: 1, month: 13) == 5)
-		#expect(EthiopianCalendar.daysInMonth(year: 3, month: 13) == 6)
+		#expect(EthiopianCalendar.numberOfDaysIn(month: 13, year: 1) == 5)
+		#expect(EthiopianCalendar.numberOfDaysIn(month: 13, year: 3) == 6)
 	}
 
 	@Test func yearLength() {
-		#expect(EthiopianCalendar.daysInYear(1) == 365)
-		#expect(EthiopianCalendar.daysInYear(3) == 366)
-		#expect(EthiopianCalendar.daysInYear(7) == 366)
-		#expect(EthiopianCalendar.daysInYear(8) == 365)
-		#expect(EthiopianCalendar.daysInYear(1739) == 366)
+		#expect(EthiopianCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(EthiopianCalendar.numberOfDays(inYear: 3) == 366)
+		#expect(EthiopianCalendar.numberOfDays(inYear: 7) == 366)
+		#expect(EthiopianCalendar.numberOfDays(inYear: 8) == 365)
+		#expect(EthiopianCalendar.numberOfDays(inYear: 1739) == 366)
 	}
 
 	@Test func julianDayNumber() {

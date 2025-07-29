@@ -14,7 +14,7 @@ Julian day number and Julian date calculations supporting the following calendar
 | [Egyptian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/egyptiancalendar) | 0747-02-26 BCE | Nabonassar |
 | [Ethiopian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/ethiopiancalendar) | 0008-08-29 CE | Incarnation |
 | [French Republican](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/frenchrepublicancalendar) | 1792-09-22 CE | Republican |
-| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-01 CE | CE |
+| [Gregorian](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/gregoriancalendar) | 0001-01-03 CE | CE |
 | [Hebrew](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/hebrewcalendar) | 3761-10-07 BCE | AM |
 | [Islamic](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/islamiccalendar) | 0622-07-16 CE | AH |
 | [ISO](https://swiftpackageindex.com/sbooth/juliandaynumber/main/documentation/juliandaynumber/isocalendar) | |
@@ -51,7 +51,7 @@ let jd = AstronomicalCalendar.julianDateFrom(year: 1919, month: 5, day: 29)
 ```
 
 > [!NOTE]
-> The astronomical calendar is a hybrid calendar using the Julian calendar for dates before October 15, 1582 and the Gregorian calendar for later dates.
+> The astronomical calendar is a hybrid calendar using the Julian calendar for dates on or before October 4, 1582 and the Gregorian calendar for dates on or after October 15, 1582.
 
 2. Convert the Julian date 2422107.5 to a `Date` instance.
 
@@ -63,8 +63,7 @@ let d = Date(julianDate: 2422107.5)
 3. Convert the Gregorian calendar date 2013-10-31 to a date in the Julian calendar.
 
 ```swift
-let j = GregorianCalendar.julianDayNumberFrom(year: 2013, month: 10, day: 31)
-let julianYMD = JulianCalendar.dateFromJulianDayNumber(j)
+let julianYMD = GregorianCalendar.convert(year: 2013, month: 10, day:31, to: JulianCalendar.self)
 // (year: 2013, month: 10, day: 18)
 ```
 

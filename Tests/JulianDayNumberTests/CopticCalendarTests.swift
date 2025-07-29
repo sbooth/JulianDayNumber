@@ -8,9 +8,14 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct CopticCalendarTests {
+	@Test func epoch() {
+		#expect(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == CopticCalendar.epoch)
+		#expect(CopticCalendar.dateFromJulianDayNumber(CopticCalendar.epoch) == (1, 1, 1))
+	}
+
 	@Test func dateValidation() {
-		#expect(CopticCalendar.isDateValid(year: 1739, month: 13, day: 6))
-		#expect(!CopticCalendar.isDateValid(year: 1740, month: 13, day: 6))
+		#expect(CopticCalendar.isValid(year: 1739, month: 13, day: 6))
+		#expect(!CopticCalendar.isValid(year: 1740, month: 13, day: 6))
 	}
 
 	@Test func leapYear() {
@@ -32,23 +37,23 @@ import Testing
 	}
 
 	@Test func monthCount() {
-		#expect(CopticCalendar.monthsInYear == 13)
+		#expect(CopticCalendar.numberOfMonthsInYear == 13)
 	}
 
 	@Test func monthLength() {
 		for month in 1...12 {
-			#expect(CopticCalendar.daysInMonth(year: 1, month: month) == 30)
+			#expect(CopticCalendar.numberOfDaysIn(month: month, year: 1) == 30)
 		}
-		#expect(CopticCalendar.daysInMonth(year: 1, month: 13) == 5)
-		#expect(CopticCalendar.daysInMonth(year: 3, month: 13) == 6)
+		#expect(CopticCalendar.numberOfDaysIn(month: 13, year: 1) == 5)
+		#expect(CopticCalendar.numberOfDaysIn(month: 13, year: 3) == 6)
 	}
 
 	@Test func yearLength() {
-		#expect(CopticCalendar.daysInYear(1) == 365)
-		#expect(CopticCalendar.daysInYear(3) == 366)
-		#expect(CopticCalendar.daysInYear(7) == 366)
-		#expect(CopticCalendar.daysInYear(8) == 365)
-		#expect(CopticCalendar.daysInYear(1739) == 366)
+		#expect(CopticCalendar.numberOfDays(inYear: 1) == 365)
+		#expect(CopticCalendar.numberOfDays(inYear: 3) == 366)
+		#expect(CopticCalendar.numberOfDays(inYear: 7) == 366)
+		#expect(CopticCalendar.numberOfDays(inYear: 8) == 365)
+		#expect(CopticCalendar.numberOfDays(inYear: 1739) == 366)
 	}
 
 	@Test func julianDayNumber() {
