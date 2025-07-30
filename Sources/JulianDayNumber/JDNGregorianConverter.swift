@@ -80,11 +80,11 @@ struct JDNGregorianConverter {
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
 			ΔcalendarCycles = -(J / gregorianIntercalatingCycle.days) + 1
-			precondition(ΔcalendarCycles <= Int.max / gregorianIntercalatingCycle.days, "Julian day number too small")
+			precondition(ΔcalendarCycles <= .max / gregorianIntercalatingCycle.days, "Julian day number too small")
 			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
 		}
 
-		precondition(J <= Int.max - j, "Julian day number too large")
+		precondition(J <= .max - j, "Julian day number too large")
 
 		var f = J + j
 		f = f + (((4 * J + B) / 146097) * 3) / 4 + C
