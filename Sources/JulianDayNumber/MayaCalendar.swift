@@ -118,7 +118,9 @@ public struct MayaCalendar: CalendarProtocol {
 	public typealias Alautun = Int
 
 	/// A long count in the Maya calendar.
-	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+	public typealias LongCount = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+
+	public typealias DateType = LongCount
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
@@ -158,7 +160,7 @@ extension MayaCalendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The long count corresponding to the specified Julian day number.
-	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Alautun, kinchiltun: Kinchiltun, calabtun: Calabtun, pictun: Pictun, */baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) {
+	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> LongCount {
 		let L = J - longCountEpoch
 
 #if false
