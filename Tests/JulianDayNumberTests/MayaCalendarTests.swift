@@ -82,13 +82,11 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		var b, k, t, u, d: Int
-
 		// Values smaller than this cause an arithmetic overflow in longCountFromJulianDayNumber
 //		let smallestJDNForMayaCalendar: JulianDayNumber = .min + 584283
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFromLongCount
 		let smallestJDNForMayaCalendar: JulianDayNumber = .min + 584291
-		(b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(smallestJDNForMayaCalendar)
+		var (b, k, t, u, d) = MayaCalendar.longCountFromJulianDayNumber(smallestJDNForMayaCalendar)
 		var jdn = MayaCalendar.julianDayNumberFromLongCount(baktun: b, katun: k, tun: t, uinal: u, kin: d)
 		#expect(smallestJDNForMayaCalendar == jdn)
 
