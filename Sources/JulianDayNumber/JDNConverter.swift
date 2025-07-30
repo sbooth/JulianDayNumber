@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -70,11 +70,11 @@ struct JDNConverter {
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
 			ΔcalendarCycles = -(J / p) + 1
-			precondition(ΔcalendarCycles <= Int.max / p, "Julian day number too small")
+			precondition(ΔcalendarCycles <= .max / p, "Julian day number too small")
 			J += ΔcalendarCycles * p
 		}
 
-		precondition(J <= (Int.max - v) / r - j, "Julian day number too large")
+		precondition(J <= (.max - v) / r - j, "Julian day number too large")
 
 		let f = J + j
 		let e = r * f + v
