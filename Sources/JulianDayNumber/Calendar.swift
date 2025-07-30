@@ -5,7 +5,7 @@
 //
 
 /// A calendar measuring time using years, months, and days.
-public protocol Calendar: CalendarProtocol where DateType == (year: Year, month: Month, day: Day) {
+public protocol Calendar: CalendarProtocol where DateType == YearMonthDay {
 	/// A year number relative to the calendar's epoch.
 	///
 	/// Year numbers may be positive or negative and the first year following the epoch has year number `1`.
@@ -20,6 +20,9 @@ public protocol Calendar: CalendarProtocol where DateType == (year: Year, month:
 	///
 	/// Day numbers are always positive and the first day of a month has day number `1`.
 	typealias Day = Int
+
+	/// A date consisting of a year number, month number, and day number.
+	typealias YearMonthDay = (year: Year, month: Month, day: Day)
 
 	/// Returns the number of months in the specified year.
 	///

@@ -10,9 +10,6 @@
 /// from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books),
 /// Chapter 15, pp. 585-624.
 struct JDNConverter {
-	/// A date consisting of a year, month, and day.
-	typealias YearMonthDay = (year: Int, month: Int, day: Int)
-
 	/// The number of years in the computational calendar which precede the epoch.
 	let y: Int
 	/// The number of days the epoch of the computational calendar (0/0/0) precedes day zero.
@@ -39,7 +36,7 @@ struct JDNConverter {
 	/// - parameter date: A date to convert.
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
-	func julianDayNumberFromDate(_ date: YearMonthDay) -> JulianDayNumber {
+	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
@@ -66,7 +63,7 @@ struct JDNConverter {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
-	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> YearMonthDay {
+	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> Calendar.YearMonthDay {
 		var J = J
 		var ΔcalendarCycles = 0
 
