@@ -8,6 +8,23 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct MayaCalendarTests {
+	@Test func epoch() {
+		#expect(MayaCalendar.julianDayNumberFromLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 0) == MayaCalendar.epoch)
+		#expect(MayaCalendar.dateFromJulianDayNumber(MayaCalendar.epoch) == (0, 0, 0, 0, 0))
+	}
+
+	@Test func dateValidation() {
+		#expect(MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 19))
+		#expect(!MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 0, uinal: 0, kin: 20))
+		#expect(MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 0, uinal: 19, kin: 0))
+		#expect(!MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 0, uinal: 20, kin: 0))
+		#expect(MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 17, uinal: 0, kin: 0))
+		#expect(!MayaCalendar.isValidLongCount(baktun: 0, katun: 0, tun: 18, uinal: 0, kin: 0))
+		#expect(MayaCalendar.isValidLongCount(baktun: 0, katun: 19, tun: 0, uinal: 0, kin: 0))
+		#expect(!MayaCalendar.isValidLongCount(baktun: 0, katun: 20, tun: 0, uinal: 0, kin: 0))
+		#expect(MayaCalendar.isValidLongCount(baktun: -1, katun: 0, tun: 0, uinal: 0, kin: 0))
+	}
+
 	@Test func longCount() {
 		#expect(MayaCalendar.longCountFromJulianDayNumber(584286) == (0, 0, 0, 0, 3))
 		#expect(MayaCalendar.longCountFromJulianDayNumber(584285) == (0, 0, 0, 0, 2))
