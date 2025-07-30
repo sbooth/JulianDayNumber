@@ -128,8 +128,12 @@ public struct MayaCalendar: CalendarProtocol {
 		longCountFromJulianDayNumber(J)
 	}
 
-	public static func isValidDate(_ date: (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)) -> Bool {
-		true
+	public static func isValidDate(_ date: DateType) -> Bool {
+		date.baktun >= 0 && date.baktun <= 19 &&
+		date.katun >= 0 && date.katun <= 19 &&
+		date.tun >= 0 && date.tun <= 17 &&
+		date.uinal >= 0 && date.uinal <= 19 &&
+		date.kin >= 0 && date.kin <= 19
 	}
 }
 
