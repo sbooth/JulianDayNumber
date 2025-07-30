@@ -63,7 +63,7 @@ public struct AstronomicalCalendar: Calendar {
 		Y < firstGregorianCalendarDate.year ? JulianCalendar.isLeapYear(Y) : GregorianCalendar.isLeapYear(Y)
 	}
 
-	public static func isValidDate(_ date: (year: Year, month: Month, day: Day)) -> Bool {
+	public static func isValidDate(_ date: DateType) -> Bool {
 		if date >= firstGregorianCalendarDate {
 			return GregorianCalendar.isValidDate(date)
 		} else if date <= lastJulianCalendarDate {

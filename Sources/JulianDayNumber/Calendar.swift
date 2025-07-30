@@ -45,6 +45,10 @@ public protocol Calendar: CalendarProtocol where DateType == (year: Year, month:
 }
 
 extension Calendar {
+	public static func isValidDate(_ date: DateType) -> Bool {
+		date.month > 0 && date.month <= numberOfMonths(inYear: date.year) && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
+	}
+
 	/// Returns `true` if the specified year, month, and day form a valid date.
 	///
 	/// - parameter Y: A year number.
@@ -54,10 +58,6 @@ extension Calendar {
 	/// - returns: `true` if the specified date is valid.
 	public static func isValid(year Y: Year, month M: Month, day D: Day) -> Bool {
 		isValidDate((Y, M, D))
-	}
-
-	public static func isValidDate(_ date: (year: Year, month: Month, day: Day)) -> Bool {
-		date.month > 0 && date.month <= numberOfMonths(inYear: date.year) && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
 	}
 }
 
