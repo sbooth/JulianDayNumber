@@ -129,11 +129,7 @@ public struct MayaCalendar: CalendarProtocol {
 	}
 
 	public static func isValidDate(_ date: DateType) -> Bool {
-		date.baktun >= 0 && date.baktun <= 19 &&
-		date.katun >= 0 && date.katun <= 19 &&
-		date.tun >= 0 && date.tun <= 17 &&
-		date.uinal >= 0 && date.uinal <= 19 &&
-		date.kin >= 0 && date.kin <= 19
+		isValidLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
 	}
 }
 
@@ -238,6 +234,20 @@ extension MayaCalendar {
 	/// - returns: The Julian day number corresponding to the specified long count.
 	public static func julianDayNumberFromLongCount(alautun: Alautun = 0, kinchiltun: Kinchiltun = 0, calabtun: Calabtun = 0, pictun: Pictun = 0, baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
 		longCountEpoch + (((((((alautun * kinchiltunPerAlautun + kinchiltun) * calabtunPerKinchiltun + calabtun) * pictunPerCalabtun + pictun) * baktunPerPictun + baktun) * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
+	}
+
+	/// Returns `true` if the specified long count is valid.
+	///
+	/// - parameter baktun: A baktun number.
+	/// - parameter katun: A katun number.
+	/// - parameter tun: A tun number.
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
+	///
+	/// - returns: `true` if the specified long count is valid.
+	public static func isValidLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> Bool {
+		// TODO: Determine the acceptable range of baktun
+		/*abs(baktun) <= X &&*/ katun >= 0 && katun <= 19 && tun >= 0 && tun <= 17 && uinal >= 0 && uinal <= 19 && kin >= 0 && kin <= 19
 	}
 }
 
