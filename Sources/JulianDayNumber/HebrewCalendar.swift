@@ -231,9 +231,17 @@ extension HebrewCalendar {
 		// calculate correct values for the first day of Tishrei in proleptic years. However,
 		// this isn't a public function and the callers perform the translation before calling.
 
+#if true
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
 		var d = b / 25920
 		let e = b % 25920
+#else
+		let a = (235 * Y - 234) / 19
+		let b = 204 + 793 * a
+		let c = 5 + 12 * a + b / 1080
+		var d = 1 + 29 * a + c / 24
+		let e = (b % 1080) + 1080 * (c % 24)
+#endif
 		let f = 1 + (d % 7)
 		let g = ((7 * Y + 13) % 19) / 12
 		let h = ((7 * Y + 6) % 19) / 12
@@ -251,7 +259,12 @@ extension HebrewCalendar {
 	static func yearContaining(julianDayNumber J: JulianDayNumber) -> Year {
 		precondition(J >= epoch, "Julian day number must be >= epoch")
 
+#if true
 		let M = (25920 * (J - 347996)) / 765433 + 1
+#else
+		let ratio: Double = 25920 / 765433
+		let M = Int(ratio * Double(J - 347996)) + 1
+#endif
 		var Y = 19 * (M / 235) + (19 * (M % 235) - 2) / 235 + 1
 		let K = firstDayOfTishrei(year: Y)
 		if K > J {
