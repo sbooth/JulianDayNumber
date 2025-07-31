@@ -221,14 +221,11 @@ public struct HebrewCalendar: Calendar {
 extension HebrewCalendar {
 	/// Returns the Julian day number of the first day of Tishrei in the specified year.
 	///
-	/// - attention: No validation check is performed on the year value.
-	///
 	/// - parameter Y: A year A.M.
 	///
 	/// - returns: The Julian day number of the first day of Tishrei in the specified year.
 	static func firstDayOfTishrei(year Y: Year) -> JulianDayNumber {
 		precondition(Y > 0, "First day of Tishrei calculations only valid for year numbers > 0")
-		precondition(Y < 974245219737, "Year values above 974245219736 cause numerical overflow using 64-bit integers")
 
 		// It is possible to adjust the year by a multiple of the cycle to have this function
 		// calculate correct values for the first day of Tishrei in proleptic years. However,
@@ -253,7 +250,6 @@ extension HebrewCalendar {
 	/// - returns: The year containing the specified Julian day number.
 	static func yearContaining(julianDayNumber J: JulianDayNumber) -> Year {
 		precondition(J >= epoch, "Julian day number must be >= epoch")
-		precondition(J < 355839970905665, "Julian day numbers above 355839970905664 cause numerical overflow using 64-bit integers")
 
 		let M = (25920 * (J - 347996)) / 765433 + 1
 		var Y = 19 * (M / 235) + (19 * (M % 235) - 2) / 235 + 1
