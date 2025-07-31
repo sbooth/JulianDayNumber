@@ -11,27 +11,27 @@
 /// Chapter 15, pp. 585-624.
 struct JDNSakaConverter {
 	/// The number of years in the computational calendar which precede the epoch.
-	let y = 4794
+	let y: Int64 = 4794
 	/// The number of days the epoch of the computational calendar (0/0/0) precedes day zero.
-	let j = 1348
+	let j: Int64 = 1348
 	/// The month number which corresponds to month zero in the computational calendar.
-	let m = 1
+	let m: Int64 = 1
 	/// The number of months in a year, counting any epagonomai as an extra month.
-	let n = 12
+	let n: Int64 = 12
 	/// The number of years in an intercalation cycle.
-	let r = 4
+	let r: Int64 = 4
 	/// The number of days in an intercalation cycle.
-	let p = 1461
-	let q = 0
-	let v = 3
-	let u = 1
-	let s = 31
-	let t = 0
-	let w = 0
+	let p: Int64 = 1461
+	let q: Int64 = 0
+	let v: Int64 = 3
+	let u: Int64 = 1
+	let s: Int64 = 31
+	let t: Int64 = 0
+	let w: Int64 = 0
 
-	let A = 184
-	let B = 274073
-	let C = -36
+	let A: Int64 = 184
+	let B: Int64 = 274073
+	let C: Int64 = -36
 
 	/// Converts a date in the Śaka calendar to a Julian day number and returns the result.
 	///
@@ -41,18 +41,18 @@ struct JDNSakaConverter {
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
 	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
+		var Y = Int64(date.year)
+		var ΔcalendarCycles: Int64 = 0
 
 		if Y <= -y {
 			ΔcalendarCycles = (-y - Y) / gregorianIntercalatingCycle.years + 1
 			Y += ΔcalendarCycles * gregorianIntercalatingCycle.years
 		}
 
-		let h = date.month - m
+		let h = Int64(date.month) - m
 		let g = Y + y - (n - h) / n
 		let f = (h - 1 + n) % n
-		let e = (p * g + q) / r + date.day - 1 - j
+		let e = (p * g + q) / r + Int64(date.day) - 1 - j
 		let Z = f / 6
 		var J = e + ((31 - Z) * f + 5 * Z) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
@@ -71,7 +71,7 @@ struct JDNSakaConverter {
 	/// - returns: The date corresponding to the specified Julian day number.
 	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> Calendar.YearMonthDay {
 		var J = J
-		var ΔcalendarCycles = 0
+		var ΔcalendarCycles: Int64 = 0
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
@@ -97,6 +97,6 @@ struct JDNSakaConverter {
 			Y -= ΔcalendarCycles * gregorianIntercalatingCycle.years
 		}
 
-		return (Y, M, D)
+		return (Calendar.Year(Y), Calendar.Month(M), Calendar.Day(D))
 	}
 }

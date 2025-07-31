@@ -126,13 +126,13 @@ public struct MayaCalendar: CalendarProtocol {
 // Maya long count cycle lengths
 
 /// One uinal is composed of 20 kin.
-let kinPerUinal = 20
+let kinPerUinal: Int64 = 20
 /// One tun is composed of 18 uinal.
-let uinalPerTun = 18
+let uinalPerTun: Int64 = 18
 /// One katun is composed of 20 tun.
-let tunPerKatun = 20
+let tunPerKatun: Int64 = 20
 /// One baktun is composed of 20 katun.
-let katunPerBaktun = 20
+let katunPerBaktun: Int64 = 20
 
 extension MayaCalendar {
 	/// Converts a Julian day number to a long count in the Maya calendar.
@@ -143,7 +143,7 @@ extension MayaCalendar {
 	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> LongCount {
 		let L = J - longCountEpoch
 
-		var baktun, katun, tun, uinal, kin: Int
+		var baktun, katun, tun, uinal, kin: Int64
 
 		(uinal, kin) = L.quotientAndRemainder(dividingBy: kinPerUinal)
 		(tun, uinal) = uinal.quotientAndRemainder(dividingBy: uinalPerTun)
@@ -169,7 +169,7 @@ extension MayaCalendar {
 			}
 		}
 
-		return (baktun, katun, tun, uinal, kin)
+		return (Baktun(baktun), Katun(katun), Tun(tun), Uinal(uinal), Kin(kin))
 	}
 
 	/// Converts a long count in the Maya calendar to a Julian day number.
@@ -184,7 +184,7 @@ extension MayaCalendar {
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
 	public static func julianDayNumberFromLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
-		longCountEpoch + (((baktun * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
+		longCountEpoch + (((Int64(baktun) * katunPerBaktun + Int64(katun)) * tunPerKatun + Int64(tun)) * uinalPerTun + Int64(uinal)) * kinPerUinal + Int64(kin)
 	}
 
 	/// Returns `true` if the specified long count is valid.
@@ -244,7 +244,7 @@ extension MayaCalendar {
 		let (number, name) = (T % 13 + 1, T % 20)
 		let (month, day) = (H % 365).quotientAndRemainder(dividingBy: 20)
 
-		return (number, name + 1, day, month + 1)
+		return (TzolkinNumber(number), TzolkinDayName(name + 1), HaabDay(day), HaabMonth(month + 1))
 	}
 
 	/// Returns the most recent Julian day number for a Calendar Round in the Maya calendar occurring before a Julian day number.
@@ -303,7 +303,7 @@ extension MayaCalendar {
 			return nil
 		}
 
-		return (365 * T - 364 * H + 7600) % 18980
+		return JulianDayNumber(365 * T - 364 * H + 7600 % 18980)
 	}
 }
 

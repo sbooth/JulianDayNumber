@@ -10,7 +10,7 @@
 /// with JDN 0 assigned to the day starting at noon on Monday, January 1, 4713 BCE in the proleptic Julian calendar.
 ///
 /// - seealso: [Julian day](https://en.wikipedia.org/wiki/Julian_day)
-public typealias JulianDayNumber = Int
+public typealias JulianDayNumber = Int64
 
 /// Julian day number to date conversion.
 public protocol JulianDayNumberConverting {
