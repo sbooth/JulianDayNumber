@@ -70,11 +70,8 @@ struct JDNConverter {
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
 			ΔcalendarCycles = -(J / p) + 1
-			precondition(ΔcalendarCycles <= .max / p, "Julian day number too small")
 			J += ΔcalendarCycles * p
 		}
-
-		precondition(J <= (.max - v) / r - j, "Julian day number too large")
 
 		let f = J + j
 		let e = r * f + v
