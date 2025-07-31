@@ -91,10 +91,12 @@ import Testing
 		var jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForFrenchRepublicanCalendar == jdn)
 
+#if !(arch(i386) || arch(arm) || arch(arm64_32))
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForFrenchRepublicanCalendar: JulianDayNumber = 2305795661307960548
 		(Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(largestJDNForFrenchRepublicanCalendar)
 		jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForFrenchRepublicanCalendar == jdn)
+#endif
 	}
 }

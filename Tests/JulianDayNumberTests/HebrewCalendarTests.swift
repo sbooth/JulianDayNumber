@@ -253,6 +253,7 @@ import Testing
 		var jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForHebrewCalendar == jdn)
 
+#if !(arch(i386) || arch(arm) || arch(arm64_32))
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 #if true
 		let largestJDNForHebrewCalendar: JulianDayNumber = 355839970905570
@@ -262,5 +263,6 @@ import Testing
 		(Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(largestJDNForHebrewCalendar)
 		jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForHebrewCalendar == jdn)
+#endif
 	}
 }
