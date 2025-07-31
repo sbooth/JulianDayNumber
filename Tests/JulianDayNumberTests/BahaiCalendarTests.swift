@@ -91,7 +91,7 @@ import Testing
 		var jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForBahaiCalendar == jdn)
 
-#if !(arch(i386) || arch(arm) || arch(arm64_32))
+#if _pointerBitWidth(_64)
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForBahaiCalendar: JulianDayNumber = 2305795661307959248
 		(Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(largestJDNForBahaiCalendar)

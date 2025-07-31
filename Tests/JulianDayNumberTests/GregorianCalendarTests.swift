@@ -135,7 +135,7 @@ import Testing
 		var jdn = GregorianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForGregorianCalendar == jdn)
 
-#if !(arch(i386) || arch(arm) || arch(arm64_32))
+#if _pointerBitWidth(_64)
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let largestJDNForGregorianCalendar: JulianDayNumber = 2305795661307959247
 		(Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(largestJDNForGregorianCalendar)
