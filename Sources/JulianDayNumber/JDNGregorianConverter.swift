@@ -4,10 +4,8 @@
 // MIT license
 //
 
-// TODO: Figure out a way to use the Gregorian intercalating parameters A, B and C instead
-
-/// The intercalating cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
-let gregorianIntercalatingCycle = (years: 400, days: 146097)
+/// The solar cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
+let gregorianSolarCycle = (years: 400, days: 146097)
 
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day in calendars using Gregorian-type intercalating.
 ///
@@ -50,8 +48,8 @@ struct JDNGregorianConverter {
 		var ΔcalendarCycles = 0
 
 		if Y <= -y {
-			ΔcalendarCycles = (-y - Y) / gregorianIntercalatingCycle.years + 1
-			Y += ΔcalendarCycles * gregorianIntercalatingCycle.years
+			ΔcalendarCycles = (-y - Y) / gregorianSolarCycle.years + 1
+			Y += ΔcalendarCycles * gregorianSolarCycle.years
 		}
 
 		let h = date.month - m
@@ -62,7 +60,7 @@ struct JDNGregorianConverter {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianIntercalatingCycle.days
+			J -= ΔcalendarCycles * gregorianSolarCycle.days
 		}
 
 		return J
@@ -79,8 +77,8 @@ struct JDNGregorianConverter {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			ΔcalendarCycles = -(J / gregorianIntercalatingCycle.days) + 1
-			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
+			ΔcalendarCycles = -(J / gregorianSolarCycle.days) + 1
+			J += ΔcalendarCycles * gregorianSolarCycle.days
 		}
 
 		var f = J + j
@@ -93,7 +91,7 @@ struct JDNGregorianConverter {
 		var Y = e / p - y + (n + m - M) / n
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * gregorianIntercalatingCycle.years
+			Y -= ΔcalendarCycles * gregorianSolarCycle.years
 		}
 
 		return (Y, M, D)
