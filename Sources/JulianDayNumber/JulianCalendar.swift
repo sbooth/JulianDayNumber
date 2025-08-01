@@ -109,7 +109,11 @@ extension JulianCalendar {
 	///
 	/// - returns: The day of the week for the specified Julian day number.
 	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
-		Int(1 + (J + 1) % 7)
+		var remainder = (J + 1) % 7
+		if remainder < 0 {
+			remainder += 7
+		}
+		return DayOfWeek(1 + remainder)
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.
