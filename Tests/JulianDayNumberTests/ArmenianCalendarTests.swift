@@ -57,7 +57,7 @@ import Testing
 		#expect(smallestJDNForArmenianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForArmenianCalendar: JulianDayNumber = .max - 317
+		let largestJDNForArmenianCalendar: JulianDayNumber = (.max - ArmenianCalendar.converter.v) / ArmenianCalendar.converter.r - ArmenianCalendar.converter.j
 		(Y, M, D) = ArmenianCalendar.dateFromJulianDayNumber(largestJDNForArmenianCalendar)
 		jdn = ArmenianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForArmenianCalendar == jdn)

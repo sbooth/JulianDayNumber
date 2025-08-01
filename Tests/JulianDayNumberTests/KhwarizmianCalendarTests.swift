@@ -55,7 +55,7 @@ import Testing
 		#expect(smallestJDNForKhwarizmianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForKhwarizmianCalendar: JulianDayNumber = .max - 317
+		let largestJDNForKhwarizmianCalendar: JulianDayNumber = (.max - KhwarizmianCalendar.converter.v) / KhwarizmianCalendar.converter.r - KhwarizmianCalendar.converter.j
 		(Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(largestJDNForKhwarizmianCalendar)
 		jdn = KhwarizmianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForKhwarizmianCalendar == jdn)
