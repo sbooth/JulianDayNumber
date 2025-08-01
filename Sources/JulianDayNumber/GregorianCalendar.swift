@@ -103,12 +103,15 @@ public struct GregorianCalendar: Calendar {
 }
 
 extension GregorianCalendar {
+	/// A day of the week number from `1` (Sunday) to `7` (Saturday).
+	public typealias DayOfWeek = JulianCalendar.DayOfWeek
+
 	/// Returns the day of the week for the specified Julian day number.
 	///
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
-	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
 		JulianCalendar.dayOfWeek(J)
 	}
 
@@ -121,7 +124,7 @@ extension GregorianCalendar {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified year, month, and day.
-	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> Int {
+	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> DayOfWeek {
 		let a = (9 + M) % 12
 		let b = Y - a / 10
 		return 1 + (2 + D + (13 * a + 2) / 5 + b + b / 4 - b / 100 + b / 400) % 7

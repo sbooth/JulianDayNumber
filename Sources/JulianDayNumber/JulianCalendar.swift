@@ -100,12 +100,15 @@ public struct JulianCalendar: Calendar {
 }
 
 extension JulianCalendar {
+	/// A day of the week number from `1` (Sunday) to `7` (Saturday).
+	public typealias DayOfWeek = Int
+
 	/// Returns the day of the week for the specified Julian day number.
 	///
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
-	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
 		Int(1 + (J + 1) % 7)
 	}
 
