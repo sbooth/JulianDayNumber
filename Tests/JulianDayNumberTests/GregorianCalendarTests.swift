@@ -70,7 +70,7 @@ import Testing
 		#expect(sum == (dec31 - jan1 + 1))
 	}
 
-	func testEaster() {
+	@Test func easter() {
 		// Dates from Meeus (1998)
 		#expect(GregorianCalendar.easter(year: 1991) == (3, 31))
 		#expect(GregorianCalendar.easter(year: 1992) == (4, 19))
