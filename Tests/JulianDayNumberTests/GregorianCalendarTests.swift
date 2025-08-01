@@ -70,6 +70,22 @@ import Testing
 		#expect(sum == (dec31 - jan1 + 1))
 	}
 
+	@Test func dayOfWeek() {
+		#expect(GregorianCalendar.dayOfWeek(GregorianCalendar.epoch) == GregorianCalendar.dayOfWeekFrom(year: 1, month: 1, day: 1))
+		#expect(GregorianCalendar.dayOfWeekFrom(year: -1, month: 1, day: 1) == 6)
+		#expect(GregorianCalendar.dayOfWeekFrom(year: -1, month: 12, day: 31) == 6)
+		#expect(GregorianCalendar.dayOfWeekFrom(year: 0, month: 1, day: 1) == 7)
+		#expect(GregorianCalendar.dayOfWeekFrom(year: 0, month: 12, day: 31) == 1)
+		#expect(GregorianCalendar.dayOfWeekFrom(year: 1, month: 1, day: 1) == 2)
+		#expect(GregorianCalendar.dayOfWeekFrom(year: 1, month: 12, day: 31) == 2)
+		#expect(GregorianCalendar.dayOfWeek(-1) == GregorianCalendar.dayOfWeekFrom(year: -4713, month: 11, day: 23))
+		#expect(GregorianCalendar.dayOfWeek(0) == GregorianCalendar.dayOfWeekFrom(year: -4713, month: 11, day: 24))
+		#expect(GregorianCalendar.dayOfWeek(1) == GregorianCalendar.dayOfWeekFrom(year: -4713, month: 11, day: 25))
+		// Date from Meeus (1998)
+		#expect(GregorianCalendar.dayOfWeek(GregorianCalendar.julianDayNumberFrom(year: 1954, month: 6, day: 30)) == 4)
+		#expect(GregorianCalendar.dayOfWeek(2434924) == GregorianCalendar.dayOfWeekFrom(year: 1954, month: 6, day: 30))
+	}
+
 	@Test func easter() {
 		// Dates from Meeus (1998)
 		#expect(GregorianCalendar.easter(year: 1991) == (3, 31))

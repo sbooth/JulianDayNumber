@@ -117,6 +117,18 @@ public struct AstronomicalCalendar: Calendar {
 }
 
 extension AstronomicalCalendar {
+	/// A day of the week number from `1` (Sunday) to `7` (Saturday).
+	public typealias DayOfWeek = JulianCalendar.DayOfWeek
+
+	/// Returns the day of the week for the specified Julian day number in the astronomical calendar.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The day of the week for the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
+		JulianCalendar.dayOfWeek(J)
+	}
+
 	/// Returns the month and day of Easter in the specified year in the astronomical calendar.
 	///
 	/// - parameter Y: A year number.

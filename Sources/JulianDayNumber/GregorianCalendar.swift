@@ -103,16 +103,19 @@ public struct GregorianCalendar: Calendar {
 }
 
 extension GregorianCalendar {
-	/// Returns the day of the week for the specified Julian day number.
+	/// A day of the week number from `1` (Sunday) to `7` (Saturday).
+	public typealias DayOfWeek = JulianCalendar.DayOfWeek
+
+	/// Returns the day of the week for the specified Julian day number in the Gregorian calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
-	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
+	/// - returns: The day of the week for the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
 		JulianCalendar.dayOfWeek(J)
 	}
 
-	/// Returns the day of the week for the specified year, month, and day.
+	/// Returns the day of the week for the specified year, month, and day in the Gregorian calendar.
 	///
 	/// - important: No validation checks are performed on the date values.
 	///
@@ -120,8 +123,15 @@ extension GregorianCalendar {
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified year, month, and day.
-	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> Int {
+	/// - returns: The day of the week for the specified year, month, and day.
+	public static func dayOfWeekFrom(year Y: Year, month M: Month, day D: Day) -> DayOfWeek {
+		var Y = Y
+
+		// Richards' algorithm is only valid for positive years.
+		if Y <= 0 {
+			Y += (-Y / gregorianIntercalatingCycle.years + 1) * gregorianIntercalatingCycle.years
+		}
+
 		let a = (9 + M) % 12
 		let b = Y - a / 10
 		return 1 + (2 + D + (13 * a + 2) / 5 + b + b / 4 - b / 100 + b / 400) % 7
