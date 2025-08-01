@@ -86,7 +86,7 @@ import Testing
 		#expect(GregorianCalendar.dayOfWeek(2434924) == GregorianCalendar.dayOfWeekFrom(year: 1954, month: 6, day: 30))
 	}
 
-	func testEaster() {
+	@Test func easter() {
 		// Dates from Meeus (1998)
 		#expect(GregorianCalendar.easter(year: 1991) == (3, 31))
 		#expect(GregorianCalendar.easter(year: 1992) == (4, 19))
