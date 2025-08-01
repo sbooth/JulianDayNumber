@@ -45,8 +45,8 @@ struct JDNSakaConverter {
 		var ΔcalendarCycles = 0
 
 		if Y <= -y {
-			ΔcalendarCycles = (-y - Y) / gregorianIntercalatingCycle.years + 1
-			Y += ΔcalendarCycles * gregorianIntercalatingCycle.years
+			ΔcalendarCycles = (-y - Y) / gregorianSolarCycle.years + 1
+			Y += ΔcalendarCycles * gregorianSolarCycle.years
 		}
 
 		let h = date.month - m
@@ -58,7 +58,7 @@ struct JDNSakaConverter {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianIntercalatingCycle.days
+			J -= ΔcalendarCycles * gregorianSolarCycle.days
 		}
 
 		return J
@@ -75,8 +75,8 @@ struct JDNSakaConverter {
 
 		// Richards' algorithm is only valid for positive JDNs.
 		if J < 0 {
-			ΔcalendarCycles = -(J / gregorianIntercalatingCycle.days) + 1
-			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
+			ΔcalendarCycles = -(J / gregorianSolarCycle.days) + 1
+			J += ΔcalendarCycles * gregorianSolarCycle.days
 		}
 
 		var f = J + j
@@ -94,7 +94,7 @@ struct JDNSakaConverter {
 		var Y = e / p - y + (n + m - M) / n
 
 		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * gregorianIntercalatingCycle.years
+			Y -= ΔcalendarCycles * gregorianSolarCycle.years
 		}
 
 		return (Y, M, D)

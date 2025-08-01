@@ -129,7 +129,7 @@ extension GregorianCalendar {
 
 		// Richards' algorithm is only valid for positive years.
 		if Y <= 0 {
-			Y += (-Y / gregorianIntercalatingCycle.years + 1) * gregorianIntercalatingCycle.years
+			Y += (-Y / gregorianSolarCycle.years + 1) * gregorianSolarCycle.years
 		}
 
 		let a = (9 + M) % 12
