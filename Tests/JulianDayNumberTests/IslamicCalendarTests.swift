@@ -140,7 +140,7 @@ import Testing
 		#expect(smallestJDNForIslamicCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForIslamicCalendar: JulianDayNumber = (.max - 15) / 30 - 7664
+		let largestJDNForIslamicCalendar: JulianDayNumber = (.max - IslamicCalendar.converter.v) / IslamicCalendar.converter.r - IslamicCalendar.converter.j
 		(Y, M, D) = IslamicCalendar.dateFromJulianDayNumber(largestJDNForIslamicCalendar)
 		jdn = IslamicCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForIslamicCalendar == jdn)

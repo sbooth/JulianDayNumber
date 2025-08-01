@@ -89,7 +89,7 @@ import Testing
 		#expect(smallestJDNForSyrianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForSyrianCalendar: JulianDayNumber = (.max - 3) / 4 - 1401
+		let largestJDNForSyrianCalendar: JulianDayNumber = (.max - SyrianCalendar.converter.v) / SyrianCalendar.converter.r - SyrianCalendar.converter.j
 		(Y, M, D) = SyrianCalendar.dateFromJulianDayNumber(largestJDNForSyrianCalendar)
 		jdn = SyrianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForSyrianCalendar == jdn)

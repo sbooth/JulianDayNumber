@@ -240,7 +240,7 @@ import Testing
 		#expect(smallestJDNForJulianCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForJulianCalendar: JulianDayNumber = (.max - 3) / 4 - 1401
+		let largestJDNForJulianCalendar: JulianDayNumber = (.max - JulianCalendar.converter.v) / JulianCalendar.converter.r - JulianCalendar.converter.j
 		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
 		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForJulianCalendar == jdn)

@@ -87,7 +87,7 @@ import Testing
 		#expect(smallestJDNForCopticCalendar == jdn)
 
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForCopticCalendar: JulianDayNumber = (.max - 3) / 4 - 124
+		let largestJDNForCopticCalendar: JulianDayNumber = (.max - CopticCalendar.converter.v) / CopticCalendar.converter.r - CopticCalendar.converter.j
 		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(largestJDNForCopticCalendar)
 		jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForCopticCalendar == jdn)
