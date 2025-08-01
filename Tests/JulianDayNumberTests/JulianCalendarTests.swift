@@ -160,6 +160,25 @@ import Testing
 		#expect(JulianCalendar.dateFrom(year: 2000, ordinalDay: 366) == (2000, 12, 31))
 	}
 
+	@Test func dayOfWeek() {
+		#expect(JulianCalendar.dayOfWeek(-9) == 7)
+		#expect(JulianCalendar.dayOfWeek(-8) == 1)
+		#expect(JulianCalendar.dayOfWeek(-7) == 2)
+		#expect(JulianCalendar.dayOfWeek(-6) == 3)
+		#expect(JulianCalendar.dayOfWeek(-5) == 4)
+		#expect(JulianCalendar.dayOfWeek(-4) == 5)
+		#expect(JulianCalendar.dayOfWeek(-3) == 6)
+		#expect(JulianCalendar.dayOfWeek(-2) == 7)
+		#expect(JulianCalendar.dayOfWeek(-1) == 1)
+		#expect(JulianCalendar.dayOfWeek(0) == 2)
+		#expect(JulianCalendar.dayOfWeek(1) == 3)
+		#expect(JulianCalendar.dayOfWeek(2) == 4)
+		#expect(JulianCalendar.dayOfWeek(3) == 5)
+		#expect(JulianCalendar.dayOfWeek(4) == 6)
+		#expect(JulianCalendar.dayOfWeek(5) == 7)
+		#expect(JulianCalendar.dayOfWeek(6) == 1)
+	}
+
 	@Test func easter() {
 		// Dates from Meeus (1998)
 		#expect(JulianCalendar.easter(year: 179) == (4, 12))
