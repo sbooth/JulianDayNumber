@@ -41,12 +41,20 @@ struct JDNSakaConverter {
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
 	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
+		// Arithmetic upper limit
+		// `Y` values larger than this cause overflow when `e` is computed
+		let maxY = (.max / p) - y + (n - (date.month - m)) / n
 
-		if Y <= -y {
-			ΔcalendarCycles = (-y - Y) / gregorianSolarCycle.years + 1
-			Y += ΔcalendarCycles * gregorianSolarCycle.years
+		// Algorithmic lower limit
+		let minY = 1 - y
+
+		var Y = date.year
+		var calendarCycles = 0
+
+		if Y > maxY || Y < minY {
+			let qr = Y.quotientAndRemainder(dividingBy: -gregorianSolarCycle.years)
+			calendarCycles = qr.quotient + 1
+			Y = gregorianSolarCycle.years + qr.remainder
 		}
 
 		let h = date.month - m
@@ -57,8 +65,8 @@ struct JDNSakaConverter {
 		var J = e + ((31 - Z) * f + 5 * Z) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianSolarCycle.days
+		if calendarCycles != 0 {
+			J -= calendarCycles * gregorianSolarCycle.days
 		}
 
 		return J
