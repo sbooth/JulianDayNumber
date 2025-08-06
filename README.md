@@ -93,7 +93,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Macedonian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 | Maya Long Count | `Int.min` + 584291 | `Int.max` |
 | Persian | `Int.min` + 336 | `Int.max` - 77 |
-| Śaka | `Int.min` + 56457 | 2305795661307959298 |
+| Śaka | -9223372036852969357 | `Int.max` |
 | Syrian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
 
 ## License

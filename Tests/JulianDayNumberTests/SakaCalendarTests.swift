@@ -87,17 +87,14 @@ import Testing
 
 	@Test func arithmeticLimits() {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForSakaCalendar: JulianDayNumber = .min + 56457
-		var (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
-		var jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForSakaCalendar == jdn)
+		let smallestJDNForSakaCalendar: JulianDayNumber = -9223372036852969357
 
-#if _pointerBitWidth(_64)
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForSakaCalendar: JulianDayNumber = 2305795661307959298
-		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(largestJDNForSakaCalendar)
-		jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForSakaCalendar == jdn)
-#endif
+		let minDate = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
+		let minJ = SakaCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == smallestJDNForSakaCalendar)
+
+		let maxDate = SakaCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = SakaCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }
