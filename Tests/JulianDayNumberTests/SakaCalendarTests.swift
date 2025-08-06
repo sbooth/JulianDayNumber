@@ -86,12 +86,14 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
+#if _pointerBitWidth(_64)
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 		let smallestJDNForSakaCalendar: JulianDayNumber = -9223372036852969357
 
 		let minDate = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
 		let minJ = SakaCalendar.julianDayNumberFromDate(minDate)
 		#expect(minJ == smallestJDNForSakaCalendar)
+#endif
 
 		let maxDate = SakaCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = SakaCalendar.julianDayNumberFromDate(maxDate)
