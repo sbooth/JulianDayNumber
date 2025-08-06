@@ -80,7 +80,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
 | Armenian | `Int.min` + 341 | `Int.max` - 317 |
-| Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
+| Baháʼí | -9223372036852324705 | `Int.max` |
 | Coptic | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
 | Egyptian | `Int.min` + 611 | `Int.max` - 47 |
 | Ethiopian | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |

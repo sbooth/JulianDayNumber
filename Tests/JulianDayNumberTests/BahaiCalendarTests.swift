@@ -85,18 +85,17 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForBahaiCalendar: JulianDayNumber = .min + 56457
-		var (Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(smallestJDNForBahaiCalendar)
-		var jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForBahaiCalendar == jdn)
-
 #if _pointerBitWidth(_64)
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForBahaiCalendar: JulianDayNumber = 2305795661307959248
-		(Y, M, D) = BahaiCalendar.dateFromJulianDayNumber(largestJDNForBahaiCalendar)
-		jdn = BahaiCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForBahaiCalendar == jdn)
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let smallestJDNForBahaiCalendar: JulianDayNumber = -9223372036852324705
+
+		let minDate = BahaiCalendar.dateFromJulianDayNumber(smallestJDNForBahaiCalendar)
+		let minJ = BahaiCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == smallestJDNForBahaiCalendar)
 #endif
+
+		let maxDate = BahaiCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = BahaiCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }
