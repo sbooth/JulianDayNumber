@@ -90,7 +90,7 @@ struct JDNConverter {
 		var Y = e / p - y + (n + m - M) / n
 
 		if calendarCycles != 0 {
-			Y += calendarCycles * -r
+			Y -= calendarCycles * r
 		}
 
 		return (Y, M, D)
