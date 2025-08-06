@@ -102,7 +102,7 @@ struct JDNSakaConverter {
 		var Y = e / p - y + (n + m - M) / n
 
 		if calendarCycles != 0 {
-			Y += calendarCycles * -gregorianSolarCycle.years
+			Y -= calendarCycles * gregorianSolarCycle.years
 		}
 
 		return (Y, M, D)
