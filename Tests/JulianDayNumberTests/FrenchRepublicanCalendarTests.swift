@@ -83,20 +83,17 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForFrenchRepublicanCalendar: JulianDayNumber = .min + 56456
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForFrenchRepublicanCalendar: JulianDayNumber = .min + 56759
-		var (Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(smallestJDNForFrenchRepublicanCalendar)
-		var jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForFrenchRepublicanCalendar == jdn)
-
 #if _pointerBitWidth(_64)
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForFrenchRepublicanCalendar: JulianDayNumber = 2305795661307960548
-		(Y, M, D) = FrenchRepublicanCalendar.dateFromJulianDayNumber(largestJDNForFrenchRepublicanCalendar)
-		jdn = FrenchRepublicanCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForFrenchRepublicanCalendar == jdn)
+		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
+		let smallestJDNForFrenchRepublicanCalendar: JulianDayNumber = -9223372036852343512
+
+		let minDate = FrenchRepublicanCalendar.dateFromJulianDayNumber(smallestJDNForFrenchRepublicanCalendar)
+		let minJ = FrenchRepublicanCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == smallestJDNForFrenchRepublicanCalendar)
 #endif
+
+		let maxDate = FrenchRepublicanCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = FrenchRepublicanCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }
