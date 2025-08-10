@@ -79,22 +79,22 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 
 | Calendar | Minimum JDN | Maximum JDN |
 | --- | --- | --- |
-| Armenian | `Int.min` + 341 | `Int.max` - 317 |
-| Baháʼí | `Int.min` + 56457 | 2305795661307959248 |
-| Coptic | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
-| Egyptian | `Int.min` + 611 | `Int.max` - 47 |
-| Ethiopian | `Int.min` + 384 | (`Int.max` - 3) / 4 - 124 |
-| French Republican | `Int.min` + 56759 | 2305795661307960548 |
-| Gregorian | `Int.min` + 56457 | 2305795661307959247 |
+| Armenian | `Int.min` + 341 | `Int.max` |
+| Baháʼí | `Int.min` | `Int.max` |
+| Coptic | `Int.min` | `Int.max` |
+| Egyptian | `Int.min` + 611 | `Int.max` |
+| Ethiopian | `Int.min` | `Int.max` |
+| French Republican | `Int.min` | `Int.max` |
+| Gregorian | `Int.min` | `Int.max` |
 | Hebrew | `Int.min` + 106960181 | 355839970905570 |
-| Islamic | `Int.min` + 325 | (`Int.max` - 15) / 30 - 7664 |
-| Julian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
-| Khwarizmian | `Int.min` + 341 | `Int.max` - 317 |
-| Macedonian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
+| Islamic | `Int.min` | `Int.max` |
+| Julian | `Int.min` | `Int.max` |
+| Khwarizmian | `Int.min` + 341 | `Int.max` |
+| Macedonian | `Int.min` | `Int.max` |
 | Maya Long Count | `Int.min` | `Int.max` |
-| Persian | `Int.min` + 336 | `Int.max` - 77 |
-| Śaka | `Int.min` + 56457 | 2305795661307959298 |
-| Syrian | `Int.min` + 144 | (`Int.max` - 3) / 4 - 1401 |
+| Persian | `Int.min` + 336 | `Int.max` |
+| Śaka | `Int.min` | `Int.max` |
+| Syrian | `Int.min` | `Int.max` |
 
 ## License
 

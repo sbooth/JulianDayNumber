@@ -44,12 +44,29 @@ struct JDNGregorianConverter {
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
 	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
+		// Arithmetic upper limit
+		// `Y` values larger than this cause overflow when `e` is computed
+		let maxY = (.max / p) - y + (n - (date.month - m)) / n
 
-		if Y <= -y {
-			ΔcalendarCycles = (-y - Y) / gregorianSolarCycle.years + 1
-			Y += ΔcalendarCycles * gregorianSolarCycle.years
+		// Algorithmic lower limit
+		let minY = 1 - y
+
+		var Y = date.year
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
+
+		// Translate out-of-range years into the valid range using
+		// multiples of the solar cycle
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / gregorianSolarCycle.years
+			Y -= cycles * gregorianSolarCycle.years
+			Y -= gregorianSolarCycle.years
+		} else if Y < minY {
+			adjustment = .positive
+			cycles = (Y - minY) / -gregorianSolarCycle.years
+			Y += cycles * gregorianSolarCycle.years
+			Y += gregorianSolarCycle.years
 		}
 
 		let h = date.month - m
@@ -59,8 +76,12 @@ struct JDNGregorianConverter {
 		var J = e + (s * f + t) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianSolarCycle.days
+		if adjustment == .negative {
+			J += cycles * gregorianSolarCycle.days
+			J += gregorianSolarCycle.days
+		} else if adjustment == .positive {
+			J -= cycles * gregorianSolarCycle.days
+			J -= gregorianSolarCycle.days
 		}
 
 		return J
