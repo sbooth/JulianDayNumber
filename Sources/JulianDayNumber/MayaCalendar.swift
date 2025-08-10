@@ -110,12 +110,12 @@ public struct MayaCalendar: CalendarProtocol {
 
 	public typealias DateType = LongCount
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
+		try julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		longCountFromJulianDayNumber(J)
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
+		try longCountFromJulianDayNumber(J)
 	}
 
 	public static func isValidDate(_ date: DateType) -> Bool {
@@ -143,7 +143,9 @@ extension MayaCalendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The long count corresponding to the specified Julian day number.
-	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> LongCount {
+	///
+	/// - throws: An error if the Julian Day Number could not be converted to a long count.
+	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) throws -> LongCount {
 		var baktun, katun, tun, uinal, kin: Int
 
 		// Compute the long count cycle values
@@ -191,7 +193,9 @@ extension MayaCalendar {
 	/// - parameter kin: A kin number.
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
-	public static func julianDayNumberFromLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
+	///
+	/// - throws: An error if the long count could not be converted to a Julian Day Number.
+	public static func julianDayNumberFromLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) throws -> JulianDayNumber {
 		var baktun = baktun + longCountAtTrueEpoch.baktun
 		var katun = katun + longCountAtTrueEpoch.katun
 		var tun = tun + longCountAtTrueEpoch.tun

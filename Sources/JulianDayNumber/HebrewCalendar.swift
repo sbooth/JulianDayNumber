@@ -63,7 +63,7 @@ public struct HebrewCalendar: Calendar {
 	/// An intercalating cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
 	static let intercalatingCycle = (years: 689472, days: 251827457)
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
 		var Y = date.year
 		var ΔcalendarCycles = 0
 
@@ -84,7 +84,7 @@ public struct HebrewCalendar: Calendar {
 		return J
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
 		var J = J
 		var ΔcalendarCycles = 0
 

@@ -8,9 +8,9 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct EgyptianCalendarTests {
-	@Test func epoch() {
-		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == EgyptianCalendar.epoch)
-		#expect(EgyptianCalendar.dateFromJulianDayNumber(EgyptianCalendar.epoch) == (1, 1, 1))
+	@Test func epoch() throws {
+		#expect(try EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == EgyptianCalendar.epoch)
+		#expect(try EgyptianCalendar.dateFromJulianDayNumber(EgyptianCalendar.epoch) == (1, 1, 1))
 	}
 
 	@Test func dateValidation() {
@@ -32,34 +32,34 @@ import Testing
 		#expect(EgyptianCalendar.numberOfDaysInYear == 365)
 	}
 
-	@Test func julianDayNumber() {
+	@Test func julianDayNumber() throws {
 		// From Richards
-		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1448638)
+		#expect(try EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1448638)
 	}
 
-	@Test func limits() {
-		#expect(EgyptianCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363551362.5)
-		#expect(EgyptianCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -35051362.5)
-		#expect(EgyptianCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -2201362.5)
-		#expect(EgyptianCalendar.julianDateFrom(year: 9999, month: 13, day: 5) == 5098271.5)
-		#expect(EgyptianCalendar.julianDateFrom(year: 99999, month: 13, day: 5) == 37948271.5)
-		#expect(EgyptianCalendar.julianDateFrom(year: 999999, month: 13, day: 5) == 366448271.5)
+	@Test func limits() throws {
+		#expect(try EgyptianCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363551362.5)
+		#expect(try EgyptianCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -35051362.5)
+		#expect(try EgyptianCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -2201362.5)
+		#expect(try EgyptianCalendar.julianDateFrom(year: 9999, month: 13, day: 5) == 5098271.5)
+		#expect(try EgyptianCalendar.julianDateFrom(year: 99999, month: 13, day: 5) == 37948271.5)
+		#expect(try EgyptianCalendar.julianDateFrom(year: 999999, month: 13, day: 5) == 366448271.5)
 
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-363551362.5) == (-999999, 1, 1, 0, 0, 0))
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-35051362.5) == (-99999, 1, 1, 0, 0, 0))
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-2201362.5) == (-9999, 1, 1, 0, 0, 0))
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(5098271.5) == (9999, 13, 5, 0, 0, 0))
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(37948271.5) == (99999, 13, 5, 0, 0, 0))
-		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(366448271.5) == (999999, 13, 5, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(-363551362.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(-35051362.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(-2201362.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(5098271.5) == (9999, 13, 5, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(37948271.5) == (99999, 13, 5, 0, 0, 0))
+		#expect(try EgyptianCalendar.dateAndTimeFromJulianDate(366448271.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
-	@Test func arithmeticLimits() {
-		let minDate = EgyptianCalendar.dateFromJulianDayNumber(.min + 611)
-		let minJ = EgyptianCalendar.julianDayNumberFromDate(minDate)
+	@Test func arithmeticLimits() throws {
+		let minDate = try EgyptianCalendar.dateFromJulianDayNumber(.min + 611)
+		let minJ = try EgyptianCalendar.julianDayNumberFromDate(minDate)
 		#expect(minJ == .min + 611)
 
-		let maxDate = EgyptianCalendar.dateFromJulianDayNumber(.max)
-		let maxJ = EgyptianCalendar.julianDayNumberFromDate(maxDate)
+		let maxDate = try EgyptianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = try EgyptianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
 	}
 }
