@@ -82,16 +82,12 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForMacedonianCalendar: JulianDayNumber = .min + 144
-		var (Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(smallestJDNForMacedonianCalendar)
-		var jdn = MacedonianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForMacedonianCalendar == jdn)
+		let minDate = MacedonianCalendar.dateFromJulianDayNumber(.min)
+		let minJ = MacedonianCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForMacedonianCalendar: JulianDayNumber = (.max - MacedonianCalendar.converter.v) / MacedonianCalendar.converter.r - MacedonianCalendar.converter.j
-		(Y, M, D) = MacedonianCalendar.dateFromJulianDayNumber(largestJDNForMacedonianCalendar)
-		jdn = MacedonianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForMacedonianCalendar == jdn)
+		let maxDate = MacedonianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = MacedonianCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

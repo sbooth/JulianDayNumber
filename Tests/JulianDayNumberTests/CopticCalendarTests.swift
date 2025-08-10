@@ -78,18 +78,12 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForCopticCalendar: JulianDayNumber = .min + 144
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForCopticCalendar: JulianDayNumber = .min + 384
-		var (Y, M, D) = CopticCalendar.dateFromJulianDayNumber(smallestJDNForCopticCalendar)
-		var jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForCopticCalendar == jdn)
+		let minDate = CopticCalendar.dateFromJulianDayNumber(.min)
+		let minJ = CopticCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForCopticCalendar: JulianDayNumber = (.max - CopticCalendar.converter.v) / CopticCalendar.converter.r - CopticCalendar.converter.j
-		(Y, M, D) = CopticCalendar.dateFromJulianDayNumber(largestJDNForCopticCalendar)
-		jdn = CopticCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForCopticCalendar == jdn)
+		let maxDate = CopticCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = CopticCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

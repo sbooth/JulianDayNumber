@@ -46,18 +46,12 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForKhwarizmianCalendar: JulianDayNumber = .min + 294
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForKhwarizmianCalendar: JulianDayNumber = .min + 341
-		var (Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(smallestJDNForKhwarizmianCalendar)
-		var jdn = KhwarizmianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForKhwarizmianCalendar == jdn)
+		let minDate = KhwarizmianCalendar.dateFromJulianDayNumber(.min + 341)
+		let minJ = KhwarizmianCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min + 341)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForKhwarizmianCalendar: JulianDayNumber = (.max - KhwarizmianCalendar.converter.v) / KhwarizmianCalendar.converter.r - KhwarizmianCalendar.converter.j
-		(Y, M, D) = KhwarizmianCalendar.dateFromJulianDayNumber(largestJDNForKhwarizmianCalendar)
-		jdn = KhwarizmianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForKhwarizmianCalendar == jdn)
+		let maxDate = KhwarizmianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = KhwarizmianCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

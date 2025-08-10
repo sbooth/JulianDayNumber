@@ -49,18 +49,12 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForPersianCalendar: JulianDayNumber = .min + 294
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForPersianCalendar: JulianDayNumber = .min + 336
-		var (Y, M, D) = PersianCalendar.dateFromJulianDayNumber(smallestJDNForPersianCalendar)
-		var jdn = PersianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForPersianCalendar == jdn)
+		let minDate = PersianCalendar.dateFromJulianDayNumber(.min + 336)
+		let minJ = PersianCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min + 336)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForPersianCalendar: JulianDayNumber = (.max - PersianCalendar.converter.v) / PersianCalendar.converter.r - PersianCalendar.converter.j
-		(Y, M, D) = PersianCalendar.dateFromJulianDayNumber(largestJDNForPersianCalendar)
-		jdn = PersianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForPersianCalendar == jdn)
+		let maxDate = PersianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = PersianCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

@@ -178,6 +178,8 @@ import Testing
 		#expect(JulianCalendar.dayOfWeek(4) == 6)
 		#expect(JulianCalendar.dayOfWeek(5) == 7)
 		#expect(JulianCalendar.dayOfWeek(6) == 1)
+
+		#expect(JulianCalendar.dayOfWeek(JulianCalendar.julianDayNumberFromDate((-10028, 3, 1))) == JulianCalendar.dayOfWeek(JulianCalendar.julianDayNumberFromDate((-10000, 3, 1))))
 	}
 
 	@Test func easter() {
@@ -234,16 +236,12 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForJulianCalendar: JulianDayNumber = .min + 144
-		var (Y, M, D) = JulianCalendar.dateFromJulianDayNumber(smallestJDNForJulianCalendar)
-		var jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(smallestJDNForJulianCalendar == jdn)
+		let minDate = JulianCalendar.dateFromJulianDayNumber(.min)
+		let minJ = JulianCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForJulianCalendar: JulianDayNumber = (.max - JulianCalendar.converter.v) / JulianCalendar.converter.r - JulianCalendar.converter.j
-		(Y, M, D) = JulianCalendar.dateFromJulianDayNumber(largestJDNForJulianCalendar)
-		jdn = JulianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		#expect(largestJDNForJulianCalendar == jdn)
+		let maxDate = JulianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = JulianCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }
