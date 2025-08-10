@@ -135,38 +135,46 @@ let tunPerKatun = 20
 let katunPerBaktun = 20
 
 extension MayaCalendar {
+	/// The Long Count of the true epoch when JDN 0 is treated as the epoch
+	static let longCountAtTrueEpoch: LongCount = (4, 1, 3, 0, 3)
+
 	/// Converts a Julian day number to a long count in the Maya calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The long count corresponding to the specified Julian day number.
 	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> LongCount {
-		let L = J - longCountEpoch
-
 		var baktun, katun, tun, uinal, kin: Int
 
-		(uinal, kin) = L.quotientAndRemainder(dividingBy: kinPerUinal)
+		// Compute the long count cycle values
+		(uinal, kin) = J.quotientAndRemainder(dividingBy: kinPerUinal)
 		(tun, uinal) = uinal.quotientAndRemainder(dividingBy: uinalPerTun)
 		(katun, tun) = tun.quotientAndRemainder(dividingBy: tunPerKatun)
 		(baktun, katun) = katun.quotientAndRemainder(dividingBy: katunPerBaktun)
 
-		if L < 0 {
-			if kin < 0 {
-				kin += kinPerUinal
-				uinal -= 1
-			}
-			if uinal < 0 {
-				uinal += uinalPerTun
-				tun -= 1
-			}
-			if tun < 0 {
-				tun += tunPerKatun
-				katun -= 1
-			}
-			if katun < 0 {
-				katun += katunPerBaktun
-				baktun -= 1
-			}
+		// Correct for the epoch
+		kin -= longCountAtTrueEpoch.kin
+		uinal -= longCountAtTrueEpoch.uinal
+		tun -= longCountAtTrueEpoch.tun
+		katun -= longCountAtTrueEpoch.katun
+		baktun -= longCountAtTrueEpoch.baktun
+
+		// "Normalize" the cycle values
+		if kin < 0 {
+			kin += kinPerUinal
+			uinal -= 1
+		}
+		if uinal < 0 {
+			uinal += uinalPerTun
+			tun -= 1
+		}
+		if tun < 0 {
+			tun += tunPerKatun
+			katun -= 1
+		}
+		if katun < 0 {
+			katun += katunPerBaktun
+			baktun -= 1
 		}
 
 		return (baktun, katun, tun, uinal, kin)
@@ -184,7 +192,31 @@ extension MayaCalendar {
 	///
 	/// - returns: The Julian day number corresponding to the specified long count.
 	public static func julianDayNumberFromLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
-		longCountEpoch + (((baktun * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
+		var baktun = baktun + longCountAtTrueEpoch.baktun
+		var katun = katun + longCountAtTrueEpoch.katun
+		var tun = tun + longCountAtTrueEpoch.tun
+		var uinal = uinal + longCountAtTrueEpoch.uinal
+		var kin = kin + longCountAtTrueEpoch.kin
+
+		// "Denormalize" the long count cycle values to avoid overflow (when possible)
+		if baktun < 0 {
+			baktun += 1
+			katun -= katunPerBaktun
+		}
+		if katun < 0 {
+			katun += 1
+			tun -= tunPerKatun
+		}
+		if tun < 0 {
+			tun += 1
+			uinal -= uinalPerTun
+		}
+		if uinal < 0 {
+			uinal += 1
+			kin -= kinPerUinal
+		}
+
+		return (((baktun * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
 	}
 
 	/// Returns `true` if the specified long count is valid.
