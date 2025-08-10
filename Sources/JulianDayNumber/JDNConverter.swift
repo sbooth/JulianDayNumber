@@ -64,13 +64,21 @@ struct JDNConverter {
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
 	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> Calendar.YearMonthDay {
-		var J = J
-		var ΔcalendarCycles = 0
+		// Arithmetic upper limit
+		// `J` values larger than this cause overflow when `e` is computed
+		let maxJ = (.max - v) / r - j
 
-		// Richards' algorithm is only valid for positive JDNs.
-		if J < 0 {
-			ΔcalendarCycles = -(J / p) + 1
-			J += ΔcalendarCycles * p
+		// Algorithmic lower limit
+		// Richards' algorithm is only valid for JDNs ≥ 0.
+		let minJ = 0
+
+		var J = J
+		var calendarCycles = 0
+
+		if J > maxJ || J < minJ {
+			let qr = J.quotientAndRemainder(dividingBy: -p)
+			calendarCycles = qr.quotient + 1
+			J = p + qr.remainder
 		}
 
 		let f = J + j
@@ -81,8 +89,8 @@ struct JDNConverter {
 		let M = ((h / s + m) % n) + 1
 		var Y = e / p - y + (n + m - M) / n
 
-		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * r
+		if calendarCycles != 0 {
+			Y -= calendarCycles * r
 		}
 
 		return (Y, M, D)

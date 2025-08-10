@@ -161,6 +161,7 @@ import Testing
 	}
 
 	@Test func dayOfWeek() {
+		#expect(JulianCalendar.dayOfWeek(JulianCalendar.epoch) == 7)
 		#expect(JulianCalendar.dayOfWeek(-9) == 7)
 		#expect(JulianCalendar.dayOfWeek(-8) == 1)
 		#expect(JulianCalendar.dayOfWeek(-7) == 2)

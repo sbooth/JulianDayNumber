@@ -71,6 +71,7 @@ import Testing
 	}
 
 	@Test func dayOfWeek() {
+		#expect(GregorianCalendar.dayOfWeek(GregorianCalendar.epoch) == 2)
 		#expect(GregorianCalendar.dayOfWeek(GregorianCalendar.epoch) == GregorianCalendar.dayOfWeekFrom(year: 1, month: 1, day: 1))
 		#expect(GregorianCalendar.dayOfWeekFrom(year: -1, month: 1, day: 1) == 6)
 		#expect(GregorianCalendar.dayOfWeekFrom(year: -1, month: 12, day: 31) == 6)
