@@ -1,23 +1,18 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
 
-// TODO: Figure out a way to use the Gregorian intercalating parameters A, B and C instead
-
-/// The intercalating cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
-let gregorianIntercalatingCycle = (years: 400, days: 146097)
+/// The solar cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
+let gregorianSolarCycle = (years: 400, days: 146097)
 
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day in calendars using Gregorian-type intercalating.
 ///
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
 /// from the *Explanatory Supplement to the Astronomical Almanac, 3rd edition*, S.E Urban and P.K. Seidelmann eds., (Mill Valley, CA: University Science Books),
 /// Chapter 15, pp. 585-624.
-struct JDNGregorianTypeConverter {
-	/// A date consisting of a year, month, and day.
-	typealias YearMonthDay = (year: Int, month: Int, day: Int)
-
+struct JDNGregorianConverter {
 	/// The number of years in the computational calendar which precede the epoch.
 	let y: Int
 	/// The number of days the epoch of the computational calendar (0/0/0) precedes day zero.
@@ -48,13 +43,30 @@ struct JDNGregorianTypeConverter {
 	/// - parameter date: A date to convert.
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
-	func julianDayNumberFromDate(_ date: YearMonthDay) -> JulianDayNumber {
-		var Y = date.year
-		var ΔcalendarCycles = 0
+	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
+		// Arithmetic upper limit
+		// `Y` values larger than this cause overflow when `e` is computed
+		let maxY = (.max / p) - y + (n - (date.month - m)) / n
 
-		if Y <= -y {
-			ΔcalendarCycles = (-y - Y) / gregorianIntercalatingCycle.years + 1
-			Y += ΔcalendarCycles * gregorianIntercalatingCycle.years
+		// Algorithmic lower limit
+		let minY = 1 - y
+
+		var Y = date.year
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
+
+		// Translate out-of-range years into the valid range using
+		// multiples of the solar cycle
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / gregorianSolarCycle.years
+			Y -= cycles * gregorianSolarCycle.years
+			Y -= gregorianSolarCycle.years
+		} else if Y < minY {
+			adjustment = .positive
+			cycles = (Y - minY) / -gregorianSolarCycle.years
+			Y += cycles * gregorianSolarCycle.years
+			Y += gregorianSolarCycle.years
 		}
 
 		let h = date.month - m
@@ -64,8 +76,12 @@ struct JDNGregorianTypeConverter {
 		var J = e + (s * f + t) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * gregorianIntercalatingCycle.days
+		if adjustment == .negative {
+			J += cycles * gregorianSolarCycle.days
+			J += gregorianSolarCycle.days
+		} else if adjustment == .positive {
+			J -= cycles * gregorianSolarCycle.days
+			J -= gregorianSolarCycle.days
 		}
 
 		return J
@@ -76,18 +92,23 @@ struct JDNGregorianTypeConverter {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
-	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> YearMonthDay {
+	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> Calendar.YearMonthDay {
+		// Approximate arithmetic upper limit (the true upper limit is very difficult to calculate)
+		// Most `J` values larger than this cause overflow when `e` is computed
+		let maxJ = .max / 5
+
+		// Algorithmic lower limit
+		// Richards' algorithm is only valid for JDNs ≥ 0.
+		let minJ = 0
+
 		var J = J
-		var ΔcalendarCycles = 0
+		var calendarCycles = 0
 
-		// Richards' algorithm is only valid for positive JDNs.
-		if J < 0 {
-			ΔcalendarCycles = -(J / gregorianIntercalatingCycle.days) + 1
-			precondition(ΔcalendarCycles <= Int.max / gregorianIntercalatingCycle.days, "Julian day number too small")
-			J += ΔcalendarCycles * gregorianIntercalatingCycle.days
+		if J < minJ || J > maxJ {
+			let qr = J.quotientAndRemainder(dividingBy: -gregorianSolarCycle.days)
+			calendarCycles = qr.quotient + 1
+			J = gregorianSolarCycle.days + qr.remainder
 		}
-
-		precondition(J <= Int.max - j, "Julian day number too large")
 
 		var f = J + j
 		f = f + (((4 * J + B) / 146097) * 3) / 4 + C
@@ -98,8 +119,8 @@ struct JDNGregorianTypeConverter {
 		let M = ((h / s + m) % n) + 1
 		var Y = e / p - y + (n + m - M) / n
 
-		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * gregorianIntercalatingCycle.years
+		if calendarCycles != 0 {
+			Y -= calendarCycles * gregorianSolarCycle.years
 		}
 
 		return (Y, M, D)

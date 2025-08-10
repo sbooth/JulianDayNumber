@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -26,31 +26,28 @@
 /// The Macedonian calendar epoch in the Julian calendar is September 1, 312 BCE.
 ///
 /// - seealso: [Macedonian calendar](https://en.wikipedia.org/wiki/Ancient_Macedonian_calendar)
-public struct MacedonianCalendar {
+public struct MacedonianCalendar: Calendar {
 	/// The Julian day number of the epoch of the Macedonian calendar.
 	///
 	/// This JDN corresponds to September 1, 312 BCE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1607709
 
-	/// A year in the Macedonian calendar.
-	public typealias Year = Int
+	/// The converter for the Macedonian calendar.
+	static let converter = JDNConverter(y: 4405, j: 1401, m: 6, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
 
-	/// A month in the Macedonian calendar numbered from `1`,
-	public typealias Month = Int
-
-	/// A day in the Macedonian calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Macedonian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Macedonian calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
 	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (September) to `11` (August).
+	static let monthLengths = [ 30, 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31 ]
 
 	/// Returns `true` if the specified year is a leap year in the Macedonian calendar.
 	///
@@ -63,20 +60,16 @@ public struct MacedonianCalendar {
 		Y > 0 ? Y % 4 == 3 : Y % 4 == -1
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// The number of days in each month indexed from `0` (September) to `11` (August).
-	static let monthLengths = [ 30, 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31 ]
+	public static func numberOfDays(inYear Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
 
-	/// Returns the number of days in the specified month and year in the Macedonian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -85,21 +78,5 @@ public struct MacedonianCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension MacedonianCalendar: JulianDayNumberConverting {
-	/// A date in the Macedonian calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
-	/// The converter for the Macedonian calendar.
-	static let converter = JDNConverter(y: 4405, j: 1401, m: 6, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

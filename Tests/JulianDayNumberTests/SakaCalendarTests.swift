@@ -1,87 +1,97 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
 
-import XCTest
+import Testing
 @testable import JulianDayNumber
 
-final class SakaCalendarTests: XCTestCase {
-	func testDateValidation() {
-		XCTAssertTrue(SakaCalendar.isDateValid(year: 1, month: 1, day: 1))
-		XCTAssertFalse(SakaCalendar.isDateValid(year: 3, month: 1, day: 31))
-		XCTAssertTrue(SakaCalendar.isDateValid(year: 2, month: 1, day: 31))
+@Suite struct SakaCalendarTests {
+	@Test func epoch() {
+		#expect(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == SakaCalendar.epoch)
+		#expect(SakaCalendar.dateFromJulianDayNumber(SakaCalendar.epoch) == (1, 1, 1))
 	}
 
-	func testLeapYear() {
-		XCTAssertTrue(SakaCalendar.isLeapYear(78))
-		XCTAssertFalse(SakaCalendar.isLeapYear(4))
-		XCTAssertFalse(SakaCalendar.isLeapYear(100))
-		XCTAssertTrue(SakaCalendar.isLeapYear(750))
-		XCTAssertFalse(SakaCalendar.isLeapYear(1429))
-		XCTAssertFalse(SakaCalendar.isLeapYear(-3))
-		XCTAssertTrue(SakaCalendar.isLeapYear(-78))
+	@Test func dateValidation() {
+		#expect(SakaCalendar.isValid(year: 1, month: 1, day: 1))
+		#expect(!SakaCalendar.isValid(year: 3, month: 1, day: 31))
+		#expect(SakaCalendar.isValid(year: 2, month: 1, day: 31))
+	}
+
+	@Test func leapYear() {
+		#expect(SakaCalendar.isLeapYear(78))
+		#expect(!SakaCalendar.isLeapYear(4))
+		#expect(!SakaCalendar.isLeapYear(100))
+		#expect(SakaCalendar.isLeapYear(750))
+		#expect(!SakaCalendar.isLeapYear(1429))
+		#expect(SakaCalendar.isLeapYear(1522))
+		#expect(!SakaCalendar.isLeapYear(-3))
+		#expect(SakaCalendar.isLeapYear(-78))
 
 		for y in -500...500 {
 			let isLeap = SakaCalendar.isLeapYear(y)
 			let j = SakaCalendar.julianDayNumberFrom(year: y, month: 1, day: isLeap ? 31 : 30)
 			let d = SakaCalendar.dateFromJulianDayNumber(j)
-			XCTAssertEqual(d.month, 1)
-			XCTAssertEqual(d.day, isLeap ? 31 : 30)
+			#expect(d.month == 1)
+			#expect(d.day == (isLeap ? 31 : 30))
 		}
 	}
 
-	func testMonthCount() {
-		XCTAssertEqual(SakaCalendar.monthsInYear, 12)
+	@Test func monthCount() {
+		#expect(SakaCalendar.numberOfMonthsInYear == 12)
 	}
 
-	func testMonthLength() {
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 1), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 2), 31)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 3), 31)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 4), 31)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 5), 31)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 6), 31)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 7), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 8), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 9), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 10), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 11), 30)
-		XCTAssertEqual(SakaCalendar.daysInMonth(year: 1, month: 12), 30)
+	@Test func monthLength() {
+		#expect(SakaCalendar.numberOfDaysIn(month: 1, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 2, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 3, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 4, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 5, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 6, year: 1) == 31)
+		#expect(SakaCalendar.numberOfDaysIn(month: 7, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 8, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 9, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 10, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 11, year: 1) == 30)
+		#expect(SakaCalendar.numberOfDaysIn(month: 12, year: 1) == 30)
 	}
 
-	func testJulianDayNumber() {
-		XCTAssertEqual(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1749995)
+	@Test func yearLength() {
+		#expect(SakaCalendar.numberOfDays(inYear: 4) == 365)
+		#expect(SakaCalendar.numberOfDays(inYear: 78) == 366)
+		#expect(SakaCalendar.numberOfDays(inYear: 100) == 365)
+		#expect(SakaCalendar.numberOfDays(inYear: 750) == 366)
+		#expect(SakaCalendar.numberOfDays(inYear: 1522) == 366)
 	}
 
-	func testLimits() {
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -363492505.5)
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -34774255.5)
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -1902430.5)
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 9999, month: 12, day: 30), 5402053.5)
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 99999, month: 12, day: 30), 38273878.5)
-		XCTAssertEqual(SakaCalendar.julianDateFrom(year: 999999, month: 12, day: 30), 366992128.5)
-
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-363492505.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-34774255.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(-1902430.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(5402053.5) == (9999, 12, 30, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(38273878.5) == (99999, 12, 30, 0, 0, 0))
-		XCTAssertTrue(SakaCalendar.dateAndTimeFromJulianDate(366992128.5) == (999999, 12, 30, 0, 0, 0))
+	@Test func julianDayNumber() {
+		#expect(SakaCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1749995)
 	}
 
-	func testArithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForSakaCalendar = Int.min + 56457
-		var (Y, M, D) = SakaCalendar.dateFromJulianDayNumber(smallestJDNForSakaCalendar)
-		var jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		XCTAssertEqual(smallestJDNForSakaCalendar, jdn)
+	@Test func limits() {
+		#expect(SakaCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363492505.5)
+		#expect(SakaCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34774255.5)
+		#expect(SakaCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1902430.5)
+		#expect(SakaCalendar.julianDateFrom(year: 9999, month: 12, day: 30) == 5402053.5)
+		#expect(SakaCalendar.julianDateFrom(year: 99999, month: 12, day: 30) == 38273878.5)
+		#expect(SakaCalendar.julianDateFrom(year: 999999, month: 12, day: 30) == 366992128.5)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForSakaCalendar = 2305795661307959298
-		(Y, M, D) = SakaCalendar.dateFromJulianDayNumber(largestJDNForSakaCalendar)
-		jdn = SakaCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		XCTAssertEqual(largestJDNForSakaCalendar, jdn)
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(-363492505.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(-34774255.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(-1902430.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(5402053.5) == (9999, 12, 30, 0, 0, 0))
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(38273878.5) == (99999, 12, 30, 0, 0, 0))
+		#expect(SakaCalendar.dateAndTimeFromJulianDate(366992128.5) == (999999, 12, 30, 0, 0, 0))
+	}
+
+	@Test func arithmeticLimits() {
+		let minDate = SakaCalendar.dateFromJulianDayNumber(.min)
+		let minJ = SakaCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min)
+
+		let maxDate = SakaCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = SakaCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -19,10 +19,6 @@
 /// | Tun | 18 Uinal | 360 | 0.986 |
 /// | Katun | 20 Tun | 7,200 | 19.7 |
 /// | Baktun | 20 Katun | 144,000 | 394.3 |
-/// | Pictun | 20 Baktun | 2,880,000 | 7,885 |
-/// | Calabtun | 20 Pictun | 57,600,000 | 157,704 |
-/// | Kinchiltun | 20 Calabtun | 1,152,000,000 | 3,154,071 |
-/// | Alautun | 20 Kinchiltun | 23,040,000,000 | 63,081,429 |
 ///
 /// Long counts are typically written as *baktun* . *katun* . *tun* . *uinal* . *kin* with each value starting at zero.
 ///
@@ -87,23 +83,16 @@
 /// - seealso: [Mesoamerican Long Count calendar](https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar)
 /// - seealso: [Tzolkʼin](https://en.wikipedia.org/wiki/Tzolkʼin)
 /// - seealso: [Haabʼ](https://en.wikipedia.org/wiki/Haabʼ)
-public struct MayaCalendar {
+public struct MayaCalendar: CalendarProtocol {
+	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
+	///
+	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
+	public static let epoch = longCountEpoch
+
 	/// The Julian day number of the Goodman-Martinez-Thompson correlation constant for the long count of the Maya calendar.
 	///
 	/// This JDN corresponds to September 6, 3114 BCE in the Julian calendar.
 	public static let longCountEpoch: JulianDayNumber = 584283
-
-	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
-	///
-	/// The Tzolk’in cycle began 159 days before the long count epoch.
-	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
-	public static let tzolkinEpoch: JulianDayNumber = longCountEpoch - 159
-
-	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
-	///
-	/// The Haabʼ cycle began 348 days before the long count epoch.
-	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
-	public static let haabEpoch: JulianDayNumber = longCountEpoch - 348
 
 	/// A kin is one day and is numbered from `0` to `19`.
 	public typealias Kin = Int
@@ -115,14 +104,148 @@ public struct MayaCalendar {
 	public typealias Katun = Int
 	/// A baktun is 20 katun and is numbered from `0` to `19`.
 	public typealias Baktun = Int
-	/// A pictun is 20 baktun and is numbered from `0` to `19`.
-	public typealias Pictun = Int
-	/// A calabtun is 20 pictun and is numbered from `0` to `19`.
-	public typealias Calabtun = Int
-	/// A kinchiltun is 20 calabtun and is numbered from `0` to `19`.
-	public typealias Kinchiltun = Int
-	/// An alautun is 20 kinchiltun and is numbered from `0` to `19`.
-	public typealias Alautun = Int
+
+	/// A long count in the Maya calendar.
+	public typealias LongCount = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+
+	public typealias DateType = LongCount
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
+	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		longCountFromJulianDayNumber(J)
+	}
+
+	public static func isValidDate(_ date: DateType) -> Bool {
+		isValidLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
+	}
+}
+
+// Maya long count cycle lengths
+
+/// One uinal is composed of 20 kin.
+let kinPerUinal = 20
+/// One tun is composed of 18 uinal.
+let uinalPerTun = 18
+/// One katun is composed of 20 tun.
+let tunPerKatun = 20
+/// One baktun is composed of 20 katun.
+let katunPerBaktun = 20
+
+extension MayaCalendar {
+	/// The Long Count of the true epoch when JDN 0 is treated as the epoch
+	static let longCountAtTrueEpoch: LongCount = (4, 1, 3, 0, 3)
+
+	/// Converts a Julian day number to a long count in the Maya calendar.
+	///
+	/// - parameter J: A Julian day number.
+	///
+	/// - returns: The long count corresponding to the specified Julian day number.
+	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> LongCount {
+		var baktun, katun, tun, uinal, kin: Int
+
+		// Compute the long count cycle values
+		(uinal, kin) = J.quotientAndRemainder(dividingBy: kinPerUinal)
+		(tun, uinal) = uinal.quotientAndRemainder(dividingBy: uinalPerTun)
+		(katun, tun) = tun.quotientAndRemainder(dividingBy: tunPerKatun)
+		(baktun, katun) = katun.quotientAndRemainder(dividingBy: katunPerBaktun)
+
+		// Correct for the epoch
+		kin -= longCountAtTrueEpoch.kin
+		uinal -= longCountAtTrueEpoch.uinal
+		tun -= longCountAtTrueEpoch.tun
+		katun -= longCountAtTrueEpoch.katun
+		baktun -= longCountAtTrueEpoch.baktun
+
+		// "Normalize" the cycle values
+		if kin < 0 {
+			kin += kinPerUinal
+			uinal -= 1
+		}
+		if uinal < 0 {
+			uinal += uinalPerTun
+			tun -= 1
+		}
+		if tun < 0 {
+			tun += tunPerKatun
+			katun -= 1
+		}
+		if katun < 0 {
+			katun += katunPerBaktun
+			baktun -= 1
+		}
+
+		return (baktun, katun, tun, uinal, kin)
+	}
+
+	/// Converts a long count in the Maya calendar to a Julian day number.
+	///
+	/// - note: No validation checks are performed on the cycle values.
+	///
+	/// - parameter baktun: A baktun number.
+	/// - parameter katun: A katun number.
+	/// - parameter tun: A tun number.
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
+	///
+	/// - returns: The Julian day number corresponding to the specified long count.
+	public static func julianDayNumberFromLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
+		var baktun = baktun + longCountAtTrueEpoch.baktun
+		var katun = katun + longCountAtTrueEpoch.katun
+		var tun = tun + longCountAtTrueEpoch.tun
+		var uinal = uinal + longCountAtTrueEpoch.uinal
+		var kin = kin + longCountAtTrueEpoch.kin
+
+		// "Denormalize" the long count cycle values to avoid overflow (when possible)
+		if baktun < 0 {
+			baktun += 1
+			katun -= katunPerBaktun
+		}
+		if katun < 0 {
+			katun += 1
+			tun -= tunPerKatun
+		}
+		if tun < 0 {
+			tun += 1
+			uinal -= uinalPerTun
+		}
+		if uinal < 0 {
+			uinal += 1
+			kin -= kinPerUinal
+		}
+
+		return (((baktun * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
+	}
+
+	/// Returns `true` if the specified long count is valid.
+	///
+	/// - parameter baktun: A baktun number.
+	/// - parameter katun: A katun number.
+	/// - parameter tun: A tun number.
+	/// - parameter uinal: A uinal number.
+	/// - parameter kin: A kin number.
+	///
+	/// - returns: `true` if the specified long count is valid.
+	public static func isValidLongCount(baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> Bool {
+		// TODO: Determine the acceptable range of Baktun
+		/*abs(baktun) <= X &&*/ katun >= 0 && katun <= 19 && tun >= 0 && tun <= 17 && uinal >= 0 && uinal <= 19 && kin >= 0 && kin <= 19
+	}
+}
+
+extension MayaCalendar {
+	/// The Julian day number of the start of the Tzolk’in cycle of the Maya calendar.
+	///
+	/// The Tzolk’in cycle began 159 days before the long count epoch.
+	/// The Tzolk’in date at the long count epoch was 4 Ajaw.
+	public static let tzolkinEpoch = longCountEpoch - 159
+
+	/// The Julian day number of the start of the Haabʼ cycle of the Maya calendar.
+	///
+	/// The Haabʼ cycle began 348 days before the long count epoch.
+	/// The Haabʼ date at the long count epoch was 8 Kumkʼu.
+	public static let haabEpoch = longCountEpoch - 348
 
 	/// A Tzolk’in number from `1` to `13`.
 	public typealias TzolkinNumber = Int
@@ -133,126 +256,10 @@ public struct MayaCalendar {
 	public typealias HaabDay = Int
 	/// A Haabʼ month from `1` to `19`.
 	public typealias HaabMonth = Int
-}
 
-extension MayaCalendar: JulianDayNumberConverting {
-	/// A long count in the Maya calendar.
-	public typealias DateType = (baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin)
+	/// A Calendar Round in the Maya calendar.
+	public typealias CalendarRound = (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth)
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		julianDayNumberFromLongCount(baktun: date.baktun, katun: date.katun, tun: date.tun, uinal: date.uinal, kin: date.kin)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		longCountFromJulianDayNumber(J)
-	}
-}
-
-extension MayaCalendar {
-	// Maya long count cycle lengths
-
-	/// One uinal is composed of 20 kin.
-	static let kinPerUinal = 20
-	/// One tun is composed of 18 uinal.
-	static let uinalPerTun = 18
-	/// One katun is composed of 20 tun.
-	static let tunPerKatun = 20
-	/// One baktun is composed of 20 katun.
-	static let katunPerBaktun = 20
-	/// One pictun is composed of 20 baktun.
-	static let baktunPerPictun = 20
-	/// One calabtun is composed of 20 pictun.
-	static let pictunPerCalabtun = 20
-	/// One kinchiltun is composed of 20 calabtun.
-	static let calabtunPerKinchiltun = 20
-	/// One alautun is composed of 20 kinchiltun.
-	static let kinchiltunPerAlautun = 20
-
-	/// Converts a Julian day number to a long count in the Maya calendar.
-	///
-	/// - parameter J: A Julian day number.
-	///
-	/// - returns: The long count corresponding to the specified Julian day number.
-	public static func longCountFromJulianDayNumber(_ J: JulianDayNumber) -> (/*alautun: Alautun, kinchiltun: Kinchiltun, calabtun: Calabtun, pictun: Pictun, */baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) {
-		let L = J - longCountEpoch
-
-#if false
-		var alautun, kinchiltun, calabtun, pictun: Int
-#endif
-		var baktun, katun, tun, uinal, kin: Int
-
-		(uinal, kin) = L.quotientAndRemainder(dividingBy: kinPerUinal)
-		(tun, uinal) = uinal.quotientAndRemainder(dividingBy: uinalPerTun)
-		(katun, tun) = tun.quotientAndRemainder(dividingBy: tunPerKatun)
-		(baktun, katun) = katun.quotientAndRemainder(dividingBy: katunPerBaktun)
-#if false
-		(pictun, baktun) = baktun.quotientAndRemainder(dividingBy: baktunPerPictun)
-		(calabtun, pictun) = pictun.quotientAndRemainder(dividingBy: pictunPerCalabtun)
-		(kinchiltun, calabtun) = calabtun.quotientAndRemainder(dividingBy: calabtunPerKinchiltun)
-		(alautun, kinchiltun) = kinchiltun.quotientAndRemainder(dividingBy: kinchiltunPerAlautun)
-#endif
-
-		if L < 0 {
-			if kin < 0 {
-				kin += kinPerUinal
-				uinal -= 1
-			}
-			if uinal < 0 {
-				uinal += uinalPerTun
-				tun -= 1
-			}
-			if tun < 0 {
-				tun += tunPerKatun
-				katun -= 1
-			}
-			if katun < 0 {
-				katun += katunPerBaktun
-				baktun -= 1
-			}
-#if false
-			if baktun < 1 - baktunPerPictun {
-				baktun += baktunPerPictun
-				pictun -= 1
-			}
-			if pictun < 1 - pictunPerCalabtun {
-				pictun += pictunPerCalabtun
-				calabtun -= 1
-			}
-			if calabtun < 1 - calabtunPerKinchiltun {
-				calabtun += calabtunPerKinchiltun
-				kinchiltun -= 1
-			}
-			if kinchiltun < 1 - kinchiltunPerAlautun {
-				kinchiltun += kinchiltunPerAlautun
-				alautun -= 1
-			}
-#endif
-		}
-
-		return (/*alautun, kinchiltun, calabtun, pictun, */baktun, katun, tun, uinal, kin)
-	}
-
-	/// Converts a long count in the Maya calendar to a Julian day number.
-	///
-	/// - note: No validation checks are performed on the cycle values.
-	///
-	/// - parameter alautun: An alautun number.
-	/// - parameter kinchiltun: A kinchiltun number.
-	/// - parameter calabtun: A calabtun number.
-	/// - parameter pictun: A pictun number.
-	/// - parameter baktun: A baktun number.
-	/// - parameter katun: A katun number.
-	/// - parameter tun: A tun number.
-	/// - parameter uinal: A uinal number.
-	/// - parameter kin: A kin number.
-	///
-	/// - returns: The Julian day number corresponding to the specified long count.
-	public static func julianDayNumberFromLongCount(alautun: Alautun = 0, kinchiltun: Kinchiltun = 0, calabtun: Calabtun = 0, pictun: Pictun = 0, baktun: Baktun, katun: Katun, tun: Tun, uinal: Uinal, kin: Kin) -> JulianDayNumber {
-		longCountEpoch + (((((((alautun * kinchiltunPerAlautun + kinchiltun) * calabtunPerKinchiltun + calabtun) * pictunPerCalabtun + pictun) * baktunPerPictun + baktun) * katunPerBaktun + katun) * tunPerKatun + tun) * uinalPerTun + uinal) * kinPerUinal + kin
-	}
-}
-
-extension MayaCalendar {
 	/// Converts a Julian day number to a Calendar Round in the Maya calendar.
 	///
 	/// - note: A Calendar Round corresponding to a Julian day number
@@ -262,7 +269,7 @@ extension MayaCalendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The Calendar Round corresponding to the specified Julian day number.
-	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> (number: TzolkinNumber, name: TzolkinDayName, day: HaabDay, month: HaabMonth) {
+	public static func calendarRoundFromJulianDayNumber(_ J: JulianDayNumber) -> CalendarRound {
 		let T = J - tzolkinEpoch
 		let H = J - haabEpoch
 

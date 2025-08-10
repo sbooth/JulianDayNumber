@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -28,38 +28,33 @@
 /// The Julian calendar epoch in the Julian calendar is January 1, 1 CE.
 ///
 /// - seealso: [Julian calendar](https://en.wikipedia.org/wiki/Julian_calendar)
-public struct JulianCalendar {
-	/// The Julian day number when the Julian calendar took effect.
-	///
-	/// This JDN corresponds to January 1, 45 BCE in the Julian calendar.
-	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
-
+public struct JulianCalendar: Calendar {
 	/// The Julian day number of the epoch of the Julian calendar.
 	///
 	/// This JDN corresponds to January 1, 1 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1721424
 
-	/// A year in the Julian calendar.
-	///
-	/// - important: The year preceding CE 1, commonly referred to as 1 BCE, is year `0`.
-	public typealias Year = Int
+	/// The converter for the Julian calendar.
+	static let converter = JDNConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
 
-	/// A month in the Julian calendar numbered from `1` (January) to `12` (December).
-	public typealias Month = Int
-
-	/// A day in the Julian calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Julian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Julian calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
 	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The Julian day number when the Julian calendar took effect.
+	///
+	/// This JDN corresponds to January 1, 45 BCE in the Julian calendar.
+	public static let effectiveJulianDayNumber: JulianDayNumber = 1704987
+
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (January) to `11` (December).
+	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 	/// Returns `true` if the specified Julian day number occurred before the Julian calendar took effect.
 	///
@@ -83,20 +78,16 @@ public struct JulianCalendar {
 		Y % 4 == 0
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// The number of days in each month indexed from `0` (January) to `11` (December).
-	static let monthLengths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+	public static func numberOfDays(inYear Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
 
-	/// Returns the number of days in the specified month and year in the Julian calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -106,14 +97,23 @@ public struct JulianCalendar {
 			return monthLengths[M - 1]
 		}
 	}
+}
 
-	/// Returns the day of the week for the specified Julian day number.
+extension JulianCalendar {
+	/// A day of the week number from `1` (Sunday) to `7` (Saturday).
+	public typealias DayOfWeek = Int
+
+	/// Returns the day of the week for the specified Julian day number in the Julian calendar.
 	///
 	/// - parameter J: A Julian day number.
 	///
-	/// - returns: The day of week from `1` (Sunday) to `7` (Saturday) corresponding to the specified Julian day number.
-	public static func dayOfWeek(_ J: JulianDayNumber) -> Int {
-		1 + (J + 1) % 7
+	/// - returns: The day of the week for the specified Julian day number.
+	public static func dayOfWeek(_ J: JulianDayNumber) -> DayOfWeek {
+		var remainder = (J + 1) % 7
+		if remainder < 0 {
+			remainder += 7
+		}
+		return DayOfWeek(1 + remainder)
 	}
 
 	/// Returns the month and day of Easter in the specified year in the Julian calendar.
@@ -128,21 +128,5 @@ public struct JulianCalendar {
 		let M = 3 + g / 32
 		let D = 1 + ((g - 1) % 31)
 		return (M, D)
-	}
-}
-
-extension JulianCalendar: JulianDayNumberConverting {
-	/// A date in the Julian calendar consists of a year, month, and day.
-	public typealias DateType = (year: Year, month: Month, day: Day)
-
-	/// The converter for the Julian calendar.
-	static let converter = JDNConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }

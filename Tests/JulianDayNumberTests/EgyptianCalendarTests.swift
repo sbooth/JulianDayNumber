@@ -1,71 +1,65 @@
 //
-// Copyright © 2021-2023 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
 
-import XCTest
+import Testing
 @testable import JulianDayNumber
 
-final class EgyptianCalendarTests: XCTestCase {
-	func testDateValidation() {
-		XCTAssertTrue(EgyptianCalendar.isDateValid(year: 1600, month: 2, day: 30))
+@Suite struct EgyptianCalendarTests {
+	@Test func epoch() {
+		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == EgyptianCalendar.epoch)
+		#expect(EgyptianCalendar.dateFromJulianDayNumber(EgyptianCalendar.epoch) == (1, 1, 1))
 	}
 
-	func testMonthCount() {
-		XCTAssertEqual(EgyptianCalendar.monthsInYear, 13)
+	@Test func dateValidation() {
+		#expect(EgyptianCalendar.isValid(year: 1600, month: 2, day: 30))
 	}
 
-	func testMonthLength() {
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 1), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 2), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 3), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 4), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 5), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 6), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 7), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 8), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 9), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 10), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 11), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 12), 30)
-		XCTAssertEqual(EgyptianCalendar.daysInMonth(month: 13), 5)
+	@Test func monthCount() {
+		#expect(EgyptianCalendar.numberOfMonthsInYear == 13)
 	}
 
-	func testJulianDayNumber() {
+	@Test func monthLength() {
+		for month in 1...12 {
+			#expect(EgyptianCalendar.numberOfDays(inMonth: month) == 30)
+		}
+		#expect(EgyptianCalendar.numberOfDays(inMonth: 13) == 5)
+	}
+
+	@Test func yearLength() {
+		#expect(EgyptianCalendar.numberOfDaysInYear == 365)
+	}
+
+	@Test func julianDayNumber() {
 		// From Richards
-		XCTAssertEqual(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1), 1448638)
+		#expect(EgyptianCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1448638)
 	}
 
-	func testLimits() {
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: -999999, month: 1, day: 1), -363551362.5)
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: -99999, month: 1, day: 1), -35051362.5)
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: -9999, month: 1, day: 1), -2201362.5)
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: 9999, month: 13, day: 5), 5098271.5)
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: 99999, month: 13, day: 5), 37948271.5)
-		XCTAssertEqual(EgyptianCalendar.julianDateFrom(year: 999999, month: 13, day: 5), 366448271.5)
+	@Test func limits() {
+		#expect(EgyptianCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363551362.5)
+		#expect(EgyptianCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -35051362.5)
+		#expect(EgyptianCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -2201362.5)
+		#expect(EgyptianCalendar.julianDateFrom(year: 9999, month: 13, day: 5) == 5098271.5)
+		#expect(EgyptianCalendar.julianDateFrom(year: 99999, month: 13, day: 5) == 37948271.5)
+		#expect(EgyptianCalendar.julianDateFrom(year: 999999, month: 13, day: 5) == 366448271.5)
 
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(-363551362.5) == (-999999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(-35051362.5) == (-99999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(-2201362.5) == (-9999, 1, 1, 0, 0, 0))
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(5098271.5) == (9999, 13, 5, 0, 0, 0))
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(37948271.5) == (99999, 13, 5, 0, 0, 0))
-		XCTAssertTrue(EgyptianCalendar.dateAndTimeFromJulianDate(366448271.5) == (999999, 13, 5, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-363551362.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-35051362.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(-2201362.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(5098271.5) == (9999, 13, 5, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(37948271.5) == (99999, 13, 5, 0, 0, 0))
+		#expect(EgyptianCalendar.dateAndTimeFromJulianDate(366448271.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
-	func testArithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-//		let smallestJDNForEgyptianCalendar = Int.min + 293
-		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
-		let smallestJDNForEgyptianCalendar = Int.min + 611
-		var (Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(smallestJDNForEgyptianCalendar)
-		var jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		XCTAssertEqual(smallestJDNForEgyptianCalendar, jdn)
+	@Test func arithmeticLimits() {
+		let minDate = EgyptianCalendar.dateFromJulianDayNumber(.min + 611)
+		let minJ = EgyptianCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min + 611)
 
-		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let largestJDNForEgyptianCalendar = Int.max - 47
-		(Y, M, D) = EgyptianCalendar.dateFromJulianDayNumber(largestJDNForEgyptianCalendar)
-		jdn = EgyptianCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
-		XCTAssertEqual(largestJDNForEgyptianCalendar, jdn)
+		let maxDate = EgyptianCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = EgyptianCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
 	}
 }

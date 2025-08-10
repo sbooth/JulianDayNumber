@@ -1,5 +1,5 @@
 //
-// Copyright © 2021-2024 Stephen F. Booth <me@sbooth.org>
+// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
 // Part of https://github.com/sbooth/JulianDayNumber
 // MIT license
 //
@@ -21,43 +21,40 @@
 /// | 9 | Mārgaśīrṣa | अग्रहायण | 30 |
 /// | 10 | Pauṣa | पौष | 30 |
 /// | 11 | Māgha | माघ | 30 |
-/// | 1 2| Phālguna | फाल्गुन | 30 |
+/// | 12 | Phālguna | फाल्गुन | 30 |
 ///
 /// The Śaka calendar took effect on March 22, 1957 in the Gregorian calendar.
 ///
 /// The Śaka calendar epoch in the Julian calendar is March 24, 79 CE.
 ///
 /// - seealso: [Indian national calendar](https://en.wikipedia.org/wiki/Indian_national_calendar)
-public struct SakaCalendar {
-	/// The Julian day number when the Śaka calendar took effect.
-	///
-	/// This JDN corresponds to March 22, 1957 in the Gregorian calendar.
-	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
-
+public struct SakaCalendar: Calendar {
 	/// The Julian day number of the epoch of the Śaka calendar.
 	///
 	/// This JDN corresponds to March 24, 79 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1749995
 
-	/// A year in the Śaka calendar.
-	public typealias Year = Int
+	/// The converter for the Śaka calendar.
+	static let converter = JDNSakaConverter()
 
-	/// A month in the Śaka calendar numbered from `1` (Chaitra) to `12` (Phālguna).
-	public typealias Month = Int
-
-	/// A day in the Śaka calendar numbered starting from `1`.
-	public typealias Day = Int
-
-	/// Returns `true` if the specified year, month, and day form a valid date in the Śaka calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	/// - parameter D: A day number.
-	///
-	/// - returns: `true` if the specified year, month, and day form a valid date in the Śaka calendar.
-	public static func isDateValid(year Y: Year, month M: Month, day D: Day) -> Bool {
-		M > 0 && M <= 12 && D > 0 && D <= daysInMonth(year: Y, month: M)
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+		converter.julianDayNumberFromDate(date)
 	}
+
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
+		converter.dateFromJulianDayNumber(J)
+	}
+
+	/// The Julian day number when the Śaka calendar took effect.
+	///
+	/// This JDN corresponds to March 22, 1957 in the Gregorian calendar.
+	public static let effectiveJulianDayNumber: JulianDayNumber = 2435920
+
+	/// The number of months in one year.
+	public static let numberOfMonthsInYear = 12
+
+	/// The number of days in each month indexed from `0` (Chaitra) to `11` (Phālguna).
+	static let monthLengths = [ 30, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30 ]
 
 	/// Returns `true` if the specified Julian day number occurred before the Śaka calendar took effect.
 	///
@@ -81,20 +78,16 @@ public struct SakaCalendar {
 		GregorianCalendar.isLeapYear(Y + 78)
 	}
 
-	/// The number of months in one year.
-	public static let monthsInYear = 12
+	public static func numberOfMonths(inYear Y: Year) -> Int {
+		numberOfMonthsInYear
+	}
 
-	/// The number of days in each month indexed from `0` (Chaitra) to `11` (Phālguna).
-	static let monthLengths = [ 30, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30 ]
+	public static func numberOfDays(inYear Y: Year) -> Int {
+		isLeapYear(Y) ? 366 : 365
+	}
 
-	/// Returns the number of days in the specified month and year in the Śaka calendar.
-	///
-	/// - parameter Y: A year number.
-	/// - parameter M: A month number.
-	///
-	/// - returns: The number of days in the specified month and year.
-	public static func daysInMonth(year Y: Year, month M: Month) -> Int {
-		guard M > 0, M <= 12 else {
+	public static func numberOfDaysIn(month M: Month, year Y: Year) -> Int {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 
@@ -103,21 +96,5 @@ public struct SakaCalendar {
 		} else {
 			return monthLengths[M - 1]
 		}
-	}
-}
-
-extension SakaCalendar: JulianDayNumberConverting {
-	/// A date in the Śaka calendar consists of a year, month, and day.
-	public typealias DateType = (year: Int, month: Int, day: Int)
-
-	/// The converter for the Śaka calendar.
-	static let converter = JDNSakaConverter()
-
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
-	}
-
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
 	}
 }
