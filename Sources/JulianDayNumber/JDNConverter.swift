@@ -4,6 +4,16 @@
 // MIT license
 //
 
+/// Possible values for a temporal translation.
+enum TemporalTranslation {
+	/// The value was translated backward in time.
+	case negative
+	/// The value was not translated.
+	case none
+	/// The value was translated forward in time.
+	case positive
+}
+
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day for selected arithmetic calendars.
 ///
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
@@ -45,12 +55,19 @@ struct JDNConverter {
 		let minY = 1 - y
 
 		var Y = date.year
-		var calendarCycles = 0
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
 
-		if Y > maxY || Y < minY {
-			let qr = Y.quotientAndRemainder(dividingBy: -r)
-			calendarCycles = qr.quotient + 1
-			Y = r + qr.remainder
+		// Translate out-of-range years into the valid range using
+		// multiples of the intercalating period
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / r
+			Y -= cycles * r + r
+		} else if Y < minY {
+			adjustment = .positive
+			cycles = (Y - minY) / -r
+			Y += cycles * r + r
 		}
 
 		let h = date.month - m
@@ -59,8 +76,12 @@ struct JDNConverter {
 		let e = (p * g + q) / r + date.day - 1 - j
 		var J = e + (s * f + t) / u
 
-		if calendarCycles != 0 {
-			J -= calendarCycles * p
+		if adjustment == .negative {
+			J += cycles * p
+			J += p
+		} else if adjustment == .positive {
+			J -= cycles * p
+			J -= p
 		}
 
 		return J

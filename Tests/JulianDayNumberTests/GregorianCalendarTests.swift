@@ -146,12 +146,9 @@ import Testing
 	}
 
 	@Test func arithmeticLimits() {
-		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
-		let smallestJDNForGregorianCalendar: JulianDayNumber = .min + 1777882
-
-		let minDate = GregorianCalendar.dateFromJulianDayNumber(smallestJDNForGregorianCalendar)
+		let minDate = GregorianCalendar.dateFromJulianDayNumber(.min)
 		let minJ = GregorianCalendar.julianDayNumberFromDate(minDate)
-		#expect(minJ == smallestJDNForGregorianCalendar)
+		#expect(minJ == .min)
 
 		let maxDate = GregorianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = GregorianCalendar.julianDayNumberFromDate(maxDate)

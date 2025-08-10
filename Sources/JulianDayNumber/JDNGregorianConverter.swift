@@ -52,12 +52,21 @@ struct JDNGregorianConverter {
 		let minY = 1 - y
 
 		var Y = date.year
-		var calendarCycles = 0
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
 
-		if Y > maxY || Y < minY {
-			let qr = Y.quotientAndRemainder(dividingBy: -gregorianSolarCycle.years)
-			calendarCycles = qr.quotient + 1
-			Y = gregorianSolarCycle.years + qr.remainder
+		// Translate out-of-range years into the valid range using
+		// multiples of the solar cycle
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / gregorianSolarCycle.years
+			Y -= cycles * gregorianSolarCycle.years
+			Y -= gregorianSolarCycle.years
+		} else if Y < minY {
+			adjustment = .positive
+			cycles = (Y - minY) / -gregorianSolarCycle.years
+			Y += cycles * gregorianSolarCycle.years
+			Y += gregorianSolarCycle.years
 		}
 
 		let h = date.month - m
@@ -67,8 +76,12 @@ struct JDNGregorianConverter {
 		var J = e + (s * f + t) / u
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
-		if calendarCycles != 0 {
-			J -= calendarCycles * gregorianSolarCycle.days
+		if adjustment == .negative {
+			J += cycles * gregorianSolarCycle.days
+			J += gregorianSolarCycle.days
+		} else if adjustment == .positive {
+			J -= cycles * gregorianSolarCycle.days
+			J -= gregorianSolarCycle.days
 		}
 
 		return J
