@@ -231,11 +231,15 @@ extension HebrewCalendar {
 		// calculate correct values for the first day of Tishrei in proleptic years. However,
 		// this isn't a public function and the callers perform the translation before calling.
 
-#if true
+#if false
+//		let maxY = ((((.max - 31524) / 765433) * 19) + 234) / 235
+//		precondition(Y <= maxY, "First day of Tishrei calculations overflow with year numbers > \(maxY)")
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
 		var d = b / 25920
 		let e = b % 25920
 #else
+//		let maxY = (((.max / 793) * 19) + 234) / 235
+//		precondition(Y <= maxY, "First day of Tishrei calculations overflow with year numbers > \(maxY)")
 		let a = (235 * Y - 234) / 19
 		let b = 204 + 793 * a
 		let c = 5 + 12 * a + b / 1080
@@ -260,6 +264,8 @@ extension HebrewCalendar {
 		precondition(J >= epoch, "Julian day number must be >= epoch")
 
 #if true
+//		let maxJ = .max / 25920 + 347996
+//		precondition(J <= maxJ, "Year containing Julian Day Number calculations overflow with JDNs > \(maxJ)")
 		let M = (25920 * (J - 347996)) / 765433 + 1
 #else
 		let ratio: Double = 25920 / 765433
