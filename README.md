@@ -86,7 +86,7 @@ The following table summarizes the arithmetic limits for Julian day number calcu
 | Ethiopian | `Int.min` | `Int.max` |
 | French Republican | `Int.min` | `Int.max` |
 | Gregorian | `Int.min` | `Int.max` |
-| Hebrew | `Int.min` + 106960181 | 355839970905570 |
+| Hebrew | `Int.min` + 106960181 | 343469932136373189 |
 | Islamic | `Int.min` | `Int.max` |
 | Julian | `Int.min` | `Int.max` |
 | Khwarizmian | `Int.min` + 341 | `Int.max` |

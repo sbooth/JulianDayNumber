@@ -255,7 +255,7 @@ import Testing
 
 #if _pointerBitWidth(_64)
 		// Values larger than this cause an arithmetic overflow in dateFromJulianDayNumber
-#if true
+#if false
 		let largestJDNForHebrewCalendar: JulianDayNumber = 355839970905570
 #else
 		let largestJDNForHebrewCalendar: JulianDayNumber = 343469932136373189
