@@ -258,6 +258,10 @@ extension HebrewCalendar {
 			Y -= recurrenceCycle.years
 		}
 
+		// Richards states:
+		//   > N.B. If integers requiring more than 15 bits are not acceptable, steps 1 to 3 may be replaced by:
+		// [the steps below]
+
 		let a = (235 * Y - 234) / 19
 		let b = 204 + 793 * a
 		let c = 5 + 12 * a + b / 1080
@@ -293,6 +297,13 @@ extension HebrewCalendar {
 //		precondition(J <= maxJ, "Year containing Julian Day Number calculations overflow with JDNs > \(maxJ)")
 		let M = (25920 * (J - 347996)) / 765433 + 1
 #else
+		// Richards states:
+		//   > N.B. The ratio 25 920/765 433 = 0.033 863 18;
+		//   > M may be set to the integral part of 0.033 863 18 * (J - 347 996).
+		// However, when using Double for the calculation the largest value
+		// for which the statement holds true is 9223372036854774895 (i.e. Int64.max - 912).
+		// Using Float80 (Intel-only) the statement is true for all 64-bit integers but that
+		// is not a good general-purpose solution.
 		let ratio: Double = 25920 / 765433
 		let M = Int(ratio * Double(J - 347996)) + 1
 #endif
