@@ -104,7 +104,7 @@ public struct HebrewCalendar: Calendar {
 		let M = AK.lastIndex(where: {$0 < c})! + 1
 		let D = c - AK[M - 1]
 
-		if cycles > 0 {
+		if cycles != 0 {
 			Y -= cycles * recurrenceCycle.years
 		}
 
