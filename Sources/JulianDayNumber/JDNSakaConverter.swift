@@ -55,17 +55,17 @@ struct JDNSakaConverter {
 		var adjustment = TemporalTranslation.none
 
 		// Translate out-of-range years into the valid range using
-		// multiples of the solar cycle
+		// multiples of the recurrence cycle
 		if Y > maxY {
 			adjustment = .negative
-			cycles = (Y - maxY) / gregorianSolarCycle.years
-			Y -= cycles * gregorianSolarCycle.years
-			Y -= gregorianSolarCycle.years
+			cycles = (Y - maxY) / gregorianRecurrenceCycle.years
+			Y -= cycles * gregorianRecurrenceCycle.years
+			Y -= gregorianRecurrenceCycle.years
 		} else if Y < minY {
 			adjustment = .positive
-			cycles = (Y - minY) / -gregorianSolarCycle.years
-			Y += cycles * gregorianSolarCycle.years
-			Y += gregorianSolarCycle.years
+			cycles = (Y - minY) / -gregorianRecurrenceCycle.years
+			Y += cycles * gregorianRecurrenceCycle.years
+			Y += gregorianRecurrenceCycle.years
 		}
 
 		let h = date.month - m
@@ -77,11 +77,11 @@ struct JDNSakaConverter {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if adjustment == .negative {
-			J += cycles * gregorianSolarCycle.days
-			J += gregorianSolarCycle.days
+			J += cycles * gregorianRecurrenceCycle.days
+			J += gregorianRecurrenceCycle.days
 		} else if adjustment == .positive {
-			J -= cycles * gregorianSolarCycle.days
-			J -= gregorianSolarCycle.days
+			J -= cycles * gregorianRecurrenceCycle.days
+			J -= gregorianRecurrenceCycle.days
 		}
 
 		return J
@@ -104,12 +104,12 @@ struct JDNSakaConverter {
 		let minJ = 0
 
 		var J = J
-		var calendarCycles = 0
+		var cycles = 0
 
 		if J < minJ || J > maxJ {
-			let qr = J.quotientAndRemainder(dividingBy: -gregorianSolarCycle.days)
-			calendarCycles = qr.quotient + 1
-			J = gregorianSolarCycle.days + qr.remainder
+			let qr = J.quotientAndRemainder(dividingBy: -gregorianRecurrenceCycle.days)
+			cycles = qr.quotient + 1
+			J = gregorianRecurrenceCycle.days + qr.remainder
 		}
 
 		var f = J + j
@@ -126,8 +126,8 @@ struct JDNSakaConverter {
 		let M = ((h / s + m) % n) + 1
 		var Y = e / p - y + (n + m - M) / n
 
-		if calendarCycles != 0 {
-			Y -= calendarCycles * gregorianSolarCycle.years
+		if cycles != 0 {
+			Y -= cycles * gregorianRecurrenceCycle.years
 		}
 
 		return (Y, M, D)

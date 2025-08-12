@@ -60,16 +60,16 @@ public struct HebrewCalendar: Calendar {
 	/// This JDN corresponds to October 7, 3761 BCE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 347998
 
-	/// An intercalating cycle in the Hebrew calendar consists of 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
-	static let intercalatingCycle = (years: 689472, days: 251827457)
+	/// The recurrence cycle of the Hebrew calendar is 689,472 years, 8,527,680 months, 35,975,351 weeks, or 251,827,457 days.
+	static let recurrenceCycle = (years: 689472, days: 251827457)
 
 	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
 		var Y = date.year
-		var ΔcalendarCycles = 0
+		var cycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / intercalatingCycle.years + 1
-			Y += ΔcalendarCycles * intercalatingCycle.years
+			cycles = (1 - Y) / recurrenceCycle.years + 1
+			Y += cycles * recurrenceCycle.years
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -77,8 +77,8 @@ public struct HebrewCalendar: Calendar {
 		let K = b - a - 352 - 27 * (((7 * Y + 13) % 19) / 12)
 		var J = a + A[K - 1][date.month - 1] + date.day - 1
 
-		if ΔcalendarCycles > 0 {
-			J -= ΔcalendarCycles * intercalatingCycle.days
+		if cycles > 0 {
+			J -= cycles * recurrenceCycle.days
 		}
 
 		return J
@@ -86,11 +86,12 @@ public struct HebrewCalendar: Calendar {
 
 	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
 		var J = J
-		var ΔcalendarCycles = 0
+		var cycles = 0
 
 		if J < epoch {
-			ΔcalendarCycles = (epoch - J) / intercalatingCycle.days + 1
-			J += ΔcalendarCycles * intercalatingCycle.days
+			let qr = J.quotientAndRemainder(dividingBy: -recurrenceCycle.days)
+			cycles = qr.quotient + 1
+			J = recurrenceCycle.days + qr.remainder
 		}
 
 		var Y = yearContaining(julianDayNumber: J)
@@ -103,8 +104,8 @@ public struct HebrewCalendar: Calendar {
 		let M = AK.lastIndex(where: {$0 < c})! + 1
 		let D = c - AK[M - 1]
 
-		if ΔcalendarCycles > 0 {
-			Y -= ΔcalendarCycles * intercalatingCycle.years
+		if cycles != 0 {
+			Y -= cycles * recurrenceCycle.years
 		}
 
 		return (Y, M, D)
@@ -169,11 +170,11 @@ public struct HebrewCalendar: Calendar {
 
 	public static func numberOfDays(inYear Y: Year) -> Int {
 		var Y = Y
-		var ΔcalendarCycles = 0
+		var cycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / intercalatingCycle.years + 1
-			Y += ΔcalendarCycles * intercalatingCycle.years
+			cycles = (1 - Y) / recurrenceCycle.years + 1
+			Y += cycles * recurrenceCycle.years
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -197,11 +198,11 @@ public struct HebrewCalendar: Calendar {
 		}
 
 		var Y = Y
-		var ΔcalendarCycles = 0
+		var cycles = 0
 
 		if Y < 1 {
-			ΔcalendarCycles = (1 - Y) / intercalatingCycle.years + 1
-			Y += ΔcalendarCycles * intercalatingCycle.years
+			cycles = (1 - Y) / recurrenceCycle.years + 1
+			Y += cycles * recurrenceCycle.years
 		}
 
 		let a = firstDayOfTishrei(year: Y)
@@ -231,11 +232,32 @@ extension HebrewCalendar {
 		// calculate correct values for the first day of Tishrei in proleptic years. However,
 		// this isn't a public function and the callers perform the translation before calling.
 
-#if true
+#if false
+		// Arithmetic upper limit
+		// `Y` values larger than this cause overflow when `b` is computed
+//		let maxY = ((((.max - 31524) / 765433) * 19) + 234) / 235
+//		precondition(Y <= maxY, "First day of Tishrei calculations overflow with year numbers > \(maxY)")
 		let b = 31524 + 765433 * ((235 * Y - 234) / 19)
 		var d = b / 25920
 		let e = b % 25920
 #else
+		// Arithmetic upper limit
+		// `Y` values larger than this cause overflow when `b` is computed
+		let maxY = (((.max / 793) * 19) + 234) / 235
+
+		var Y = Y
+		var cycles = 0
+		var adjusted = false
+
+		// Translate out-of-range years into the valid range using
+		// multiples of the cycle
+		if Y > maxY {
+			adjusted = true
+			cycles = (Y - maxY) / recurrenceCycle.years
+			Y -= cycles * recurrenceCycle.years
+			Y -= recurrenceCycle.years
+		}
+
 		let a = (235 * Y - 234) / 19
 		let b = 204 + 793 * a
 		let c = 5 + 12 * a + b / 1080
@@ -248,7 +270,14 @@ extension HebrewCalendar {
 		if e >= 19440 || (e >= 9924 && f == 3 && g == 0) || (e >= 16788 && f == 2 && g == 0 && h == 1) {
 			d = d + 1
 		}
-		return d + (((d + 5) % 7) % 2) + 347997
+		var D = d + (((d + 5) % 7) % 2) + 347997
+
+		if adjusted {
+			D += cycles * recurrenceCycle.days
+			D += recurrenceCycle.days
+		}
+
+		return D
 	}
 
 	/// Returns the year A.M. containing the specified Julian day number.
@@ -260,6 +289,8 @@ extension HebrewCalendar {
 		precondition(J >= epoch, "Julian day number must be >= epoch")
 
 #if true
+//		let maxJ = .max / 25920 + 347996
+//		precondition(J <= maxJ, "Year containing Julian Day Number calculations overflow with JDNs > \(maxJ)")
 		let M = (25920 * (J - 347996)) / 765433 + 1
 #else
 		let ratio: Double = 25920 / 765433
