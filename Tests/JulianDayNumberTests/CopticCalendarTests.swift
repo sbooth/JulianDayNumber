@@ -8,9 +8,9 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct CopticCalendarTests {
-	@Test func epoch() {
-		#expect(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == CopticCalendar.epoch)
-		#expect(CopticCalendar.dateFromJulianDayNumber(CopticCalendar.epoch) == (1, 1, 1))
+	@Test func epoch() throws {
+		#expect(try CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == CopticCalendar.epoch)
+		#expect(try CopticCalendar.dateFromJulianDayNumber(CopticCalendar.epoch) == (1, 1, 1))
 	}
 
 	@Test func dateValidation() {
@@ -18,7 +18,7 @@ import Testing
 		#expect(!CopticCalendar.isValid(year: 1740, month: 13, day: 6))
 	}
 
-	@Test func leapYear() {
+	@Test func leapYear() throws {
 		#expect(!CopticCalendar.isLeapYear(1))
 		#expect(CopticCalendar.isLeapYear(3))
 		#expect(CopticCalendar.isLeapYear(7))
@@ -29,8 +29,8 @@ import Testing
 
 		for y in -500...500 {
 			let isLeap = CopticCalendar.isLeapYear(y)
-			let j = CopticCalendar.julianDayNumberFrom(year: y, month: 13, day: isLeap ? 6 : 5)
-			let d = CopticCalendar.dateFromJulianDayNumber(j)
+			let j = try CopticCalendar.julianDayNumberFrom(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = try CopticCalendar.dateFromJulianDayNumber(j)
 			#expect(d.month == 13)
 			#expect(d.day == (isLeap ? 6 : 5))
 		}
@@ -56,34 +56,34 @@ import Testing
 		#expect(CopticCalendar.numberOfDays(inYear: 1739) == 366)
 	}
 
-	@Test func julianDayNumber() {
-		#expect(CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1825030)
-		#expect(CopticCalendar.dateFromJulianDayNumber(1825030) == (1, 1, 1))
+	@Test func julianDayNumber() throws {
+		#expect(try CopticCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1825030)
+		#expect(try CopticCalendar.dateFromJulianDayNumber(1825030) == (1, 1, 1))
 	}
 
-	@Test func limits() {
-		#expect(CopticCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363424970.5)
-		#expect(CopticCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34699970.5)
-		#expect(CopticCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1827470.5)
-		#expect(CopticCalendar.julianDateFrom(year: 9999, month: 13, day: 5) == 5477162.5)
-		#expect(CopticCalendar.julianDateFrom(year: 99999, month: 13, day: 5) == 38349662.5)
-		#expect(CopticCalendar.julianDateFrom(year: 999999, month: 13, day: 5) == 367074662.5)
+	@Test func limits() throws {
+		#expect(try CopticCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -363424970.5)
+		#expect(try CopticCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34699970.5)
+		#expect(try CopticCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1827470.5)
+		#expect(try CopticCalendar.julianDateFrom(year: 9999, month: 13, day: 5) == 5477162.5)
+		#expect(try CopticCalendar.julianDateFrom(year: 99999, month: 13, day: 5) == 38349662.5)
+		#expect(try CopticCalendar.julianDateFrom(year: 999999, month: 13, day: 5) == 367074662.5)
 
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(-363424970.5) == (-999999, 1, 1, 0, 0, 0))
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(-34699970.5) == (-99999, 1, 1, 0, 0, 0))
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(-1827470.5) == (-9999, 1, 1, 0, 0, 0))
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(5477162.5) == (9999, 13, 5, 0, 0, 0))
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(38349662.5) == (99999, 13, 5, 0, 0, 0))
-		#expect(CopticCalendar.dateAndTimeFromJulianDate(367074662.5) == (999999, 13, 5, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(-363424970.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(-34699970.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(-1827470.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(5477162.5) == (9999, 13, 5, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(38349662.5) == (99999, 13, 5, 0, 0, 0))
+		#expect(try CopticCalendar.dateAndTimeFromJulianDate(367074662.5) == (999999, 13, 5, 0, 0, 0))
 	}
 
-	@Test func arithmeticLimits() {
-		let minDate = CopticCalendar.dateFromJulianDayNumber(.min)
-		let minJ = CopticCalendar.julianDayNumberFromDate(minDate)
+	@Test func arithmeticLimits() throws {
+		let minDate = try CopticCalendar.dateFromJulianDayNumber(.min)
+		let minJ = try CopticCalendar.julianDayNumberFromDate(minDate)
 		#expect(minJ == .min)
 
-		let maxDate = CopticCalendar.dateFromJulianDayNumber(.max)
-		let maxJ = CopticCalendar.julianDayNumberFromDate(maxDate)
+		let maxDate = try CopticCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = try CopticCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
 	}
 }
