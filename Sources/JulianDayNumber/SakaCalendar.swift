@@ -37,12 +37,12 @@ public struct SakaCalendar: Calendar {
 	/// The converter for the Śaka calendar.
 	static let converter = JDNSakaConverter()
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
+		try converter.julianDayNumberFromDate(date)
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
+		try converter.dateFromJulianDayNumber(J)
 	}
 
 	/// The Julian day number when the Śaka calendar took effect.
