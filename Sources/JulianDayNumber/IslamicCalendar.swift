@@ -25,6 +25,9 @@
 ///
 /// The Islamic calendar epoch in the Julian calendar is July 16, 622 CE.
 ///
+/// The true Islamic calendar is a purely lunar calendar in which months correspond to the lunar phases. This implementation
+/// is an arithmetic calendar, sometimes called the civil Islamic calendar, that approximates the lunar phases.
+///
 /// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
 public struct IslamicCalendar: Calendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
