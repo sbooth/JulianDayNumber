@@ -89,5 +89,8 @@ import Testing
 		let maxDate = MacedonianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = MacedonianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = MacedonianCalendar.isLeapYear(.min)
+		_ = MacedonianCalendar.isLeapYear(.max)
 	}
 }

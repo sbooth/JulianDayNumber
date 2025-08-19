@@ -65,7 +65,12 @@ public struct BahaiCalendar: Calendar {
 	///
 	/// - returns: `true` if the specified year is a leap year in the Baháʼí calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
-		GregorianCalendar.isLeapYear(Y + 1844)
+		let maxY = .max - 1844
+		if Y > maxY {
+			return GregorianCalendar.isLeapYear(Y + (1844 - 2000))
+		} else {
+			return GregorianCalendar.isLeapYear(Y + 1844)
+		}
 	}
 
 	public static func numberOfMonths(inYear Y: Year) -> Int {
