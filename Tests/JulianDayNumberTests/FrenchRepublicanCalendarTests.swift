@@ -90,5 +90,8 @@ import Testing
 		let maxDate = FrenchRepublicanCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = FrenchRepublicanCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = FrenchRepublicanCalendar.isLeapYear(.min)
+		_ = FrenchRepublicanCalendar.isLeapYear(.max)
 	}
 }

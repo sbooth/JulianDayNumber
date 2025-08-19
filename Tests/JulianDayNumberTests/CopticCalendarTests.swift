@@ -85,5 +85,8 @@ import Testing
 		let maxDate = CopticCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = CopticCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = CopticCalendar.isLeapYear(.min)
+		_ = CopticCalendar.isLeapYear(.max)
 	}
 }
