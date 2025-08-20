@@ -246,5 +246,8 @@ import Testing
 
 		_ = JulianCalendar.isLeapYear(.min)
 		_ = JulianCalendar.isLeapYear(.max)
+
+		_ = JulianCalendar.dayOfWeek(.min)
+		_ = JulianCalendar.dayOfWeek(.max)
 	}
 }
