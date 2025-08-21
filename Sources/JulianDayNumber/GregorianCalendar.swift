@@ -91,7 +91,6 @@ public struct GregorianCalendar: Calendar {
 		let maxJD = .max - 68569
 
 		// Algorithmic lower limit
-		// The JPL formula is only valid for JDNs ≥ 0
 		let minJD = 0
 
 		var JD = JD
