@@ -42,9 +42,6 @@ public struct GregorianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
 	static let recurrenceCycle = (years: 400, days: 146097)
 
-	/// The converter for the Gregorian calendar.
-	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
-
 	// These algorithms by Fliegel and Van Flandern (1968) are valid for all
 	// Gregorian calendar dates corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
 
