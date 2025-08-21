@@ -66,7 +66,11 @@ public struct JulianCalendar: Calendar {
 		}
 
 		precondition(Y >= -4712)
-		var J = 367 * Y - (7 * (Y + 5001 + (date.month - 9) / 7)) / 4 + (275 * date.month) / 9 + date.day + 1729777
+		var J = 367 * Y
+				- (7 * (Y + 5001 + (date.month - 9) / 7)) / 4
+				+ (275 * date.month) / 9
+				+ date.day
+				+ 1729777
 
 		if adjustment == .negative {
 			J += cycles * recurrenceCycle.days
