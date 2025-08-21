@@ -39,15 +39,92 @@ public struct GregorianCalendar: Calendar {
 	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1721426
 
+	/// The recurrence (solar) cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
+	static let recurrenceCycle = (years: 400, days: 146097)
+
 	/// The converter for the Gregorian calendar.
 	static let converter = JDNGregorianConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2, A: 184, B: 274277, C: -38)
 
+	// These algorithms by Fliegel and Van Flandern (1968) are valid for all
+	// Gregorian calendar dates corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
+
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+		// Estimated arithmetic upper bound
+		let maxY = .max / 1461 - 4800
+
+		// Algorithmic lower limit
+		// The JPL formula is only valid for Y ≥ -4712
+		let minY = -4712
+		let minDate: DateType = (-4713, 11, 23)
+
+		var Y = date.year
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
+
+		// Translate out-of-range years into the valid range using
+		// multiples of the recurrence cycle
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / recurrenceCycle.years
+			Y -= cycles * recurrenceCycle.years + recurrenceCycle.years
+		} else if date < minDate {
+			adjustment = .positive
+			cycles = (Y - minY) / -recurrenceCycle.years
+			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
+		}
+
+		precondition((Y, date.month, date.day) >= minDate)
+		var J = (1461 * (Y + 4800 + (date.month - 14) / 12)) / 4
+				+ (367 * (date.month - 2 - 12 * ((date.month - 14) / 12))) / 12
+				- (3 * ((Y + 4900 + (date.month - 14) / 12) / 100)) / 4
+				+ date.day
+				- 32075
+
+		if adjustment == .negative {
+			J += cycles * recurrenceCycle.days
+			J += recurrenceCycle.days
+		} else if adjustment == .positive {
+			J -= cycles * recurrenceCycle.days
+			J -= recurrenceCycle.days
+		}
+
+		return J
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
+		// Arithmetic upper limit
+		let maxJD = .max - 68569
+
+		// Algorithmic lower limit
+		// The JPL formula is only valid for JDNs ≥ 0
+		let minJD = 0
+
+		var JD = JD
+		var cycles = 0
+
+		if JD > maxJD || JD < minJD {
+			let qr = JD.quotientAndRemainder(dividingBy: -recurrenceCycle.days)
+			cycles = qr.quotient + 1
+			JD = recurrenceCycle.days + qr.remainder
+		}
+
+		precondition(JD >= 0)
+		var L = JD + 68569
+		let N = (4 * L) / 146097
+		L = L - (146097 * N + 3) / 4
+		let I = (4000 * (L + 1)) / 1461001
+		L = L - (1461 * I) / 4 + 31
+		let J = (80 * L) / 2447
+		let D = L - (2447 * J) / 80
+		L = J / 11
+		let M = J + 2 - 12 * L
+		var Y = 100 * (N - 49) + I + L
+
+		if cycles != 0 {
+			Y -= cycles * recurrenceCycle.years
+		}
+
+		return (Y, M, D)
 	}
 
 	/// The Julian day number when the Gregorian calendar took effect.
@@ -129,7 +206,7 @@ extension GregorianCalendar {
 
 		// Richards' algorithm is only valid for positive years.
 		if Y < 1 {
-			Y += (-Y / gregorianRecurrenceCycle.years + 1) * gregorianRecurrenceCycle.years
+			Y += (-Y / recurrenceCycle.years + 1) * recurrenceCycle.years
 		}
 
 		let a = (9 + M) % 12
