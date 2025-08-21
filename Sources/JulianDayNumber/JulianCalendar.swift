@@ -37,17 +37,20 @@ public struct JulianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Julian calendar is 21 common years of 365 days and 7 leap years of 366 days.
 	static let recurrenceCycle = (years: 28, days: 10227)
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		// The formula for computing JD from Y, M, D was constructed by
-		// Fliegel (1990) as an entry in "The Great Julian Day Contest,"
-		// held at the Jet Propulsion Laboratory in 1970.
+	/// The Julian calendar date corresponding to JDN 0
+	static let jdnZero: DateType = (-4712, 1, 1)
 
+	// These algorithms are valid for all values of Y ≥ -4712, i.e., for all dates with JD ≥ 0.
+	// The formula for computing JD from Y, M, D was constructed by
+	// Fliegel (1990) as an entry in "The Great Julian Day Contest,"
+	// held at the Jet Propulsion Laboratory in 1970.
+
+	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		// Arithmetic upper limit
 		let maxY = .max / 367
 
 		// Algorithmic lower limit
-		// The JPL formula is only valid for Y ≥ -4712
-		let minY = -4712
+		let minY = jdnZero.year
 
 		var Y = date.year
 		var cycles = 0
@@ -65,7 +68,7 @@ public struct JulianCalendar: Calendar {
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
-		precondition(Y >= -4712)
+//		precondition(Y >= minY)
 		var J = 367 * Y
 				- (7 * (Y + 5001 + (date.month - 9) / 7)) / 4
 				+ (275 * date.month) / 9
@@ -88,7 +91,6 @@ public struct JulianCalendar: Calendar {
 		let maxJD = .max - 1402
 
 		// Algorithmic lower limit
-		// The JPL formula is only valid for JDNs ≥ 0
 		let minJD = 0
 
 		var JD = JD
@@ -100,7 +102,7 @@ public struct JulianCalendar: Calendar {
 			JD = recurrenceCycle.days + qr.remainder
 		}
 
-		precondition(JD >= 0)
+//		precondition(JD >= minJD)
 		var J = JD + 1402
 		let K = (J - 1) / 1461
 		let L = J - 1461 * K

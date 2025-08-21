@@ -42,6 +42,9 @@ public struct GregorianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
 	static let recurrenceCycle = (years: 400, days: 146097)
 
+	/// The Gregorian calendar date corresponding to JDN 0
+	static let jdnZero: DateType = (-4713, 11, 24)
+
 	// These algorithms by Fliegel and Van Flandern (1968) are valid for all
 	// Gregorian calendar dates corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
 
@@ -50,7 +53,7 @@ public struct GregorianCalendar: Calendar {
 		let maxY = .max / 1461 - 4800
 
 		// Algorithmic lower limit
-		let minDate: DateType = (-4713, 11, 24)
+		let minDate = jdnZero
 
 		var Y = date.year
 		var cycles = 0
@@ -68,7 +71,7 @@ public struct GregorianCalendar: Calendar {
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
-		precondition((Y, date.month, date.day) >= minDate)
+//		precondition((Y, date.month, date.day) >= minDate)
 		var J = (1461 * (Y + 4800 + (date.month - 14) / 12)) / 4
 				+ (367 * (date.month - 2 - 12 * ((date.month - 14) / 12))) / 12
 				- (3 * ((Y + 4900 + (date.month - 14) / 12) / 100)) / 4
@@ -102,7 +105,7 @@ public struct GregorianCalendar: Calendar {
 			JD = recurrenceCycle.days + qr.remainder
 		}
 
-		precondition(JD >= 0)
+//		precondition(JD >= minJD)
 		var L = JD + 68569
 		let N = (4 * L) / 146097
 		L = L - (146097 * N + 3) / 4
