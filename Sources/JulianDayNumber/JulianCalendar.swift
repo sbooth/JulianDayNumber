@@ -34,15 +34,85 @@ public struct JulianCalendar: Calendar {
 	/// This JDN corresponds to January 1, 1 CE in the Julian calendar.
 	public static let epoch: JulianDayNumber = 1721424
 
-	/// The converter for the Julian calendar.
-	static let converter = JDNConverter(y: 4716, j: 1401, m: 2, n: 12, r: 4, p: 1461, q: 0, v: 3, u: 5, s: 153, t: 2, w: 2)
+	/// The recurrence (solar) cycle of the Julian calendar is 21 common years of 365 days and 7 leap years of 366 days.
+	static let recurrenceCycle = (years: 28, days: 10227)
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		converter.julianDayNumberFromDate(date)
+		// The formula for computing JD from Y, M, D was constructed by
+		// Fliegel (1990) as an entry in "The Great Julian Day Contest,"
+		// held at the Jet Propulsion Laboratory in 1970.
+
+		// Arithmetic upper limit
+		let maxY = .max / 367
+
+		// Algorithmic lower limit
+		// The JPL formula is only valid for Y ≥ -4712
+		let minY = -4712
+
+		var Y = date.year
+		var cycles = 0
+		var adjustment = TemporalTranslation.none
+
+		// Translate out-of-range years into the valid range using
+		// multiples of the recurrence cycle
+		if Y > maxY {
+			adjustment = .negative
+			cycles = (Y - maxY) / recurrenceCycle.years
+			Y -= cycles * recurrenceCycle.years + recurrenceCycle.years
+		} else if Y < minY {
+			adjustment = .positive
+			cycles = (Y - minY) / -recurrenceCycle.years
+			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
+		}
+
+		precondition(Y >= -4712)
+		var J = 367 * Y - (7 * (Y + 5001 + (date.month - 9) / 7)) / 4 + (275 * date.month) / 9 + date.day + 1729777
+
+		if adjustment == .negative {
+			J += cycles * recurrenceCycle.days
+			J += recurrenceCycle.days
+		} else if adjustment == .positive {
+			J -= cycles * recurrenceCycle.days
+			J -= recurrenceCycle.days
+		}
+
+		return J
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		converter.dateFromJulianDayNumber(J)
+	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
+		// Arithmetic upper limit
+		let maxJD = .max - 1402
+
+		// Algorithmic lower limit
+		// The JPL formula is only valid for JDNs ≥ 0
+		let minJD = 0
+
+		var JD = JD
+		var cycles = 0
+
+		if JD > maxJD || JD < minJD {
+			let qr = JD.quotientAndRemainder(dividingBy: -recurrenceCycle.days)
+			cycles = qr.quotient + 1
+			JD = recurrenceCycle.days + qr.remainder
+		}
+
+		precondition(JD >= 0)
+		var J = JD + 1402
+		let K = (J - 1) / 1461
+		let L = J - 1461 * K
+		let N = (L - 1) / 365 - L / 1461
+		var I = L - 365 * N + 30
+		J = (80 * I) / 2447
+		let D = I - (2447 * J) / 80
+		I = J / 11
+		let M = J + 2 - 12 * I
+		var Y = 4 * K + N + I - 4716
+
+		if cycles != 0 {
+			Y -= cycles * recurrenceCycle.years
+		}
+
+		return (Y, M, D)
 	}
 
 	/// The Julian day number when the Julian calendar took effect.
