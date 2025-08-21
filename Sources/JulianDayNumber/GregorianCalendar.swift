@@ -50,9 +50,7 @@ public struct GregorianCalendar: Calendar {
 		let maxY = .max / 1461 - 4800
 
 		// Algorithmic lower limit
-		// The JPL formula is only valid for Y ≥ -4712
-		let minY = -4712
-		let minDate: DateType = (-4713, 11, 23)
+		let minDate: DateType = (-4713, 11, 24)
 
 		var Y = date.year
 		var cycles = 0
@@ -66,7 +64,7 @@ public struct GregorianCalendar: Calendar {
 			Y -= cycles * recurrenceCycle.years + recurrenceCycle.years
 		} else if date < minDate {
 			adjustment = .positive
-			cycles = (Y - minY) / -recurrenceCycle.years
+			cycles = (Y - minDate.year) / -recurrenceCycle.years
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
