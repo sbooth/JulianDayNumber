@@ -228,5 +228,8 @@ import Testing
 
 		_ = AstronomicalCalendar.isLeapYear(.min)
 		_ = AstronomicalCalendar.isLeapYear(.max)
+
+		_ = AstronomicalCalendar.dayOfWeek(.min)
+		_ = AstronomicalCalendar.dayOfWeek(.max)
 	}
 }

@@ -156,5 +156,8 @@ import Testing
 
 		_ = GregorianCalendar.isLeapYear(.min)
 		_ = GregorianCalendar.isLeapYear(.max)
+
+		_ = GregorianCalendar.dayOfWeek(.min)
+		_ = GregorianCalendar.dayOfWeek(.max)
 	}
 }
