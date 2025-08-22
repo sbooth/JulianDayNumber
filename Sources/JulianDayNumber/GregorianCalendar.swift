@@ -45,8 +45,12 @@ public struct GregorianCalendar: Calendar {
 	/// The Gregorian calendar date corresponding to JDN 0
 	static let jdnZero: DateType = (-4713, 11, 24)
 
-	// These algorithms by Fliegel and Van Flandern (1968) are valid for all
-	// Gregorian calendar dates corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
+	// These algorithms are valid for all Gregorian calendar dates
+	// corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
+	//
+	// For more information see:
+	//   Fliegel, H.F. & van Flandern, T.C. 1968, Communications of the ACM, 11, 657.
+	//   https://doi.org/10.1145/364096.364097
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
 		// Estimated arithmetic upper bound
