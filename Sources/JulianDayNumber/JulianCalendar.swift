@@ -40,31 +40,31 @@ public struct JulianCalendar: Calendar {
 	/// The Julian calendar date corresponding to JDN 0
 	static let jdnZero: DateType = (-4712, 1, 1)
 
-	// These algorithms are valid for all values of Y ≥ -4712, i.e., for all dates with JD ≥ 0.
-	// The formula for computing JD from Y, M, D was constructed by
-	// Fliegel (1990) as an entry in "The Great Julian Day Contest,"
+	// These algorithms are valid for all Julian calendar dates
+	// corresponding to JDN ≥ 0.
+	//
+	// The formula for computing JDN from Y, M, D was constructed by
+	// Fliegel (1990) as an entry in "The Great Julian Day Contest"
 	// held at the Jet Propulsion Laboratory in 1970.
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		// Arithmetic upper limit
+		// Years greater than maxY cause arithmetic overflow
+		// when computing J even when the final result is ≤ .max
 		let maxY = .max / 367
-
-		// Algorithmic lower limit
-		let minY = jdnZero.year
 
 		var Y = date.year
 		var cycles = 0
 		var adjustment = TemporalTranslation.none
 
-		// Translate out-of-range years into the valid range using
-		// multiples of the recurrence cycle
+		// Translate out-of-range dates into the valid range using
+		// multiples of the Julian calendar's 28 year recurrence cycle
 		if Y > maxY {
 			adjustment = .negative
 			cycles = (Y - maxY) / recurrenceCycle.years
 			Y -= cycles * recurrenceCycle.years + recurrenceCycle.years
-		} else if Y < minY {
+		} else if Y < jdnZero.year {
 			adjustment = .positive
-			cycles = (Y - minY) / -recurrenceCycle.years
+			cycles = (Y - jdnZero.year) / -recurrenceCycle.years
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
@@ -87,22 +87,22 @@ public struct JulianCalendar: Calendar {
 	}
 
 	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
-		// Arithmetic upper limit
+		// JDN values greater than maxJD cause arithmetic overflow
+		// when computing J
 		let maxJD = .max - 1402
-
-		// Algorithmic lower limit
-		let minJD = 0
 
 		var JD = JD
 		var cycles = 0
 
-		if JD > maxJD || JD < minJD {
+		// Translate out-of-range JDNs into the valid range using
+		// multiples of the Julian calendar's 10227 day recurrence cycle
+		if JD > maxJD || JD < 0 {
 			let qr = JD.quotientAndRemainder(dividingBy: -recurrenceCycle.days)
 			cycles = qr.quotient + 1
 			JD = recurrenceCycle.days + qr.remainder
 		}
 
-//		precondition(JD >= minJD)
+//		precondition(JD >= 0)
 		var J = JD + 1402
 		let K = (J - 1) / 1461
 		let L = J - 1461 * K

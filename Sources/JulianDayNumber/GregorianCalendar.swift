@@ -46,32 +46,31 @@ public struct GregorianCalendar: Calendar {
 	static let jdnZero: DateType = (-4713, 11, 24)
 
 	// These algorithms are valid for all Gregorian calendar dates
-	// corresponding to JD ≥ 0, i.e., dates after -4713 November 23.
+	// corresponding to JDN ≥ 0.
 	//
 	// For more information see:
 	//   Fliegel, H.F. & van Flandern, T.C. 1968, Communications of the ACM, 11, 657.
 	//   https://doi.org/10.1145/364096.364097
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		// Estimated arithmetic upper bound
+		// Years greater than maxY cause arithmetic overflow
+		// when computing J even when the final result is ≤ .max
+		// N.B. this is an estimated upper bound
 		let maxY = .max / 1461 - 4800
-
-		// Algorithmic lower limit
-		let minDate = jdnZero
 
 		var Y = date.year
 		var cycles = 0
 		var adjustment = TemporalTranslation.none
 
-		// Translate out-of-range years into the valid range using
-		// multiples of the recurrence cycle
+		// Translate out-of-range dates into the valid range using
+		// multiples of the Gregorian calendar's 400 year recurrence cycle
 		if Y > maxY {
 			adjustment = .negative
 			cycles = (Y - maxY) / recurrenceCycle.years
 			Y -= cycles * recurrenceCycle.years + recurrenceCycle.years
-		} else if date < minDate {
+		} else if date < jdnZero {
 			adjustment = .positive
-			cycles = (Y - minDate.year) / -recurrenceCycle.years
+			cycles = (Y - jdnZero.year) / -recurrenceCycle.years
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
@@ -94,16 +93,16 @@ public struct GregorianCalendar: Calendar {
 	}
 
 	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
-		// Arithmetic upper limit
+		// JDN values greater than maxJD cause arithmetic overflow
+		// when computing L
 		let maxJD = .max - 68569
-
-		// Algorithmic lower limit
-		let minJD = 0
 
 		var JD = JD
 		var cycles = 0
 
-		if JD > maxJD || JD < minJD {
+		// Translate out-of-range JDNs into the valid range using
+		// multiples of the Gregorian calendar's 146097 day recurrence cycle
+		if JD > maxJD || JD < 0 {
 			let qr = JD.quotientAndRemainder(dividingBy: -recurrenceCycle.days)
 			cycles = qr.quotient + 1
 			JD = recurrenceCycle.days + qr.remainder
