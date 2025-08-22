@@ -14,9 +14,6 @@ enum TemporalTranslation {
 	case positive
 }
 
-/// The recurrence (solar) cycle of the Julian calendar is 21 common years of 365 days and 7 leap years of 366 days.
-let julianRecurrenceCycle = (years: 28, days: 10227)
-
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day for selected arithmetic calendars.
 ///
 /// The algorithms are adapted from Richards, E.G. 2012, "[Calendars](https://aa.usno.navy.mil/downloads/c15_usb_online.pdf),"
