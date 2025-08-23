@@ -42,8 +42,22 @@ public struct GregorianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
 	static let recurrenceCycle = (years: 400, days: 146097)
 
-	/// The Gregorian calendar date corresponding to JDN 0
+	/// The Gregorian calendar date corresponding to JDN 0.
 	static let jdnZero: DateType = (-4713, 11, 24)
+
+#if _pointerBitWidth(_64)
+	// The Gregorian calendar date corresponding to JDN `Int64.max`
+	static let upperLimit: DateType = (25252734927761842, 6, 20)
+	// The Gregorian calendar date corresponding to JDN `Int64.min`
+	static let lowerLimit: DateType = (-25252734927771267, 4, 30)
+#elseif _pointerBitWidth(_32)
+	// The Gregorian calendar date corresponding to JDN `Int32.max`
+	static let upperLimit: DateType = (5874898, 6, 3)
+	// The Gregorian calendar date corresponding to JDN `Int32.min`
+	static let lowerLimit: DateType = (-5884323, 5, 15)
+#else
+#error("Unsupported pointer bit width")
+#endif
 
 	// These algorithms are valid for all Gregorian calendar dates
 	// corresponding to JDN ≥ 0.
@@ -53,8 +67,11 @@ public struct GregorianCalendar: Calendar {
 	//   https://doi.org/10.1145/364096.364097
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		// Years greater than maxY cause arithmetic overflow
-		// when computing J even when the final result is ≤ .max
+//		guard date <= upperLimit else { return .max }
+//		guard date >= lowerLimit else { return .min }
+
+		// Years greater than `maxY` cause arithmetic overflow
+		// when computing `J` even when the final result is ≤ `.max`
 		// N.B. this is an estimated upper bound
 		let maxY = .max / 1461 - 4800
 
@@ -74,7 +91,6 @@ public struct GregorianCalendar: Calendar {
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
-//		precondition((Y, date.month, date.day) >= minDate)
 		var J = (1461 * (Y + 4800 + (date.month - 14) / 12)) / 4
 				+ (367 * (date.month - 2 - 12 * ((date.month - 14) / 12))) / 12
 				- (3 * ((Y + 4900 + (date.month - 14) / 12) / 100)) / 4
@@ -93,8 +109,8 @@ public struct GregorianCalendar: Calendar {
 	}
 
 	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
-		// JDN values greater than maxJD cause arithmetic overflow
-		// when computing L
+		// JDN values greater than `maxJD` cause arithmetic overflow
+		// when computing `L`
 		let maxJD = .max - 68569
 
 		var JD = JD
@@ -108,7 +124,6 @@ public struct GregorianCalendar: Calendar {
 			JD = recurrenceCycle.days + qr.remainder
 		}
 
-//		precondition(JD >= minJD)
 		var L = JD + 68569
 		let N = (4 * L) / 146097
 		L = L - (146097 * N + 3) / 4
