@@ -47,7 +47,7 @@ public struct JulianCalendar: Calendar {
 	// Fliegel (1990) as an entry in "The Great Julian Day Contest"
 	// held at the Jet Propulsion Laboratory in 1970.
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
 		// Years greater than maxY cause arithmetic overflow
 		// when computing J even when the final result is ≤ .max
 		let maxY = .max / 367
@@ -86,7 +86,7 @@ public struct JulianCalendar: Calendar {
 		return J
 	}
 
-	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
+	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) throws -> DateType {
 		// JDN values greater than maxJD cause arithmetic overflow
 		// when computing J
 		let maxJD = .max - 1402
