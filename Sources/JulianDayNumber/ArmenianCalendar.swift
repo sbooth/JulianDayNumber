@@ -44,7 +44,7 @@ public struct ArmenianCalendar: Calendar {
 		converter.dateFromJulianDayNumber(J)
 	}
 
-	/// The number of months in one year.b
+	/// The number of months in one year.
 	public static let numberOfMonthsInYear = 13
 
 	/// The number of days in one year.
