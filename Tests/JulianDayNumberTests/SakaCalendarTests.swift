@@ -93,5 +93,8 @@ import Testing
 		let maxDate = try SakaCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try SakaCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = SakaCalendar.isLeapYear(.min)
+		_ = SakaCalendar.isLeapYear(.max)
 	}
 }

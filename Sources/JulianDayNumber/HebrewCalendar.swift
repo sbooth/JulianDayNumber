@@ -157,10 +157,7 @@ public struct HebrewCalendar: Calendar {
 	///
 	/// - returns: `true` if the specified year is an embolismic (leap) year in the Hebrew calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
-		if Y > 0 {
-			return (7 * Y + 1) % 19 < 7
-		}
-		let yearInCycle = (Y - 1) % 19 + (Y < 1 ? 20 : 1)
+		let yearInCycle = Y > 0 ? (Y - 1) % 19 + 1 : (Y % 19) + 19
 		return yearInCycle == 3 || yearInCycle == 6 || yearInCycle == 8 || yearInCycle == 11 || yearInCycle == 14 || yearInCycle == 17 || yearInCycle == 19
 	}
 

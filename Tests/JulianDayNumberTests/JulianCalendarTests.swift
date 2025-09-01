@@ -243,5 +243,11 @@ import Testing
 		let maxDate = try JulianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try JulianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = JulianCalendar.isLeapYear(.min)
+		_ = JulianCalendar.isLeapYear(.max)
+
+		_ = JulianCalendar.dayOfWeek(.min)
+		_ = JulianCalendar.dayOfWeek(.max)
 	}
 }

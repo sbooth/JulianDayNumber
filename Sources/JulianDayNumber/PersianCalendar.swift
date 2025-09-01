@@ -59,7 +59,7 @@ public struct PersianCalendar: Calendar {
 	///
 	/// - returns: The number of days in the specified month.
 	public static func numberOfDays(inMonth M: Month) -> Int {
-		guard M > 0, M <= 13 else {
+		guard M > 0, M <= numberOfMonthsInYear else {
 			return 0
 		}
 		return monthLengths[M - 1]

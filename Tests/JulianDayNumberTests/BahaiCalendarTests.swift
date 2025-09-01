@@ -92,5 +92,8 @@ import Testing
 		let maxDate = try BahaiCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try BahaiCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = BahaiCalendar.isLeapYear(.min)
+		_ = BahaiCalendar.isLeapYear(.max)
 	}
 }

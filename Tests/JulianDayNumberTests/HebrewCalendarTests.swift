@@ -264,5 +264,8 @@ import Testing
 		jdn = try HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForHebrewCalendar == jdn)
 #endif
+
+		_ = HebrewCalendar.isLeapYear(.min)
+		_ = HebrewCalendar.isLeapYear(.max)
 	}
 }

@@ -75,7 +75,12 @@ public struct SakaCalendar: Calendar {
 	///
 	/// - returns: `true` if the specified year is a leap year in the Śaka calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
-		GregorianCalendar.isLeapYear(Y + 78)
+		let maxY = .max - 78
+		if Y > maxY {
+			return GregorianCalendar.isLeapYear(Y + (78 - 400))
+		} else {
+			return GregorianCalendar.isLeapYear(Y + 78)
+		}
 	}
 
 	public static func numberOfMonths(inYear Y: Year) -> Int {

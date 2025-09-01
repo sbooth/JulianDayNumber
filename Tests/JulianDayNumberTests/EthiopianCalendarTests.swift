@@ -88,5 +88,8 @@ import Testing
 		let maxDate = try EthiopianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try EthiopianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = EthiopianCalendar.isLeapYear(.min)
+		_ = EthiopianCalendar.isLeapYear(.max)
 	}
 }

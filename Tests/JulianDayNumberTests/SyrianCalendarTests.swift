@@ -89,5 +89,8 @@ import Testing
 		let maxDate = try SyrianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try SyrianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = SyrianCalendar.isLeapYear(.min)
+		_ = SyrianCalendar.isLeapYear(.max)
 	}
 }

@@ -58,14 +58,14 @@ struct JDNSakaConverter {
 		// multiples of the recurrence cycle
 		if Y > maxY {
 			adjustment = .negative
-			cycles = (Y - maxY) / gregorianRecurrenceCycle.years
-			Y -= cycles * gregorianRecurrenceCycle.years
-			Y -= gregorianRecurrenceCycle.years
+			cycles = (Y - maxY) / GregorianCalendar.recurrenceCycle.years
+			Y -= cycles * GregorianCalendar.recurrenceCycle.years
+			Y -= GregorianCalendar.recurrenceCycle.years
 		} else if Y < minY {
 			adjustment = .positive
-			cycles = (Y - minY) / -gregorianRecurrenceCycle.years
-			Y += cycles * gregorianRecurrenceCycle.years
-			Y += gregorianRecurrenceCycle.years
+			cycles = (Y - minY) / -GregorianCalendar.recurrenceCycle.years
+			Y += cycles * GregorianCalendar.recurrenceCycle.years
+			Y += GregorianCalendar.recurrenceCycle.years
 		}
 
 		let h = date.month - m
@@ -77,11 +77,11 @@ struct JDNSakaConverter {
 		J = J - (3 * ((g + A) / 100)) / 4 - C
 
 		if adjustment == .negative {
-			J += cycles * gregorianRecurrenceCycle.days
-			J += gregorianRecurrenceCycle.days
+			J += cycles * GregorianCalendar.recurrenceCycle.days
+			J += GregorianCalendar.recurrenceCycle.days
 		} else if adjustment == .positive {
-			J -= cycles * gregorianRecurrenceCycle.days
-			J -= gregorianRecurrenceCycle.days
+			J -= cycles * GregorianCalendar.recurrenceCycle.days
+			J -= GregorianCalendar.recurrenceCycle.days
 		}
 
 		return J
@@ -107,9 +107,9 @@ struct JDNSakaConverter {
 		var cycles = 0
 
 		if J < minJ || J > maxJ {
-			let qr = J.quotientAndRemainder(dividingBy: -gregorianRecurrenceCycle.days)
+			let qr = J.quotientAndRemainder(dividingBy: -GregorianCalendar.recurrenceCycle.days)
 			cycles = qr.quotient + 1
-			J = gregorianRecurrenceCycle.days + qr.remainder
+			J = GregorianCalendar.recurrenceCycle.days + qr.remainder
 		}
 
 		var f = J + j
@@ -127,7 +127,7 @@ struct JDNSakaConverter {
 		var Y = e / p - y + (n + m - M) / n
 
 		if cycles != 0 {
-			Y -= cycles * gregorianRecurrenceCycle.years
+			Y -= cycles * GregorianCalendar.recurrenceCycle.years
 		}
 
 		return (Y, M, D)

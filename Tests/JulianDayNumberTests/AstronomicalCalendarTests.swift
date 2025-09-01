@@ -216,4 +216,20 @@ import Testing
 		#expect(try AstronomicalCalendar.dateAndTimeFromJulianDate(38245308.5) == (99999, 12, 31, 0, 0, 0))
 		#expect(try AstronomicalCalendar.dateAndTimeFromJulianDate(366963558.5) == (999999, 12, 31, 0, 0, 0))
 	}
+
+	@Test func arithmeticLimits() {
+		let minDate = AstronomicalCalendar.dateFromJulianDayNumber(.min)
+		let minJ = AstronomicalCalendar.julianDayNumberFromDate(minDate)
+		#expect(minJ == .min)
+
+		let maxDate = AstronomicalCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = AstronomicalCalendar.julianDayNumberFromDate(maxDate)
+		#expect(maxJ == .max)
+
+		_ = AstronomicalCalendar.isLeapYear(.min)
+		_ = AstronomicalCalendar.isLeapYear(.max)
+
+		_ = AstronomicalCalendar.dayOfWeek(.min)
+		_ = AstronomicalCalendar.dayOfWeek(.max)
+	}
 }

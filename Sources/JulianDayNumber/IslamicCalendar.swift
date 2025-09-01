@@ -25,6 +25,9 @@
 ///
 /// The Islamic calendar epoch in the Julian calendar is July 16, 622 CE.
 ///
+/// The true Islamic calendar is a purely lunar calendar in which months correspond to the lunar phases. This implementation
+/// is an arithmetic calendar, sometimes called the civil Islamic calendar, that approximates the lunar phases.
+///
 /// - seealso: [Islamic calendar](https://en.wikipedia.org/wiki/Islamic_calendar)
 public struct IslamicCalendar: Calendar {
 	/// The Julian day number of the epoch of the Islamic calendar.
@@ -59,7 +62,7 @@ public struct IslamicCalendar: Calendar {
 	///
 	/// - returns: `true` if `Y` is a leap year in the Islamic calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
-		let yearInCycle = (Y - 1) % 30 + (Y < 1 ? 31 : 1)
+		let yearInCycle = Y > 0 ? (Y - 1) % 30 + 1 : (Y % 30) + 30
 		return yearInCycle == 2 || yearInCycle == 5 || yearInCycle == 7 || yearInCycle == 10 || yearInCycle == 13 || yearInCycle == 16 || yearInCycle == 18 || yearInCycle == 21 || yearInCycle == 24 || yearInCycle == 26 || yearInCycle == 29
 	}
 

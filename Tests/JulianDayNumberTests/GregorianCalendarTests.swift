@@ -153,5 +153,11 @@ import Testing
 		let maxDate = try GregorianCalendar.dateFromJulianDayNumber(.max)
 		let maxJ = try GregorianCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
+
+		_ = GregorianCalendar.isLeapYear(.min)
+		_ = GregorianCalendar.isLeapYear(.max)
+
+		_ = GregorianCalendar.dayOfWeek(.min)
+		_ = GregorianCalendar.dayOfWeek(.max)
 	}
 }

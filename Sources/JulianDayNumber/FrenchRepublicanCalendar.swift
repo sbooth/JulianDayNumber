@@ -63,7 +63,7 @@ public struct FrenchRepublicanCalendar: Calendar {
 	///
 	/// - returns: `true` if the specified year is a leap year in the French Republican calendar.
 	public static func isLeapYear(_ Y: Year) -> Bool {
-		GregorianCalendar.isLeapYear(Y + 1)
+		Y < .max ? GregorianCalendar.isLeapYear(Y + 1) : GregorianCalendar.isLeapYear(Y + (1 - 400))
 	}
 
 	public static func numberOfMonths(inYear Y: Year) -> Int {
