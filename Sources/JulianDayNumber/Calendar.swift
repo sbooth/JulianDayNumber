@@ -24,21 +24,22 @@ public protocol Calendar: CalendarProtocol where DateType == YearMonthDay {
 	/// A date consisting of a year number, month number, and day number.
 	typealias YearMonthDay = (year: Year, month: Month, day: Day)
 
-	/// Returns the number of months in the specified year.
+	/// Returns the number of months in the specified year or zero if the year number is invalid.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The number of months in the specified year.
 	static func numberOfMonths(inYear Y: Year) -> Int
 
-	/// Returns the number of days in the specified year.
+	/// Returns the number of days in the specified year or zero if the year number is invalid.
 	///
 	/// - parameter Y: A year number.
 	///
 	/// - returns: The number of days in the specified year.
 	static func numberOfDays(inYear Y: Year) -> Int
 
-	/// Returns the number of days in the specified month and year.
+	/// Returns the number of days in the specified month and year or zero if the month number
+	/// or year number is invalid or they form an invalid combination.
 	///
 	/// - parameter M: A month number.
 	/// - parameter Y: A year number.
@@ -49,7 +50,9 @@ public protocol Calendar: CalendarProtocol where DateType == YearMonthDay {
 
 extension Calendar {
 	public static func isValidDate(_ date: DateType) -> Bool {
-		date.month > 0 && date.month <= numberOfMonths(inYear: date.year) && date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
+		// It isn't necessary to validate `date.month` independently since it is checked in
+		// `numberOfDaysIn(month:year:)`
+		date.day > 0 && date.day <= numberOfDaysIn(month: date.month, year: date.year)
 	}
 
 	/// Returns `true` if the specified year, month, and day form a valid date.
