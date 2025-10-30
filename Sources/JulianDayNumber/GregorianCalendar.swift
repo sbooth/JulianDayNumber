@@ -42,7 +42,7 @@ public struct GregorianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Gregorian calendar is 303 common years of 365 days and 97 leap years of 366 days.
 	static let recurrenceCycle = (years: 400, days: 146097)
 
-	/// The Gregorian calendar date corresponding to JDN 0
+	/// The Gregorian calendar date corresponding to JDN 0.
 	static let jdnZero: DateType = (-4713, 11, 24)
 
 	// These algorithms are valid for all Gregorian calendar dates
