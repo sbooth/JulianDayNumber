@@ -37,7 +37,7 @@ public struct JulianCalendar: Calendar {
 	/// The recurrence (solar) cycle of the Julian calendar is 21 common years of 365 days and 7 leap years of 366 days.
 	static let recurrenceCycle = (years: 28, days: 10227)
 
-	/// The Julian calendar date corresponding to JDN 0
+	/// The Julian calendar date corresponding to JDN 0.
 	static let jdnZero: DateType = (-4712, 1, 1)
 
 	// These algorithms are valid for all Julian calendar dates
