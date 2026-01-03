@@ -41,6 +41,20 @@ public struct JulianCalendar: Calendar {
 	/// The Julian calendar date corresponding to JDN 0.
 	static let jdnZero: DateType = (-4712, 1, 1)
 
+#if _pointerBitWidth(_64)
+	// The Julian calendar date corresponding to JDN `Int64.max`
+	static let upperLimit: DateType = (25252216391110348, 5, 22)
+	// The Julian calendar date corresponding to JDN `Int64.min`
+	static let lowerLimit: DateType = (-25252216391119773, 8, 11)
+#elseif _pointerBitWidth(_32)
+	// The Julian calendar date corresponding to JDN `Int32.max`
+	static let upperLimit: DateType = (5874777, 10, 17)
+	// The Julian calendar date corresponding to JDN `Int32.min`
+	static let lowerLimit: DateType = (-5884202, 3, 16)
+#else
+#error("Unsupported pointer bit width")
+#endif
+
 	// These algorithms are valid for all Julian calendar dates
 	// corresponding to JDN ≥ 0.
 	//
@@ -49,8 +63,11 @@ public struct JulianCalendar: Calendar {
 	// held at the Jet Propulsion Laboratory in 1970.
 
 	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		// Years greater than maxY cause arithmetic overflow
-		// when computing J even when the final result is ≤ .max
+//		guard date <= upperLimit else { return .max }
+//		guard date >= lowerLimit else { return .min }
+
+		// Years greater than `maxY` cause arithmetic overflow
+		// when computing `J` even when the final result is ≤ `.max`
 		let maxY = .max / 367
 
 		var Y = date.year
@@ -69,7 +86,6 @@ public struct JulianCalendar: Calendar {
 			Y += cycles * recurrenceCycle.years + recurrenceCycle.years
 		}
 
-//		precondition(Y >= minY)
 		var J = 367 * Y
 				- (7 * (Y + 5001 + (date.month - 9) / 7)) / 4
 				+ (275 * date.month) / 9
@@ -88,8 +104,8 @@ public struct JulianCalendar: Calendar {
 	}
 
 	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
-		// JDN values greater than maxJD cause arithmetic overflow
-		// when computing J
+		// JDN values greater than `maxJD` cause arithmetic overflow
+		// when computing `J`
 		let maxJD = .max - 1402
 
 		var JD = JD
@@ -103,7 +119,6 @@ public struct JulianCalendar: Calendar {
 			JD = recurrenceCycle.days + qr.remainder
 		}
 
-//		precondition(JD >= 0)
 		var J = JD + 1402
 		let K = (J - 1) / 1461
 		let L = J - 1461 * K
