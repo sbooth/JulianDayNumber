@@ -40,8 +40,10 @@ extension Calendar {
 	/// - parameter s: A second number on the half-open interval `[0, 60)`.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, day, hour, minute, and second.
-	public static func julianDateFrom(year Y: Year, month M: Month, day D: Day, hour h: Hour = 0, minute m: Minute = 0, second s: Second = 0) -> JulianDate {
-		julianDateFrom(year: Y, month: M, day: Double(D) + fractionalDayFrom(hour: h, minute: m, second: s))
+	///
+	/// - throws: An error if the year, month, day, hour, minute, and second could not be converted to a Julian date.
+	public static func julianDateFrom(year Y: Year, month M: Month, day D: Day, hour h: Hour = 0, minute m: Minute = 0, second s: Second = 0) throws -> JulianDate {
+		try julianDateFrom(year: Y, month: M, day: Double(D) + fractionalDayFrom(hour: h, minute: m, second: s))
 	}
 
 	/// Converts the specified year, month, and decimal fractional day to a Julian date and returns the result.
@@ -53,9 +55,11 @@ extension Calendar {
 	/// - parameter D: A decimal fractional day number.
 	///
 	/// - returns: The Julian date corresponding to the specified year, month, and decimal day.
-	public static func julianDateFrom(year Y: Year, month M: Month, day D: FractionalDay) -> JulianDate {
+	///
+	/// - throws: An error if the year, month, and decimal fractional day could not be converted to a Julian date.
+	public static func julianDateFrom(year Y: Year, month M: Month, day D: FractionalDay) throws -> JulianDate {
 		let (day, dayFraction) = modf(D)
-		return Double(julianDayNumberFrom(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
+		return Double(try julianDayNumberFrom(year: Y, month: M, day: Int(day))) - 0.5 + dayFraction
 	}
 
 	/// Converts the specified Julian date to a year, month, day, hour, minute, and second and returns the result.
@@ -63,10 +67,12 @@ extension Calendar {
 	/// - parameter julianDate: A Julian date.
 	///
 	/// - returns: The year, month, day, hour, minute, and second corresponding to the specified Julian date.
-	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) -> (year: Year, month: Month, day: Day, hour: Hour, minute: Minute, second: Second) {
+	///
+	/// - throws: An error if the Julian date could not be converted to a year, month, and decimal fractional day.
+	public static func dateAndTimeFromJulianDate(_ julianDate: JulianDate) throws -> (year: Year, month: Month, day: Day, hour: Hour, minute: Minute, second: Second) {
 		let julianDatePlus12Hours = julianDate + 0.5
 		let J = JulianDayNumber(julianDatePlus12Hours.rounded(.down))
-		let (Y, M, D) = dateFromJulianDayNumber(J)
+		let (Y, M, D) = try dateFromJulianDayNumber(J)
 		var (_, dayFraction) = modf(julianDatePlus12Hours)
 		if dayFraction < 0 {
 			dayFraction += 1

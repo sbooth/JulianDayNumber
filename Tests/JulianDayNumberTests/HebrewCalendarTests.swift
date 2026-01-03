@@ -85,9 +85,9 @@ import Testing
 //		#expect(HebrewCalendar.yearContaining(julianDayNumber: -364898823) == -999999)
 	}
 
-	@Test func epoch() {
-		#expect(HebrewCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == HebrewCalendar.epoch)
-		#expect(HebrewCalendar.dateFromJulianDayNumber(HebrewCalendar.epoch) == (1, 1, 1))
+	@Test func epoch() throws {
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == HebrewCalendar.epoch)
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(HebrewCalendar.epoch) == (1, 1, 1))
 	}
 
 	@Test func dateValidation() {
@@ -208,50 +208,50 @@ import Testing
 		#expect(HebrewCalendar.numberOfDays(inYear: 19) == 383)
 	}
 
-	@Test func julianDayNumber() {
-		#expect(HebrewCalendar.julianDayNumberFrom(year: -999999, month: 1, day: 1) == -364898823)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: -99999, month: 1, day: 1) == -36176711)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: -9999, month: 1, day: 1) == -3304494)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: 9999, month: 12, day: 29) == 4000075)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: 99999, month: 12, day: 29) == 36872292)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: 999999, month: 12, day: 29) == 365594434)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: 2000, month: 1, day: 1) == 1078112)
-		#expect(HebrewCalendar.julianDayNumberFrom(year: -5000, month: 1, day: 1) == -1478617)
+	@Test func julianDayNumber() throws {
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: -999999, month: 1, day: 1) == -364898823)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: -99999, month: 1, day: 1) == -36176711)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: -9999, month: 1, day: 1) == -3304494)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: 9999, month: 12, day: 29) == 4000075)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: 99999, month: 12, day: 29) == 36872292)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: 999999, month: 12, day: 29) == 365594434)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: 2000, month: 1, day: 1) == 1078112)
+		#expect(try HebrewCalendar.julianDayNumberFrom(year: -5000, month: 1, day: 1) == -1478617)
 
-		#expect(HebrewCalendar.dateFromJulianDayNumber(-364898823) == (-999999, 1, 1))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(-36176711) == (-99999, 1, 1))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(-3304494) == (-9999, 1, 1))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(4000075) == (9999, 12, 29))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(36872292) == (99999, 12, 29))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(365594434) == (999999, 12, 29))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(0) == (-952, 4, 20))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(1078112) == (2000, 1, 1))
-		#expect(HebrewCalendar.dateFromJulianDayNumber(-1478617) == (-5000, 1, 1))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(-364898823) == (-999999, 1, 1))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(-36176711) == (-99999, 1, 1))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(-3304494) == (-9999, 1, 1))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(4000075) == (9999, 12, 29))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(36872292) == (99999, 12, 29))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(365594434) == (999999, 12, 29))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(0) == (-952, 4, 20))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(1078112) == (2000, 1, 1))
+		#expect(try HebrewCalendar.dateFromJulianDayNumber(-1478617) == (-5000, 1, 1))
 	}
 
-	@Test func limits() {
-		#expect(HebrewCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -364898823.5)
-		#expect(HebrewCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -36176711.5)
-		#expect(HebrewCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -3304494.5)
-		#expect(HebrewCalendar.julianDateFrom(year: 9999, month: 12, day: 29) == 4000074.5)
-		#expect(HebrewCalendar.julianDateFrom(year: 99999, month: 12, day: 29) == 36872291.5)
-		#expect(HebrewCalendar.julianDateFrom(year: 999999, month: 12, day: 29) == 365594433.5)
+	@Test func limits() throws {
+		#expect(try HebrewCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -364898823.5)
+		#expect(try HebrewCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -36176711.5)
+		#expect(try HebrewCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -3304494.5)
+		#expect(try HebrewCalendar.julianDateFrom(year: 9999, month: 12, day: 29) == 4000074.5)
+		#expect(try HebrewCalendar.julianDateFrom(year: 99999, month: 12, day: 29) == 36872291.5)
+		#expect(try HebrewCalendar.julianDateFrom(year: 999999, month: 12, day: 29) == 365594433.5)
 
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(-364898823.5) == (-999999, 1, 1, 0, 0, 0))
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(-36176711.5) == (-99999, 1, 1, 0, 0, 0))
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(-3304494.5) == (-9999, 1, 1, 0, 0, 0))
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(4000074.5) == (9999, 12, 29, 0, 0, 0))
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(36872291.5) == (99999, 12, 29, 0, 0, 0))
-		#expect(HebrewCalendar.dateAndTimeFromJulianDate(365594433.5) == (999999, 12, 29, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(-364898823.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(-36176711.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(-3304494.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(4000074.5) == (9999, 12, 29, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(36872291.5) == (99999, 12, 29, 0, 0, 0))
+		#expect(try HebrewCalendar.dateAndTimeFromJulianDate(365594433.5) == (999999, 12, 29, 0, 0, 0))
 	}
 
-	@Test func arithmeticLimits() {
+	@Test func arithmeticLimits() throws {
 		// Values smaller than this cause an arithmetic overflow in dateFromJulianDayNumber
 //		let smallestJDNForHebrewCalendar: JulianDayNumber = .min + 106959827
 		// Values smaller than this cause an arithmetic overflow in julianDayNumberFrom
 		let smallestJDNForHebrewCalendar: JulianDayNumber = .min + 106960181
-		var (Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(smallestJDNForHebrewCalendar)
-		var jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		var (Y, M, D) = try HebrewCalendar.dateFromJulianDayNumber(smallestJDNForHebrewCalendar)
+		var jdn = try HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(smallestJDNForHebrewCalendar == jdn)
 
 #if _pointerBitWidth(_64)
@@ -261,8 +261,8 @@ import Testing
 #else
 		let largestJDNForHebrewCalendar: JulianDayNumber = 343469932136373189
 #endif
-		(Y, M, D) = HebrewCalendar.dateFromJulianDayNumber(largestJDNForHebrewCalendar)
-		jdn = HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
+		(Y, M, D) = try HebrewCalendar.dateFromJulianDayNumber(largestJDNForHebrewCalendar)
+		jdn = try HebrewCalendar.julianDayNumberFrom(year: Y, month: M, day: D)
 		#expect(largestJDNForHebrewCalendar == jdn)
 #endif
 
