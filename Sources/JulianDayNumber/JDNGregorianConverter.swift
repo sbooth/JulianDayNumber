@@ -1,7 +1,8 @@
 //
-// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
+// SPDX-FileCopyrightText: 2021 Stephen F. Booth <contact@sbooth.dev>
+// SPDX-License-Identifier: MIT
+//
 // Part of https://github.com/sbooth/JulianDayNumber
-// MIT license
 //
 
 /// A converter implementing algorithms for interconverting a Julian day number and a year, month, and day in calendars using Gregorian-type intercalating.

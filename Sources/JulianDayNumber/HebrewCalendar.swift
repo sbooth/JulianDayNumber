@@ -1,7 +1,8 @@
 //
-// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
+// SPDX-FileCopyrightText: 2021 Stephen F. Booth <contact@sbooth.dev>
+// SPDX-License-Identifier: MIT
+//
 // Part of https://github.com/sbooth/JulianDayNumber
-// MIT license
 //
 
 /// The Hebrew calendar is a lunisolar calendar with either 353, 354, 355, 383, 384, or 385 days in the year.
