@@ -1,7 +1,8 @@
 //
-// Copyright © 2021-2025 Stephen F. Booth <me@sbooth.org>
+// SPDX-FileCopyrightText: 2021 Stephen F. Booth <contact@sbooth.dev>
+// SPDX-License-Identifier: MIT
+//
 // Part of https://github.com/sbooth/JulianDayNumber
-// MIT license
 //
 
 /// A hybrid calendar that uses the Julian calendar for dates on or before October 4, 1582 and the Gregorian calendar for dates on or after October 15, 1582.
