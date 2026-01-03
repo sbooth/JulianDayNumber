@@ -1,5 +1,10 @@
 // swift-tools-version: 5.5
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+//
+// SPDX-FileCopyrightText: 2023 Stephen F. Booth <contact@sbooth.dev>
+// SPDX-License-Identifier: MIT
+//
+// Part of https://github.com/sbooth/JulianDayNumber
+//
 
 import PackageDescription
 
