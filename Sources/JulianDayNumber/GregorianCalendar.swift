@@ -53,7 +53,7 @@ public struct GregorianCalendar: Calendar {
 	//   Fliegel, H.F. & van Flandern, T.C. 1968, Communications of the ACM, 11, 657.
 	//   https://doi.org/10.1145/364096.364097
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
 		// Years greater than maxY cause arithmetic overflow
 		// when computing J even when the final result is ≤ .max
 		// N.B. this is an estimated upper bound
@@ -93,7 +93,7 @@ public struct GregorianCalendar: Calendar {
 		return J
 	}
 
-	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) -> DateType {
+	public static func dateFromJulianDayNumber(_ JD: JulianDayNumber) throws -> DateType {
 		// JDN values greater than maxJD cause arithmetic overflow
 		// when computing L
 		let maxJD = .max - 68569

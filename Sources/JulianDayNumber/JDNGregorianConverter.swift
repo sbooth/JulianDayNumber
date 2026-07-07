@@ -41,7 +41,9 @@ struct JDNGregorianConverter {
 	/// - parameter date: A date to convert.
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
-	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) -> JulianDayNumber {
+	///
+	/// - throws: An error if the date could not be converted to a Julian Day Number.
+	func julianDayNumberFromDate(_ date: Calendar.YearMonthDay) throws -> JulianDayNumber {
 		// Arithmetic upper limit
 		// `Y` values larger than this cause overflow when `e` is computed
 		let maxY = (.max / p) - y + (n - (date.month - m)) / n
@@ -90,7 +92,9 @@ struct JDNGregorianConverter {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
-	func dateFromJulianDayNumber(_ J: JulianDayNumber) -> Calendar.YearMonthDay {
+	///
+	/// - throws: An error if the Julian Day Number could not be converted to a date.
+	func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> Calendar.YearMonthDay {
 		// Approximate arithmetic upper limit (the true upper limit is very difficult to calculate)
 		// Most `J` values larger than this cause overflow when `e` is computed
 		let maxJ = .max / 5

@@ -76,8 +76,10 @@ extension Calendar {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The Julian day number corresponding to the specified year, month, and day.
-	public static func julianDayNumberFrom(year Y: Year, month M: Month, day D: Day) -> JulianDayNumber {
-		julianDayNumberFromDate((Y, M, D))
+	///
+	/// - throws: An error if the year, month, and day could not be converted to a Julian Day Number.
+	public static func julianDayNumberFrom(year Y: Year, month M: Month, day D: Day) throws -> JulianDayNumber {
+		try julianDayNumberFromDate((Y, M, D))
 	}
 
 	/// An ordinal day.
@@ -90,8 +92,10 @@ extension Calendar {
 	/// - parameter D: A day number.
 	///
 	/// - returns: The ordinal day corresponding to the specified year, month, and day.
-	public static func ordinalDayFrom(year Y: Year, month M: Month, day D: Day) -> OrdinalDay {
-		OrdinalDay(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
+	///
+	/// - throws: An error if the year, month, and day could not be converted to an ordinal day.
+	public static func ordinalDayFrom(year Y: Year, month M: Month, day D: Day) throws -> OrdinalDay {
+		try OrdinalDay(julianDayNumberFrom(year: Y, month: M, day: D) - julianDayNumberFrom(year: Y, month: 1, day: 1) + 1)
 	}
 
 	/// Converts a year and ordinal day to a year, month, and day and returns the result.
@@ -100,8 +104,10 @@ extension Calendar {
 	/// - parameter N: An ordinal day number.
 	///
 	/// - returns: The year, month, and day corresponding to the specified year and ordinal day.
-	public static func dateFrom(year Y: Year, ordinalDay N: OrdinalDay) -> DateType {
-		dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + JulianDayNumber(N) - 1)
+	///
+	/// - throws: An error if the year and ordinal day could not be converted to a date.
+	public static func dateFrom(year Y: Year, ordinalDay N: OrdinalDay) throws -> DateType {
+		try dateFromJulianDayNumber(julianDayNumberFrom(year: Y, month: 1, day: 1) + JulianDayNumber(N) - 1)
 	}
 }
 
@@ -114,7 +120,9 @@ extension Calendar {
 	/// - parameter calendar: The calendar to use for conversion.
 	///
 	/// - returns: The specified date converted to a date in the specified calendar.
-	public static func convert<C>(year Y: Year, month M: Month, day D: Day, to calendar: C.Type) -> C.DateType where C: CalendarProtocol {
-		convertDate((Y, M, D), using: calendar)
+	///
+	/// - throws: An error if the year, month, and day could not be converted to a date in the specified calendar.
+	public static func convert<C>(year Y: Year, month M: Month, day D: Day, to calendar: C.Type) throws -> C.DateType where C: CalendarProtocol {
+		try convertDate((Y, M, D), using: calendar)
 	}
 }

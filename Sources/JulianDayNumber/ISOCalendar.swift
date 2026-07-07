@@ -26,13 +26,13 @@ public struct ISOCalendar: CalendarProtocol {
 	/// This JDN corresponds to January 3, 1 CE in the Julian calendar.
 	public static let epoch = GregorianCalendar.epoch
 
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		GregorianCalendar.julianDayNumberFromDate(dateFromISO(year: date.year, week: date.week, weekday: date.weekday))
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
+		try GregorianCalendar.julianDayNumberFromDate(dateFromISO(year: date.year, week: date.week, weekday: date.weekday))
 	}
 
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		let (Y, M, D) = GregorianCalendar.dateFromJulianDayNumber(J)
-		return isoDateFrom(year: Y, month: M, day: D)
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
+		let (Y, M, D) = try GregorianCalendar.dateFromJulianDayNumber(J)
+		return try isoDateFrom(year: Y, month: M, day: D)
 	}
 
 	/// Returns the number of ISO full weeks in a year.
@@ -56,13 +56,13 @@ public struct ISOCalendar: CalendarProtocol {
 		return 52
 	}
 
-	/// Returns the ISO weekday for the specified year, month, and day.
+	/// Returns the ISO weekday for the specified Gregorian year, month, and day.
 	///
 	/// - parameter Y: A Gregorian year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The ISO weekday from `1` (Monday) to `7` (Sunday) corresponding to the specified year, month, and day.
+	/// - returns: The ISO weekday from `1` (Monday) to `7` (Sunday) corresponding to the specified Gregorian year, month, and day.
 	static func isoWeekdayFrom(year Y: Int, month M: Int, day D: Int) -> WeekdayNumber {
 		let weekday = GregorianCalendar.dayOfWeekFrom(year: Y, month: M, day: D) - 1
 		return weekday < 1 ? weekday + 7 : weekday
@@ -73,15 +73,17 @@ public struct ISOCalendar: CalendarProtocol {
 		date.weekday > 0 && date.weekday <= 7 && date.week > 0 && date.week <= isoWeeksInYear(date.year)
 	}
 
-	/// Returns the ISO week date for the specified year, month, and day.
+	/// Returns the ISO week date for the specified Gregorian year, month, and day.
 	///
 	/// - parameter Y: A Gregorian year number.
 	/// - parameter M: A month number.
 	/// - parameter D: A day number.
 	///
-	/// - returns: The ISO week date corresponding to the specified year, month, and day.
-	public static func isoDateFrom(year Y: Int, month M: Int, day D: Int) -> (year: Year, week: WeekNumber, weekday: WeekdayNumber) {
-		let N = GregorianCalendar.ordinalDayFrom(year: Y, month: M, day: D)
+	/// - returns: The ISO week date corresponding to the specified Gregorian year, month, and day.
+	///
+	/// - throws: An error if the year, month, and day could not be converted to an ISO week date.
+	public static func isoDateFrom(year Y: Int, month M: Int, day D: Int) throws -> (year: Year, week: WeekNumber, weekday: WeekdayNumber) {
+		let N = try GregorianCalendar.ordinalDayFrom(year: Y, month: M, day: D)
 		let weekday = isoWeekdayFrom(year: Y, month: M, day: D)
 		let w = (10 + N - weekday) / 7
 		if w == 0 {
@@ -92,15 +94,17 @@ public struct ISOCalendar: CalendarProtocol {
 		return (Y, w, weekday)
 	}
 
-	/// Returns the date for the specified year, ISO week number, and ISO weekday number.
+	/// Returns the Gregorian date for the specified year, ISO week number, and ISO weekday number.
 	///
 	/// - parameter Y: A Gregorian year number.
 	/// - parameter week: An ISO week number.
 	/// - parameter weekday: An ISO weekday number.
 	///
-	/// - returns: The date corresponding to the specified Gregorian year, ISO week number, and ISO weekday number.
-	public static func dateFromISO(year Y: Year, week: WeekNumber, weekday: WeekdayNumber) -> (year: Int, month: Int, day: Int) {
+	/// - returns: The Gregorian date corresponding to the specified Gregorian year, ISO week number, and ISO weekday number.
+	///
+	/// - throws: An error if the year, ISO week number, and ISO weekday number could not be converted to a date.
+	public static func dateFromISO(year Y: Year, week: WeekNumber, weekday: WeekdayNumber) throws -> GregorianCalendar.DateType {
 		let N = week * 7 + weekday - isoWeekdayFrom(year: Y, month: 1, day: 4) - 3
-		return GregorianCalendar.dateFrom(year: Y, ordinalDay: N)
+		return try GregorianCalendar.dateFrom(year: Y, ordinalDay: N)
 	}
 }

@@ -27,8 +27,10 @@ public struct AstronomicalCalendar: Calendar {
 	/// - parameter date: A date to convert.
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
-	public static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber {
-		date < firstGregorianCalendarDate ? JulianCalendar.julianDayNumberFromDate(date) : GregorianCalendar.julianDayNumberFromDate(date)
+	///
+	/// - throws: An error if the date could not be converted to a Julian Day Number.
+	public static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber {
+		date < firstGregorianCalendarDate ? try JulianCalendar.julianDayNumberFromDate(date) : try GregorianCalendar.julianDayNumberFromDate(date)
 	}
 
 	/// Converts a Julian day number to a date in the astronomical calendar.
@@ -38,8 +40,10 @@ public struct AstronomicalCalendar: Calendar {
 	/// - parameter J: A Julian day number.
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
-	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType {
-		J < GregorianCalendar.effectiveJulianDayNumber ? JulianCalendar.dateFromJulianDayNumber(J): GregorianCalendar.dateFromJulianDayNumber(J)
+	///
+	/// - throws: An error if the Julian Day Number could not be converted to a date.
+	public static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType {
+		J < GregorianCalendar.effectiveJulianDayNumber ? try JulianCalendar.dateFromJulianDayNumber(J): try GregorianCalendar.dateFromJulianDayNumber(J)
 	}
 
 	/// The number of months in one year.

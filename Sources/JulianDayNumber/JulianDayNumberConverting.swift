@@ -26,8 +26,10 @@ public protocol JulianDayNumberConverting {
 	///
 	/// - returns: The Julian day number corresponding to the specified date.
 	///
+	/// - throws: An error if the date could not be converted to a Julian Day Number.
+	///
 	/// - seealso: ``dateFromJulianDayNumber(_:)``
-	static func julianDayNumberFromDate(_ date: DateType) -> JulianDayNumber
+	static func julianDayNumberFromDate(_ date: DateType) throws -> JulianDayNumber
 
 	/// Converts a Julian day number to a date and returns the result.
 	///
@@ -35,8 +37,10 @@ public protocol JulianDayNumberConverting {
 	///
 	/// - returns: The date corresponding to the specified Julian day number.
 	///
+	/// - throws: An error if the Julian Day Number could not be converted to a date.
+	///
 	/// - seealso: ``julianDayNumberFromDate(_:)``
-	static func dateFromJulianDayNumber(_ J: JulianDayNumber) -> DateType
+	static func dateFromJulianDayNumber(_ J: JulianDayNumber) throws -> DateType
 }
 
 extension JulianDayNumberConverting {
@@ -46,7 +50,9 @@ extension JulianDayNumberConverting {
 	/// - parameter converter: The converter to use.
 	///
 	/// - returns: The specified date converted to a date using the specified converter.
-	public static func convertDate<C>(_ date: DateType, using converter: C.Type) -> C.DateType where C: JulianDayNumberConverting {
-		C.dateFromJulianDayNumber(Self.julianDayNumberFromDate(date))
+	///
+	/// - throws: An error if the date could not be converted to a date using the specified converter.
+	public static func convertDate<C>(_ date: DateType, using converter: C.Type) throws -> C.DateType where C: JulianDayNumberConverting {
+		try C.dateFromJulianDayNumber(Self.julianDayNumberFromDate(date))
 	}
 }

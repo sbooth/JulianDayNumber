@@ -9,9 +9,9 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct IslamicCalendarTests {
-	@Test func epoch() {
-		#expect(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == IslamicCalendar.epoch)
-		#expect(IslamicCalendar.dateFromJulianDayNumber(IslamicCalendar.epoch) == (1, 1, 1))
+	@Test func epoch() throws {
+		#expect(try IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == IslamicCalendar.epoch)
+		#expect(try IslamicCalendar.dateFromJulianDayNumber(IslamicCalendar.epoch) == (1, 1, 1))
 	}
 
 	@Test func dateValidation() {
@@ -20,7 +20,7 @@ import Testing
 		#expect(!IslamicCalendar.isValid(year: 38, month: 12, day: 30))
 	}
 
-	@Test func leapYear() {
+	@Test func leapYear() throws {
 		#expect(!IslamicCalendar.isLeapYear(1))
 		#expect(IslamicCalendar.isLeapYear(2))
 		#expect(!IslamicCalendar.isLeapYear(3))
@@ -85,8 +85,8 @@ import Testing
 
 		for y in -500...500 {
 			let isLeap = IslamicCalendar.isLeapYear(y)
-			let j = IslamicCalendar.julianDayNumberFrom(year: y, month: 12, day: isLeap ? 30 : 29)
-			let d = IslamicCalendar.dateFromJulianDayNumber(j)
+			let j = try IslamicCalendar.julianDayNumberFrom(year: y, month: 12, day: isLeap ? 30 : 29)
+			let d = try IslamicCalendar.dateFromJulianDayNumber(j)
 			#expect(d.month == 12)
 			#expect(d.day == (isLeap ? 30 : 29))
 		}
@@ -141,36 +141,36 @@ import Testing
 		#expect(IslamicCalendar.numberOfDays(inYear: 30) == 354)
 	}
 
-	@Test func julianDayNumber() {
+	@Test func julianDayNumber() throws {
 		// From Richards
-		#expect(IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1948440)
+		#expect(try IslamicCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 1948440)
 		// From Meeus
-		#expect(IslamicCalendar.julianDayNumberFrom(year: 1421, month: 1, day: 1) == 2451641)
+		#expect(try IslamicCalendar.julianDayNumberFrom(year: 1421, month: 1, day: 1) == 2451641)
 	}
 
-	@Test func limits() {
-		#expect(IslamicCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -352418227.5)
-		#expect(IslamicCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -33488227.5)
-		#expect(IslamicCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1595227.5)
-		#expect(IslamicCalendar.julianDateFrom(year: 9999, month: 12, day: 29) == 5491750.5)
-		#expect(IslamicCalendar.julianDateFrom(year: 99999, month: 12, day: 29) == 37384750.5)
-		#expect(IslamicCalendar.julianDateFrom(year: 999999, month: 12, day: 29) == 356314750.5)
+	@Test func limits() throws {
+		#expect(try IslamicCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -352418227.5)
+		#expect(try IslamicCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -33488227.5)
+		#expect(try IslamicCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1595227.5)
+		#expect(try IslamicCalendar.julianDateFrom(year: 9999, month: 12, day: 29) == 5491750.5)
+		#expect(try IslamicCalendar.julianDateFrom(year: 99999, month: 12, day: 29) == 37384750.5)
+		#expect(try IslamicCalendar.julianDateFrom(year: 999999, month: 12, day: 29) == 356314750.5)
 
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(-352418227.5) == (-999999, 1, 1, 0, 0, 0))
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(-33488227.5) == (-99999, 1, 1, 0, 0, 0))
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(-1595227.5) == (-9999, 1, 1, 0, 0, 0))
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(5491750.5) == (9999, 12, 29, 0, 0, 0))
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(37384750.5) == (99999, 12, 29, 0, 0, 0))
-		#expect(IslamicCalendar.dateAndTimeFromJulianDate(356314750.5) == (999999, 12, 29, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(-352418227.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(-33488227.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(-1595227.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(5491750.5) == (9999, 12, 29, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(37384750.5) == (99999, 12, 29, 0, 0, 0))
+		#expect(try IslamicCalendar.dateAndTimeFromJulianDate(356314750.5) == (999999, 12, 29, 0, 0, 0))
 	}
 
-	@Test func arithmeticLimits() {
-		let minDate = IslamicCalendar.dateFromJulianDayNumber(.min)
-		let minJ = IslamicCalendar.julianDayNumberFromDate(minDate)
+	@Test func arithmeticLimits() throws {
+		let minDate = try IslamicCalendar.dateFromJulianDayNumber(.min)
+		let minJ = try IslamicCalendar.julianDayNumberFromDate(minDate)
 		#expect(minJ == .min)
 
-		let maxDate = IslamicCalendar.dateFromJulianDayNumber(.max)
-		let maxJ = IslamicCalendar.julianDayNumberFromDate(maxDate)
+		let maxDate = try IslamicCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = try IslamicCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
 
 		_ = IslamicCalendar.isLeapYear(.min)

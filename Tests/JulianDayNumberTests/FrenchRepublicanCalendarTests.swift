@@ -9,9 +9,9 @@ import Testing
 @testable import JulianDayNumber
 
 @Suite struct FrenchRepublicanCalendarTests {
-	@Test func epoch() {
-		#expect(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == FrenchRepublicanCalendar.epoch)
-		#expect(FrenchRepublicanCalendar.dateFromJulianDayNumber(FrenchRepublicanCalendar.epoch) == (1, 1, 1))
+	@Test func epoch() throws {
+		#expect(try FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == FrenchRepublicanCalendar.epoch)
+		#expect(try FrenchRepublicanCalendar.dateFromJulianDayNumber(FrenchRepublicanCalendar.epoch) == (1, 1, 1))
 	}
 
 	@Test func dateValidation() {
@@ -20,7 +20,7 @@ import Testing
 		#expect(!FrenchRepublicanCalendar.isValid(year: 4, month: 13, day: 6))
 	}
 
-	@Test func leapYear() {
+	@Test func leapYear() throws {
 		#expect(FrenchRepublicanCalendar.isLeapYear(3))
 		#expect(FrenchRepublicanCalendar.isLeapYear(7))
 		#expect(FrenchRepublicanCalendar.isLeapYear(11))
@@ -35,8 +35,8 @@ import Testing
 
 		for y in -500...500 {
 			let isLeap = FrenchRepublicanCalendar.isLeapYear(y)
-			let j = FrenchRepublicanCalendar.julianDayNumberFrom(year: y, month: 13, day: isLeap ? 6 : 5)
-			let d = FrenchRepublicanCalendar.dateFromJulianDayNumber(j)
+			let j = try FrenchRepublicanCalendar.julianDayNumberFrom(year: y, month: 13, day: isLeap ? 6 : 5)
+			let d = try FrenchRepublicanCalendar.dateFromJulianDayNumber(j)
 			#expect(d.month == 13)
 			#expect(d.day == (isLeap ? 6 : 5))
 		}
@@ -63,33 +63,33 @@ import Testing
 		#expect(FrenchRepublicanCalendar.numberOfDays(inYear: 1600) == 365)
 	}
 
-	@Test func julianDayNumber() {
-		#expect(FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 2375840)
+	@Test func julianDayNumber() throws {
+		#expect(try FrenchRepublicanCalendar.julianDayNumberFrom(year: 1, month: 1, day: 1) == 2375840)
 	}
 
-	@Test func limits() {
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -362866660.5)
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34148410.5)
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1276585.5)
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: 9999, month: 13, day: 6) == 6027898.5)
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: 99999, month: 13, day: 6) == 38899723.5)
-		#expect(FrenchRepublicanCalendar.julianDateFrom(year: 999999, month: 13, day: 6) == 367617973.5)
+	@Test func limits() throws {
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: -999999, month: 1, day: 1) == -362866660.5)
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: -99999, month: 1, day: 1) == -34148410.5)
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: -9999, month: 1, day: 1) == -1276585.5)
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: 9999, month: 13, day: 6) == 6027898.5)
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: 99999, month: 13, day: 6) == 38899723.5)
+		#expect(try FrenchRepublicanCalendar.julianDateFrom(year: 999999, month: 13, day: 6) == 367617973.5)
 
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-362866660.5) == (-999999, 1, 1, 0, 0, 0))
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-34148410.5) == (-99999, 1, 1, 0, 0, 0))
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-1276585.5) == (-9999, 1, 1, 0, 0, 0))
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(6027898.5) == (9999, 13, 6, 0, 0, 0))
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(38899723.5) == (99999, 13, 6, 0, 0, 0))
-		#expect(FrenchRepublicanCalendar.dateAndTimeFromJulianDate(367617973.5) == (999999, 13, 6, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-362866660.5) == (-999999, 1, 1, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-34148410.5) == (-99999, 1, 1, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(-1276585.5) == (-9999, 1, 1, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(6027898.5) == (9999, 13, 6, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(38899723.5) == (99999, 13, 6, 0, 0, 0))
+		#expect(try FrenchRepublicanCalendar.dateAndTimeFromJulianDate(367617973.5) == (999999, 13, 6, 0, 0, 0))
 	}
 
-	@Test func arithmeticLimits() {
-		let minDate = FrenchRepublicanCalendar.dateFromJulianDayNumber(.min)
-		let minJ = FrenchRepublicanCalendar.julianDayNumberFromDate(minDate)
+	@Test func arithmeticLimits() throws {
+		let minDate = try FrenchRepublicanCalendar.dateFromJulianDayNumber(.min)
+		let minJ = try FrenchRepublicanCalendar.julianDayNumberFromDate(minDate)
 		#expect(minJ == .min)
 
-		let maxDate = FrenchRepublicanCalendar.dateFromJulianDayNumber(.max)
-		let maxJ = FrenchRepublicanCalendar.julianDayNumberFromDate(maxDate)
+		let maxDate = try FrenchRepublicanCalendar.dateFromJulianDayNumber(.max)
+		let maxJ = try FrenchRepublicanCalendar.julianDayNumberFromDate(maxDate)
 		#expect(maxJ == .max)
 
 		_ = FrenchRepublicanCalendar.isLeapYear(.min)
